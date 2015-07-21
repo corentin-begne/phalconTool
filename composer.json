@@ -1,0 +1,24 @@
+{
+    "name": "phalcon/tool",
+    "type": "library",
+    "description": "Phalcon project tool",
+    "keywords": ["phalcon","tool"],
+    "homepage": "https://github.com/corentin-begne/phalconTool",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Corentin Bègne",
+            "email": "corentin.begne@gmail.com",
+            "homepage": "",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Phalcon": "src"
+        }
+    }
+}
