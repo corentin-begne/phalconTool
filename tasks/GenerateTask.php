@@ -11,6 +11,9 @@ class GenerateTask extends \Phalcon\CLI\Task
 
     }
 
+    public function projectAction() {
+    }
+
     /**
      * generate all models
      */

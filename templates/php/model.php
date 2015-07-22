@@ -1,5 +1,5 @@
 <?
-class [name] extends ModelBase
+class [name] extends Phalcon\ModelBase
 {
     [fields]
     /**

@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 use Phalcon\CLI\Console as ConsoleApp;
@@ -20,7 +21,7 @@ foreach($argv as $k => $arg) {
 
 // Define paths
 defined('APPLICATION_PATH')
-|| define('APPLICATION_PATH', realpath(dirname(__FILE__)).'/apps/'.APP);
+|| define('APPLICATION_PATH', realpath(dirname(__FILE__)).'/../../../apps/'.APP);
 
 defined('ROOT_PATH')
 || define('ROOT_PATH', realpath(dirname(__FILE__)));
