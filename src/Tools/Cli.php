@@ -5,6 +5,8 @@ class Cli{
     const WARNING = 43;
     const SUCCESS = 42;
     const GREEN = "0;32";
+    const RED = "0;31";
+    const ORANGE = "0;33";
     const BLACK = "0;30";
 
     public static function colorBackgroundString($string, $color){
@@ -16,17 +18,17 @@ class Cli{
     }
 
     public static function error($string){
-        echo self::colorString($string, self::ERROR);
+        echo self::colorString($string, self::RED);
         die;
     }
     public static function success($string, $return=false){
-        echo self::colorString($string, self::SUCCESS);
+        echo self::colorString($string, self::GREEN);
         if($return){
             echo "\n";
         }
     }
     public static function warning($string, $return=false){
-        echo self::colorString($string, self::WARNING);
+        echo self::colorString($string, self::ORANGE);
         if($return){
             echo "\n";
         }
