@@ -19,11 +19,17 @@ class Cli{
         echo self::colorBackgroundString($string, self::ERROR);
         die;
     }
-    public static function success($string){
+    public static function success($string, $return=false){
         echo self::colorBackgroundString($string, self::SUCCESS);
+        if($return){
+            echo "\n";
+        }
     }
-    public static function warning($string){
+    public static function warning($string, $return=false){
         echo self::colorBackgroundString($string, self::WARNING);
+        if($return){
+            echo "\n";
+        }
     }
 }
 

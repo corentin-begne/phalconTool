@@ -23,8 +23,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             exec('cp -r '.TEMPLATE_PATH.'/project/app/* '.$appPath);
             $content = file_get_contents($appPath.'/config/config.php');
             file_put_contents($appPath.'/config/config.php', str_replace('[app]', $appName, $content));
-            Cli::warning('Don\'t forget to modify your app config');
-            echo "\n";
+            Cli::warning('Don\'t forget to modify your app config', true);
             echo $appPath."/config/config.php\n";
             Cli::success('app '.$appName.' successfully created');
         } else {
@@ -40,7 +39,6 @@ class GenerateTask extends \Phalcon\CLI\Task
         $appsPath = HOME_PATH.'apps';
         if(!file_exists($appsPath)){
             exec('mkdir '.$appsPath);
-            exec('cp -r '.TEMPLATE_PATH.'/project/app/* '.$appsPath);
 
             // create app
             $this->console->handle(array(
