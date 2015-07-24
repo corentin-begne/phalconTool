@@ -1,14 +1,12 @@
 <?
 use Phalcon\Loader;
 $loader = new Loader();
-$loader->registerDirs([
+$includes = [
     ROOT_PATH.'/tasks'
-]);
+];
 if(file_exists(APPLICATION_PATH)){
-   $loader->registerDirs([
-        APPLICATION_PATH.'/tasks',
-        APPLICATION_PATH.'/models'
-    ]); 
+    array_push($includes, APPLICATION_PATH.'/tasks', APPLICATION_PATH.'/models');
 }
+$loader->registerDirs($includes);
 $loader->registerNamespaces(['Phalcon' => ROOT_PATH.'/src'])
 ->register();

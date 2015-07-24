@@ -69,6 +69,7 @@ class GenerateTask extends \Phalcon\CLI\Task
      * generate all models
      */
     public function modelsAction() {
+        exec('rm -rf '.$this->config->application->modelsDir.'*');
         $constraints = [];
         foreach($this->db->listTables($this->config[ENV]->database->dbname) as &$table){
             $model = new Model($table);           
