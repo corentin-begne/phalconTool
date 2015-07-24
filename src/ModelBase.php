@@ -1,6 +1,5 @@
 <?
-use Phalcon\Mvc\Model,
-Phalcon\Annotations\Adapter\Memory,
+use Phalcon\Annotations\Adapter\Memory,
 Phalcon\Mvc\Model\Behavior\Timestampable,
 Phalcon\Mvc\Model\MetaData,
 Phalcon\Builder\Form,
@@ -9,7 +8,7 @@ Phalcon\DI;
 
 namespace Phalcon;
 
-class ModelBase extends Model{
+class ModelBase extends Phalcon\Mvc\Model{
 
     public static function getColumnsDescription($excludes=[]){
         $reader = new Memory();

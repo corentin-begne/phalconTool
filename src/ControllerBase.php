@@ -1,6 +1,5 @@
 <?
-use Phalcon\Mvc\Controller;
 namespace Phalcon;
 
-class ControllerBase extends Controller{
+class ControllerBase extends Phalcon\Mvc\Controller{
 }
