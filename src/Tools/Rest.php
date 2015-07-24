@@ -2,7 +2,7 @@
 
 namespace Phalcon\Tools;
 
-class Rest extends \Phalcon\Mvc\User\Component
+class Rest
 {
 
     public static $params=[];

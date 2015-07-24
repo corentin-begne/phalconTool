@@ -4,6 +4,7 @@ Phalcon\Builder\Controller,
 Phalcon\Builder\Js,
 Phalcon\Builder\Css,
 Phalcon\Builder\Less,
+Phalcon\Tools\Cli,
 Phalcon\Text as Utils;
 class GenerateTask extends \Phalcon\CLI\Task
 {
@@ -11,7 +12,42 @@ class GenerateTask extends \Phalcon\CLI\Task
 
     }
 
-    public function projectAction() {
+    public function projectAction($params) {
+        list($appName) = $params;
+        $appPath = HOME_PATH.'apps/'.$appName;
+        if(file_exists($appPath)){
+            exec('cp -r '.TEMPLATE_PATH.'/project/app/* '.$appsPath);
+            $content = file_get_contents($appsPath.'config/config.php');
+            file_put_contents($appsPath.'config/config.php', str_replace('[app]', $appName, $content));
+            Cli::success('app '.$appName.' successfully created');
+        } else {
+            Cli::error('app folder '.$appName.' already exists');
+        }
+    }
+
+    public function projectAction($params) {
+        list($appName) = $params;
+        $appsPath = HOME_PATH.'apps';
+        if(file_exists($appsPath)){
+            exec('mkdir '.$appsPath);
+            exec('cp -r '.TEMPLATE_PATH.'/project/app/* '.$appsPath);
+
+            // create app
+            $this->console->handle(array(
+               'task'   => 'generate',
+               'action' => 'app',
+               'params' => $params 
+            ));
+
+            // create public dir
+            exec('cp -r '.TEMPLATE_PATH.'/project/public '.HOME_PATH);
+            $content = file_get_contents(HOME_PATH.'public/.htaccess');
+            file_put_contents(HOME_PATH.'public/.htaccess', str_replace('[app]', $appName, $content));
+            echo "\n";
+            Cli::success('project '.$appName.' successfully created');
+        } else {
+            Cli::error('apps folder already exists');
+        }
     }
 
     /**

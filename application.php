@@ -4,56 +4,53 @@
 use Phalcon\CLI\Console as ConsoleApp;
 error_reporting(E_ALL);
 define('VERSION', '1.0.0');
-/**
-* Process the console arguments
-*/
+
+
 getOptions($argv);
 $arguments = array();
 foreach($argv as $k => $arg) {
     if($k == 1) {
-        $arguments['task'] = $arg;
-    } elseif($k == 2) {
-        $arguments['action'] = $arg;
-    } elseif($k >= 3) {
+        list($arguments['task'], $arguments['action']) = explode(':', $arg);
+    } elseif($k >= 2) {
         $arguments['params'][] = $arg;
     }
 }
 
 // Define paths
-defined('APPLICATION_PATH')
-|| define('APPLICATION_PATH', realpath(dirname(__FILE__)).'/../../../apps/'.APP);
-
 defined('ROOT_PATH')
 || define('ROOT_PATH', realpath(dirname(__FILE__)));
 
+defined('HOME_PATH')
+|| define('HOME_PATH', ROOT_PATH.'/../../../../');
+
+defined('APPLICATION_PATH')
+|| define('APPLICATION_PATH', ROOT_PATH.'/../../../apps/'.APP);
+
 defined('TEMPLATE_PATH')
-|| define('TEMPLATE_PATH', realpath(dirname(__FILE__)).'/templates');
+|| define('TEMPLATE_PATH', ROOT_PATH.'/templates');
 
+include __DIR__ . '/config/loader.php';
+include __DIR__ . '/config/services.php';
 
-/**
- * Read auto-loader
- */
-include __DIR__ . "/config/loader.php";
-
-/**
- * Read services
- */
-include __DIR__ . "/config/services.php";
+if(!isset($arguments['task'])){
+    Phalcon\Tools\Cli::error('Task missing');
+} else if(!isset($arguments['action'])){
+    Phalcon\Tools\Cli::error('Action missing');
+}
 
 //Create a console application
 $console = new ConsoleApp();
 $console->setDI($di);
 
 // define global constants for the current task and action
-define('CURRENT_TASK', (isset($argv[1]) ? $argv[1] : null));
-define('CURRENT_ACTION', (isset($argv[2]) ? $argv[2] : null));
+define('CURRENT_TASK', (isset($arguments['task']) ? $arguments['task'] : null));
+define('CURRENT_ACTION', (isset($arguments['action']) ? $arguments['action'] : null));
 try {
 // handle incoming arguments
     $console->handle($arguments);
 }
 catch (\Phalcon\Exception $e) {
-    echo $e->getMessage();
-    exit(255);
+    Phalcon\Tools\Cli::error($e->getMessage());
 }
 
 function getOptions(&$args){
