@@ -41,6 +41,7 @@ if(!isset($arguments['task'])){
 //Create a console application
 $console = new ConsoleApp();
 $console->setDI($di);
+$di->setShared('console', $console);
 
 // define global constants for the current task and action
 define('CURRENT_TASK', (isset($arguments['task']) ? $arguments['task'] : null));
