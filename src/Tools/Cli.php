@@ -10,7 +10,7 @@ class Cli{
     const BLACK = "0;30";
 
     public static function colorBackgroundString($string, $color){
-        return "\033[".self::BLACK."m\033[".$color."m".$string."\033[0m"; 
+        return "\033[".self::BLACK.';'.$color.'m'.$string."\033[0m"; 
     }
 
     public static function colorString($string, $color=self::GREEN){
