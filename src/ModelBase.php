@@ -7,6 +7,8 @@ Phalcon\Builder\Form,
 Phalcon\Text as Utils,
 Phalcon\DI;
 
+namespace Phalcon;
+
 class ModelBase extends Model{
 
     public static function getColumnsDescription($excludes=[]){
