@@ -17,13 +17,15 @@ class GenerateTask extends \Phalcon\CLI\Task
         if(!isset($appName)){
             Cli::error('Missing app name');
         }
-        $appsPath = HOME_PATH.'apps';
-        if(!file_exists($appsPath.'/'.$appName)){
-            exec('cp -r '.TEMPLATE_PATH.'/project/app/* '.$appsPath);
-            $content = file_get_contents($appsPath.'/config/config.php');
-            file_put_contents($appsPath.'/config/config.php', str_replace('[app]', $appName, $content));
-            Cli::warning('Don\'t forget to modify your app config')."\n";
-            echo $appsPath."/config/config.php\n";
+        $appPath = HOME_PATH.'apps/'.$appName;
+        if(!file_exists($appPath)){
+            exec('mkdir '.$appPath);
+            exec('cp -r '.TEMPLATE_PATH.'/project/app/* '.$appPath);
+            $content = file_get_contents($appPath.'/config/config.php');
+            file_put_contents($appPath.'/config/config.php', str_replace('[app]', $appName, $content));
+            Cli::warning('Don\'t forget to modify your app config');
+            echo "\n";
+            echo $appPath."/config/config.php\n";
             Cli::success('app '.$appName.' successfully created');
         } else {
             Cli::error('app folder '.$appName.' already exists');
