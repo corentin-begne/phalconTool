@@ -1,10 +1,9 @@
 <?
-use Phalcon\Annotations\Adapter\Memory,
-Phalcon\Mvc\Model\Behavior\Timestampable,
-Phalcon\Mvc\Model\MetaData,
-Phalcon\Builder\Form,
-Phalcon\Text as Utils,
-Phalcon\DI;
+use Annotations\Adapter\Memory,
+Mvc\Model\Behavior\Timestampable,
+Mvc\Model\MetaData,
+Builder\Form,
+Text as Utils;
 
 namespace Phalcon;
 
