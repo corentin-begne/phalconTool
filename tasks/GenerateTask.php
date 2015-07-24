@@ -49,10 +49,9 @@ class GenerateTask extends \Phalcon\CLI\Task
                'action' => 'app',
                'params' => $params 
             ));
-
-            if(!file_exists($publicPath)){
-                // create public dir
-                $publicPath = HOME_PATH.'/public';
+            // create public dir and init it if not exists
+            $publicPath = HOME_PATH.'/public';
+            if(!file_exists($publicPath)){               
                 exec('mkdir '.$publicPath);            
                 exec('cp -r '.TEMPLATE_PATH.'/project/public/*.* '.$publicPath);
                 $content = file_get_contents($publicPath.'/.htaccess');
