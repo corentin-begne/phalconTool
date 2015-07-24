@@ -19,7 +19,7 @@ class Controller extends \Phalcon\Mvc\User\Component
             $source = str_replace('[name]', $name, $source);
         }
         $this->setActions($controller, $actions, $source);
-        if(!defined(NO_VIEW)){
+        if(!defined('NO_VIEW')){
             exec('mkdir -p '.$this->config->application->viewsDir.$controller);
         }
         file_put_contents($target, $source);        
@@ -32,7 +32,7 @@ class Controller extends \Phalcon\Mvc\User\Component
             $content = '';
             foreach(explode(',', $actions) as $action){
                 $content .= str_replace('[name]', lcfirst(Utils::camelize(Utils::uncamelize($action))),$modelAction);
-                if(!defined(NO_VIEW) && !file_exists($this->config->application->viewsDir.$controller.'/'.$action.'.phtml')){
+                if(!defined('NO_VIEW') && !file_exists($this->config->application->viewsDir.$controller.'/'.$action.'.phtml')){
                     file_put_contents($this->config->application->viewsDir.$controller.'/'.$action.'.phtml', '');
                 }
             }
