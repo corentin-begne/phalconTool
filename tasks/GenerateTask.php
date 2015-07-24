@@ -34,11 +34,8 @@ class GenerateTask extends \Phalcon\CLI\Task
         }
     }
 
-    public function projectAction($params) {
-        list($appName) = $params;
-        if(!isset($appName)){
-            Cli::error('Missing app name');
-        }
+    public function projectAction() {
+        $appName = 'frontend';
         $appsPath = HOME_PATH.'/apps';
         if(!file_exists($appsPath)){
             exec('mkdir '.$appsPath);       

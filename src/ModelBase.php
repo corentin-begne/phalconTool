@@ -3,7 +3,7 @@ use Phalcon\Annotations\Adapter\Memory,
 Phalcon\Mvc\Model\Behavior\Timestampable,
 Phalcon\Mvc\Model\MetaData,
 Phalcon\Builder\Form,
-Phalcon\Text as Utils,
+Phalcon\Text,
 Phalcon\DI;
 
 namespace Phalcon;
@@ -35,7 +35,7 @@ class ModelBase extends Mvc\Model{
 
     public static function getRelations($type){
         $model = get_called_class();
-        $type = 'get'.Utils::camelize(Utils::uncamelize($type));
+        $type = 'get'.Text::camelize(Text::uncamelize($type));
         Form::$relations=[];
         foreach(DI::getDefault()->getModelsManager()->$type(new $model()) as $relation){
             Form::$relations[$relation->getFields()] = [
@@ -85,7 +85,7 @@ class ModelBase extends Mvc\Model{
     public static function getPrefix(){
         $model = get_called_class();
         $prefix = '';
-        foreach(explode('_', Utils::uncamelize($model)) as $name){
+        foreach(explode('_', Text::uncamelize($model)) as $name){
             $prefix .= $name[0].$name[1];
         }
         return $prefix;
