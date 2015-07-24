@@ -21,7 +21,7 @@ defined('ROOT_PATH')
 || define('ROOT_PATH', realpath(dirname(__FILE__)));
 
 defined('HOME_PATH')
-|| define('HOME_PATH', ROOT_PATH.'/../../../');
+|| define('HOME_PATH', ROOT_PATH.'/../../..');
 
 defined('APPLICATION_PATH')
 || define('APPLICATION_PATH', HOME_PATH.'/apps/'.APP);

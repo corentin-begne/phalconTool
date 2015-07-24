@@ -17,14 +17,17 @@ class GenerateTask extends \Phalcon\CLI\Task
         if(!isset($appName)){
             Cli::error('Missing app name');
         }
-        $appPath = HOME_PATH.'apps/'.$appName;
+        $appPath = HOME_PATH.'/apps/'.$appName;
         if(!file_exists($appPath)){
+            // server folder
             exec('mkdir '.$appPath);
             exec('cp -r '.TEMPLATE_PATH.'/project/app/* '.$appPath);
             $content = file_get_contents($appPath.'/config/config.php');
             file_put_contents($appPath.'/config/config.php', str_replace('[app]', $appName, $content));
             Cli::warning('Don\'t forget to modify your app config', true);
             echo $appPath."/config/config.php\n";
+            // public folder
+            exec('cp -r '.TEMPLATE_PATH.'/project/public/app '.HOME_PATH.'/'.$appName);
             Cli::success('app '.$appName.' successfully created');
         } else {
             Cli::error('app folder '.$appName.' already exists');
@@ -36,7 +39,7 @@ class GenerateTask extends \Phalcon\CLI\Task
         if(!isset($appName)){
             Cli::error('Missing app name');
         }
-        $appsPath = HOME_PATH.'apps';
+        $appsPath = HOME_PATH.'/apps';
         if(!file_exists($appsPath)){
             exec('mkdir '.$appsPath);
 
@@ -47,10 +50,14 @@ class GenerateTask extends \Phalcon\CLI\Task
                'params' => $params 
             ));
 
-            // create public dir
-            exec('cp -r '.TEMPLATE_PATH.'/project/public '.HOME_PATH);
-            $content = file_get_contents(HOME_PATH.'public/.htaccess');
-            file_put_contents(HOME_PATH.'public/.htaccess', str_replace('[app]', $appName, $content));
+            if(!file_exists($publicPath)){
+                // create public dir
+                $publicPath = HOME_PATH.'/public';
+                exec('mkdir '.$publicPath);            
+                exec('cp -r '.TEMPLATE_PATH.'/project/public/*.* '.$publicPath);
+                $content = file_get_contents($publicPath.'/.htaccess');
+                file_put_contents($publicPath.'/.htaccess', str_replace('[app]', $appName, $content));
+            }            
             echo "\n";
             Cli::success('project '.$appName.' successfully created');
         } else {
