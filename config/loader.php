@@ -2,9 +2,7 @@
 use Phalcon\Loader;
 $loader = new Loader();
 $loader->registerDirs([
-    ROOT_PATH.'/tasks',
-    APPLICATION_PATH.'/tasks',
-    APPLICATION_PATH.'/models'
+    ROOT_PATH.'/tasks'
 ]);
 if(file_exists(APPLICATION_PATH)){
    $loader->registerDirs([
