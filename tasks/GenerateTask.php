@@ -53,7 +53,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             $publicPath = HOME_PATH.'/public';
             if(!file_exists($publicPath)){               
                 exec('mkdir '.$publicPath);            
-                exec('cp -r '.TEMPLATE_PATH.'/project/public/*.* '.$publicPath);
+                exec('cp '.TEMPLATE_PATH.'/project/public/* '.$publicPath);
                 echo $publicPath."\n";
                 $content = file_get_contents($publicPath.'/.htaccess');
                 file_put_contents($publicPath.'/.htaccess', str_replace('[app]', $appName, $content));
