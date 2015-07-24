@@ -27,7 +27,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             Cli::warning('Don\'t forget to modify your app config', true);
             echo $appPath."/config/config.php\n";
             // public folder
-            exec('cp -r '.TEMPLATE_PATH.'/project/public/app '.HOME_PATH.'/'.$appName);
+            exec('cp -r '.TEMPLATE_PATH.'/project/public/app '.HOME_PATH.'/public/'.$appName);
             Cli::success('app '.$appName.' successfully created');
         } else {
             Cli::error('app folder '.$appName.' already exists');
@@ -54,6 +54,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             if(!file_exists($publicPath)){               
                 exec('mkdir '.$publicPath);            
                 exec('cp -r '.TEMPLATE_PATH.'/project/public/*.* '.$publicPath);
+                echo $publicPath."\n";
                 $content = file_get_contents($publicPath.'/.htaccess');
                 file_put_contents($publicPath.'/.htaccess', str_replace('[app]', $appName, $content));
             }            
