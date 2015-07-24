@@ -8,7 +8,7 @@ Phalcon\DI;
 
 namespace Phalcon;
 
-class ModelBase extends Mvc\Model{
+class ModelBase extends \Phalcon\Mvc\Model{
 
     public static function getColumnsDescription($excludes=[]){
         $reader = new Memory();
