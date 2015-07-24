@@ -1,12 +1,12 @@
 <?
+namespace Phalcon;
+
 use Phalcon\Annotations\Adapter\Memory,
 Phalcon\Mvc\Model\Behavior\Timestampable,
 Phalcon\Mvc\Model\MetaData,
 Phalcon\Builder\Form,
 Phalcon\Text,
 Phalcon\DI;
-
-namespace Phalcon;
 
 class ModelBase extends Mvc\Model{
 
