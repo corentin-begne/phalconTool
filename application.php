@@ -11,6 +11,10 @@ $arguments = array();
 foreach($argv as $k => $arg) {
     if($k == 1) {
         list($arguments['task'], $arguments['action']) = explode(':', $arg);
+        $arguments['task'] = $arg[0];
+        if(isset($arg[1])){
+            $arguments['action'] = $arg[1];
+        }
     } elseif($k >= 2) {
         $arguments['params'][] = $arg;
     }
