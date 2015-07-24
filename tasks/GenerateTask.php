@@ -12,7 +12,7 @@ class GenerateTask extends \Phalcon\CLI\Task
 
     }
 
-    public function projectAction($params) {
+    public function appAction($params) {
         list($appName) = $params;
         $appPath = HOME_PATH.'apps/'.$appName;
         if(file_exists($appPath)){
