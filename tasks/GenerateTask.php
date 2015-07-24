@@ -18,7 +18,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             Cli::error('Missing app name');
         }
         $appPath = HOME_PATH.'apps/'.$appName;
-        if(file_exists($appPath)){
+        if(!file_exists($appPath)){
             exec('cp -r '.TEMPLATE_PATH.'/project/app/* '.$appsPath);
             $content = file_get_contents($appsPath.'config/config.php');
             file_put_contents($appsPath.'config/config.php', str_replace('[app]', $appName, $content));
@@ -34,7 +34,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             Cli::error('Missing app name');
         }
         $appsPath = HOME_PATH.'apps';
-        if(file_exists($appsPath)){
+        if(!file_exists($appsPath)){
             exec('mkdir '.$appsPath);
             exec('cp -r '.TEMPLATE_PATH.'/project/app/* '.$appsPath);
 

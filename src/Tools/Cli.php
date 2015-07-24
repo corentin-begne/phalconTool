@@ -16,7 +16,8 @@ class Cli{
     }
 
     public static function error($string){
-        die(self::colorBackgroundString($string, self::ERROR));
+        echo self::colorBackgroundString($string, self::ERROR);
+        die;
     }
     public static function success($string){
         echo self::colorBackgroundString($string, self::SUCCESS);
