@@ -27,8 +27,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             Cli::warning('Don\'t forget to modify your app config', true);
             echo $appPath."/config/config.php\n";
             // public folder
-            exec('mkdir '.HOME_PATH.'/public/'.$appName);
-            exec('cp -r '.TEMPLATE_PATH.'/project/public/app/* '.HOME_PATH.'/public/'.$appName);
+            exec('cp -r '.TEMPLATE_PATH.'/project/public/app '.HOME_PATH.'/public/'.$appName);
             Cli::success('app '.$appName.' successfully created');
         } else {
             Cli::error('app folder '.$appName.' already exists');
@@ -42,14 +41,7 @@ class GenerateTask extends \Phalcon\CLI\Task
         }
         $appsPath = HOME_PATH.'/apps';
         if(!file_exists($appsPath)){
-            exec('mkdir '.$appsPath);
-
-            // create app
-            $this->console->handle(array(
-               'task'   => 'generate',
-               'action' => 'app',
-               'params' => $params 
-            ));
+            exec('mkdir '.$appsPath);       
             // create public dir and init it if not exists
             $publicPath = HOME_PATH.'/public';
             if(!file_exists($publicPath)){               
@@ -58,7 +50,14 @@ class GenerateTask extends \Phalcon\CLI\Task
                 exec('cp '.TEMPLATE_PATH.'/project/public/.htaccess '.$publicPath);
                 $content = file_get_contents($publicPath.'/.htaccess');
                 file_put_contents($publicPath.'/.htaccess', str_replace('[app]', $appName, $content));
-            }            
+            }     
+
+            // create app
+            $this->console->handle(array(
+               'task'   => 'generate',
+               'action' => 'app',
+               'params' => $params 
+            ));       
             echo "\n";
             Cli::success('project '.$appName.' successfully created');
         } else {
