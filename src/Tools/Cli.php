@@ -8,7 +8,7 @@ class Cli{
     const BLACK = "0;30";
 
     public static function colorBackgroundString($string, $color){
-        return "\033[".cliTool::BLACK."m\033[".$color."m".$string."\033[0m"; 
+        return "\033[".self::BLACK."m\033[".$color."m".$string."\033[0m"; 
     }
 
     public static function colorString($string, $color=self::GREEN){
@@ -16,13 +16,13 @@ class Cli{
     }
 
     public static function error($string){
-        die(self::colorBackgroundString($string, cliTool::ERROR));
+        die(self::colorBackgroundString($string, self::ERROR));
     }
     public static function success($string){
-        echo self::colorBackgroundString($string, cliTool::SUCCESS);
+        echo self::colorBackgroundString($string, self::SUCCESS);
     }
     public static function warning($string){
-        echo self::colorBackgroundString($string, cliTool::WARNING);
+        echo self::colorBackgroundString($string, self::WARNING);
     }
 }
 
