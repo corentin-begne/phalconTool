@@ -53,7 +53,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             $this->console->handle(array(
                'task'   => 'generate',
                'action' => 'app',
-               'params' => $params 
+               'params' => [$appName] 
             ));       
             echo "\n";
             Cli::success('project '.$appName.' successfully created');
