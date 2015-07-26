@@ -25,6 +25,28 @@ $di->set('url', function () use ($config) {
     return $url;
 }, true);
 
+$di->set('router', function () use ($config) {
+
+    $router = new Router(false);
+
+    $router->add('/:controller/:action', [
+        'controller' => 1,
+        'action'     => 2
+    ]);
+    $router->add('/:controller/', [
+        'controller' => 1,
+        'action'     => 'index'
+    ]);
+
+    $router->add("/", [
+        'controller' => 'index',
+        'action'     => 'index'
+    ]);
+
+    return $router;
+    
+}, true);
+
 /**
  * Setting up the view component
  */
