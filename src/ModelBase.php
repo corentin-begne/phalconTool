@@ -10,6 +10,14 @@ Phalcon\DI;
 
 class ModelBase extends Mvc\Model{
 
+    public static function queryOne($query, $params=[]){
+       return DI::getDefault()->get('db')->query($query, $params)->fetch();
+    }
+
+    public static function queryAll($query, $params=[]){
+       return DI::getDefault()->get('db')->query($query, $params)->fetchAll();
+    }
+
     public static function getColumnsDescription($excludes=[]){
         $reader = new Memory();
         $reflector = $reader->get(get_called_class());
