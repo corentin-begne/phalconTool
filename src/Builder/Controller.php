@@ -16,7 +16,7 @@ class Controller extends \Phalcon\Mvc\User\Component
         if(file_exists($target)){
             $source = file_get_contents($target);
         } else {
-            $source = str_replace(['[name]', '[APP]'], [$name, (defined(TYPE) && TYPE==='app') ? ucfirst(APP) : ''], $source);
+            $source = str_replace(['[name]', '[APP]'], [$name, (defined(TYPE) && TYPE==='app') ? ucfirst(APP).'\\Base\\Controller' : 'Phalcon\\ControllerBase'], $source);
         }        
         if(!defined('NO_VIEW')){
             exec('mkdir -p '.$this->config->application->viewsDir.$controller);
