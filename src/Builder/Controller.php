@@ -16,12 +16,12 @@ class Controller extends \Phalcon\Mvc\User\Component
         if(file_exists($target)){
             $source = file_get_contents($target);
         } else {
-            $source = str_replace('[name]', $name, $source);
-        }
-        $this->setActions($controller, $actions, $source);
+            $source = str_replace(['[name]', '[APP]'], [$name, (defined(TYPE) && TYPE==='app') ? APP : ''], $source);
+        }        
         if(!defined('NO_VIEW')){
             exec('mkdir -p '.$this->config->application->viewsDir.$controller);
         }
+        $this->setActions($controller, $actions, $source);
         file_put_contents($target, $source);        
         echo $target."\n";
     }

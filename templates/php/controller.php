@@ -1,3 +1,3 @@
 <?
-class [name]Controller extends Phalcon\ControllerBase{
+class [name]Controller extends Phalcon\ControllerBase[APP]{
 }
