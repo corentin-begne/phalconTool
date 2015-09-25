@@ -30,7 +30,8 @@ return new \Phalcon\Config([
             'dbname'      => 'dbprod',
             'charset'     => 'utf8',
         ]
-    ],    
+    ], 
+    'librairies' => ['api'],   
     'application' => [
         'controllersDir' => __DIR__ . '/../controllers/',
         'modelsDir'      => __DIR__ . '/../models/',

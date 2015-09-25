@@ -105,7 +105,7 @@ $di->set('dispatcher', function() {
 // check librairies dependencies
 if(isset($config->librairies)){
     foreach($config->librairies as &$librairy){
-        $file = $config->application->libDir.$librairy.'/config/services.php';
+        $file = $config->application->libDir.$librairy.'/config/loader.php';
         if(is_readable($file)){
             include $file;
         }

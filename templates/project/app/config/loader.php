@@ -10,8 +10,7 @@ $loader->registerClasses([
     $config->application->controllersDir,
     $config->application->modelsDir,
     $config->application->pluginsDir
-])
-->register();
+])->register();
 // check librairies dependencies
 if(isset($config->librairies)){
     foreach($config->librairies as &$librairy){
