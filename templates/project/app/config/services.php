@@ -101,3 +101,13 @@ $di->set('dispatcher', function() {
     $dispatcher->setEventsManager($eventsManager);
     return $dispatcher;
 });
+
+// check librairies dependencies
+if(isset($config->librairies)){
+    foreach($config->librairies as &$librairy){
+        $file = $config->application->libDir.$librairy.'/config/services.php';
+        if(is_readable($file)){
+            include $file;
+        }
+    }
+}
