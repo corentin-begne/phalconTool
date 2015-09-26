@@ -16,14 +16,27 @@ class AssetsPlugin extends Component
     public function beforeDispatch(Event $event, Dispatcher $dispatcher)
     {
         $currentPath = ($dispatcher->getActionName() === 'index') ? $dispatcher->getControllerName() : $dispatcher->getControllerName().'/'.$dispatcher->getActionName(); 
+        
+        $this->assets->collection('libjs')
+        ->setPrefix(APP.'/lib/'.$dispatcher->getControllerName().'/public/js/');
 
         $this->assets->collection('js')
         ->setPrefix(APP.'/js/')
+        ->addJs('lib/jquery.min.js');
+
+        $prefix = in_array($dispatcher->getControllerName(), $this->config->librairies) ? 'lib' : '';
+
+        $this->assets->collection($prefix.'js')
         ->addJs("$currentPath/manager.js")
         ->addJs("$currentPath/main.js");
         
+        $this->assets->collection('libcss')
+        ->setPrefix(APP.'/lib/'.$dispatcher->getControllerName().'/public/css/');
+
         $this->assets->collection('css')
-        ->setPrefix(APP.'/css/')
+        ->setPrefix(APP.'/css/');
+
+        $this->assets->collection($prefix.'css')
         ->addCss("$currentPath/main.css");
         
     }
