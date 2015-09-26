@@ -1,6 +1,5 @@
 <?
-use Phalcon\Text as Utils,
-Phalcon\Tools\Rest;
+use Phalcon\Text as Utils;
 class ApiController extends Phalcon\ControllerBase{
 
     public $model;
