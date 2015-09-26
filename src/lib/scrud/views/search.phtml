@@ -1,0 +1,34 @@
+<div class='title'>Recherche <?=implode('&nbsp;', $models)?></div>
+<div class='searchContainer'>
+    <div class='search'>
+        <div class='fieldContainer'>
+            <?=Phalcon\Tag::selectStatic(['id'=>'field', 'class'=>'action', 'actionType'=>'change', 'actionName'=>'selectField'], $fields)?>
+        </div>
+        <div class='typeContainer'>
+            <? foreach($types as $name => $type): ?>
+                <?=Phalcon\Tag::selectStatic(['id'=>$name, 'class'=>'hide type'], $type)?>
+            <? endforeach; ?>
+        </div>
+        <div class='inputContainer actionAutocompletion' actionType='init' data='{"cbFind":"findValue", "cbSelect":"selectValue", "placeholder": "Entrer une valeur", "attr":"disabled", "id":"search"}'>
+        </div>
+    </div>
+    <div class='filter hide'>
+        <span id='field'></span>
+        <span id='type'></span>
+        <span id='value'></span>
+        <img class='action' actionName="removeFilter" src="<?=$this->config->application->baseUri?>frontend/img/form/cancel.png">
+    </div>
+</div>
+<div class='listContainer'>
+    <table>
+        <tr>
+            <? foreach($models as $model): ?>
+                <? foreach($model::getColumnsMap() as $id => $name): ?>
+                    <th id='<?=$id?>' alt='<?=$model?>' title='<?=$model?>'><?=$name?></th>
+                <? endforeach; ?>
+            <? endforeach; ?>
+        </tr>
+    </table>
+</div>
+<div class='paginationContainer'>
+</div>

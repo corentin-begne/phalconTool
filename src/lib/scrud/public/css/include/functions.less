@@ -1,0 +1,298 @@
+.verticalGradient(@topColor: #000000, @bottomColor: #000000){
+	background-image:-moz-linear-gradient(@topColor, @bottomColor);
+	background-image:-webkit-linear-gradient(@topColor, @bottomColor);
+	background-image:-o-linear-gradient(@topColor, @bottomColor);
+	background-image:linear-gradient(@topColor, @bottomColor);
+}
+.disableTextSelection(){
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.clearfix(){
+    &:after { 
+       content: "."; 
+       visibility: hidden; 
+       display: block; 
+       height: 0; 
+       clear: both;
+    }
+}
+.form(){
+    .formContainer{
+        width:100%;
+        font-family: sans-serif;
+        font-size: 12px;
+        margin-top:60px;
+        display:table;
+        position: relative;
+        .headerForm{
+            width: 100%;
+            height: auto;
+            display: table-row;
+            & > div{
+                display: table-cell;
+                text-align: center;
+                position: relative;
+                background: #FFF url('@{basepath}/images/form/header.gif') repeat-x;
+                color: #666;
+                padding: 5px;
+                font-weight: bold;
+                font-size: 14px;
+                border-left: 1px solid #CCC;
+            }
+        }
+        .row{
+            height:auto;
+            width:100%;
+            display: table-row;
+            background-color: white;
+            & > div{
+                display: table-cell;
+                word-break: break-all;
+                text-align: left;
+                border: 1px solid #CCC;
+                position: relative;
+                padding: 5px 10px;
+                vertical-align: middle;
+                color: #666;
+                input, textarea, select{
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    display: block;
+                    top: 0px;
+                    left: 0px;
+                    z-index: 5;
+                }
+                &:hover{
+                    background: #FFF url('@{basepath}/images/form/cell.gif') repeat;
+                }
+            }
+        }
+    }
+    .blockPagination{
+        font-weight: bold;
+        .disableTextSelection();
+        width: 100%;
+        height: 50px;
+        text-align: center;
+        padding:10px 0px 10px 0px;
+        .pagination{
+            height:50px;
+            span{
+                cursor:pointer;
+                display: inline-block;
+                color: #23527c;
+                background-color: #fff;
+                border: solid 1px #ddd;
+                width:28px;
+                height:28px;
+                line-height: 30px;
+                &:first-child{
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                }
+                &:last-child{
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                }
+                &:hover:not(.active):not(.disabled){
+                    background-color: #eee;
+                }
+                &.active{
+                    color: #fff;
+                    cursor: default;
+                    background-color: #337ab7;
+                    border-color: #337ab7;
+                }
+                &.disabled{
+                    cursor: not-allowed;
+                    color:#777;
+                }
+            }
+        }
+    }
+}
+.body(){    
+    @font-face {
+        font-family: 'BebasNeueRegular';
+        src: url('@{basepath}/fonts/BebasNeue-webfont.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+
+    }
+    div.ui-datepicker, .ui-datepicker td{
+     font-size:10px;
+    }
+    .backdrop{
+        background:rgba(0,0,0,0.3);
+        width:100%;
+        height:100%;
+        z-index: 5;
+        position:fixed;
+        .disableTextSelection();
+        top:0px;
+        left:0px;
+        #loader{
+            position:absolute;
+            top:calc(50% - 64px);
+            left:calc(50% - 64px);
+        }
+        #uploader{
+            position:absolute;
+            top:calc(50% - 160px);
+            left:calc(50% - 32px);
+        }
+    }
+    .modal{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.3);
+        z-index: 1;
+        text-align: center;
+        .disableTextSelection();
+        display: table;
+        overflow: auto;        
+        & > div{
+            display: table-cell;            
+            vertical-align: middle;
+            padding:40px 0px 40px 0px;
+            & > div{
+                display: inline-block;
+                max-height: calc(100% - 10px);
+                width: 100%;
+                overflow: auto;
+                padding-top: 10px;
+                .content{
+                    background:#eef2f5;
+                    border:0px solid #aaa;
+                    -moz-border-radius:10px;
+                    -webkit-border-radius:10px;
+                    -moz-box-shadow:0 0 15px #aaa;
+                    -webkit-box-shadow:0 0 15px #aaa;
+                    padding:20px;
+                    border-radius: 5px;
+                    font-size: 14px;
+                    line-height: 16px;
+                    position: relative;
+                    display: inline-block;
+                    .delete{
+                        position: absolute;
+                        top:-10px;
+                        right: -10px;
+                        background:#eef2f5;
+                        border:0px solid #aaa;
+                        -moz-border-radius:10px;
+                        -webkit-border-radius:10px;
+                        -moz-box-shadow:0 0 15px #aaa;
+                        -webkit-box-shadow:0 0 15px #aaa;
+                        padding: 5px 8px;
+                        font-size: 15px;
+                        font-weight: bold;
+                        border-radius: 45px;
+                        cursor: pointer;
+                        font-family: monospace;
+                        &:hover{
+                            color:white;
+                            background: black;
+                        }
+                    }
+                    .manager{
+                        color:green;
+                        font-weight: bold;
+                        text-align: right;
+                        margin-top: 10px;
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+    }
+    fieldset.form{
+        background:#eef2f5;
+        border:0px solid #aaa;
+        -moz-border-radius:10px;
+        -webkit-border-radius:10px;
+        -moz-box-shadow:0 0 15px #aaa;
+        -webkit-box-shadow:0 0 15px #aaa;
+        width: 320px;
+        margin: 0px auto;
+        display: inline-block;
+    }
+    button.form, label.form{
+        font-size:12px;
+        font-family: Arial;        
+    }
+    button, label{
+        cursor: pointer;
+    }
+    button.form{
+        width: auto;
+        padding: 9px 15px;
+        background: #617798;
+        border: 0;
+        font-size: 14px;
+        color: #FFFFFF;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+    }
+    textarea.form{
+        padding:5px;
+        height: 90px;
+    }         
+    input.form{
+        padding-left:5px;
+        height:30px;
+    }
+    input.form, textarea.form{
+        background: none repeat scroll 0 0 #BBC6CC;
+        border: 1px solid #95A8B3;
+        color: #0B1B24;
+        vertical-align: middle;
+    }
+    html, body{
+        width:100%;
+        height:100%;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        display: inline-block;
+        background-color: #F6F6F6;
+        font-family: Georgia, "Times New Roman", Times, serif;
+    }
+    .error{
+        color: red;
+        font-size: 14px;
+        width: 100%;
+        text-align: left;
+    }
+    .hide{
+        display: none !important;
+    }
+    .columnContainer{
+        width: 956px;
+        float: left;
+        min-height: calc(100% - 271px);
+        height: auto;
+        margin-left: calc(50% - 478px);
+        background-color: white;
+        .column{
+            width: 210px;
+            height: 100%;
+            height: auto;
+            float: left;        
+            text-align:left;
+            margin: 25px auto 0px auto;
+            &:last-child{
+                .clearfix();
+            }
+        }        
+    }
+}

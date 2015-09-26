@@ -1,0 +1,13 @@
+<div class='title'>Edition <?=implode('&nbsp;', $models)?></div>
+<form id='<?=$this->router->getActionName()?>Form' class='template action' action="<?=implode(' ', $models)?>" actionType='submit' actionName='validForm'>
+    <div class='content'>
+        <?=Phalcon\Tag::hiddenField($primaryKey)?>
+        <? foreach($models as $model): ?>
+            <?=Phalcon\Builder\Form::getFields($model)?>
+        <? endforeach; ?>
+    </div>
+    <div class='actionContainer'>
+        <button id='cancel' class='action form' actionName='cancelForm'>Annuler</button>
+        <button id='create' class='form'>Modifier</button>
+    </div>
+</form>

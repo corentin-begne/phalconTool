@@ -1,0 +1,41 @@
+.body();
+.title{
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+    font-size: 30px;
+    font-weight: bold;
+    height:35px;
+}
+.template{
+    height: calc(100% - 55px); 
+    margin:0px;   
+    .content{
+        max-height: calc(100% - 65px);
+        overflow-y: auto;
+        padding-bottom: 10px;
+        .row{
+            &:not(:first-child){
+                margin-top:10px;
+            }
+            .labelContainer{
+                width: 50%;
+                text-align: right;
+                display: inline-block;
+            }
+            .fieldContainer{
+                width: 50%;
+                text-align: left;
+                display: inline-block;
+            }
+        }
+    }
+    .actionContainer{
+        height:35px;
+        margin: 10px 0px 10px 0px;
+        #cancel, #create{
+            display: inline-block;
+            height:35px;
+            cursor: pointer;
+        }
+    }
+}
