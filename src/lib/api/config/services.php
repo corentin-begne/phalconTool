@@ -1,5 +1,5 @@
 <?
-$di->$router->addPost("/api/{model}/:action",[
+$router->addPost("/api/{model}/:action",[
     'controller' => 'api',
     'action'     => 2
 ]);
