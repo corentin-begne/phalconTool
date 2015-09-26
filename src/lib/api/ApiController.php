@@ -1,7 +1,7 @@
 <?
 use Phalcon\Text as Utils,
 Phalcon\Tools\Rest;
-class ApiController extends ControllerBase{
+class ApiController extends Phalcon\ControllerBase{
 
     public $model;
 

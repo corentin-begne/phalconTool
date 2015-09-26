@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends ControllerBase
+class IndexController extends Phalcon\ControllerBase
 {
     public function indexAction()
     {
