@@ -24,7 +24,7 @@ class AssetsPlugin extends Component
         ->setPrefix(APP.'/js/')
         ->addJs('lib/jquery.min.js');
 
-        $prefix = in_array($dispatcher->getControllerName(), $this->config->librairies) ? 'lib' : '';
+        $prefix = in_array($dispatcher->getControllerName(), $this->config->librairies->toArray()) ? 'lib' : '';
 
         $this->assets->collection($prefix.'js')
         ->addJs("$currentPath/manager.js")
