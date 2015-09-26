@@ -1,7 +1,7 @@
 <?
 use Phalcon\Text as Utils,
 Phalcon\Tag;
-class ScrudController extends ControllerBase{
+class ScrudController extends Phalcon\ControllerBase{
     
     public $excludes = [];
 
