@@ -39,7 +39,7 @@ return new \Phalcon\Config([
         'pluginsDir'     => __DIR__ . '/../plugins/',
         'publicDir'      => __DIR__ . '/../../../public/[app]/',
         'rootDir'        => __DIR__ . '/../../../',
-        'libDir'        => __DIR__ . '/../../../vendor/v-cult/phalcon/lib/',
+        'libDir'        => __DIR__ . '/../../../vendor/v-cult/phalcon/src/lib/',
         'baseUri'        => '/',
     ]
 ]);
