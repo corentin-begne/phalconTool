@@ -1,7 +1,5 @@
 <?
 
-namespace Phalcon\Tools;
-
 class Rest
 {
 
