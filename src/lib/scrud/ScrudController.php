@@ -15,7 +15,7 @@ class ScrudController extends Phalcon\ControllerBase{
         ->addJs('helper/manager.js')
         ->addJs('helper/form.js')
         ->addJs('helper/js.js');
-        $this->view->setViewsDir($this->config->application->viewsDir.'lib/views/');
+        $this->view->setViewsDir($this->config->application->libDir.'lib/scrud/views/');
         $this->view->setLayout('scrud');
         $this->models = [];
         $models = explode(' ', $dispatcher->getParam('model'));
