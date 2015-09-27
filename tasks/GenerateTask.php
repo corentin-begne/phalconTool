@@ -26,6 +26,8 @@ class GenerateTask extends \Phalcon\CLI\Task
             file_put_contents($appPath.'/config/config.php', str_replace('[app]', $appName, $content));
             Cli::warning('Don\'t forget to modify your app config', true);
             echo $appPath."/config/config.php\n";
+            // public folder
+            exec('cp -r '.TEMPLATE_PATH.'/project/public/app/* '.HOME_PATH.'/public/'.$appName);
             Cli::success('app '.$appName.' successfully created');
         } else {
             Cli::error('app folder '.$appName.' already exists');
