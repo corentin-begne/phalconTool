@@ -41,7 +41,7 @@ var AutocompletionHelper;
         /** initialize container with input and result container */
         this.container.append(
             "<div>"+
-                "<input class='"+this.class+"' "+this.attr+" "+this.id+" type='text' />"+
+                "<input autocomplete='off' class='"+this.class+"' "+this.attr+" "+this.id+" type='text' />"+
             "</div>"+
             "<div class='resultContainer'></div>");
         var input = this.container.find("input");
