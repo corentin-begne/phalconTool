@@ -21,7 +21,7 @@ class Form extends \Phalcon\Tag
         $excludes += self::$excludes;
         $model::getRelations('belongsTo');
         foreach($model::getColumnsDescription($excludes) as $name => $options){
-            DI::getDefault()->getView()->partial('scrud/field', [
+            DI::getDefault()->getView()->partial('/scrud/field', [
                 'label'=>Form::getLabel($name), 
                 'field'=>Form::getTag($name, $options)
             ]);
