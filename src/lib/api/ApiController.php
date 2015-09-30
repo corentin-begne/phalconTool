@@ -97,13 +97,16 @@ class ApiController extends Phalcon\ControllerBase{
                 }            
                 $fn = 'findFirstBy'.Utils::camelize($field);
                 $row = $model::$fn($refValue);
-                if(!$row){
-                    die($this->flash->error("$primaryKey $refValue not Found !"));
-                }
                 $params = $model::filterParams(Rest::$params);
+                if(!$row){
+                    //Rest::renderError("$primaryKey $refValue not Found !");
+                    $row = new $model();
+                    $row->$field = $refValue;
+                }
+                
                 $row->assign($params);
                 if(!$row->save()){
-                    Rest::renderError($model->getErrors());
+                    Rest::renderError($row->getErrors());
                 }
             }
         } catch(PDOException $e){

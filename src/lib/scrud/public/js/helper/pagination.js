@@ -16,10 +16,13 @@ var PaginationHelper;
     PaginationHelper = function(params){
         this.nbPage = Number(params.nbPage);
         if (this.nbPage <= 1) {
+            if(isDefined(this.container)){
+                this.container.empty();
+            }
             return false;
         }
         this.getPageContent = params.cb;
-        this.container = params.container;
+        this.container = $(params.container);
         this.range = 1;
         this.html = "<div align='center' class='blockPagination'>"+
                         "<span class='pagination'>"+
@@ -38,6 +41,10 @@ var PaginationHelper;
      * @param {Integer} currentPage Current pagination page.
      */
     PaginationHelper.prototype.init = function(currentPage){
+        if (this.nbPage <= 1) {
+            this.container.empty();
+            return false;
+        }
         var that = this;
         var currentHtml = $(that.html);
         var next = currentHtml.find("#next");

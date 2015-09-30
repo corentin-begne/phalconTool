@@ -1,6 +1,7 @@
 /*global isDefined */
 var JsHelper;
 (function(){
+    "use strict";
     /**
     * @name JsHelper
     * @description Globalize some javascript functions/consts

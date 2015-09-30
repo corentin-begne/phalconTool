@@ -12,12 +12,12 @@ class ScrudController extends Phalcon\ControllerBase{
         ->addJs('model/action.js')
         ->addJs('model/manager.js')
         ->addJs('helper/action.js')
-        ->addJs('helper/manager.js')
         ->addJs('helper/form.js')
         ->addJs('helper/js.js');
         $this->view->setViewsDir($this->config->application->libDir.'scrud/views/');
         $this->view->setLayout('scrud');
         $this->models = [];
+        $this->limit = 20;
         $models = explode(' ', $dispatcher->getParam('model'));
         for($i=0; $i<count($models); $i++){
             $models[$i] = Utils::camelize(Utils::uncamelize($models[$i]));
@@ -33,15 +33,82 @@ class ScrudController extends Phalcon\ControllerBase{
             }
             $this->models[] = $model;            
         }
-        $this->view->setVar('models', $this->models);
+        $this->view->manager = ucfirst($this->router->getActionName()).ucfirst($this->router->getControllerName()).'Manager';
+        $this->view->models = $this->models;
+        $this->view->actionModel = $dispatcher->getParam('model');
     }
 
     public function indexAction(){
 
     }
 
+    public function listAction(){
+        $fields = $this->request->get('fields');
+        $filters = $this->request->get('filters');
+        $currentPage = $this->request->get('currentPage');
+        $conditions = [];
+        if(!isset($fields)){
+            die($this->flash->error("Missing fields"));
+        }
+        if(!isset($currentPage)){
+            die($this->flash->error("Missing currentPage"));
+        }
+        if(isset($filters)){
+            foreach($filters as $name => &$filterTab){
+                foreach($filterTab as &$filter){
+                    if(strpos($filter['type'], '%') !== false){
+                        if(strpos($filter['type'], '%like') !== false){
+                            $filter['value'] = '%'.$filter['value'];
+                        }
+                        if(strpos($filter['type'], 'like%') !== false){
+                            $filter['value'] .= '%';
+                        }
+                        $filter['type'] = str_replace('%', '', $filter['type']);
+                    }
+                    $conditions[] = [
+                        "$name ".$filter['type']." :$name:",
+                        [$name=>$filter['value']]
+                    ];
+                }
+            }
+        }
+        $model = $this->models[0];
+        
+        $primaryKey = $model::getMapped($model::getPrimaryKey());
+        $params = [
+            'models' => $model,
+            'columns' => $fields,
+            'offset' => ((int)$currentPage-1)*$this->limit,
+            'limit' => $this->limit,
+            'conditions' => $conditions,
+            'order' => $primaryKey
+        ];
+        $this->view->rows = $this->getRows($params);     
+        unset($params['limit']);
+        unset($params['offset']);
+        $params['columns'] = 'count(*) as nb';
+        $this->view->nbPage = ceil((int)$this->getRows($params)->toArray()[0]['nb']/$this->limit);
+        $model::getRelations('belongsTo');
+        $this->view->setRenderLevel(Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
+        $this->view->primaryKey = $primaryKey;
+        
+    }
+
+    private function getRows(&$params){
+        $model = $this->models[0];
+        $primaryKey = $model::getMapped($model::getPrimaryKey());
+        $builder = new Phalcon\Mvc\Model\Query\Builder($params);
+        for($i=1; $i<count($this->models); $i++){
+            $name = $this->models[$i];
+            $builder->leftJoin($name, $model::getReferencedField($name)." = $primaryKey");
+        }
+        return $builder->getQuery()
+                       ->execute();
+    }
+
     public function searchAction(){
         $this->assets->collection('libjs')->addJs('helper/autocompletion.js');
+        $this->assets->collection('libjs')->addJs('helper/pagination.js');
         $this->view->setVar('types', [
             'numeric' => [
                 '=' => '=',
@@ -66,15 +133,17 @@ class ScrudController extends Phalcon\ControllerBase{
         }
         
         $model = $this->models[0];
-        /*
-        $rows = $this->modelsManager->createQuery("");*/
-        $rows = $model::find([
-            'offset' => $offset = (Rest::$currentPage-1)*Rest::$limit,
-            'limit' => Rest::$limit,
-            'order' => $model::getMapped($model::getPrimaryKey())
+        
+        $primaryKey = $model::getMapped($model::getPrimaryKey());
+        $this->view->rows = $model::find([
+            'offset' => 0,
+            'limit' => $this->limit,
+            'order' => $primaryKey
         ]);
-        $this->view->setVar('fields', [''=>'-']+$fields);
-        $this->view->setVar('rows', $rows);
+        $model::getRelations('belongsTo');
+        $this->view->fields = [''=>'-']+$fields;
+        $this->view->primaryKey = $primaryKey;        
+        $this->view->nbPage = ceil($model::count()/$this->limit);        
     }
 
     public function readAction(){
@@ -94,14 +163,15 @@ class ScrudController extends Phalcon\ControllerBase{
             $fn = 'findFirstBy'.Utils::camelize($field);
             $row = $model::$fn($refValue);
             if(!$row){
-                die($this->flash->error("$primaryKey $refValue not Found !"));
+                continue;
+               // die($this->flash->error("$primaryKey $refValue not Found !"));
             }
             foreach($row->toArray() as $name => $value){
                 Tag::setDefault($name, $value);
             }
         }
         Tag::setDefault($primaryKey, $refValue);
-        $this->view->setVar('primaryKey', $primaryKey);
+        $this->view->primaryKey= $primaryKey;
     }
 
     public function createAction(){

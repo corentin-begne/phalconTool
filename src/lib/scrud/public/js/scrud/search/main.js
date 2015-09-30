@@ -1,6 +1,7 @@
 /*global SearchScrudManager */
 var searchScrudManager;
 (function(){
+    "use strict";
     /** on document ready */
     $(document).ready(init);
 
@@ -10,7 +11,8 @@ var searchScrudManager;
      * @description initialize searchScrud
      */
     function init(){
-        new JsHelper({ManagerHelper:SearchScrudManager});
+        new JsHelper();
+        ManagerModel.getInstance().init();
         searchScrudManager = SearchScrudManager.getInstance();
     }
     

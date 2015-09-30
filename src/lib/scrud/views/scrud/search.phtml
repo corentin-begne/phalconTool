@@ -1,26 +1,44 @@
-<div class='title'>Recherche <?=implode('&nbsp;', $models)?></div>
+<div class='title'>
+    Recherche <?=implode('&nbsp;', $models)?> <img id="create" class='action' title="Créer" src="<?=$this->config->application->baseUri?>frontend/lib/scrud/public/img/form/add.png" action-data='<?=json_encode([
+        'class'=>$manager,
+        'fn'=>'redirect',
+        'data'=>['path'=>'scrud/'.$actionModel.'/create'] 
+    ])?>' /> 
+</div>
 <div class='searchContainer'>
     <div class='search'>
         <div class='fieldContainer'>
-            <?=Phalcon\Tag::selectStatic(['id'=>'field', 'class'=>'action', 'actionType'=>'change', 'actionName'=>'selectField'], $fields)?>
+            <?=Phalcon\Tag::selectStatic(['id'=>'field', 'class'=>'action', 'action-data'=>json_encode([
+                'class'=>$manager,
+                'name'=>'selectField',
+                'type'=>'change'
+            ])], $fields)?>
         </div>
         <div class='typeContainer'>
             <? foreach($types as $name => $type): ?>
                 <?=Phalcon\Tag::selectStatic(['id'=>$name, 'class'=>'hide type'], $type)?>
             <? endforeach; ?>
         </div>
-        <div class='inputContainer actionAutocompletion' actionType='init' data='{"cbFind":"findValue", "cbSelect":"selectValue", "placeholder": "Entrer une valeur", "attr":"disabled", "id":"search"}'>
+        <div class='inputContainer action' action-data='<?=json_encode([
+            'class'=>$manager,
+            'fn'=>'autocompletion',
+            'type'=>'init',
+            'data'=>['cbFind'=>'findValue', 'cbSelect'=>'selectValue', 'placeholder'=> 'Entrer une valeur', 'attr'=>'disabled', 'id'=>'search']
+        ])?>'>
         </div>
     </div>
     <div class='filter hide'>
         <span id='field'></span>
         <span id='type'></span>
         <span id='value'></span>
-        <img class='action' actionName="removeFilter" src="<?=$this->config->application->baseUri?>frontend/lib/scrud/public/img/form/cancel.png">
+        <img class='action' action-data='<?=json_encode([
+            'class'=>$manager,
+            'name'=>'removeFilter'
+        ])?>' src="<?=$this->config->application->baseUri?>frontend/lib/scrud/public/img/form/cancel.png">
     </div>
 </div>
 <div class='listContainer'>
-    <table>
+    <table action="<?=$actionModel?>">
         <thead>
             <tr>
                 <? foreach($models as $model): ?>
@@ -31,8 +49,19 @@
             </tr>
         </thead>
         <tbody>
+            <?=$this->partial('/scrud/list', [
+                'models' => $models,
+                'rows' => $rows,
+                'primaryKey' =>$primaryKey,
+                'actionModel' =>$actionModel
+            ])?>
         </tbody>
     </table>
 </div>
-<div class='paginationContainer'>
+<div class='paginationContainer action' nbPage="<?=$nbPage?>" action-data='<?=json_encode([
+    'class'=>$manager,
+    'fn'=>'pagination',
+    'type'=>'init',
+    'data'=>['nbPage'=>$nbPage, 'cbContent'=>'getPage']    
+])?>'>
 </div>

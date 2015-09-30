@@ -1,6 +1,7 @@
 /*global ActionModel, ucfirst, isDefined, extendSingleton, getSingleton, InterfaceHelper */
 var ManagerModel;
 (function(){
+    "use strict";
     /**
     * @name ManagerModel
     * @constructor
@@ -9,7 +10,7 @@ var ManagerModel;
     */
     ManagerModel = function(){        
         extendSingleton(ManagerModel);
-        this.action = ActionModel.getInstance();
+        this.actionModel = ActionModel.getInstance();
         this.container = $("body");
     };
 
@@ -18,51 +19,73 @@ var ManagerModel;
      * @description get the single class instance
      * @return {ManagerModel} the single class instance
      */
-    ManagerModel.getInstance = function(){
+     ManagerModel.getInstance = function(){
         return getSingleton(ManagerModel);
     };
 
-    ManagerModel.prototype.init = function(manager, container) {
+    ManagerModel.prototype.getVars = function(container){     
+        var data = {};
+        $(container).find(".varInterface").each(addData);
+
+        function addData(i, element){
+            data[$(element).attr("id")] = $(element).html();
+            $(element).remove();
+        }
+        return data;
+    };
+
+    ManagerModel.prototype.init = function(container) {
         var that = this;       
-        this.container = isDefined(container) ? container : $('body');         
-        var selectors = {
-            ".action":action,
-            ".actionAutocompletion":autocompletion
-        };
-        $.each(selectors, addMouseDownEvent);
+        this.container = isDefined(container) ? container : $('body');                    
+        that.container.find(".action").each(addEvent);
 
-        function addMouseDownEvent(selector, fn){            
-            var elements = that.container.find(selector);
-            elements.each(addEvent);
-            
-            function addEvent(i, element){
-                var actionType = $(element).attr("actionType");
-                if(!isDefined(actionType)){
-                    actionType = "mousedown";                    
-                }
-                if(actionType === 'init'){
-                    fn(element);
-                } else {
-                    $(element).unbind(actionType);
-                    $(element).bind(actionType, fn);
+        function addEvent(i, element){
+            var data = $(element).is("[action-data]") ? $.parseJSON($(element).attr("action-data")) : {};
+            data.class = window[data.class].getInstance();
+            if(!isDefined(data.type)){
+                data.type = "mousedown";                    
+            }
+            if(data.type=== "init"){
+                that[data.fn](element, data, event);
+            } else {
+                $(element).unbind(data.type);
+                $(element).bind(data.type, sendEvent);
+            }
+
+            function sendEvent(event){                
+                data.fn = isDefined(data.fn) ? data.fn : "action";
+                if(isDefined(that[data.fn])){
+                    that[data.fn](element, data, event);                    
                 }
             }
         }
+    };
 
-        function autocompletion(element){
-            var data = $.parseJSON($(element).attr("data"));
-            data.container = $(element);
-            data.cbFind = manager[data.cbFind];
-            data.cbSelect = manager[data.cbSelect];
-            data.cbBlur = manager[data.cbBlur];
-            new AutocompletionHelper(data);
+    ManagerModel.prototype.autocompletion = function(element, data, event) {
+        data.data.container = $(element);
+        data.data.cbFind = data.class[data.data.cbFind].bind(data.class);
+        data.data.cbSelect = data.class[data.data.cbSelect].bind(data.class);
+        if(isDefined(data.data.cbBlur)){
+            data.data.cbBlur = data.class[data.data.cbBlur].bind(data.class);
         }
+        new AutocompletionHelper(data.data);
+    };
 
-        function action(event){
-            var name = $(this).attr("actionName");
-            if(isDefined(manager[name])){ 
-                manager[name]($(this),event);
-            }
+    ManagerModel.prototype.action = function(element, data, event) {
+        if(isDefined(data.class[data.name])){
+            data.class[data.name](element, event, data);
         }
+    };
+
+    ManagerModel.prototype.pagination = function(element, data, event) {
+        data.class.pagination = new PaginationHelper({
+            nbPage: data.data.nbPage,
+            container: element,
+            cb:data.class[data.data.cbContent].bind(data.class)
+        });
+    };
+
+    ManagerModel.prototype.redirect = function(element, data, event) {
+        this.actionModel.redirect(data.data.path);
     };
 })();

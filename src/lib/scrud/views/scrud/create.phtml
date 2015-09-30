@@ -1,12 +1,26 @@
-<div class='title'>Création <?=implode('&nbsp;', $models)?></div>
-<form id='<?=$this->router->getActionName()?>Form' class='template action' action="<?=implode(' ', $models)?>" actionType='submit' actionName='validForm'>
+<div class='title'>
+    Création <?=implode('&nbsp;', $models)?>
+    <img id="search" class='action' title="Rechercher" src="<?=$this->config->application->baseUri?>frontend/lib/scrud/public/img/form/search.png" action-data='<?=json_encode([
+        'class'=>$manager,
+        'fn'=>'redirect',
+        'data'=>['path'=>'scrud/'.$actionModel.'/search'] 
+    ])?>' /> 
+</div>
+<form id='<?=$this->router->getActionName()?>Form' class='template action' action-data='<?=json_encode([
+    'class'=>$manager,
+    'type'=>'submit',
+    'name'=>'validForm'
+])?>' action="<?=implode(' ', $models)?>">
     <div class='content'>
         <? foreach($models as $model): ?>
             <?=Phalcon\Builder\Form::getFields($model)?>
         <? endforeach; ?>
     </div>
     <div class='actionContainer'>
-        <button id='cancel' class='action form' actionName='cancelForm'>Annuler</button>
+        <button id='cancel' class='action form' action-data='<?=json_encode([
+            'class'=>$manager,
+            'name'=>'cancelForm'
+        ])?>'>Annuler</button>
         <button id='create' class='form'>Créer</button>
     </div>
 </form>

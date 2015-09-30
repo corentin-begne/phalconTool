@@ -1,0 +1,27 @@
+<? foreach($rows as $row): ?>
+    <? $model = $models[0]; ?>
+    <tr class='action' action-data='<?=json_encode([
+        'class'=>'SearchScrudManager',
+        'fn'=>'redirect',
+        'data'=>['path'=>'scrud/'.$actionModel.'/read?'.$model::getPrimaryKey().'='.$row->$primaryKey] 
+    ])?>'>
+        <? foreach($models as $model): ?>
+            <? foreach($model::getColumnsMap() as $id => $name): ?>
+                <td id='<?=$id?>' alt='<?=$model?>' title='<?=str_replace(['_id', 'is_'],['', ''],$name)?>'>
+                    <? if($model::getType($id) === 'tinyint'): ?>
+                        <?=((int)$row->$id === 0) ? 'Non' : 'Oui'?>
+                    <? elseif(isset(Phalcon\Builder\Form::$relations[$id])): ?>
+                        <?
+                            $modelName = Phalcon\Builder\Form::$relations[$id]['model'];
+                            $fieldName = $modelName::getPrefix().'_name';
+                            $modelName = Phalcon\Text::uncamelize(Phalcon\Builder\Form::$relations[$id]['model']).'_'.$name;
+                        ?>
+                        <?=$row->$modelName->$fieldName?>
+                    <? else: ?>
+                        <?=$row->$id?>
+                    <? endif; ?>
+                </td>
+            <? endforeach; ?>
+        <? endforeach; ?> 
+    </tr>
+<? endforeach; ?>

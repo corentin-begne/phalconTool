@@ -1,6 +1,7 @@
 /*global CreateScrudManager */
 var createScrudManager;
 (function(){
+    "use strict";
     /** on document ready */
     $(document).ready(init);
 
@@ -10,7 +11,8 @@ var createScrudManager;
      * @description initialize createScrud
      */
     function init(){
-        new JsHelper({ManagerHelper:CreateScrudManager});
+        new JsHelper();
+        ManagerModel.getInstance().init();
         createScrudManager = CreateScrudManager.getInstance();
     }
     

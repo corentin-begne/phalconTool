@@ -40,8 +40,55 @@
         cursor: pointer;
     }
 }
+#create{
+    width: 48px;
+    height: 48px;
+    margin-left:20px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+@borderColor: #ccc;
+@padding: 5px;
 .listContainer{
-    margin:10px 0px 20px;
+    margin:10px auto 20px auto;
+    table{
+        color: #666;
+        font-size: 14px;
+        font-family: Arial;
+        thead{
+            tr{
+                th{                    
+                    padding: @padding;                   
+                    &:not(:first-child){
+                        border-left: 1px solid @borderColor;
+                    }
+                    background: #fff url('@{basepath}/lib/scrud/public/img/form/header.gif') repeat-x;
+                }
+                border: 1px solid @borderColor;
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    padding:@padding;
+                    word-break: break-all;
+                    text-align: left;
+                    background: white;
+                    &:not(:first-child){
+                        border-left: 1px solid @borderColor;
+                    }                    
+                }
+                &:hover > td{
+                    background: #fff url('@{basepath}/lib/scrud/public/img/form/cell.gif') repeat;
+                }
+                cursor: pointer;
+                border: 1px solid @borderColor;
+                &:first-child{
+                    border: none;
+                }
+            }
+        }
+    }
 }
 .blockPagination{
     font-weight: bold;

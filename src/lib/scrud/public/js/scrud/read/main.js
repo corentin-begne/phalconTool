@@ -1,6 +1,7 @@
 /*global ReadScrudManager */
 var readScrudManager;
 (function(){
+    "use strict";
     /** on document ready */
     $(document).ready(init);
 
@@ -10,7 +11,8 @@ var readScrudManager;
      * @description initialize readScrud
      */
     function init(){
-        new JsHelper({ManagerHelper:ReadScrudManager});
+        new JsHelper();
+        ManagerModel.getInstance().init();
         readScrudManager = ReadScrudManager.getInstance();
     }
     

@@ -10,7 +10,7 @@ var FormHelper;
     FormHelper = function(){
         extendSingleton(FormHelper);
         this.action = ActionModel.getInstance();
-        this.manager = ManagerHelper.getInstance();
+        this.manager = ManagerModel.getInstance();
         this.isAvailable = true;
     };
 
