@@ -1,4 +1,5 @@
 .search{
+    position:relative;
     & > div{
         display: inline-block;
         vertical-align: top;
@@ -7,21 +8,25 @@
     margin-bottom:10px;
     input{
         padding:5px;
+        width:200px;
     }
     input, select{
         height:30px;
     }
     .resultContainer{        
-        overflow:visible;
+        width:200px;
         & > div{
+            overflow: hidden;
             text-align: left;
             border: solid black 1px;
             cursor: pointer;
             height:18px;
             padding: 5px;
             background: white;
+            color:black;
             &:hover, &.selected{
-                background: transparent;
+                background: black;
+                color:white;
             }
         }
     }
