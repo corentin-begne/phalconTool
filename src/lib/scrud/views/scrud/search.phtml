@@ -3,7 +3,7 @@
         'class'=>$manager,
         'fn'=>'redirect',
         'data'=>['path'=>'scrud/'.$actionModel.'/create'] 
-    ])?>' /> 
+    ])?>' />    
 </div>
 <div class='searchContainer'>
     <div class='search'>
@@ -25,6 +25,19 @@
             'type'=>'init',
             'data'=>['cbFind'=>'findValue', 'cbSelect'=>'selectValue', 'placeholder'=> 'Entrer une valeur', 'attr'=>'disabled', 'id'=>'search']
         ])?>'>
+        </div>
+        <div class='sortContainer'>
+            <label for='fieldSort'>Trier par</label>
+            <?=Phalcon\Tag::selectStatic(['fieldsort', 'id'=>'fieldSort', 'class'=>'action', 'action-data'=>json_encode([
+                'class'=>$manager,
+                'name'=>'changeSort',
+                'type'=>'change'
+            ])], array_slice($fields, 1))?> 
+            <?=Phalcon\Tag::selectStatic(['sort', 'id'=>'sort', 'class'=>'action', 'action-data'=>json_encode([
+                'class'=>$manager,
+                'name'=>'changeSort',
+                'type'=>'change'
+            ])], $sort)?>
         </div>
     </div>
     <div class='filter hide'>

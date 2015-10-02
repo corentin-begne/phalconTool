@@ -18,6 +18,8 @@ var SearchScrudManager;
         this.actionModel = $("table").attr("action");
         this.action = ActionModel.getInstance();
         this.manager = ManagerModel.getInstance();
+        this.sort = $("#sort");
+        this.fieldSort = $("#fieldSort");
     };
 
     SearchScrudManager.getInstance = function(){
@@ -31,12 +33,17 @@ var SearchScrudManager;
             field:search.find("#field :selected").val(),
             value:value
         };
-        ActionModel.getInstance().apiNoLoad(model+"/complete", data, check);
+        this.action.apiNoLoad(model+"/complete", data, check);
 
         function check(data){
             cb(data.data);
         }
     };
+
+    SearchScrudManager.prototype.changeSort = function(element){
+        this.getPage(1);
+    };
+
     SearchScrudManager.prototype.deleteAll = function(element){
         var that = this;
         var ids = [];
@@ -90,7 +97,8 @@ var SearchScrudManager;
         this.action.getHtml(this.basePath, {
             currentPage:currentPage,
             fields: getFields(),
-            filters: getFilters()
+            filters: getFilters(),
+            order: this.fieldSort.find(":selected").val()+" "+this.sort.find(":selected").val()
         }, appendResult);
 
         function appendResult(html){

@@ -46,12 +46,16 @@ class ScrudController extends Phalcon\ControllerBase{
         $fields = $this->request->get('fields');
         $filters = $this->request->get('filters');
         $currentPage = $this->request->get('currentPage');
+        $order = $this->request->get('order');
         $conditions = [];
         if(!isset($fields)){
             die($this->flash->error("Missing fields"));
         }
         if(!isset($currentPage)){
             die($this->flash->error("Missing currentPage"));
+        }
+        if(!isset($order)){
+            die($this->flash->error("Missing order"));
         }
         if(isset($filters)){
             foreach($filters as $name => &$filterTab){
@@ -81,7 +85,7 @@ class ScrudController extends Phalcon\ControllerBase{
             'offset' => ((int)$currentPage-1)*$this->limit,
             'limit' => $this->limit,
             'conditions' => $conditions,
-            'order' => $primaryKey
+            'order' => $order
         ];
         $this->view->rows = $this->getRows($params);     
         unset($params['limit']);
@@ -113,7 +117,7 @@ class ScrudController extends Phalcon\ControllerBase{
         ->addJs('helper/pagination.js')
         ->addJs('helper/popup.js')
         ->addJs('lib/jquery-ui.min.js');
-        $this->view->setVar('types', [
+        $this->view->types = [
             'numeric' => [
                 '=' => '=',
                 '!=' => '!=',
@@ -130,7 +134,11 @@ class ScrudController extends Phalcon\ControllerBase{
                 'not %like' => 'not %like',
                 'not %like%' => 'not %like%',
             ]
-        ]);  
+        ];  
+        $this->view->sort = [
+            'asc' => 'Croissant',
+            'desc' => 'Décroissant'
+        ];
         $fields = [];
         foreach($this->models as $model){
             $fields += [$model => $model::getColumnsMap()];
@@ -148,6 +156,8 @@ class ScrudController extends Phalcon\ControllerBase{
         $this->view->fields = [''=>'-']+$fields;
         $this->view->primaryKey = $primaryKey;        
         $this->view->nbPage = ceil($model::count()/$this->limit);        
+        Tag::setDefault('fieldSort', $primaryKey);
+        Tag::setDefault('sort', 'asc');
     }
 
     public function readAction(){
