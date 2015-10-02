@@ -15,7 +15,6 @@ var SearchScrudManager;
         this.pagination;
         this.isAvailable = true;
         this.body = $("tbody");
-        this.th = $("th");
         this.actionModel = $("table").attr("action");
         this.action = ActionModel.getInstance();
         this.manager = ManagerModel.getInstance();
@@ -36,6 +35,49 @@ var SearchScrudManager;
 
         function check(data){
             cb(data.data);
+        }
+    };
+    SearchScrudManager.prototype.deleteAll = function(element){
+        var that = this;
+        var ids = [];
+        $("td :checked").each(addId);
+
+        if(ids.length === 0){
+            return false;
+        }
+
+        PopupHelper.getInstance().confirm({
+            title:"Suppression",
+            text:"Supprimer tous les éléments sélectionnés ?",
+            valid: deleteAll
+        });
+
+        function addId(i, element){
+            ids.push($(element).attr("id"));
+        }
+
+        function deleteAll(){
+            that.action.api($("table").attr("action")+"/delete", {
+                ids: ids
+            }, refresh);
+
+            function refresh(){
+                that.getPage(Number($(".pagination .active").text()));
+            }
+        }
+    };
+
+    SearchScrudManager.prototype.removeField = function(element){
+        var id = $(element).parent().attr("id");
+        $("th[id="+id+"], td[id="+id+"]").remove();
+    };
+
+    SearchScrudManager.prototype.toggleCheck = function(element){
+        $(":checkbox").prop("checked", $(element).prop("checked"));
+        if($(element).prop("checked")){
+            $(element).attr("title", "Désélectionner tous les éléments");
+        } else {
+            $(element).attr("title", "Sélectionner tous les éléments");
         }
     };
 
@@ -63,7 +105,7 @@ var SearchScrudManager;
 
         function getFields(){
             var fields = [];
-            that.th.each(addField);
+            $("th:not(#deleteAll)").each(addField);
             return fields;
 
             function addField(i, element){
@@ -121,7 +163,7 @@ var SearchScrudManager;
         typeContainer.find("select").addClass("hide");
         clearTimeout(this.timer);
         if(field === ""){
-            input.attr('disabled', '').val("");
+            input.attr('disabled', "").val("");
             return false;
         }
         this.timer = setTimeout(getType, 200);

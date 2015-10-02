@@ -116,7 +116,17 @@ class ApiController extends Phalcon\ControllerBase{
     }
 
     public function deleteAction(){
-
+        $model = $this->models[0];
+        $primaryKey = $model::getMapped($model::getPrimaryKey());
+        try{
+            $rows = $model::find("$primaryKey IN (".implode(',', Rest::$params['ids']).")");
+            if(!$rows->delete()){
+                Rest::renderError($row->getErrors());
+            }
+        } catch(PDOException $e){
+            Rest::renderError($e->getMessage());
+        }
+        Rest::renderSuccess();
     }
 
 }

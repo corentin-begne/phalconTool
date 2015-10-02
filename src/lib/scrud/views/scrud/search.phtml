@@ -41,9 +41,26 @@
     <table action="<?=$actionModel?>">
         <thead>
             <tr>
+                <th id='deleteAll' title='Supprimer tous les éléments sélectionnés'>
+                    <img src="<?=$this->config->application->baseUri?>frontend/lib/scrud/public/img/form/delete.png" class='action' action-data='<?=json_encode([
+                        'class'=>$manager,
+                        'name'=>'deleteAll'
+                    ])?>'/>
+                    <input title='Sélectionner tous les éléments' type='checkbox' class='action' action-data='<?=json_encode([
+                        'class'=>$manager,
+                        'name'=>'toggleCheck',
+                        'type'=>'change'
+                    ])?>' />
+                </th>
                 <? foreach($models as $model): ?>
                     <? foreach($model::getColumnsMap() as $id => $name): ?>
-                        <th id='<?=$id?>' alt='<?=$model?>' title='<?=$model?>'><?=$name?></th>
+                        <th id='<?=$id?>' alt='<?=$model?>' title='<?=$model?>'>
+                            <?=$name?>
+                            <div title='Supprimer la colonne' class='action remove' action-data='<?=json_encode([
+                                'class'=>$manager,
+                                'name'=>'removeField'    
+                            ])?>'>x</div>
+                        </th>
                     <? endforeach; ?>
                 <? endforeach; ?>
             </tr>

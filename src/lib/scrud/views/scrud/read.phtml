@@ -18,9 +18,10 @@
         <? endforeach; ?>
     </div>
     <div class='actionContainer'>
-        <button id='cancel' class='action form' action-data='<?=json_encode([
+        <button id='cancel' class='action form' preventDefault action-data='<?=json_encode([
             'class'=>$manager,
-            'name'=>'cancelForm'
+            'fn'=>'redirect',
+            'data'=>['path'=>'scrud/'.$actionModel.'/search']
         ])?>'>Annuler</button>
         <button id='create' class='form'>Modifier</button>
     </div>

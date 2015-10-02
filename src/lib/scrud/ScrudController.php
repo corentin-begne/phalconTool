@@ -91,6 +91,7 @@ class ScrudController extends Phalcon\ControllerBase{
         $model::getRelations('belongsTo');
         $this->view->setRenderLevel(Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
         $this->view->primaryKey = $primaryKey;
+        $this->view->includes = $fields;
         
     }
 
@@ -107,8 +108,11 @@ class ScrudController extends Phalcon\ControllerBase{
     }
 
     public function searchAction(){
-        $this->assets->collection('libjs')->addJs('helper/autocompletion.js');
-        $this->assets->collection('libjs')->addJs('helper/pagination.js');
+        $this->assets->collection('libjs')
+        ->addJs('helper/autocompletion.js')
+        ->addJs('helper/pagination.js')
+        ->addJs('helper/popup.js')
+        ->addJs('lib/jquery-ui.min.js');
         $this->view->setVar('types', [
             'numeric' => [
                 '=' => '=',

@@ -41,7 +41,9 @@ var ManagerModel;
 
         function addEvent(i, element){
             var data = $(element).is("[action-data]") ? $.parseJSON($(element).attr("action-data")) : {};
-            data.class = window[data.class].getInstance();
+            if(isDefined(data.class)){
+                data.class = window[data.class].getInstance();
+            }
             if(!isDefined(data.type)){
                 data.type = "mousedown";                    
             }
@@ -54,6 +56,12 @@ var ManagerModel;
 
             function sendEvent(event){                
                 data.fn = isDefined(data.fn) ? data.fn : "action";
+                if($(element).is("[preventDefault]")){
+                    event.preventDefault();
+                }
+                if($(element).is("[stopPropagation]")){
+                    event.stopPropagation();
+                }
                 if(isDefined(that[data.fn])){
                     that[data.fn](element, data, event);                    
                 }
@@ -72,7 +80,7 @@ var ManagerModel;
     };
 
     ManagerModel.prototype.action = function(element, data, event) {
-        if(isDefined(data.class[data.name])){
+        if(isDefined(data.class) && isDefined(data.class[data.name])){
             data.class[data.name](element, event, data);
         }
     };

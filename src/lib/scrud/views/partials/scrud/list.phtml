@@ -5,8 +5,16 @@
         'fn'=>'redirect',
         'data'=>['path'=>'scrud/'.$actionModel.'/read?'.$model::getPrimaryKey().'='.$row->$primaryKey] 
     ])?>'>
+        <td>
+            <input title='Sélectionner pour suppression' type='checkbox' class='action' stopPropagation id="<?=$row->$primaryKey?>" />
+        </td>
         <? foreach($models as $model): ?>
             <? foreach($model::getColumnsMap() as $id => $name): ?>
+                <?
+                    if(isset($includes) && !in_array($id, $includes)){
+                        continue;
+                    }
+                ?>
                 <td id='<?=$id?>' alt='<?=$model?>' title='<?=str_replace(['_id', 'is_'],['', ''],$name)?>'>
                     <? if($model::getType($id) === 'tinyint'): ?>
                         <?=((int)$row->$id === 0) ? 'Non' : 'Oui'?>
