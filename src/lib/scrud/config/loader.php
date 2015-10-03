@@ -1,6 +1,6 @@
 <?
-$loader->registerClasses([
-    'ScrudController' => $config->application->libDir.'scrud/ScrudController.php',
-    'Rest' => $config->application->libDir.'../Tools/Rest.php',
-    'Phalcon\Builder\Form' => $config->application->libDir.'../Builder/Form.php'
+$object->registerClasses([
+    'ScrudController' => dirname(__FILE__).'/../ScrudController.php',
+    'Rest' => dirname(__FILE__).'/../../../Tools/Rest.php',
+    'Phalcon\Builder\Form' => dirname(__FILE__).'/../../../Builder/Form.php'
 ], true);

@@ -31,7 +31,7 @@ return new \Phalcon\Config([
             'charset'     => 'utf8',
         ]
     ], 
-    'librairies' => ['api', 'scrud'],   
+    'libraries' => ['api', 'scrud'],   
     'application' => [
         'controllersDir' => __DIR__ . '/../controllers/',
         'modelsDir'      => __DIR__ . '/../models/',
@@ -39,7 +39,7 @@ return new \Phalcon\Config([
         'pluginsDir'     => __DIR__ . '/../plugins/',
         'publicDir'      => __DIR__ . '/../../../public/[app]/',
         'rootDir'        => __DIR__ . '/../../../',
-        'libDir'        => __DIR__ . '/../../../vendor/v-cult/phalcon/src/lib/',
+        'libDir'         => [__DIR__ . '/../libraries/'],
         'baseUri'        => '/',
     ]
 ]);

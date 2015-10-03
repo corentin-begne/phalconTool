@@ -10,7 +10,7 @@ var [name]Manager;
      * @description initialize [name]
      */
     function init(){
-        new JsHelper({ManagerHelper:[className]Manager});
+        new JsHelper();
         [name]Manager = [className]Manager.getInstance();
     }
     

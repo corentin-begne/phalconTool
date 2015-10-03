@@ -30,14 +30,7 @@ $di->set('router', function () use ($config) {
     $router = new Router(false);
 
     // check librairies dependencies
-    if(isset($config->librairies)){
-        foreach($config->librairies as &$librairy){
-            $file = $config->application->libDir.$librairy.'/config/services.php';
-            if(is_readable($file)){
-                include $file;
-            }
-        }
-    }
+    Phalcon\Library::get('router', $config, $router);
 
     $router->add('/:controller/:action', [
         'controller' => 1,

@@ -7,7 +7,7 @@ var [className]Manager;
     * @property {ActionModel} action Instance of ActionModel
     * @description  Manage template
     */
-    [className]Manager = function [className]Manager(){
+    [className]Manager = function(){
         extendSingleton([className]Manager);
         this.basePath = "[path]";
         this.action = ActionModel.getInstance();
