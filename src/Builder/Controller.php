@@ -16,7 +16,7 @@ class Controller extends \Phalcon\Mvc\User\Component
         if(file_exists($target)){
             $source = file_get_contents($target);
         } else {
-            $source = str_replace(['[name]', '[APP]'], [$name, ((defined(TYPE) && TYPE==='app') ? ucfirst(APP).'\Base\Controller' : 'Phalcon\ControllerBase')], $source);
+            $source = str_replace(['[name]', '[APP]'], [$name, ((defined('TYPE') && TYPE==='app') ? ucfirst(APP).'\Base\Controller' : 'Phalcon\ControllerBase')], $source);
         }        
         if(!defined('NO_VIEW')){
             exec('mkdir -p '.$this->config->application->viewsDir.$controller);
@@ -36,7 +36,8 @@ class Controller extends \Phalcon\Mvc\User\Component
                     file_put_contents($this->config->application->viewsDir.$controller.'/'.$action.'.phtml', '');
                 }
             }
-            $source = str_replace("Controller{\n", "Controller{\n\n".$content, $source);
+            $name = (defined('TYPE') && TYPE==='app') ? ucfirst(APP)."\Base\Controller{\n" : "Phalcon\ControllerBase{\n";
+            $source = str_replace($name, "$name\n".$content, $source);
         }
     }
 }

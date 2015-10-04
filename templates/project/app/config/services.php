@@ -57,6 +57,7 @@ $di->set('view', function () use ($config) {
 
     $view = new View();
     $view->setViewsDir($config->application->viewsDir);
+    $view->setLayout('default');
     $view->setPartialsDir('partials');
     $view->registerEngines([
         '.phtml' => 'Phalcon\Mvc\View\Engine\Php'
@@ -96,11 +97,12 @@ $di->set('session', function () {
 });
 
 $di->set('dispatcher', function() {
-    $eventsManager = new EventsManager;
-    //$eventsManager->attach('dispatch:beforeDispatch', new SecurityPlugin());
+    $eventsManager = new EventsManager();
+
+    $eventsManager->attach('dispatch:beforeDispatch', new SecurityPlugin());
     $eventsManager->attach('dispatch:beforeDispatch', new AssetsPlugin());
 
-    $dispatcher = new Dispatcher;   
+    $dispatcher = new Dispatcher();   
     $dispatcher->setEventsManager($eventsManager);
     return $dispatcher;
 });

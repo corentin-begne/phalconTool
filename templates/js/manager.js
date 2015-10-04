@@ -1,6 +1,7 @@
 /*global ActionModel */
 var [className]Manager;
 (function(){
+    "use strict";
     /**
     * @class TemplateManager
     * @constructor

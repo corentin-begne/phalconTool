@@ -1,6 +1,7 @@
 /*global [className]Manager */
 var [name]Manager;
 (function(){
+    "use strict";
     /** on document ready */
     $(document).ready(init);
 
