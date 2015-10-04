@@ -42,8 +42,8 @@ $di->set('router', function () use ($config) {
     ]);
 
     $router->add("/", [
-        'controller' => 'index',
-        'action'     => 'index'
+        'controller' => 'user',
+        'action'     => 'login'
     ]);
 
     return $router;
