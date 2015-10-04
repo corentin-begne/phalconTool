@@ -32,7 +32,7 @@ class SecurityPlugin extends Plugin
         ];
 
         $publicResources = [
-           'user'  => ['login']
+           'user'  => ['login', 'connect']
         ];
 
         foreach ($privateResources as $resource => $actions) {

@@ -173,7 +173,7 @@ class ScrudController extends Phalcon\ControllerBase{
                 $field = $model::getMapped($model::getPrimaryKey());
             } else {
                 $field = $refModel::getReferencedField($model);
-            }            
+            }    
             $fn = 'findFirstBy'.Utils::camelize($field);
             $row = $model::$fn($refValue);
             if(!$row){

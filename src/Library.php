@@ -18,4 +18,10 @@ class Library extends \Phalcon\Mvc\User\Component{
             }
         }
     }
+
+    public static function loadDir($paths){
+        $loader = new Loader();
+        $loader->registerDirs($paths, true);
+        $loader->register();
+    }
 }

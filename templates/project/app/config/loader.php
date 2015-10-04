@@ -10,7 +10,8 @@ $loader->registerClasses([
 ->registerDirs([
     $config->application->controllersDir,
     $config->application->modelsDir,
-    $config->application->pluginsDir
+    $config->application->pluginsDir,
+    $config->application->classesDir
 ], true);
 $loader->register();
 Phalcon\Library::get('loader', $config, $loader);

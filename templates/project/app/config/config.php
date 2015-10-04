@@ -9,6 +9,13 @@ return new \Phalcon\Config([
             'password'    => 'root',
             'dbname'      => 'dbdev',
             'charset'     => 'utf8',
+        ],
+        'social' => [
+            'googlePlus' => [
+                'clientId' => '',
+                'clientSecret' => '',
+                'devKey' => ''
+            ]
         ]
     ],
     'preprod' => [
@@ -36,6 +43,7 @@ return new \Phalcon\Config([
         'controllersDir' => __DIR__ . '/../controllers/',
         'modelsDir'      => __DIR__ . '/../models/',
         'viewsDir'       => __DIR__ . '/../views/',
+        'classesDir'     => __DIR__ . '/../classes/',
         'pluginsDir'     => __DIR__ . '/../plugins/',
         'publicDir'      => __DIR__ . '/../../../public/[app]/',
         'rootDir'        => __DIR__ . '/../../../',
