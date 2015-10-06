@@ -4,17 +4,28 @@ CREATE TABLE IF NOT EXISTS `GenderType` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
+INSERT INTO `GenderType` (`id`, `name`) VALUES
+(1, 'male'),
+(2, 'female');
+
 CREATE TABLE IF NOT EXISTS `LangType` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
+INSERT INTO `LangType` (`id`, `name`) VALUES
+(1, 'fr'),
+(2, 'en');
+
 CREATE TABLE IF NOT EXISTS `SocialType` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+INSERT INTO `SocialType` (`id`, `name`) VALUES
+(1, 'googlePlus');
 
 CREATE TABLE IF NOT EXISTS `User` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
