@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   KEY `social_id` (`social_id`),
   KEY `lang_id` (`lang_id`),
   KEY `gender_id` (`gender_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `UserSocial` (
   `id` int(11) NOT NULL,
