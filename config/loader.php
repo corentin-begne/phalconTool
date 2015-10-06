@@ -12,6 +12,7 @@ $loader->registerDirs($includes)
     'Phalcon\Builder' => ROOT_PATH.'/src/Builder'
 ])
 ->registerClasses([
-    'Phalcon\Tools\Cli' => ROOT_PATH.'/src/Tools/Cli.php'
+    'Phalcon\Tools\Cli' => ROOT_PATH.'/src/Tools/Cli.php',
+    'Phalcon\ModelBase' => ROOT_PATH.'/src/ModelBase.php'
 ])
 ->register();

@@ -83,11 +83,7 @@ $di->set('db', function () use ($config) {
  * If the configuration specify the use of metadata adapter use it or use memory otherwise
  */
 $di->set('modelsMetadata', function () {
-    $metadata = new MetaDataAdapter();
-    if(ENV === 'dev'){
-        $metadata->reset();
-    }
-    return $metadata;
+    return new MetaDataAdapter();
 });
 
 /**

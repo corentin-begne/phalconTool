@@ -4,6 +4,8 @@ Phalcon\Builder\Controller,
 Phalcon\Builder\Js,
 Phalcon\Builder\Css,
 Phalcon\Builder\Less,
+Phalcon\Db,
+Phalcon\Builder\Migration,
 Phalcon\Tools\Cli,
 Phalcon\Text as Utils;
 class GenerateTask extends \Phalcon\CLI\Task
@@ -36,6 +38,10 @@ class GenerateTask extends \Phalcon\CLI\Task
         } else {
             Cli::error('app folder '.$appName.' already exists');
         }
+    }
+
+    public function migrationAction(){
+        new Migration();
     }
 
     public function projectAction() {
@@ -72,7 +78,13 @@ class GenerateTask extends \Phalcon\CLI\Task
     public function modelsAction() {
         exec('rm -rf '.$this->config->application->modelsDir.'*');
         $constraints = [];
-        foreach($this->db->listTables($this->config[ENV]->database->dbname) as &$table){
+        $tables = $this->db->listTables($this->config[ENV]->database->dbname);
+        if(count($tables) === 0){ // no table in bdd, load the default
+            $query = file_get_contents(TEMPLATE_PATH.'/project/defaultModels.sql');
+            $this->db->fetchOne($query, Db::FETCH_ASSOC);
+            $tables = $this->db->listTables($this->config[ENV]->database->dbname);
+        }
+        foreach($tables as &$table){
             $model = new Model($table);           
             if(isset($model->constraints)){
                 foreach($model->constraints as $name => $lines){
