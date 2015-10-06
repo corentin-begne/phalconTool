@@ -45,6 +45,7 @@ return new \Phalcon\Config([
         'viewsDir'       => __DIR__ . '/../views/',
         'classesDir'     => __DIR__ . '/../classes/',
         'pluginsDir'     => __DIR__ . '/../plugins/',
+        'migrationsDir'  => __DIR__ . '/../migrations/',
         'publicDir'      => __DIR__ . '/../../../public/[app]/',
         'rootDir'        => __DIR__ . '/../../../',
         'libDir'         => [__DIR__ . '/../libraries/'],
