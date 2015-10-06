@@ -81,7 +81,7 @@ class GenerateTask extends \Phalcon\CLI\Task
         $tables = $this->db->listTables($this->config[ENV]->database->dbname);
         if(count($tables) === 0){ // no table in bdd, load the default
             $query = file_get_contents(TEMPLATE_PATH.'/project/defaultModels.sql');
-            $this->db->fetchOne($query, Db::FETCH_ASSOC);
+            $this->db->execute($query);
             $tables = $this->db->listTables($this->config[ENV]->database->dbname);
         }
         foreach($tables as &$table){
