@@ -12,7 +12,7 @@ This tool allows to manage project with Phalcon MVC Framework access on MYSQL.
 - Generate controller/action
 - Generate js/less template
 
-#### in progress
+#### In progress
 - Find function Rest Api
 - Scrud index
 - Translation management
