@@ -94,7 +94,7 @@ phalcon generate:css home index,test
 phalcon generate:js home index,test
 ```
 It will copy the type template in public/[type]/[moduleName]/[actionName] or in the [moduleName] root folder for the index action.
-For the css minifier, I use sublime with Less2Css that compile and minify less file on save but there a command to do that using lessc node mdole (sudo nmp install lessc -g)
+For the css minifier, I use sublime with Less2Css that compile and minify less file on save but there a command to do that using lessc node mdole (sudo npm install lessc -g)
 ```
 phalcon generate:less home
 phalcon generate:less home index,test
