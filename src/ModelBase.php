@@ -41,16 +41,21 @@ class ModelBase extends Mvc\Model{
         }
     }
 
-    public static function getRelations($type){
+    public static function returnRelations($type){
         $model = get_called_class();
         $type = 'get'.Text::camelize(Text::uncamelize($type));
-        Form::$relations=[];
+        $relations=[];
         foreach(DI::getDefault()->getModelsManager()->$type(new $model()) as $relation){
-            Form::$relations[$relation->getFields()] = [
+            $relations[$relation->getFields()] = [
                 'model' => $relation->getReferencedModel(),
                 'field' => $relation->getReferencedFields()
             ];
         }
+        return $relations;
+    }
+
+    public static function getRelations($type){
+        Form::$relations = self::returnRelations($type);
     }
 
     public static function checkHasOne($target){

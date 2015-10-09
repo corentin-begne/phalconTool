@@ -14,13 +14,7 @@ var PaginationHelper;
      * @property {String} html Pagination html.
      */
     PaginationHelper = function(params){
-        this.nbPage = Number(params.nbPage);
-        if (this.nbPage <= 1) {
-            if(isDefined(this.container)){
-                this.container.empty();
-            }
-            return false;
-        }
+        this.nbPage = Number(params.nbPage);        
         this.getPageContent = params.cb;
         this.container = $(params.container);
         this.range = 1;
@@ -32,6 +26,12 @@ var PaginationHelper;
                             "<span id='last'>>></span>"+
                         "</span>"+
                     "</div>";
+        if (this.nbPage <= 1) {
+            if(isDefined(this.container)){
+                this.container.empty();
+            }
+            return false;
+        }
         this.init((isDefined(params.currentPage) ? params.currentPage : 1));
     };
 

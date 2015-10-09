@@ -7,15 +7,19 @@ class ScrudController extends Phalcon\ControllerBase{
 
     public function beforeExecuteRoute($dispatcher)
     {
+        $this->view->setViewsDir(dirname(__FILE__).'/views/');
+        $this->view->setLayout('scrud');
+        if($this->router->getActionName() === 'index'){
+            $this->indexAction();
+            return false;
+        }
         $this->assets->collection('libjs')
         ->addJs('lib/jquery.percentageloader-0.2.js')
         ->addJs('model/action.js')
         ->addJs('model/manager.js')
         ->addJs('helper/action.js')
         ->addJs('helper/form.js')
-        ->addJs('helper/js.js');
-        $this->view->setViewsDir(dirname(__FILE__).'/views/');
-        $this->view->setLayout('scrud');
+        ->addJs('helper/js.js');                
         $this->models = [];
         $this->limit = 20;
         $models = explode(' ', $dispatcher->getParam('model'));
@@ -39,7 +43,16 @@ class ScrudController extends Phalcon\ControllerBase{
     }
 
     public function indexAction(){
-
+        $this->assets->set('libjs', new Phalcon\Assets\Collection());
+        $models = [];
+        foreach($this->db->listTables($this->config[ENV]->database->dbname) as $model){
+            if(!isset($models[$model[0]])){
+                $models[$model[0]] = [];
+            }
+            $models[$model[0]][] = $model;
+        }
+        ksort($models);
+        $this->view->models = $models;
     }
 
     public function listAction(){
@@ -155,7 +168,7 @@ class ScrudController extends Phalcon\ControllerBase{
         $model::getRelations('belongsTo');
         $this->view->fields = [''=>'-']+$fields;
         $this->view->primaryKey = $primaryKey;        
-        $this->view->nbPage = ceil($model::count()/$this->limit);        
+        $this->view->nbPage = ceil($model::count()/$this->limit);    
         Tag::setDefault('fieldSort', $primaryKey);
         Tag::setDefault('sort', 'asc');
     }

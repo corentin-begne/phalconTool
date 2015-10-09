@@ -24,8 +24,8 @@ class GooglePlus{
             \Google_Service_Plus::USERINFO_PROFILE, 
             \Google_Service_Plus::PLUS_ME
         ]);
-        self::$client->setAccessType('offline');
-        self::$client->setApprovalPrompt("force");
+        /*self::$client->setAccessType('offline');
+        self::$client->setApprovalPrompt("force");*/
         self::$client->setRedirectUri('http://' . $di->getRequest()->getHttpHost() .$di['config']->application->baseUri.'user/connect');
     }
 

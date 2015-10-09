@@ -16,15 +16,29 @@
                     }
                 ?>
                 <td id='<?=$id?>' alt='<?=$model?>' title='<?=str_replace(['_id', 'is_'],['', ''],$name)?>'>
-                    <? if($model::getType($id) === 'tinyint'): ?>
+                    <? if(!isset($row->$id)): ?>
+                        <?
+                            $modelName = $models[0];
+                            $fieldName = $modelName::getReferencedField($model);                        
+                            $modelName = Phalcon\Text::uncamelize($model).substr($fieldName, strpos($fieldName, '_'));
+                        ?>
+                        <?=$row->$modelName->$id?>
+                    <? elseif($model::getType($id) === 'tinyint'): ?>
                         <?=((int)$row->$id === 0) ? 'Non' : 'Oui'?>
                     <? elseif(isset(Phalcon\Builder\Form::$relations[$id])): ?>
                         <?
                             $modelName = Phalcon\Builder\Form::$relations[$id]['model'];
                             $fieldName = $modelName::getPrefix().'_name';
                             $modelName = Phalcon\Text::uncamelize(Phalcon\Builder\Form::$relations[$id]['model']).'_'.$name;
+                            if(!isset($row->$modelName)){
+                                $fn = 'findFirstBy'.ucfirst($id);
+                                $fieldName =  $model::getPrefix().'_name';
+                                $val = $model::$fn($row->$id)->$fieldName;
+                            } else {
+                                $val = $row->$modelName->$fieldName;
+                            }
                         ?>
-                        <?=$row->$modelName->$fieldName?>
+                        <?=$val?>
                     <? else: ?>
                         <?=$row->$id?>
                     <? endif; ?>

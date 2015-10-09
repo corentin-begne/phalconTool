@@ -8,7 +8,7 @@
 <div class='searchContainer'>
     <div class='search'>
         <div class='fieldContainer'>
-            <?=Phalcon\Tag::selectStatic(['id'=>'field', 'class'=>'action', 'action-data'=>json_encode([
+            <?=Phalcon\Tag::selectStatic(['field', 'id'=>'field', 'class'=>'action', 'action-data'=>json_encode([
                 'class'=>$manager,
                 'name'=>'selectField',
                 'type'=>'change'
@@ -16,7 +16,7 @@
         </div>
         <div class='typeContainer'>
             <? foreach($types as $name => $type): ?>
-                <?=Phalcon\Tag::selectStatic(['id'=>$name, 'class'=>'hide type'], $type)?>
+                <?=Phalcon\Tag::selectStatic([$name, 'id'=>$name, 'class'=>'hide type'], $type)?>
             <? endforeach; ?>
         </div>
         <div class='inputContainer action' action-data='<?=json_encode([

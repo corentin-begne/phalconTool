@@ -15,7 +15,7 @@ class UserController extends Phalcon\ControllerBase{
             $this->response->redirect('user/login');
         } else {
             GooglePlusManager::connect($code);
-            $this->response->redirect('scrud');
+            $this->response->redirect('scrud/');
         }
         $this->view->disable();
     }

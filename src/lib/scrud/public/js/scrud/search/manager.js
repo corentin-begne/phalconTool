@@ -123,7 +123,10 @@ var SearchScrudManager;
 
         function getFilters(){
             var filters = {};
-            $(".filter").each(addFilter);
+            if($(".filter:not(.hide)").length === 0){
+                return undefined;
+            }
+            $(".filter:not(.hide)").each(addFilter);
             return filters;
 
             function addFilter(i, element){

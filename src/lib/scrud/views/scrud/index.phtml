@@ -1,0 +1,25 @@
+<div class='title'>Models Index</div>
+<? foreach($models as $index => $list): ?>
+    <fieldset>
+        <legend>
+            <?=ucfirst($index)?>
+        </legend>
+        <? foreach($list as $model): ?>
+            <div>
+                <a target='_blank' href="<?=$this->config->application->baseUri?>scrud/<?=$model?>/search">
+                    <?=$model?>
+                </a>
+            </div>
+            <?
+                $model::getRelations('hasOne');
+                foreach(Phalcon\Builder\Form::$relations as $relation):
+            ?>
+                <div>
+                    <a target='_blank' href="<?=$this->config->application->baseUri?>scrud/<?=$model?> <?=$relation['model']?>/search">
+                        <?=$model?> <?=$relation['model']?>
+                    </a>
+                </div>
+            <? endforeach; ?>
+        <? endforeach; ?>
+    </fieldset>
+<? endforeach; ?>
