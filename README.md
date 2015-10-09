@@ -14,9 +14,8 @@ This tool allows to manage project with Phalcon MVC Framework access on MYSQL.
 
 #### In progress
 - Find function Rest Api
-- Scrud index
 - Translation management
-- Bdd migrations (first migration)
+- Bdd migrations 
 - Cli support inline
 - Documentation
 
@@ -60,11 +59,12 @@ The default action user/login redirect to the google user authentification to lo
 
 ### Generate models
 Before generate models, don't forget to modify the config.php in your app folder.
+On generation, if the databse is empty, it will import the ones used for the User management.
 ```
 phalcon generate:models
 ```
 Models will be created from the database with column map and all relations.
-You're now able to access to SRUD action for all model, example fro User :
+You're now able to access to SCRUD action for all model, example for User :
 ```
 http//localhost/scrud/User/read?id=1
 http//localhost/scrud/User/create
