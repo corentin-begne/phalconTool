@@ -22,7 +22,7 @@ This tool allows to manage project with Phalcon MVC Framework access on MYSQL.
 ## Installation
 
 #### Requirement
-- [Phalcon 2.0.6](https://phalconphp.com/fr/download)
+- [Phalcon 2.0.x](https://phalconphp.com/fr/download)
 - php >=5.4
 
 using composer
