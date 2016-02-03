@@ -29,7 +29,8 @@ using composer
 ```
 {
     "require": {
-        "v-cult/phalcon": "dev-master"
+        "v-cult/phalcon": "dev-master",
+        "google/apiclient": "1.1.7"
     }
 }
 ```
