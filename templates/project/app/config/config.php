@@ -50,6 +50,6 @@ return new \Phalcon\Config([
         'publicDir'      => __DIR__ . '/../../../public/[app]/',
         'rootDir'        => __DIR__ . '/../../../',
         'libDir'         => [__DIR__ . '/../libraries/'],
-        'baseUri'        => '',
+        'baseUri'        => '/',
     ]
 ]);

@@ -11,7 +11,8 @@
                 </a>
             </div>
             <?
-                $model::getRelations('hasOne');
+                $name = Phalcon\Text::camelize($model);
+                $name::getRelations('hasOne');
                 foreach(Phalcon\Builder\Form::$relations as $relation):
             ?>
                 <div>
