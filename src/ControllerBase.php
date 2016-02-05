@@ -7,6 +7,7 @@ class ControllerBase extends Mvc\Controller{
     public function beforeExecuteRoute($dispatcher)
     {
         $this->view->t = $this;
+        $this->view->lang = explode('-', $this->request->getBestLanguage())[0];
     }
 
     public function getTranslation()
@@ -15,7 +16,7 @@ class ControllerBase extends Mvc\Controller{
             return false;
         }
 
-        $language = explode('-', $this->request->getBestLanguage())[0];
+        $language = $this->view->lang;
 
         if (file_exists($this->config->application->messagesDir.$language.'.php')) {
             require $this->config->application->messagesDir.$language.'.php';
