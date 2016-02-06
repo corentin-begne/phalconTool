@@ -4,7 +4,7 @@ namespace Phalcon;
 class ControllerBase extends Mvc\Controller{
     public $messages;
 
-    public function initialize()
+    public function beforeExecuteRoute($dispatcher)
     {
         $this->view->t = $this;
         $this->view->data = [];

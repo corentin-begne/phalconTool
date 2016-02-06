@@ -5,7 +5,7 @@ class ScrudController extends Phalcon\ControllerBase{
     
     public $excludes = [];
 
-    public function beforeExecuteRoute($dispatcher)
+    public function initialize()
     {
         $this->view->setViewsDir(dirname(__FILE__).'/views/');
         $this->view->setLayout('scrud');
