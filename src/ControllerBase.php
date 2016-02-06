@@ -4,9 +4,10 @@ namespace Phalcon;
 class ControllerBase extends Mvc\Controller{
     public $messages;
 
-    public function beforeExecuteRoute($dispatcher)
+    public function initialize()
     {
         $this->view->t = $this;
+        $this->view->data = [];
         $this->view->lang = explode('-', $this->request->getBestLanguage())[0];
     }
 
