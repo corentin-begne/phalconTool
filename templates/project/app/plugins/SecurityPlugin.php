@@ -60,6 +60,15 @@ class SecurityPlugin extends Plugin
         return $acl;
     }
 
+    public function beforeException($event, $dispatcher, $exception) {
+        switch ($exception->getCode()) {
+            case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
+            case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
+                $this->response->redirect('/user/login');
+                return false;
+        }
+    }
+
     /**
      * Event called before each controller action.
      */

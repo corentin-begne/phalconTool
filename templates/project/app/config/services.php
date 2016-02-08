@@ -99,8 +99,10 @@ $di->set('session', function () {
 $di->set('dispatcher', function() {
     $eventsManager = new EventsManager();
 
-    $eventsManager->attach('dispatch:beforeDispatch', new SecurityPlugin());
+    $security = new SecurityPlugin();
+    $eventsManager->attach('dispatch:beforeDispatch', $security);
     $eventsManager->attach('dispatch:beforeDispatch', new AssetsPlugin());
+    $eventsManager->attach("dispatch:beforeException", $security);
 
     $dispatcher = new Dispatcher();   
     $dispatcher->setEventsManager($eventsManager);
