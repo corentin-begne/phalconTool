@@ -52,9 +52,9 @@ The default values are dev/frontend
 ```
 phalcon generate:project
 ```
-It will create apps and public dir in the root project folder initialized with frontend application.
-The Document root of the server must be the public dir.
-By default api et scrud libraries are enbaled and the project is secured by google user connect so you need to create an google application, authorize google+ api and generate devKey, client_id and client_sercret to set them inside the configuration file.
+It will create apps and public dir in the root project folder initialized with frontend application.  
+The Document root of the server must be the public dir.  
+By default api et scrud libraries are enbaled and the project is secured by google user connect so you need to create an google application, authorize google+ api and generate devKey, client_id and client_secret to set them inside the configuration file.  
 The default action user/login redirect to the google user authentification to log in the application and redirect to the SCRUD index (in progress).
 
 ### Generate models
