@@ -104,7 +104,7 @@ The second command will only do the job for the actions listed
 
 ### Translation
 Inside each view you can use $t->_ or $t->__ to get translation from key inside array from folder messages. The language used corresponding to the browser language using en by default.
-$t->_ is used to acces direct key value from the array and $t->__ is more specific for the same key but inside the controller / action context.
+$t->_ is used to acces direct key value from the array and $t->__ is more specific for the same key but inside the controller / action context.  
 Functions are from the controller so inside the action use $this->__ and $t->_ to access to the translations.
 ```
 view inside controller user action login
