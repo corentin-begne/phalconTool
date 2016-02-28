@@ -13,6 +13,7 @@ class ScrudController extends Phalcon\ControllerBase{
             $this->indexAction();
             return false;
         }
+        $currentPath = ($this->dispatcher->getActionName() === 'index') ? $this->dispatcher->getControllerName() : $this->dispatcher->getControllerName().'/'.$this->dispatcher->getActionName(); 
         $this->assets->collection('libjs')
         ->addJs('lib/jquery.min.js')  
         ->addJs('lib/jquery.percentageloader-0.2.js')
@@ -20,7 +21,9 @@ class ScrudController extends Phalcon\ControllerBase{
         ->addJs('model/manager.js')
         ->addJs('helper/action.js')
         ->addJs('helper/form.js')
-        ->addJs('helper/js.js');                
+        ->addJs('helper/js.js')
+        ->addJs($currentPath.'/manager.js')
+        ->addJs($currentPath.'/main.js');             
         $this->models = [];
         $this->limit = 20;
         $models = explode(' ', $this->dispatcher->getParam('model'));

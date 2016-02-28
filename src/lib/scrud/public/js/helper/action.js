@@ -10,7 +10,7 @@ var ActionHelper;
     */
     ActionHelper = function(){
         extendSingleton(ActionHelper);
-        this.basePath = "/";
+        this.basePath = "/"+$("body").attr("app")+"/";
         var hasOnProgress = ("onprogress" in $.ajaxSettings.xhr());
         if (!hasOnProgress) {
             return;
