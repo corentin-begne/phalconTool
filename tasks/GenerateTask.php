@@ -33,7 +33,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             exec('cp -r '.TEMPLATE_PATH.'/project/public/app/js '.HOME_PATH.'/public/'.$appName.'/');
             exec('cp -r '.TEMPLATE_PATH.'/project/public/app/img '.HOME_PATH.'/public/'.$appName.'/');
             exec('cp '.TEMPLATE_PATH.'/project/public/app/*.php '.HOME_PATH.'/public/'.$appName.'/');
-            exec('ln -s '.TEMPLATE_PATH.'/../src/lib/ '.HOME_PATH.'/public/'.$appName.'/lib');
+            exec('ln -s '.TEMPLATE_PATH.'/../src/lib/ '.HOME_PATH.'/public/lib');
             Cli::success('app '.$appName.' successfully created');
         } else {
             Cli::error('app folder '.$appName.' already exists');

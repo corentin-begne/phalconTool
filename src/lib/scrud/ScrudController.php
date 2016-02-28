@@ -14,7 +14,6 @@ class ScrudController extends Phalcon\ControllerBase{
             return false;
         }
         $this->assets->collection('libjs')
-        ->addJs('lib/jquery.js')
         ->addJs('lib/jquery.percentageloader-0.2.js')
         ->addJs('model/action.js')
         ->addJs('model/manager.js')
