@@ -5,5 +5,5 @@
     ]);
     $object->add("/scrud/{model}/", [
         'controller' => 'scrud',
-        'action'     => 'index'
+        'action'     => 'search'
     ]);

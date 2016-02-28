@@ -22,7 +22,7 @@ class ScrudController extends Phalcon\ControllerBase{
         ->addJs('helper/js.js');                
         $this->models = [];
         $this->limit = 20;
-        $models = explode(' ', $dispatcher->getParam('model'));
+        $models = explode(' ', $this->dispatcher->getParam('model'));
         for($i=0; $i<count($models); $i++){
             $models[$i] = Utils::camelize(Utils::uncamelize($models[$i]));
             $model = $models[$i];            
@@ -39,7 +39,7 @@ class ScrudController extends Phalcon\ControllerBase{
         }
         $this->view->manager = ucfirst($this->router->getActionName()).ucfirst($this->router->getControllerName()).'Manager';
         $this->view->models = $this->models;
-        $this->view->actionModel = $dispatcher->getParam('model');
+        $this->view->actionModel = $this->dispatcher->getParam('model');
     }
 
     public function indexAction(){
