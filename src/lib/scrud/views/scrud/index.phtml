@@ -9,7 +9,7 @@
                 $name = Phalcon\Text::camelize($model);
             ?>
             <div>
-                <a target='_blank' href="<?=$this->config->application->baseUri?>scrud/<?=$name?>/search">
+                <a target='_blank' href="<?=$this->config->application->baseUri.APP?>/scrud/<?=$name?>/search">
                     <?=$name?>
                 </a>
             </div>
@@ -18,7 +18,7 @@
                 foreach(Phalcon\Builder\Form::$relations as $relation):
             ?>
                 <div>
-                    <a target='_blank' href="<?=$this->config->application->baseUri?>scrud/<?=$name?> <?=$relation['model']?>/search">
+                    <a target='_blank' href="<?=$this->config->application->baseUri.APP?>/scrud/<?=$name?> <?=$relation['model']?>/search">
                         <?=$name?> <?=$relation['model']?>
                     </a>
                 </div>
