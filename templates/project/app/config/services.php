@@ -29,9 +29,6 @@ $di->set('router', function () use ($config) {
 
     $router = new Router(false);
 
-    // check librairies dependencies
-    Phalcon\Library::get('router', $config, $router);
-
     $router->add('/:controller/:action', [
         'controller' => 1,
         'action'     => 2
@@ -45,6 +42,9 @@ $di->set('router', function () use ($config) {
         'controller' => 'user',
         'action'     => 'login'
     ]);
+
+    // check librairies dependencies
+    Phalcon\Library::get('router', $config, $router);
 
     return $router;
     
