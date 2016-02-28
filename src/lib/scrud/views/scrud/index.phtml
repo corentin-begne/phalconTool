@@ -5,19 +5,21 @@
             <?=ucfirst($index)?>
         </legend>
         <? foreach($list as $model): ?>
-            <div>
-                <a target='_blank' href="<?=$this->config->application->baseUri?>scrud/<?=$model?>/search">
-                    <?=$model?>
-                </a>
-            </div>
             <?
                 $name = Phalcon\Text::camelize($model);
+            ?>
+            <div>
+                <a target='_blank' href="<?=$this->config->application->baseUri?>scrud/<?=$name?>/search">
+                    <?=$name?>
+                </a>
+            </div>
+            <?             
                 $name::getRelations('hasOne');
                 foreach(Phalcon\Builder\Form::$relations as $relation):
             ?>
                 <div>
-                    <a target='_blank' href="<?=$this->config->application->baseUri?>scrud/<?=$model?> <?=$relation['model']?>/search">
-                        <?=$model?> <?=$relation['model']?>
+                    <a target='_blank' href="<?=$this->config->application->baseUri?>scrud/<?=$name?> <?=$relation['model']?>/search">
+                        <?=$name?> <?=$relation['model']?>
                     </a>
                 </div>
             <? endforeach; ?>
