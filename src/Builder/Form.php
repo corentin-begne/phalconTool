@@ -31,7 +31,11 @@ class Form extends \Phalcon\Tag
     public static function getDisplayValue($row, $model, $id, $name){ 
        $relations = $model::returnRelations('belongsTo');
        if($model::getType($id) === 'tinyint'){
-            return (!isset($row->$id) || (int)$row->$id === 0) ? 'Non' : 'Oui';
+            if(!isset($row->$id)){
+                return '';
+            } else {
+                return ((int)$row->$id === 0) ? 'Non' : 'Oui';
+            }
         } else if(isset($relations[$id])){
             $modelName = $relations[$id]['model'];
             $fieldName = $modelName::getPrefix().'_name';
