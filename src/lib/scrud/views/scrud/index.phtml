@@ -15,14 +15,16 @@
             </div>
             <?             
                 $name::getRelations('hasOne');
-                foreach(Phalcon\Builder\Form::$relations as $relation):
+                foreach(Phalcon\Builder\Form::$relations as $relations):      
+                    foreach($relations as $relation):              
             ?>
-                <div>
-                    <a target='_blank' href="/<?=APP?>/scrud/<?=$name?> <?=$relation['model']?>/search">
-                        <?=$name?> <?=$relation['model']?>
-                    </a>
-                </div>
-            <? endforeach; ?>
+                        <div>
+                            <a target='_blank' href="/<?=APP?>/scrud/<?=$name?> <?=$relation['model']?>/search">
+                                <?=$name?> <?=$relation['model']?>
+                            </a>
+                        </div>
+                    <? endforeach; ?>
+                <? endforeach; ?>
         <? endforeach; ?>
     </fieldset>
 <? endforeach; ?>

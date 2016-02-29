@@ -46,10 +46,20 @@ class ModelBase extends Mvc\Model{
         $type = 'get'.Text::camelize(Text::uncamelize($type));
         $relations=[];
         foreach(DI::getDefault()->getModelsManager()->$type(new $model()) as $relation){
-            $relations[$relation->getFields()] = [
-                'model' => $relation->getReferencedModel(),
-                'field' => $relation->getReferencedFields()
-            ];
+            if($type === 'getBelongsTo'){
+                $relations[$relation->getFields()] = [
+                    'model' => $relation->getReferencedModel(),
+                    'field' => $relation->getReferencedFields()
+                ];
+            } else {
+                if(!isset($relations[$relation->getFields()])){
+                     $relations[$relation->getFields()] = [];
+                }
+                 $relations[$relation->getFields()][] = [
+                    'model' => $relation->getReferencedModel(),
+                    'field' => $relation->getReferencedFields()
+                ];
+            }
         }
         return $relations;
     }
