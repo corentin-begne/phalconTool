@@ -28,6 +28,25 @@ class Form extends \Phalcon\Tag
         }
     }
 
+    public static function getDisplayValue($row, $model, $id, $name){ 
+       $relations = $model::returnRelations('belongsTo');
+       if($model::getType($id) === 'tinyint'){
+            return (!isset($row->$id) || (int)$row->$id === 0) ? 'Non' : 'Oui';
+        } else if(isset($relations[$id])){
+            $modelName = $relations[$id]['model'];
+            $fieldName = $modelName::getPrefix().'_name';
+            $modelObj = new $modelName();
+            if($modelObj::getType($fieldName) !== null){
+                $fn = 'findFirstBy'.ucfirst($relations[$id]['field']);
+                return $modelName::$fn($row->$id)->$fieldName;
+            } else {
+                return $row->$id;
+            }
+        } else {
+            return $row->$id;
+        }
+    }
+
     public static function getLabel($name){
         $text = str_replace('_id', '', substr($name, strpos($name, '_')+1));
         return '<label class="form" for="'.$name.'">'.$text.'&nbsp;:&nbsp;</label>';
@@ -42,17 +61,19 @@ class Form extends \Phalcon\Tag
             $option += ['required'=>''];
         }
         $type = 'text';
+        $modelObj = new $model();
+        $modelNameMap = $model::getPrefix().'_name';
         switch($options['type']){
             case 'bigint':
             case 'int':
-                if(isset($options['key']) && $options['key'] === 'MUL'){
-                    $model = self::$relations[$name]['model'];
+                if(isset($options['key']) && $options['key'] === 'MUL' && isset($modelObj->$modelNameMap)){
+                    $model = self::$relations[$name]['model'];                    
                     return self::select([
                         $name, 
                         $model::find(), 
                         'using' => [
                             self::$relations[$name]['field'], 
-                            $model::getPrefix().'_name'
+                            $modelNameMap
                         ],
                         'useEmpty' => true,
                         'emptyText' => '-',

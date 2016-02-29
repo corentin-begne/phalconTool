@@ -16,31 +16,16 @@
                     }
                 ?>
                 <td id='<?=$id?>' alt='<?=$model?>' title='<?=str_replace(['_id', 'is_'],['', ''],$name)?>'>
-                    <? if(!isset($row->$id)): ?>
+                    <? if($model === $models[0]): ?>                        
+                        <?=Phalcon\Builder\Form::getDisplayValue($row, $model, $id, $name)?>
+                    <? else: ?>
                         <?
                             $modelName = $models[0];
-                            $fieldName = $modelName::getReferencedField($model);                        
-                            $modelName = Phalcon\Text::uncamelize($model).substr($fieldName, strpos($fieldName, '_'));
+                            $fieldName = $modelName::getReferencedField($model);          
+                            $realName = substr($fieldName, strpos($fieldName, '_')+1);              
+                            $modelName = ucfirst(Phalcon\Text::uncamelize($model)).'_'.$realName;
                         ?>
-                        <?=$row->$modelName->$id?>
-                    <? elseif($model::getType($id) === 'tinyint'): ?>
-                        <?=((int)$row->$id === 0) ? 'Non' : 'Oui'?>
-                    <? elseif(isset(Phalcon\Builder\Form::$relations[$id])): ?>
-                        <?
-                            $modelName = Phalcon\Builder\Form::$relations[$id]['model'];
-                            $fieldName = $modelName::getPrefix().'_name';
-                            $modelName = Phalcon\Text::uncamelize(Phalcon\Builder\Form::$relations[$id]['model']).'_'.$name;
-                            if(!isset($row->$modelName)){
-                                $fn = 'findFirstBy'.ucfirst($id);
-                                $fieldName =  $model::getPrefix().'_name';
-                                $val = $model::$fn($row->$id)->$fieldName;
-                            } else {
-                                $val = $row->$modelName->$fieldName;
-                            }
-                        ?>
-                        <?=$val?>
-                    <? else: ?>
-                        <?=$row->$id?>
+                        <?=Phalcon\Builder\Form::getDisplayValue($row->$modelName, $model, $id, $name)?>
                     <? endif; ?>
                 </td>
             <? endforeach; ?>

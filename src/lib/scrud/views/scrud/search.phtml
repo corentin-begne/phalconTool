@@ -68,7 +68,7 @@
                 <? foreach($models as $model): ?>
                     <? foreach($model::getColumnsMap() as $id => $name): ?>
                         <th id='<?=$id?>' alt='<?=$model?>' title='<?=$model?>'>
-                            <?=$name?>
+                            <?=str_replace(['_id', 'is_'],['', ''],$name)?>
                             <div title='Supprimer la colonne' class='action remove' action-data='<?=json_encode([
                                 'class'=>$manager,
                                 'name'=>'removeField'    
