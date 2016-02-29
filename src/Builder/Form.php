@@ -64,14 +64,17 @@ class Form extends \Phalcon\Tag
         if($restrictable && !$options['isNull']){
             $option += ['required'=>''];
         }
-        $type = 'text';
-        $modelObj = new $model();
-        $modelNameMap = $model::getPrefix().'_name';
+        $type = 'text';        
         switch($options['type']){
             case 'bigint':
             case 'int':
-                if(isset($options['key']) && $options['key'] === 'MUL' && isset($modelObj->$modelNameMap)){
+                if(isset($options['key']) && $options['key'] === 'MUL'){
                     $model = self::$relations[$name]['model'];                    
+                    $modelObj = new $model();
+                    $modelNameMap = $model::getPrefix().'_name';
+                    if($modelObj::getType($modelNameMap) === null){
+                        $modelNameMap = $name;// die($modelNameMap);
+                    }
                     return self::select([
                         $name, 
                         $model::find(), 
