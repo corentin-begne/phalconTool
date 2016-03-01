@@ -6,14 +6,17 @@ class ScrudController extends Phalcon\ControllerBase{
     public $excludes = [];
 
     public function initialize()
-    {
-        $this->view->setViewsDir(dirname(__FILE__).'/views/');
-        $this->view->setLayout('scrud');
+    {               
+        if($this->dispatcher->getControllerName() === 'scrud'){
+            $this->view->setViewsDir($this->config->application->rootDir.'vendor/v-cult/phalcon/src/lib/scrud/views/');
+            $this->view->setLayout('scrud');
+        }
         if($this->router->getActionName() === 'index'){
             $this->indexAction();
             return false;
         }
-        $currentPath = ($this->dispatcher->getActionName() === 'index') ? $this->dispatcher->getControllerName() : $this->dispatcher->getControllerName().'/'.$this->dispatcher->getActionName(); 
+        $cleanController = str_replace('custom_', '', $this->dispatcher->getControllerName());
+        $currentPath = ($this->dispatcher->getActionName() === 'index') ? $cleanController : $cleanController.'/'.$this->dispatcher->getActionName(); 
         $this->assets->collection('libjs')
         ->addJs('lib/jquery.min.js')  
         ->addJs('lib/jquery.percentageloader-0.2.js')
@@ -41,7 +44,7 @@ class ScrudController extends Phalcon\ControllerBase{
             }
             $this->models[] = $model;            
         }
-        $this->view->manager = ucfirst($this->router->getActionName()).ucfirst($this->router->getControllerName()).'Manager';
+        $this->view->manager = ucfirst($this->router->getActionName()).ucfirst($cleanController).'Manager';
         $this->view->models = $this->models;
         $this->view->actionModel = $this->dispatcher->getParam('model');
     }
@@ -99,6 +102,7 @@ class ScrudController extends Phalcon\ControllerBase{
         $params = [
             'models' => $model,
             'columns' => $fields,
+            'hydration' => \Phalcon\Mvc\Model\Resultset::TYPE_RESULT_FULL,
             'offset' => ((int)$currentPage-1)*$this->limit,
             'limit' => $this->limit,
             'conditions' => $conditions,
@@ -109,7 +113,6 @@ class ScrudController extends Phalcon\ControllerBase{
         unset($params['offset']);
         $params['columns'] = 'count(*) as nb';
         $this->view->nbPage = ceil((int)$this->getRows($params)->toArray()[0]['nb']/$this->limit);
-        $model::getRelations('belongsTo');
         $this->view->setRenderLevel(Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
         $this->view->primaryKey = $primaryKey;
         $this->view->includes = $fields;
@@ -124,8 +127,7 @@ class ScrudController extends Phalcon\ControllerBase{
             $name = $this->models[$i];
             $builder->leftJoin($name, $model::getReferencedField($name)." = $primaryKey");
         }
-        return $builder->getQuery()
-                       ->execute();
+        return $builder->getQuery()->execute();
     }
 
     public function searchAction(){

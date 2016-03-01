@@ -2,7 +2,7 @@
     Recherche <?=implode('&nbsp;', $models)?> <img id="create" class='action' title="Créer" src="/lib/scrud/public/img/form/add.png" action-data='<?=json_encode([
         'class'=>$manager,
         'fn'=>'redirect',
-        'data'=>['path'=>'scrud/'.$actionModel.'/create'] 
+        'data'=>['path'=>$this->dispatcher->getControllerName().'/'.$actionModel.'/create'] 
     ])?>' />    
 </div>
 <div class='searchContainer'>
@@ -50,7 +50,7 @@
         ])?>' src="/lib/scrud/public/img/form/cancel.png">
     </div>
 </div>
-<div class='listContainer'>
+<div class='listingContainer'>
     <table action="<?=$actionModel?>">
         <thead>
             <tr>
@@ -79,7 +79,7 @@
             </tr>
         </thead>
         <tbody>
-            <?=$this->partial('/scrud/list', [
+            <?=$this->partial('/'.$this->dispatcher->getControllerName().'/list', [
                 'models' => $models,
                 'rows' => $rows,
                 'primaryKey' =>$primaryKey,

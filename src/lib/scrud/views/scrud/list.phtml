@@ -1,5 +1,5 @@
 <table>
-    <?=$this->partial('/scrud/list', [
+    <?=$this->partial('/'.$this->dispatcher->getControllerName().'/list', [
         'models' => $models,
         'rows' => $rows,
         'includes' => $includes,
@@ -8,7 +8,7 @@
     ])?>    
 </table>
 <div>
-    <?=$this->partial('/scrud/data', [
+    <?=$this->partial('/'.$this->dispatcher->getControllerName().'/data', [
         'data' => [
             'nbPage' => $nbPage
         ]

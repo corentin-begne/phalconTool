@@ -3,7 +3,7 @@
     <tr class='action' action-data='<?=json_encode([
         'class'=>'SearchScrudManager',
         'fn'=>'redirect',
-        'data'=>['path'=>'scrud/'.$actionModel.'/read?'.$model::getPrimaryKey().'='.$row->$primaryKey] 
+        'data'=>['path'=>$this->dispatcher->getControllerName().'/'.$actionModel.'/read?'.$model::getPrimaryKey().'='.$row->$primaryKey] 
     ])?>'>
         <td>
             <input title='Sélectionner pour suppression' type='checkbox' class='action' stopPropagation id="<?=$row->$primaryKey?>" />
@@ -23,9 +23,14 @@
                             $modelName = $models[0];
                             $fieldName = $modelName::getReferencedField($model);          
                             $realName = substr($fieldName, strpos($fieldName, '_')+1);              
-                            $modelName = ucfirst(Phalcon\Text::uncamelize($model)).'_'.$realName;
+                            $modelName = ucfirst(Phalcon\Text::uncamelize($model)).'_'.$realName;    
+                            if($row->$modelName === null){   
+                                $cur = $row;
+                            } else {
+                                $cur = $row->$modelName;
+                            }                 
                         ?>
-                        <?=Phalcon\Builder\Form::getDisplayValue($row->$modelName, $model, $id, $name)?>
+                        <?=Phalcon\Builder\Form::getDisplayValue($cur, $model, $id, $name)?>
                     <? endif; ?>
                 </td>
             <? endforeach; ?>

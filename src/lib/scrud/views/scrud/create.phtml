@@ -3,7 +3,7 @@
     <img id="searchItem" class='action' title="Rechercher" src="/lib/scrud/public/img/form/search.png" action-data='<?=json_encode([
         'class'=>$manager,
         'fn'=>'redirect',
-        'data'=>['path'=>'scrud/'.$actionModel.'/search'] 
+        'data'=>['path'=>$this->dispatcher->getControllerName().'/'.$actionModel.'/search'] 
     ])?>' /> 
 </div>
 <form id='<?=$this->router->getActionName()?>Form' class='template action' action-data='<?=json_encode([
@@ -20,7 +20,7 @@
         <button id='cancel' class='action form' preventDefault action-data='<?=json_encode([
             'class'=>$manager,
             'fn'=>'redirect',
-            'data'=>['path'=>'scrud/'.$actionModel.'/search']
+            'data'=>['path'=>$this->dispatcher->getControllerName().'/'.$actionModel.'/search']
         ])?>'>Annuler</button>
         <button id='create' class='form'>Créer</button>
     </div>
