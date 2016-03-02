@@ -1,5 +1,5 @@
 <div class='title'>
-    Recherche <?=implode('&nbsp;', $models)?> <img id="create" class='action' title="Créer" src="/lib/scrud/public/img/form/add.png" action-data='<?=json_encode([
+    Recherche <?=implode('&nbsp;', $models)?> <img id="create" class='action' title="Créer" src="/lib/scrud/public/img/form/add.png" type='blank' action-data='<?=json_encode([
         'class'=>$manager,
         'fn'=>'redirect',
         'data'=>['path'=>$this->dispatcher->getControllerName().'/'.$actionModel.'/create'] 

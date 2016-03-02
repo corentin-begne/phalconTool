@@ -1,6 +1,6 @@
 <? foreach($rows as $row): ?>
     <? $model = $models[0]; ?>
-    <tr class='action' action-data='<?=json_encode([
+    <tr class='action' type='blank' action-data='<?=json_encode([
         'class'=>'SearchScrudManager',
         'fn'=>'redirect',
         'data'=>['path'=>$this->dispatcher->getControllerName().'/'.$actionModel.'/read?'.$model::getPrimaryKey().'='.$row->$primaryKey] 

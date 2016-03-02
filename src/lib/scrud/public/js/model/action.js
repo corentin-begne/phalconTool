@@ -130,8 +130,8 @@ var ActionModel;
      * @description redirect user to a path
      * @param  {String} path Path to redirect to
      */
-    ActionModel.prototype.redirect = function(path){
-        this.action.redirect(path);
+    ActionModel.prototype.redirect = function(path, type){
+        this.action.redirect(path, type);
     };
 
 })();

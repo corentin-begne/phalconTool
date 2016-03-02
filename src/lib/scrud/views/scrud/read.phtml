@@ -18,11 +18,11 @@
         <? endforeach; ?>
     </div>
     <div class='actionContainer'>
-        <button id='cancel' class='action form' preventDefault action-data='<?=json_encode([
+        <div id='cancel' class='action form' preventDefault action-data='<?=json_encode([
             'class'=>$manager,
             'fn'=>'redirect',
             'data'=>['path'=>$this->dispatcher->getControllerName().'/'.$actionModel.'/search']
-        ])?>'>Annuler</button>
+        ])?>'>Annuler</div>
         <button id='create' class='form'>Modifier</button>
     </div>
 </form>

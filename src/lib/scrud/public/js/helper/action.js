@@ -121,7 +121,11 @@ var ActionHelper;
      * @method ActionHelper#redirect
      * @param  {String} path Path to redirect
      */
-    ActionHelper.prototype.redirect = function(path){
-        window.location.href = this.basePath+path;
+    ActionHelper.prototype.redirect = function(path, type){
+        if(type === undefined){
+            window.location.href = this.basePath+path;
+        } else {
+            window.open(window.location.origin+this.basePath+path, "_"+type);
+        }
     };
 })();

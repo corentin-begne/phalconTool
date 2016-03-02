@@ -94,6 +94,8 @@ var ManagerModel;
     };
 
     ManagerModel.prototype.redirect = function(element, data, event) {
-        this.actionModel.redirect(data.data.path);
+        this.actionModel.redirect(data.data.path, $(element).attr("type"));
     };
+
+
 })();
