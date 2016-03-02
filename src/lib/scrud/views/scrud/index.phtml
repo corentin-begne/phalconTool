@@ -9,7 +9,7 @@
                 $name = Phalcon\Text::camelize($model);
             ?>
             <div>
-                <a href="/<?=APP?>/<?=$this->dispatcher->getControllerName()?>/<?=$name?>/search">
+                <a target='_blank' href="/<?=APP?>/<?=$this->dispatcher->getControllerName()?>/<?=$name?>/search">
                     <?=$name?>
                 </a>
             </div>
@@ -20,14 +20,14 @@
                     foreach($relations as $relation):              
             ?>
                         <div>
-                            <a href="/<?=APP?>/<?=$this->dispatcher->getControllerName()?>/<?=$name?> <?=$relation['model']?>/search">
+                            <a target='_blank' href="/<?=APP?>/<?=$this->dispatcher->getControllerName()?>/<?=$name?> <?=$relation['model']?>/search">
                                 <?=$name?> <?=$relation['model']?>
                             </a>
                         </div>
                         <? $full .= ' '.$relation['model']; ?>
                     <? endforeach; ?>
                     <div>
-                        <a href="/<?=APP?>/<?=$this->dispatcher->getControllerName()?>/<?=$name?><?=$full?>/search">
+                        <a target='_blank' href="/<?=APP?>/<?=$this->dispatcher->getControllerName()?>/<?=$name?><?=$full?>/search">
                             <?=$name?><?=$full?>
                         </a>
                     </div>
