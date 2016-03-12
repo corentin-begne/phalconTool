@@ -16,4 +16,8 @@ class User{
         return DI::getDefault()->getSession()->get('user')[$name];
     }
 
+    public static function isAuthenticated(){
+        return DI::getDefault()->getSession()->get('user') !== null;
+    }
+
 }

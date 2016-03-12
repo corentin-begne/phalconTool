@@ -6,6 +6,7 @@ use Phalcon\Acl\Resource;
 use Phalcon\Events\Event;
 use Phalcon\Mvc\User\Plugin;
 use Phalcon\Mvc\Dispatcher;
+use Manager\User as UserManager;
 
 /**
  * The security plugin manages the Access Control List (ACL).
@@ -27,9 +28,7 @@ class SecurityPlugin extends Plugin
         }
 
         // define public/private ressources
-        $privateResources = [
-            'scrud' => ['*']
-        ];
+        $privateResources = [];
 
         $publicResources = [
            'user'  => ['login', 'connect']
@@ -76,7 +75,7 @@ class SecurityPlugin extends Plugin
     {
         // Check user data exists in session
         $user = $this->session->get('user');
-        $role = isset($user) ? 'Users' : 'Guests';
+        $role = UserManager::isAuthenticated() ? 'Users' : 'Guests';
 
         //Take the active controller/action from the dispatcher
         $controller = $dispatcher->getControllerName();

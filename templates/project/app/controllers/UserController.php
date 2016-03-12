@@ -4,26 +4,30 @@ Manager\User as UserManager;
 
 class UserController extends Phalcon\ControllerBase{
 
-    public function loginAction(){        
-        $this->response->redirect(GooglePlusManager::createAuthUrl(), true);
-        $this->view->disable();
+    public function loginAction(){     
+        if(!UserManager::isAuthenticated()){   
+            $this->response->redirect(GooglePlusManager::createAuthUrl(), true);
+        } else {
+            $this->response->redirect('scrud/');
+        }
+        return false;
     }
 
     public function connectAction(){
         $code = $this->request->get('code');
-        if(!isset($code)){
+        if(!UserManager::isAuthenticated() && !isset($code)){
             $this->response->redirect('user/login');
         } else {
             GooglePlusManager::connect($code);
             $this->response->redirect('scrud/');
         }
-        $this->view->disable();
+        return false;
     }
 
     public function disconnectAction(){
         UserManager::disconnect();
         $this->response->redirect('user/login');
-        $this->view->disable();
+        return false;
     }
 
 }

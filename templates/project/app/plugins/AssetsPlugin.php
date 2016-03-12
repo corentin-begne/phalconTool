@@ -18,7 +18,7 @@ class AssetsPlugin extends Component
         $currentPath = ($dispatcher->getActionName() === 'index') ? $dispatcher->getControllerName() : $dispatcher->getControllerName().'/'.$dispatcher->getActionName(); 
         
         $this->assets->collection('libjs')
-        ->setPrefix(APP.'/lib/'.$dispatcher->getControllerName().'/public/js/');
+        ->setPrefix('/lib/'.$dispatcher->getControllerName().'/public/js/');
 
         $this->assets->collection('js')
         ->setPrefix(APP.'/js/')
@@ -31,11 +31,11 @@ class AssetsPlugin extends Component
         ->addJs("$currentPath/main.js");
         
         $this->assets->collection('libcss')
-        ->setPrefix(APP.'/lib/'.$dispatcher->getControllerName().'/public/css/');
+        ->setPrefix('/lib/'.$dispatcher->getControllerName().'/public/css/');
 
         $this->assets->collection('css')
         ->setPrefix(APP.'/css/');
-
+        
         $this->assets->collection($prefix.'css')
         ->addCss("$currentPath/main.css");
         
