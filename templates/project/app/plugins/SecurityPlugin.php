@@ -89,7 +89,7 @@ class SecurityPlugin extends Plugin
             if($role === 'Guests'){
                 $this->response->redirect('/user/login');
             } else {
-                $this->response->redirect('/scrud/');
+                $this->response->redirect('/');
             }
             $this->view->disable();
         }

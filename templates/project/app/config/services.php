@@ -39,8 +39,13 @@ $di->set('router', function () use ($config) {
     ]);
 
     $router->add("/", [
-        'controller' => 'user',
-        'action'     => 'login'
+        'controller' => 'index',
+        'action'     => 'index'
+    ]);
+
+    $router->add("/:action", [
+        'controller' => 'index',
+        'action'     => '1'
     ]);
 
     // check librairies dependencies
