@@ -6,7 +6,7 @@
         </legend>
         <? foreach($list as $model): ?>
             <?
-                $name = Phalcon\Text::camelize($model);
+                $name = (strpos($model, '_') !== false) ? Phalcon\Text::camelize($model) : $model;
             ?>
             <div>
                 <a target='_blank' href="/<?=APP?>/<?=$this->dispatcher->getControllerName()?>/<?=$name?>/search">
