@@ -1,18 +1,24 @@
-/*global [className]Manager */
+/*global [className]Manager, require */
 var [name]Manager;
 (function(){
-    "use strict";
-    /** on document ready */
-    $(document).ready(init);
+    require(["bower_components/jquery/dist/jquery.min"], ready);
 
-    /**
-     * @name main#init[className]
-     * @event
-     * @description initialize [name]
-     */
-    function init(){
-        new JsHelper();
-        [name]Manager = [className]Manager.getInstance();
+    function ready(){
+        /** on document ready */
+        $(document).ready(init);
+
+        /**
+         * @name main#init[className]
+         * @event
+         * @description initialize [name]
+         */
+        function init(){
+            require(["bower_components/cb-helpers/js.min"], loaded);
+
+            function loaded(){
+                new JsHelper();
+                [name]Manager = [className]Manager.getInstance();
+            }      
+        }
     }
-    
 })();

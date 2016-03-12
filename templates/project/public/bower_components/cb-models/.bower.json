@@ -1,0 +1,31 @@
+{
+  "name": "jsModels",
+  "homepage": "https://github.com/corentin-begne/jsModels",
+  "authors": [
+    "corentin begne <corentin.begne@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "cb-helpers": "*"
+  },
+  "_release": "e8007da09e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e8007da09ec4383695a133f3b8164cf6df029536"
+  },
+  "_source": "git://github.com/corentin-begne/jsModels.git",
+  "_target": "*",
+  "_originalSource": "cb-models"
+}

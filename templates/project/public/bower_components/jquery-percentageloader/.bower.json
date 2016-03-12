@@ -1,0 +1,11 @@
+{
+  "name": "jquery-percentageloader",
+  "_cacheHeaders": {
+    "Last-Modified": "Fri, 13 Nov 2015 20:11:26 GMT",
+    "Content-Type": "application/javascript; charset=utf-8"
+  },
+  "main": "index.js",
+  "_source": "https://cdnjs.cloudflare.com/ajax/libs/jquery.percentageloader/0.1.0/jquery.percentageloader.min.js",
+  "_target": "*",
+  "_originalSource": "https://cdnjs.cloudflare.com/ajax/libs/jquery.percentageloader/0.1.0/jquery.percentageloader.min.js"
+}

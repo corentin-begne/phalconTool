@@ -1,0 +1,34 @@
+{
+  "name": "jsHelpers",
+  "homepage": "https://github.com/corentin-begne/jsHelpers",
+  "authors": [
+    "corentin begne <corentin.begne@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-ui": "^1.11.4",
+    "jquery.percentageloader": "https://cdnjs.cloudflare.com/ajax/libs/jquery.percentageloader/0.1.0/jquery.percentageloader.css",
+    "jquery-percentageloader": "https://cdnjs.cloudflare.com/ajax/libs/jquery.percentageloader/0.1.0/jquery.percentageloader.min.js",
+    "require": "http://requirejs.org/docs/release/2.1.22/minified/require.js"
+  },
+  "_release": "244a30ee7b",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "244a30ee7b82db443f767aab7b7dc993efac243e"
+  },
+  "_source": "git://github.com/corentin-begne/jsHelpers.git",
+  "_target": "*",
+  "_originalSource": "cb-helpers"
+}

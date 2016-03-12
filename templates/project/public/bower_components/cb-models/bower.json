@@ -1,8 +1,8 @@
 {
-  "name": "project",
-  "homepage": "",
+  "name": "jsModels",
+  "homepage": "https://github.com/corentin-begne/jsModels",
   "authors": [
-    ""
+    "corentin begne <corentin.begne@gmail.com>"
   ],
   "description": "",
   "main": "",
@@ -17,6 +17,6 @@
     "tests"
   ],
   "dependencies": {
-    "cb-models": "*"
+    "cb-helpers": "*"
   }
 }

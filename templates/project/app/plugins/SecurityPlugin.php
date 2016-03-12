@@ -28,7 +28,9 @@ class SecurityPlugin extends Plugin
         }
 
         // define public/private ressources
-        $privateResources = [];
+        $privateResources = [
+            'index' => ['*']
+        ];
 
         $publicResources = [
            'user'  => ['login', 'connect']

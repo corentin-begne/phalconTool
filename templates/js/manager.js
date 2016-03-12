@@ -1,4 +1,4 @@
-/*global ActionModel */
+/*global ActionModel, require */
 var [className]Manager;
 (function(){
     "use strict";
@@ -9,10 +9,19 @@ var [className]Manager;
     * @description  Manage template
     */
     [className]Manager = function(){
+        var that = this;
         extendSingleton([className]Manager);
         this.basePath = "[path]";
-        this.action = ActionModel.getInstance();
-        this.manager = ManagerHelper.getInstance();
+
+        require([
+            "bower_components/cb-models/action.min", 
+            "bower_components/cb-models/manager.min"
+        ], loaded);
+
+        function loaded(){
+            that.action = ActionModel.getInstance();
+            that.manager = ManagerHelper.getInstance();
+        }
     };
 
     [className]Manager.getInstance = function(){
