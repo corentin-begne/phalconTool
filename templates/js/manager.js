@@ -8,7 +8,7 @@ var [className]Manager;
     * @property {ActionModel} action Instance of ActionModel
     * @description  Manage template
     */
-    [className]Manager = function(){
+    [className]Manager = function(cb){
         var that = this;
         extendSingleton([className]Manager);
         this.basePath = "[path]";
@@ -19,13 +19,28 @@ var [className]Manager;
         ], loaded);
 
         function loaded(){
-            that.action = ActionModel.getInstance();
-            that.manager = ManagerModel.getInstance();
+            ActionModel.getInstance(loadedAction);            
+
+            function loadedAction(instance){
+                that.action = instance;
+                ManagerModel.getInstance(loadedManager);
+
+                function loadedManager(instance){
+                    that.manager = instance;
+                    if(isDefined(cb)){
+                        cb(that);
+                    }
+                }
+            }
         }
     };
 
-    [className]Manager.getInstance = function(){
-        return getSingleton([className]Manager);
+    [className]Manager.getInstance = function(cb){
+        if(isDefined(cb)){
+            getSingleton([className]Manager, cb);
+        } else {
+            return getSingleton([className]Manager);
+        }
     };
     
 })();
