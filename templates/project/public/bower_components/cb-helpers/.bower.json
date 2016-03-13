@@ -22,11 +22,11 @@
     "jquery-percentageloader": "https://cdnjs.cloudflare.com/ajax/libs/jquery.percentageloader/0.1.0/jquery.percentageloader.min.js",
     "require": "http://requirejs.org/docs/release/2.1.22/minified/require.js"
   },
-  "_release": "244a30ee7b",
+  "_release": "8f7b6f3829",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "244a30ee7b82db443f767aab7b7dc993efac243e"
+    "commit": "8f7b6f382995ae8210fa33f2ebd89d5ea9c09460"
   },
   "_source": "git://github.com/corentin-begne/jsHelpers.git",
   "_target": "*",

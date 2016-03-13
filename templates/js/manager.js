@@ -20,7 +20,7 @@ var [className]Manager;
 
         function loaded(){
             that.action = ActionModel.getInstance();
-            that.manager = ManagerHelper.getInstance();
+            that.manager = ManagerModel.getInstance();
         }
     };
 

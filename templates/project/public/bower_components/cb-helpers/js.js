@@ -49,6 +49,21 @@ var JsHelper;
     };
 
     /**
+     * @method JsHelper#loadCss
+     * @param  {String} url Css url to load
+     * Load an external css inside DOM
+     */
+    JsHelper.prototype.loadCss = function(url) {
+        var link = $(document.createElement("link"));
+        link.attr({
+            type: "text/css",
+            rel: "stylesheet",
+            href: url
+        });
+        $("head").append(link);
+    }
+
+    /**
     * @method JsHelper#idDefined
     * @description  Check if a variable is defined
     * @param  {Any} [obj]  Variable to check
