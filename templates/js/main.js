@@ -13,10 +13,11 @@ var [name]Manager;
          * @description initialize [name]
          */
         function init(){
-            require(["bower_components/cb-helpers/js.min"], loaded);
+            require(["bower_components/cb-helpers/js.min", "bower_components/cb-models/manager.min"], loaded);
 
             function loaded(){
                 new JsHelper();
+                ManagerModel.getInstance().init();
                 [name]Manager = [className]Manager.getInstance();
             }      
         }
