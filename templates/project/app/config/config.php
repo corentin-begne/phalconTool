@@ -38,7 +38,7 @@ return new \Phalcon\Config([
             'charset'     => 'utf8',
         ]
     ], 
-    'libraries' => ['api', 'scrud'],   
+    'libraries' => [],   
     'application' => [
         'controllersDir' => __DIR__ . '/../controllers/',
         'modelsDir'      => __DIR__ . '/../models/',
