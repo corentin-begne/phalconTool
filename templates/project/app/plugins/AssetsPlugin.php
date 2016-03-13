@@ -24,6 +24,10 @@ class AssetsPlugin extends Component
         ->setPrefix(APP.'/js/')
         ->addJs('bower_components/require/index.js');
 
+        $this->assets->collection('bowerjs')
+        ->setPrefix(APP.'/bower_components/')
+        ->addJs('require/index.js');
+
         $prefix = in_array($dispatcher->getControllerName(), $this->config->libraries->toArray()) ? 'lib' : '';
 
         $this->assets->collection($prefix.'js')

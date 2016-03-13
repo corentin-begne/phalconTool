@@ -8,7 +8,7 @@ class UserController extends Phalcon\ControllerBase{
         if(!UserManager::isAuthenticated()){   
             $this->response->redirect(GooglePlusManager::createAuthUrl(), true);
         } else {
-            $this->response->redirect('scrud/');
+            $this->response->redirect('/');
         }
         return false;
     }
@@ -19,7 +19,7 @@ class UserController extends Phalcon\ControllerBase{
             $this->response->redirect('user/login');
         } else {
             GooglePlusManager::connect($code);
-            $this->response->redirect('scrud/');
+            $this->response->redirect('/');
         }
         return false;
     }
