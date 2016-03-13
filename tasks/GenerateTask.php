@@ -31,8 +31,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             // public folder
             exec('cp -r '.TEMPLATE_PATH.'/project/public/app/css '.HOME_PATH.'/public/'.$appName.'/');
             exec('cp -r '.TEMPLATE_PATH.'/project/public/app/js '.HOME_PATH.'/public/'.$appName.'/');
-            exec('cp -r '.TEMPLATE_PATH.'/project/public/app/img '.HOME_PATH.'/public/'.$appName.'/');
-            exec('cp -r '.TEMPLATE_PATH.'/project/public/app/bower* '.HOME_PATH.'/public/'.$appName.'/');
+            exec('cp -r '.TEMPLATE_PATH.'/project/public/app/img '.HOME_PATH.'/public/'.$appName.'/');            
             exec('cp '.TEMPLATE_PATH.'/project/public/app/*.php '.HOME_PATH.'/public/'.$appName.'/');
             exec('ln -s '.TEMPLATE_PATH.'/../src/lib/ '.HOME_PATH.'/public/lib');
             Cli::success('app '.$appName.' successfully created');
@@ -56,6 +55,7 @@ class GenerateTask extends \Phalcon\CLI\Task
                 exec('mkdir '.$publicPath);            
                 exec('cp '.TEMPLATE_PATH.'/project/public/init.php '.$publicPath);
                 exec('cp '.TEMPLATE_PATH.'/project/public/.htaccess '.$publicPath);
+                exec('cp -r '.TEMPLATE_PATH.'/project/public/bower* '.$publicPath);
                 $content = file_get_contents($publicPath.'/.htaccess');
                 file_put_contents($publicPath.'/.htaccess', str_replace('[app]', $appName, $content));
             }     
