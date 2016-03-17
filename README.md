@@ -8,6 +8,7 @@ This tool allows to manage project with Phalcon MVC Framework access on MYSQL.
 - Generate models from Mysql database with column map and full relations
 - Internal library Management
 - Full Rest Api
+- Websocket Server
 - SCRUD on the fly with models relations and validations
 - Generate controller/action
 - Generate js/less template
@@ -15,6 +16,7 @@ This tool allows to manage project with Phalcon MVC Framework access on MYSQL.
 #### In progress
 - Find function Rest Api
 - Bdd migrations 
+- Bower + Javascript libraries
 - Cli support inline
 - Documentation
 
