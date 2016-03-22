@@ -38,7 +38,8 @@ using composer
 
 Create a phalcon symlink to application.php in your root project folder  
 ```
-sudo ln -s /var/www/project/vendor/v-cult/phalcon/application.php /var/www/project/phalcon
+cd /var/www/project/
+ln -s vendor/v-cult/phalcon/application.php ./phalcon
 ```
 or in /usr/bin to be used globally
 ```
