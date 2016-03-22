@@ -188,7 +188,7 @@ abstract class Server {
             }
 
             if ($triggerClosed) {
-                $this->stdout("Client disconnected. ".$disconnectedUser->socket);
+                $this->stdout("Client disconnected. ".$disconnectedUser->id);
                 $this->closed($disconnectedUser);
                 socket_close($disconnectedUser->socket);
             } else {
