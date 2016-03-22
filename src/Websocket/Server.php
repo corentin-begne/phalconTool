@@ -1,6 +1,7 @@
 <?
 
 namespace Phalcon\Websocket;
+use Phalcon\Tools\Cli;
 
 abstract class Server {
 
@@ -10,6 +11,7 @@ abstract class Server {
     protected $sockets                              = [];
     protected $users                                = [];
     protected $heldMessages                         = [];
+    protected $rooms                                = [];
     protected $interactive                          = true;
     protected $headerOriginRequired                 = false;
     protected $headerSecWebSocketProtocolRequired   = false;
@@ -34,6 +36,14 @@ abstract class Server {
     // the handshake has completed.
     }
 
+    protected function openRoom($name){
+        Cli::warning("Room $name opened", true);
+    }
+
+    protected function closeRoom($name){
+        Cli::warning("Room $name closed", true);
+    }
+
     protected function send(&$user, &$message) {
         if ($user->handshake) {
             $message = $this->frame($message,$user);
@@ -42,6 +52,24 @@ abstract class Server {
             // User has not yet performed their handshake.  Store for sending later.
             $holdingMessage = array('user' => $user, 'message' => $message);
             $this->heldMessages[] = $holdingMessage;
+        }
+    }
+
+    protected function broadcast($message, $room=null, $userFrom=null){
+        if(!isset($room)){
+            foreach($this->sockets as $id => &$socket){
+                if(isset($userFrom) && $userFrom === $id){
+                    continue;
+                }
+                $this->send($this->users[$id], $message);
+            }
+        } else {
+            foreach($this->rooms[$room] as $userId => $id){
+                if(isset($userFrom) && $userFrom === $id){
+                    continue;
+                }
+                $this->send($this->users[$id], $message);
+            }
         }
     }
 
@@ -87,11 +115,10 @@ abstract class Server {
                 if ($socket == $this->master) {
                     $client = socket_accept($socket);
                     if ($client < 0) {
-                        $this->stderr("Failed: socket_accept()");
+                        $this->stderr('Failed: socket_accept()');
                         continue;
                     } else {
-                        $this->connect($client);
-                        $this->stdout("Client connected. " . $client);
+                        $this->connect($client);                        
                     }
                 } else {
                     $numBytes = @socket_recv($socket, $buffer, $this->maxBufferSize, 0); 
@@ -108,7 +135,7 @@ abstract class Server {
                             case 113: // EHOSTUNREACH -- No route to host
                             case 121: // EREMOTEIO    -- Rempte I/O error -- Their hard drive just blew up.
                             case 125: // ECANCELED    -- Operation canceled
-                                $this->stderr("Unusual disconnect on socket " . $socket);
+                                $this->stderr('Unusual disconnect on socket ' . $socket);
                                 $this->disconnect($socket, true, $sockErrNo); // disconnect before clearing error, in case someone with their own implementation wants to check for error conditions on the socket.
                                 break;
                             default:
@@ -117,9 +144,9 @@ abstract class Server {
 
                     } elseif ($numBytes == 0) {
                         $this->disconnect($socket);
-                        $this->stderr("Client disconnected. TCP connection lost: " . $socket);
+                        $this->stderr('Client disconnected. TCP connection lost: ' . $socket);
                     } else {
-                        $user = $this->getUserBySocket($socket);
+                        $user = $this->users[md5((string)$socket)];//$this->getUserBySocket($socket);
                         if (!$user->handshake) {
                             $tmp = str_replace("\r", '', $buffer);
                             if (strpos($tmp, "\n\n") === false ) {
@@ -137,17 +164,20 @@ abstract class Server {
     }
 
     protected function connect(&$socket) {
-        $user = new User(uniqid('u'), $socket);
-        $this->users[$user->id] = $user;
+        $id = md5((string)$socket);
+        $user = new User($id, $socket);
+        $this->users[$id] = $user;
         $this->sockets[$user->id] = $socket;
         $this->connecting($user);
     }
 
     protected function disconnect(&$socket, $triggerClosed = true, $sockErrNo = null) {
-        $disconnectedUser = $this->getUserBySocket($socket);
+        $id = md5((string)$socket);
+        $disconnectedUser = $this->users[$id];//$this->getUserBySocket($socket);
 
         if ($disconnectedUser !== null) {
-            unset($this->users[$disconnectedUser->id]);
+            unset($this->users[$id]);
+            unset($this->rooms[$disconnectedUser->room][$disconnectedUser->data['id']]);            
 
             if (array_key_exists($disconnectedUser->id, $this->sockets)) {
                 unset($this->sockets[$disconnectedUser->id]);
@@ -164,6 +194,11 @@ abstract class Server {
             } else {
                 $message = $this->frame('', $disconnectedUser, 'close');
                 @socket_write($disconnectedUser->socket, $message, strlen($message));
+            }
+
+            if(count($this->rooms[$disconnectedUser->room]) === 0){
+                unset($this->rooms[$disconnectedUser->room]);
+                $this->closeRoom($disconnectedUser->room);
             }
         }
     }
@@ -186,6 +221,13 @@ abstract class Server {
             $user->requestedResource = $headers['get'];
             if($user->room === null){
                 $user->parseData();
+                if(!isset($this->rooms[$user->room])){
+                    $this->openRoom($user->room);     
+                    $this->rooms[$user->room] = [];               
+                }                
+                $this->rooms[$user->room][$user->data['id']] = $user->id;
+                $this->stdout('Client '.$user->id.' connected inside room '.$user->room);
+                $this->stdout('Client '.$user->id.' is user '.$user->data['id']);
             }
         } else {
             // todo: fail the connection
@@ -284,13 +326,13 @@ abstract class Server {
 
     public function stdout($message) {
         if ($this->interactive) {
-            echo "$message\n";
+            Cli::success($message, true);
         }
     }
 
     public function stderr($message) {
         if ($this->interactive) {
-            echo "$message\n";
+            Cli::warning($message, true);
         }
     }
 
