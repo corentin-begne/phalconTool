@@ -20,7 +20,7 @@ var IndexManager;
         ], loaded);
 
         function loaded(){
-            ActionModel.getInstance(loadedAction);            
+            ActionModel.getInstance(loadedAction);
 
             function loadedAction(instance){
                 that.action = instance;
@@ -32,6 +32,7 @@ var IndexManager;
 
                     function loadedWebsocket(instance){
                         that.socket = instance;
+                        that.manager.init();
                         if(isDefined(cb)){
                             cb(that);
                         }
