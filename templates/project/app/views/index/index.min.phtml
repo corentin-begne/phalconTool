@@ -1,9 +1,8 @@
-<div class='action settings' action-data='<?=json_encode([
+<div class="action settings" action-data="<?=json_encode([
              'class'=>'IndexManager',
              'fn'=>'action',
              'name'=>'settings',
              'data'=>['title'=>'yo']
-         ])?>'></div>
-<?=$this->partial('/data', [
+         ])?>"></div> <?=$this->partial('/data', [
     'data'=>\Manager\User::get()
 ])?>
