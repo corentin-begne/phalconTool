@@ -29,7 +29,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             Cli::warning('Don\'t forget to modify your app config', true);
             echo $appPath."/config/config.php\n";
             // public folder
-            exec('cp -r '.TEMPLATE_PATH.'/project/public/app/css '.HOME_PATH.'/public/'.$appName.'/');
+            exec('cp -r '.TEMPLATE_PATH.'/project/public/app/css '.HOME_PATH.'/public/'.$appName);
             exec('cp -r '.TEMPLATE_PATH.'/project/public/app/js '.HOME_PATH.'/public/'.$appName.'/');
             exec('cp -r '.TEMPLATE_PATH.'/project/public/app/img '.HOME_PATH.'/public/'.$appName.'/');            
             exec('cp '.TEMPLATE_PATH.'/project/public/app/*.php '.HOME_PATH.'/public/'.$appName.'/');
