@@ -8,24 +8,39 @@ var IndexManager;
     * @property {ActionModel} action Instance of ActionModel
     * @description  Manage template
     */
-    IndexManager = function(){
+    IndexManager = function(cb){
         var that = this;
         extendSingleton(IndexManager);
         this.basePath = "index/";
 
         require([
-            "bower_components/cb-models/action.min", 
+            "bower_components/cb-models/action.min",
             "bower_components/cb-models/manager.min"
         ], loaded);
 
         function loaded(){
-            that.action = ActionModel.getInstance();
-            that.manager = ManagerModel.getInstance();
+            ActionModel.getInstance(loadedAction);
+
+            function loadedAction(instance){
+                that.action = instance;
+                ManagerModel.getInstance(loadedManager);
+
+                function loadedManager(instance){
+                    that.manager = instance;
+                    if(isDefined(cb)){
+                        cb(that);
+                    }
+                }
+            }
         }
     };
 
-    IndexManager.getInstance = function(){
-        return getSingleton(IndexManager);
+    IndexManager.getInstance = function(cb){
+        if(isDefined(cb)){
+            getSingleton(IndexManager, cb);
+        } else {
+            return getSingleton(IndexManager);
+        }
     };
     
 })();

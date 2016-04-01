@@ -12,13 +12,13 @@ var indexManager;
          * @event
          * @description initialize index
          */
-        function init(){
+         function init(){
             require(["bower_components/cb-helpers/js.min"], loaded);
 
             function loaded(){
                 new JsHelper();
                 indexManager = IndexManager.getInstance();
-            }      
+            }
         }
     }
 })();
