@@ -26,6 +26,7 @@ var [className]Manager;
                 }
                 return false;
             }
+            that.isSet = true;
             ActionModel.getInstance(loadedAction);            
 
             function loadedAction(instance){
@@ -34,7 +35,7 @@ var [className]Manager;
 
                 function loadedManager(instance){
                     that.manager = instance;
-                    that.isSet = true;
+
                     if(isDefined(cb)){
                         cb(that);
                     }
