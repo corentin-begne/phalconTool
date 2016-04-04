@@ -20,6 +20,7 @@
     "jquery-ui": "^1.11.4",
     "jquery.percentageloader": "https://cdnjs.cloudflare.com/ajax/libs/jquery.percentageloader/0.1.0/jquery.percentageloader.css",
     "jquery-percentageloader": "https://cdnjs.cloudflare.com/ajax/libs/jquery.percentageloader/0.1.0/jquery.percentageloader.min.js",
-    "require": "http://requirejs.org/docs/release/2.1.22/minified/require.js"
+    "require": "http://requirejs.org/docs/release/2.1.22/minified/require.js",
+    "socket.io-1.4.5": "https://cdn.socket.io/socket.io-1.4.5.js"
   }
 }

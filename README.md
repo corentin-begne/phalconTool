@@ -8,7 +8,7 @@ This tool allows to manage project with Phalcon MVC Framework access on MYSQL.
 - Generate models from Mysql database with column map and full relations
 - Internal library Management
 - Full Rest Api
-- Websocket Server
+- Websocket Client / Server
 - SCRUD on the fly with models relations and validations
 - Generate controller/action
 - Generate js/less template
@@ -104,6 +104,47 @@ phalcon generate:less home index,test
 ```
 The first command will get all main.less inside the home module and compile/minify them.
 The second command will only do the job for the actions listed
+
+### Websocket
+There's a websocket server with room and users management which could be start on command line :
+```
+phalcon server:start
+```
+A websocket Javascript library is available to work with, accessible in the bower_components, it just recreate user events management and can be used like this :
+```
+WebsocketHelper.getInstance(loadedWebsocket);
+
+function loadedWebsocket(instance){
+    var socket = instance;
+    socket.connect("ws://"+document.domain+":9000/myRoom", {"id":"123456"}, connected);
+    function connected(){
+        that.socket.addEvents({
+            "test": test,
+            "userConnected": userConnected,
+            "userDisconnected": userDisconnected,
+            "connected": ready
+        });
+        that.socket.send("test", {yo:"yo"});
+        
+
+        function test(data){
+            console.log("receive test event", data);
+        }
+
+        function userConnected(data){
+            console.log("new user connected", data);
+        }
+
+        function userDisconnected(data){
+            console.log("user leave room", data);
+        }
+
+        function ready(data){
+            console.log("connected to room", data);
+        }
+    }
+}
+```
 
 ### Translation
 Inside each view you can use $t->_ or $t->__ to get translation from key inside array from folder messages. The language used corresponding to the browser language using en by default.

@@ -8,7 +8,7 @@ var ManagerModel;
     * @property {ActionModel} [action = new ActionModel()] Instance of ActionModel
     * @description Manage global manager functions and actions
     */
-    ManagerModel = function(){        
+    ManagerModel = function(cb){        
         var that = this;
         extendSingleton(ManagerModel);                
         this.container = $("body");
@@ -18,7 +18,14 @@ var ManagerModel;
         ], loaded);
 
         function loaded(){
-            that.actionModel = ActionModel.getInstance();
+            ActionModel.getInstance(loadedModel);
+
+            function loadedModel(instance){
+                that.actionModel = instance;
+                if(isDefined(cb)){
+                    cb(that);
+                }
+            }
         }
     };
 
@@ -27,8 +34,12 @@ var ManagerModel;
      * @description get the single class instance
      * @return {ManagerModel} the single class instance
      */
-     ManagerModel.getInstance = function(){
-        return getSingleton(ManagerModel);
+    ManagerModel.getInstance = function(cb){
+        if(isDefined(cb)){
+            getSingleton(ManagerModel, cb);
+        } else {
+            return getSingleton(ManagerModel);
+        }
     };
 
     ManagerModel.prototype.getVars = function(container){     
@@ -36,7 +47,7 @@ var ManagerModel;
         $(container).find(".varInterface").each(addData);
 
         function addData(i, element){
-            data[$(element).attr("id")] = $(element).html();
+            data[$(element).attr("id")] = $(element).html().trim();
             $(element).remove();
         }
         return data;
@@ -50,28 +61,38 @@ var ManagerModel;
         function addEvent(i, element){
             var data = $(element).is("[action-data]") ? $.parseJSON($(element).attr("action-data")) : {};
             if(isDefined(data.class)){
-                data.class = window[data.class].getInstance();
+                window[data.class].getInstance(loadedClass);
+                
             }
-            if(!isDefined(data.type)){
-                data.type = "mousedown";                    
-            }
-            if(data.type=== "init"){
-                that[data.fn](element, data, event);
-            } else {
-                $(element).unbind(data.type);
-                $(element).bind(data.type, sendEvent);
+            init();
+
+            function loadedClass(instance){
+                data.class = instance;
+                init();
             }
 
-            function sendEvent(event){                
-                data.fn = isDefined(data.fn) ? data.fn : "action";
-                if($(element).is("[preventDefault]")){
-                    event.preventDefault();
+            function init(){
+                if(!isDefined(data.type)){
+                    data.type = "click";                    
                 }
-                if($(element).is("[stopPropagation]")){
-                    event.stopPropagation();
+                if(data.type=== "init"){
+                    that[data.fn](element, data, event);
+                } else {
+                    $(element).unbind(data.type);
+                    $(element).bind(data.type, sendEvent);
                 }
-                if(isDefined(that[data.fn])){
-                    that[data.fn](element, data, event);                    
+
+                function sendEvent(event){                
+                    data.fn = isDefined(data.fn) ? data.fn : "action";
+                    if($(element).is("[preventDefault]")){
+                        event.preventDefault();
+                    }
+                    if($(element).is("[stopPropagation]")){
+                        event.stopPropagation();
+                    }
+                    if(isDefined(that[data.fn])){
+                        that[data.fn](element, data, event);                    
+                    }
                 }
             }
         }

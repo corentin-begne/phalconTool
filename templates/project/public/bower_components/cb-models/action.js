@@ -9,7 +9,7 @@ var ActionModel;
     * @property {InterfaceHelper} [interface = new InterfaceHelper()] Instance of InterfaceHelper
     * @constructor
     */
-    ActionModel = function(){
+    ActionModel = function(cb){
         var that = this;
         extendSingleton(ActionModel);
         require([
@@ -17,7 +17,14 @@ var ActionModel;
         ], loaded);
 
         function loaded(){
-            that.action = ActionHelper.getInstance();
+            that.action = ActionHelper.getInstance(loadedAction);
+
+            function loadedAction(instance){
+                that.action = instance;
+                if(isDefined(cb)){
+                    cb(that);
+                }
+            }
         }
     };
 
@@ -26,8 +33,12 @@ var ActionModel;
      * @description Get the single class instance
      * @return {ActionModel} the single class instance
      */
-    ActionModel.getInstance = function(){
-        return getSingleton(ActionModel);
+    ActionModel.getInstance = function(cb){
+        if(isDefined(cb)){
+            getSingleton(ActionModel, cb);
+        } else {
+            return getSingleton(ActionModel);
+        }
     };
 
     /**
