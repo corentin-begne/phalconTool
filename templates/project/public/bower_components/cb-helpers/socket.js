@@ -12,7 +12,7 @@ var SocketHelper;
         var that = this      
         extendSingleton(SocketHelper);
         this.token;
-        require(["bower_components/socket.io-1.4.5/index"], loaded);
+        require(["/bower_components/socket.io-1.4.5/index.js"], loaded);
         this.events = {
             auth:{
                 name: "auth.acknowledge",

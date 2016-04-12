@@ -11,9 +11,9 @@ var ActionHelper;
     ActionHelper = function(cb){
         var that = this;
         extendSingleton(ActionHelper);
-        loadCss("bower_components/jquery.percentageloader/index.css");
+        loadCss("/bower_components/jquery.percentageloader/index.css");
         require([
-            "bower_components/jquery-percentageloader/index"
+            "/bower_components/jquery-percentageloader/index.js"
         ], loaded);
         this.basePath = "/"+$("body").attr("app")+"/";
         var hasOnProgress = ("onprogress" in $.ajaxSettings.xhr());

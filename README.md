@@ -2,7 +2,7 @@
 
 This tool allows to manage project with Phalcon MVC Framework access on MYSQL.
 #### Features :
-- Create skeleton project application width default User controller using google connect
+- Create skeleton project application with default User controller using google connect and websocket client / server example
 - User base database with social relation 
 - Manage multi application/environment
 - Generate models from Mysql database with column map and full relations
@@ -67,17 +67,18 @@ On generation, if the databse is empty, it will import the ones used for the Use
 phalcon generate:models
 ```
 Models will be created from the database with column map and all relations.
+By default scrud is no activated, you need to add in config.php inside librairies field api and scrud and add them to the private or public ressources.
 You're now able to access to SCRUD action for all model, example for User :
 ```
 http//localhost/scrud/User/read?id=1
 http//localhost/scrud/User/create
 http//localhost/scrud/User/search
 ```
-You can merge all model which has one relation like User and UserSocial like this :
+You can merge all model which has one relation for example if you add UserProfil table like this :
 ```
-http//localhost/scrud/User UserSocial/read?id=1
-http//localhost/scrud/User UserSocial/create
-http//localhost/scrud/User UserSocial/search
+http//localhost/scrud/User UserProfil/read?id=1
+http//localhost/scrud/User UserProfil/create
+http//localhost/scrud/User UserProfil/search
 ```
 So you can set as model as hasOne relations exists.
 

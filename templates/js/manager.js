@@ -15,8 +15,8 @@ var [className]Manager;
         this.isSet = false;
 
         require([
-            "bower_components/cb-models/action.min", 
-            "bower_components/cb-models/manager.min"
+            "/bower_components/cb-models/action.min.js", 
+            "/bower_components/cb-models/manager.min.js"
         ], loaded);
 
         function loaded(){
@@ -35,7 +35,7 @@ var [className]Manager;
 
                 function loadedManager(instance){
                     that.manager = instance;
-
+                    that.manager.init();
                     if(isDefined(cb)){
                         cb(that);
                     }

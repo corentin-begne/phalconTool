@@ -33,6 +33,7 @@ var IndexManager;
                     function loadedWebsocket(instance){
                         that.socket = instance;
                         that.manager.init();
+                        that.init();
                         if(isDefined(cb)){
                             cb(that);
                         }
