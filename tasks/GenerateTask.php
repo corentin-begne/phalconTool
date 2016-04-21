@@ -31,6 +31,7 @@ class GenerateTask extends \Phalcon\CLI\Task
             // public folder
             exec('mkdir '.HOME_PATH.'/public/'.$appName);
             exec('cp -r '.TEMPLATE_PATH.'/project/public/app/* '.HOME_PATH.'/public/'.$appName.'/');
+            exec('cp -r '.TEMPLATE_PATH.'/project/public/app/.htaccess '.HOME_PATH.'/public/'.$appName.'/.htaccess');
             exec('ln -s '.TEMPLATE_PATH.'/../src/lib/ '.HOME_PATH.'/public/lib');
             Cli::success('app '.$appName.' successfully created');
         } else {
