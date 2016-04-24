@@ -24,4 +24,10 @@ class Library extends \Phalcon\Mvc\User\Component{
         $loader->registerDirs($paths, true);
         $loader->register();
     }
+
+    public static function loadNamespaces($namespaces){        
+        $loader = new Loader();
+        $loader->registerNamespaces($namespaces, true);
+        $loader->register();
+    }
 }
