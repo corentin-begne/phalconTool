@@ -1,6 +1,7 @@
 <?
 
 namespace Phalcon;
+use \Phalcon\Di;
 
 class Library extends \Phalcon\Mvc\User\Component{
 
@@ -20,13 +21,13 @@ class Library extends \Phalcon\Mvc\User\Component{
     }
 
     public static function loadDir($paths){
-        $loader = new Loader();
+        $loader = Di::getDefault()->getShared('loader');
         $loader->registerDirs($paths, true);
         $loader->register();
     }
 
     public static function loadNamespaces($namespaces){        
-        $loader = new Loader();
+        $loader = Di::getDefault()->getShared('loader');
         $loader->registerNamespaces($namespaces, true);
         $loader->register();
     }
