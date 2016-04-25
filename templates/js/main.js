@@ -17,12 +17,7 @@ var [name]Manager;
 
             function loaded(){
                 new JsHelper();
-                ManagerModel.getInstance(loadedManager).init();
-
-                function loadedManager(instance){
-                    instance.init();
-                    [name]Manager = [className]Manager.getInstance();
-                }               
+                [name]Manager = [className]Manager.getInstance();            
             }      
         }
     }
