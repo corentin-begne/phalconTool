@@ -13,7 +13,7 @@ var [name]Manager;
          * @description initialize [name]
          */
         function init(){
-            require(["/bower_components/cb-helpers/js.min.js", "/bower_components/cb-models/manager.min.js"], loaded);
+            require(["/bower_components/cb-helpers/js.min.js"], loaded);
 
             function loaded(){
                 new JsHelper();
