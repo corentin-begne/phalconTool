@@ -7,6 +7,7 @@ $di = new CliDI();
 if(is_readable(APPLICATION_PATH . '/config/config.php')) {
     $config = include APPLICATION_PATH . '/config/config.php';
     $di->set('config', $config);   
+    $di->set('loader', $loader);    
     $di->set('db', function () use ($config) {
         try{
             return new Mysql([                
