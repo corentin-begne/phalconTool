@@ -15,6 +15,7 @@ use Phalcon\Mvc\Dispatcher;
  */
 $di = new FactoryDefault();
 $di->set('config', $config);
+$di->set('loader', $loader);
 /**
  * The URL component is used to generate all kind of urls in the application
  */
