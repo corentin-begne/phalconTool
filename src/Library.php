@@ -20,8 +20,15 @@ class Library extends \Phalcon\Mvc\User\Component{
     }
 
     public static function loadDir($paths){
+        $loader = Di::getDefault()->getShared('loader');
         $loader = new Loader();
         $loader->registerDirs($paths, true);
+        $loader->register();
+    }
+ 
+    public static function loadNamespaces($namespaces){        
+        $loader = Di::getDefault()->getShared('loader');
+        $loader->registerNamespaces($namespaces, true);
         $loader->register();
     }
 }
