@@ -5,7 +5,7 @@ $includes = [
     ROOT_PATH.'/tasks'
 ];
 if(file_exists(APPLICATION_PATH)){
-    array_push($includes, APPLICATION_PATH.'/tasks', APPLICATION_PATH.'/models',  APPLICATION_PATH.'/classes');
+    array_push($includes, APPLICATION_PATH.'/tasks', APPLICATION_PATH.'/models',  APPLICATION_PATH.'/classes', APPLICATION_PATH.'/migrations');
 }
 $loader->registerDirs($includes)
 ->registerNamespaces([

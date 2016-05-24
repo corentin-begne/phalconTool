@@ -4,6 +4,7 @@ Phalcon\Builder\Controller,
 Phalcon\Builder\Js,
 Phalcon\Builder\Css,
 Phalcon\Builder\Less,
+Phalcon\Builder\Task,
 Phalcon\Db,
 Phalcon\Builder\Migration,
 Phalcon\Tools\Cli,
@@ -110,6 +111,11 @@ class GenerateTask extends \Phalcon\CLI\Task
     public function controllerAction($params){
         list($controller, $actions) = $params;
         new Controller($controller, $actions);
+    }
+
+    public function taskAction($params){
+        list($task, $actions) = $params;
+        new Task($task, $actions);
     }
 
     public function jsAction($params){

@@ -18,6 +18,7 @@ class Model extends \Phalcon\Mvc\User\Component
         foreach($this->db->fetchAll('desc '.$table, Db::FETCH_ASSOC) as &$field){
             $setting = $this->getPrefix($table)."_".$field['Field'].'([';
             $type = $field['Type'];
+            $length = null;
             if(strpos($field['Type'], '(') !== false){
                 $type = substr($field['Type'], 0, strpos($field['Type'], '('));
                 $length = substr($field['Type'], strpos($field['Type'], '(')+1);
