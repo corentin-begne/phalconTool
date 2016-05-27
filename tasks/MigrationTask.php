@@ -1,6 +1,7 @@
 <?
 use Phalcon\Tools\Cli,
-Phalcon\Builder\Migration;
+Phalcon\Builder\Migration,
+Phalcon\Text as Utils;
 class MigrationTask extends \Phalcon\CLI\Task
 {
     public function mainAction() {
@@ -17,26 +18,34 @@ class MigrationTask extends \Phalcon\CLI\Task
         for($i=($currentVersion+1); $i<=$version; $i++){
             $class= "MigrationVersion".$i; 
             $migration = new $class();
-            $up = $migration->up();
-            foreach($up['tables'] as &$table){
-                $this->db->createTable($table);
-                Cli::success('Table '.$table.' created', true);
-            }
+            $this->executeQueries($migration->up());
 
-            foreach($up['fields'] as $action => &$tables){
-                foreach($tables as $table => &$fields){
-                    foreach($fields as $name => &$field){
-                        try{
-                            $query = $this->createAlter($table, $action, $name, $field);
-                            $this->db->execute($query);
-                            Cli::success($query, true);
-                        } catch(PDOException $e){
-                            Cli::error($e->getMessage());
-                        }
+            Migration::setCurrentVersion($i);
+        }
+    }
+
+    private function executeQueries($data){
+        foreach($data['tables'] as $action => $table){
+            try{
+                $this->db->execute($action.' TABLE '.$table);
+                Cli::success($query, true);
+            } catch(PDOException $e){
+                Cli::error($e->getMessage());
+            }
+        }
+
+        foreach($data['fields'] as $action => &$tables){
+            foreach($tables as $table => &$fields){
+                foreach($fields as $name => &$field){
+                    try{
+                        $query = $this->createAlter($table, $action, $name, $field);
+                        $this->db->execute($query);
+                        Cli::success($query, true);
+                    } catch(PDOException $e){
+                        Cli::error($e->getMessage());
                     }
                 }
             }
-            Migration::setCurrentVersion($i);
         }
     }
 
@@ -66,25 +75,7 @@ class MigrationTask extends \Phalcon\CLI\Task
         for($i=$currentVersion; $i>$version; $i--){
             $class= "MigrationVersion".$i; 
             $migration = new $class();
-            $down = $migration->down();
-            foreach($down['fields'] as $action => &$tables){
-                foreach($tables as $table => &$fields){
-                    foreach($fields as $name => &$field){
-                        try{
-                            $query = $this->createAlter($table, $action, $name, $field);
-                            $this->db->execute($query);
-                            Cli::success($query, true);
-                        } catch(PDOException $e){
-                            Cli::error($e->getMessage());
-                        }
-                    }
-                }
-            }
-
-            foreach($down['tables'] as &$table){
-                $this->db->dropTable($table);
-                Cli::success('Table '.$table.' created', true);
-            }
+            $this->executeQueries($migration->down());           
            
             Migration::setCurrentVersion($i-1);
         }
