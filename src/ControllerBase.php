@@ -8,7 +8,7 @@ class ControllerBase extends Mvc\Controller{
     {
         $this->view->t = $this;
         $this->view->data = [];
-        $lang = $this->di->session->get('lang');
+        $lang = $this->di->getSession()->get('lang');
         $this->view->lang = (!isset($lang)) ? explode('-', $this->request->getBestLanguage())[0] : $lang;
     }
 
