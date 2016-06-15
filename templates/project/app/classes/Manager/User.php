@@ -12,8 +12,12 @@ class User{
         DI::getDefault()->getSession()->set('user', $user->toArray());
     }
 
-    public static function get($name){
-        return DI::getDefault()->getSession()->get('user')[$name];
+    public static function get($name=null){
+        if(!isset($name)){
+            return DI::getDefault()->getSession()->get('user');
+        } else {
+            return DI::getDefault()->getSession()->get('user')[$name];
+        }
     }
 
     public static function isAuthenticated(){

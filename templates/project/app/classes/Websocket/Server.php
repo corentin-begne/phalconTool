@@ -6,9 +6,9 @@ class Server extends \Phalcon\Websocket\Server{
 
     protected function process(&$user, &$message) {        
         $msg = json_decode($message, true);
-        $fn = $msg['type'].'Event';        
+        $fn = $msg['type'].'Event';         
         if(method_exists($this, $fn)){
-            $this->$fn($msg['data']);        
+            $this->$fn($user, $msg['data']);        
         }
     }
 
