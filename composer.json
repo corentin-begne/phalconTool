@@ -1,8 +1,11 @@
 {
     "name": "v-cult/phalcon",
     "type": "library",
-    "description": "Phalcon project tool",
-    "keywords": ["phalcon","tool"],
+    "description": "Manage Phalcon's projects using MYSQL.
+    - Cli commands to easily create controllers, actions, tasks, javascript and less files with some librairies managed with bower.
+    - Project template with google connect and websocket. 
+    - Internal libraries management with Full SCRUD on the fly and complete Rest API",
+    "keywords": ["phalcon","tool", "rest", "mysql", "skeleton", "scrud", "websocket"],
     "homepage": "https://github.com/corentin-begne/phalconTool",
     "license": "MIT",
     "authors": [
