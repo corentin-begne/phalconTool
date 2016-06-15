@@ -1,5 +1,6 @@
 <?
-use Phalcon\Text as Utils;
+use Phalcon\Text as Utils,
+Phalcon\Mvc\Model\Query\Builder;
 class ApiController extends Phalcon\ControllerBase{
 
     public $model;
@@ -25,9 +26,40 @@ class ApiController extends Phalcon\ControllerBase{
     }
 
     public function findAction(){
-        $query = Criteria::fromInput($this->di, $this->model, Rest::$params);
-        $className = $this->model;
-        var_dump($className::find($query->getParams()));
+        $params = [];
+        $conditions = [];
+        foreach(Rest::$params['conditions'] as &$condition){
+            $conditions[] = [
+                $condition['name'].' '.(isset($condition['type']) ? $condition['type'] : '=').' :'.$condition['name'].':',
+                [$condition['name'] => $condition['value']]
+            ];
+        }
+        $model = $this->models[0];
+        $params = [
+            'models' => $model,
+            'conditions' => $conditions,
+            'order' => $order
+        ];
+        if(isset(Rest::$params['fields'])){
+            $params['columns'] = Rest::$params['fields'];
+        }
+        if(isset(Rest::$params['order'])){
+            $params['order'] = Rest::$params['order'];
+        }
+        if(isset(Rest::$params['limit'])){
+            $params['limit'] = Rest::$params['limit'];
+        }
+        $primaryKey = $model::getMapped($model::getPrimaryKey());
+        $builder = new Builder($params);
+        for($i=1; $i<count($this->models); $i++){
+            $name = $this->models[$i];
+            $builder->leftJoin($name, $model::getReferencedField($name)." = $primaryKey");
+        }
+        try{
+            Rest::renderSuccess($builder->getQuery()->execute()->toArray());
+        } catch(PDOException $e){
+            Rest::renderError($e->getMessage());
+        }
     }
 
     public function getTypeAction(){

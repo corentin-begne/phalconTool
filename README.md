@@ -14,7 +14,6 @@ This tool allows to manage project with Phalcon MVC Framework access on MYSQL.
 - Generate js/less template
 
 #### In progress
-- Find function Rest Api
 - Bdd migrations 
 - Bower + Javascript libraries
 - Cli support inline
