@@ -37,8 +37,7 @@ class ApiController extends Phalcon\ControllerBase{
         $model = $this->models[0];
         $params = [
             'models' => $model,
-            'conditions' => $conditions,
-            'order' => $order
+            'conditions' => $conditions
         ];
         if(isset(Rest::$params['fields'])){
             $params['columns'] = Rest::$params['fields'];
