@@ -25,12 +25,14 @@ class MigrationTask extends \Phalcon\CLI\Task
     }
 
     private function executeQueries($data){
-        foreach($data['tables'] as $action => $table){
-            try{
-                $this->db->execute($action.' TABLE '.$table);
-                Cli::success($query, true);
-            } catch(PDOException $e){
-                Cli::error($e->getMessage());
+        foreach($data['tables'] as $action => $tables){
+            foreach($tables as $table){
+                try{
+                    $this->db->execute($action.' TABLE '.$table);
+                    Cli::success($query, true);
+                } catch(PDOException $e){
+                    Cli::error($e->getMessage());
+                }
             }
         }
 
