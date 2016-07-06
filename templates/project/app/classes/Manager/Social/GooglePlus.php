@@ -40,26 +40,26 @@ class GooglePlus{
         $plus = new \Google_Service_Plus(self::$client);
         $userPlus = $plus->people->get('me');
         // get user
-        Model::setup([
+     /*   Model::setup([
             'columnRenaming' => false
-        ]);
+        ]);*/
         try{
-        $user = \User::findFirstByEmail($userPlus->emails[0]->value);
+        $user = \User::findFirstByUsEmail($userPlus->emails[0]->value);
             if(!$user){ // create if not exists
                 $user = new \User();
                 $user->create([
-                    'email' => $userPlus->emails[0]->value,
-                    'name' => $userPlus->displayName,
-                    'gender_id' => \GenderType::findFirstByName(!isset($userPlus->gender) ? 'female' : $userPlus->gender)->id,
-                    'social_id' => \SocialType::findFirstByName('googlePlus')->id,
-                    'lang_id' => \LangType::findFirstByName(!isset($userPlus->language) ? 'en' : $userPlus->language)->id
+                    'us_email' => $userPlus->emails[0]->value,
+                    'us_name' => $userPlus->displayName,
+                    'us_gender_id' => \GenderType::findFirstByGetyName(!isset($userPlus->gender) ? 'female' : $userPlus->gender)->gety_id,
+                    'us_social_id' => \SocialType::findFirstBySotyName('googlePlus')->soty_id,
+                    'us_lang_id' => \LangType::findFirstByLatyName(!isset($userPlus->language) ? 'en' : $userPlus->language)->laty_id
                 ]);
                 $userSocial = new \UserSocial();
                 $userSocial->create([
-                    'id' => $userPlus->id,
-                    'user_id' => $user->id,
-                    'is_verified' => $userPlus->verified,
-                    'token' => self::$client->getAccessToken()
+                    'us_id' => $userPlus->id,
+                    'us_user_id' => $user->id,
+                    'us_is_verified' => $userPlus->verified,
+                    'us_token' => self::$client->getAccessToken()
                 ]);
             }
         } catch(\Phalcon\Mvc\Model\Exception $e){
