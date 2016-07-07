@@ -38,6 +38,8 @@ return new \Phalcon\Config([
             'charset'     => 'utf8',
         ]
     ], 
+    'version'=>1,
+    'session_lifetime'=>172800,
     'libraries' => [],   
     'application' => [
         'controllersDir' => __DIR__ . '/../controllers/',
