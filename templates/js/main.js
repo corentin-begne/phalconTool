@@ -13,6 +13,12 @@ var [name]Manager;
          * @description initialize [name]
          */
         function init(){
+            requirejs.onError = function (err) {
+                throw err;
+            };        
+            require.config({
+                urlArgs: "v="+($("body").is("[version]") ? $("body").attr("version") : (new Date()).getTime())
+            });   
             require(["/bower_components/cb-helpers/js.min.js"], loaded);
 
             function loaded(){

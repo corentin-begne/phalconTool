@@ -106,9 +106,11 @@ $di->set('dispatcher', function() {
     $eventsManager = new EventsManager();
 
     $security = new SecurityPlugin();
+    $asset = new AssetsPlugin();
     $eventsManager->attach('dispatch:beforeDispatch', $security);
-    $eventsManager->attach('dispatch:beforeDispatch', new AssetsPlugin());
+    $eventsManager->attach('dispatch:beforeDispatch', $asset);
     $eventsManager->attach("dispatch:beforeException", $security);
+    $eventsManager->attach('dispatch:afterDispatch', $asset);
 
     $dispatcher = new Dispatcher();   
     $dispatcher->setEventsManager($eventsManager);

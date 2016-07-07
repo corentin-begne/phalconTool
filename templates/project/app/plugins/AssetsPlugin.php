@@ -43,4 +43,13 @@ class AssetsPlugin extends Component
         ->addCss("$currentPath/main.css");
         
     }
+
+    public function afterDispatch(Event $event, Dispatcher $dispatcher)
+    {
+        foreach($this->assets->getCollections() as $name => $collection){
+            foreach($this->assets->collection($name) as $ressource){
+                $ressource->setPath($ressource->getPath().'?v='.$this->config->version); 
+            }
+        }
+    }
 }

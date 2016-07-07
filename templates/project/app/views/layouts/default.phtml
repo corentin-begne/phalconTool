@@ -8,7 +8,7 @@
         <?=$this->assets->outputCss('css')?>
         <?=$this->assets->outputCss('libcss')?>
     </head>
-    <body app="<?=APP?>">
+    <body app="<?=APP?>" version="<?=$this->config->version?>">
         <?=$this->getContent()?>
     </body>
 </html>
