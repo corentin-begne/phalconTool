@@ -71,9 +71,11 @@ class Migration extends \Phalcon\Mvc\User\Component
             $model = basename($model, '.php');
             $sourceModel = new $model(); 
             $sourceModel = $sourceModel->getSource();
+            $action = 'update';
             if(!$this->db->tableExists($sourceModel)){
                 $modelActionTpl['up']['tables']['create'][] = $sourceModel;
                 $modelActionTpl['down']['tables']['drop'][] = $sourceModel;
+                $action = 'create';
             }
             $modelActionTpl['up']['fields']['add'][$sourceModel] = [];
             $modelActionTpl['up']['fields']['drop'][$sourceModel] = [];
@@ -87,29 +89,28 @@ class Migration extends \Phalcon\Mvc\User\Component
             $fields = $model::getColumnsDescription();
             foreach($fields as $field => &$fieldAnnotation){
 
-                $field = substr($field, strpos($field, '_')+1);                                  
-                $fieldDesc = $this->db->fetchOne('show columns from '.$sourceModel.' where Field = \''.$field .'\'', Db::FETCH_ASSOC);
-                if(!$fieldDesc){
+                $field = substr($field, strpos($field, '_')+1);           
+                if($action === 'update'){                       
+                    $fieldDesc = $this->db->fetchOne('show columns from '.$sourceModel.' where Field = \''.$field .'\'', Db::FETCH_ASSOC);
+                    if(!$this->checkField($fieldAnnotation, $fieldDesc)){             
+                        $modelActionTpl['up']['fields']['modify'][$sourceModel][$field] = $fieldAnnotation;
+                        $modelActionTpl['down']['fields']['modify'][$sourceModel][$field] = $fieldDesc;                    
+                    }
+                } else {
                     $modelActionTpl['up']['fields']['add'][$sourceModel][$field] = $fieldAnnotation;
                     $modelActionTpl['down']['fields']['drop'][$sourceModel][] = $field;
-                    // check relation to add
-                  /*  if(isset($fieldAnnotation['key'])){
-                        $info = $this->getKeyInfo($field, $fieldAnnotation['key']);
-                    }*/
-                } else if(!$this->checkField($fieldAnnotation, $fieldDesc)){             
-                    $modelActionTpl['up']['fields']['modify'][$sourceModel][$field] = $fieldAnnotation;
-                    $modelActionTpl['down']['fields']['modify'][$sourceModel][$field] = $fieldDesc;                    
-                }
-                
+                }                
             }
-            // now need to check the inverse to drop which are removed
-            foreach($this->db->fetchAll('show columns from '.$sourceModel, Db::FETCH_ASSOC) as $fieldDesc){
+            if($action === 'update'){
+                // now need to check the inverse to drop which are removed
+                foreach($this->db->fetchAll('show columns from '.$sourceModel, Db::FETCH_ASSOC) as $fieldDesc){
 
-                if(!isset($fields[$this->getPrefix($sourceModel).'_'.$fieldDesc['Field']])){
-                    $modelActionTpl['up']['fields']['drop'][$sourceModel] = $fieldDesc['Field'];
-                    $modelActionTpl['down']['fields']['add'][$sourceModel][$fieldDesc['Field']] = $this->normalize($fieldDesc);
-                }
-            }            
+                    if(!isset($fields[$this->getPrefix($sourceModel).'_'.$fieldDesc['Field']])){
+                        $modelActionTpl['up']['fields']['drop'][$sourceModel] = $fieldDesc['Field'];
+                        $modelActionTpl['down']['fields']['add'][$sourceModel][$fieldDesc['Field']] = $this->normalize($fieldDesc);
+                    }
+                }    
+            }        
         }        
         $migrations = glob($this->config->application->migrationsDir.'*.php');
         if(self::getCurrentVersion()<count($migrations)){

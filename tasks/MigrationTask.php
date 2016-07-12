@@ -28,7 +28,19 @@ class MigrationTask extends \Phalcon\CLI\Task
         foreach($data['tables'] as $action => $tables){
             foreach($tables as $table){
                 try{
-                    $this->db->execute($action.' TABLE '.$table);
+                    $query = $action.' TABLE '.$table;
+                    if($action === 'create'){
+                        $query .= ' (';
+                        foreach($data['fields']['add'][$table] as $name => $field){
+                            $query .= $this->getFieldQuery($name, $field).',';  
+                            if(isset($field['extra']) && $field['extra'] === 'auto_increment'){
+                                $query .= 'PRIMARY KEY ('.$name.'),';
+                            }                          
+                        }
+                        unset($data['fields']['add'][$table]);
+                        $query = trim($query, ',').')';
+                    }
+                    $this->db->execute($query);
                     Cli::success($query, true);
                 } catch(PDOException $e){
                     Cli::error($e->getMessage());
@@ -55,12 +67,16 @@ class MigrationTask extends \Phalcon\CLI\Task
         if($action === 'drop'){
             return 'ALTER TABLE '.$table.' DROP COLUMN '.$name;
         } else {
-            return 'ALTER TABLE '.$table.' '.$action.' '.$name.' '.$field['type'].
+            return 'ALTER TABLE '.$table.' '.$action.' '.$this->getFieldQuery($name, $field);
+        }
+    }
+
+    private function getFieldQuery($name, $field){
+        return $name.' '.$field['type'].
             (isset($field['length']) ? ' ('.$field['length'].')' : '').
             ($field['isNull'] ? ' NULL' : ' NOT NULL').
             (isset($field['default']) ? ' default '.$field['default'] : '').
             (isset($field['extra']) ? ' '.$field['extra'] : '');
-        }
     }
 
     public function rollbackAction($params=[]){

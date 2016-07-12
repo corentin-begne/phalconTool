@@ -12,7 +12,6 @@ var [className]Manager;
         var that = this;
         extendSingleton([className]Manager);
         this.basePath = "[path]";
-        this.isSet = false;
 
         require([
             "/bower_components/cb-models/action.min.js", 
@@ -20,13 +19,6 @@ var [className]Manager;
         ], loaded);
 
         function loaded(){
-            if(that.isSet){
-                if(isDefined(cb)){
-                    cb(that);
-                }
-                return false;
-            }
-            that.isSet = true;
             ActionModel.getInstance(loadedAction);            
 
             function loadedAction(instance){
