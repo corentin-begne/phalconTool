@@ -94,14 +94,14 @@ class Migration extends \Phalcon\Mvc\User\Component
                     $fieldDesc = $this->db->fetchOne('show columns from '.$sourceModel.' where Field = \''.$field .'\'', Db::FETCH_ASSOC);
                     if(!$fieldDesc){
                         $modelActionTpl['up']['fields']['add'][$sourceModel][$field] = $fieldAnnotation;
-                        $modelActionTpl['down']['fields']['drop'][$sourceModel][] = $field;
+                        $modelActionTpl['down']['fields']['drop'][$sourceModel][$field] = '';
                     }else if(!$this->checkField($fieldAnnotation, $fieldDesc)){             
                         $modelActionTpl['up']['fields']['modify'][$sourceModel][$field] = $fieldAnnotation;
                         $modelActionTpl['down']['fields']['modify'][$sourceModel][$field] = $fieldDesc;                    
                     }
                 } else {
                     $modelActionTpl['up']['fields']['add'][$sourceModel][$field] = $fieldAnnotation;
-                    $modelActionTpl['down']['fields']['drop'][$sourceModel][] = $field;
+                    $modelActionTpl['down']['fields']['drop'][$sourceModel][$field] = '';
                 }                
             }
             if($action === 'update'){
@@ -109,7 +109,7 @@ class Migration extends \Phalcon\Mvc\User\Component
                 foreach($this->db->fetchAll('show columns from '.$sourceModel, Db::FETCH_ASSOC) as $fieldDesc){
 
                     if(!isset($fields[$this->getPrefix($sourceModel).'_'.$fieldDesc['Field']])){
-                        $modelActionTpl['up']['fields']['drop'][$sourceModel] = $fieldDesc['Field'];
+                        $modelActionTpl['up']['fields']['drop'][$sourceModel][$fieldDesc['Field']] = '';
                         $modelActionTpl['down']['fields']['add'][$sourceModel][$fieldDesc['Field']] = $this->normalize($fieldDesc);
                     }
                 }    
