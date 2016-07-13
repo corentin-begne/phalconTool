@@ -92,7 +92,10 @@ class Migration extends \Phalcon\Mvc\User\Component
                 $field = substr($field, strpos($field, '_')+1);           
                 if($action === 'update'){                       
                     $fieldDesc = $this->db->fetchOne('show columns from '.$sourceModel.' where Field = \''.$field .'\'', Db::FETCH_ASSOC);
-                    if(!$this->checkField($fieldAnnotation, $fieldDesc)){             
+                    if(!$fieldDesc){
+                        $modelActionTpl['up']['fields']['add'][$sourceModel][$field] = $fieldAnnotation;
+                        $modelActionTpl['down']['fields']['drop'][$sourceModel][] = $field;
+                    }else if(!$this->checkField($fieldAnnotation, $fieldDesc)){             
                         $modelActionTpl['up']['fields']['modify'][$sourceModel][$field] = $fieldAnnotation;
                         $modelActionTpl['down']['fields']['modify'][$sourceModel][$field] = $fieldDesc;                    
                     }
