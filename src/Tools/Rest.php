@@ -10,7 +10,9 @@ class Rest
     public static $nbPage = 1;
 
     public static function init($restrict=true){
-        self::checkReferer();
+        if($restrict){
+            self::checkReferer();
+        }
         self::checkRequest();
         self::$params = $_POST;
         self::$currentPage = isset(rest::$params['current_page']) ? (int)rest::$params['current_page'] : self::$currentPage ;
