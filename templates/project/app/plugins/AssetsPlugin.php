@@ -30,8 +30,7 @@ class AssetsPlugin extends Component
         $prefix = in_array($dispatcher->getControllerName(), $this->config->libraries->toArray()) ? 'lib' : '';
 
         $this->assets->collection($prefix.'js')
-        ->addJs("$currentPath/manager.js")
-        ->addJs("$currentPath/main.js");
+        ->addJs("$currentPath/".((ENV==="prod") ? "build" : "main").".js");
         
         $this->assets->collection('libcss')
         ->setPrefix('/lib/'.$dispatcher->getControllerName().'/public/css/');

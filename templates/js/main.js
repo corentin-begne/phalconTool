@@ -1,7 +1,11 @@
 /*global [className]Manager, require */
 var [name]Manager;
 (function(){
-    require(["/bower_components/jquery/dist/jquery.min.js"], ready);
+    require.config({
+        baseUrl: "/",
+        urlArgs: "v="+($("body").is("[version]") ? $("body").attr("version") : (new Date()).getTime())
+    });
+    require(["bower_components/jquery/dist/jquery"], ready);
 
     function ready(){
         /** on document ready */
@@ -12,14 +16,8 @@ var [name]Manager;
          * @event
          * @description initialize [name]
          */
-        function init(){
-            requirejs.onError = function (err) {
-                throw err;
-            };        
-            require.config({
-                urlArgs: "v="+($("body").is("[version]") ? $("body").attr("version") : (new Date()).getTime())
-            });   
-            require(["/bower_components/cb-helpers/js.min.js"], loaded);
+        function init(){                
+            require(["bower_components/cb-helpers/js"], loaded);
 
             function loaded(){
                 new JsHelper();

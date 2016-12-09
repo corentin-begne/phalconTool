@@ -14,8 +14,8 @@ var [className]Manager;
         this.basePath = "[path]";
 
         require([
-            "/bower_components/cb-models/action.min.js", 
-            "/bower_components/cb-models/manager.min.js"
+            "bower_components/cb-models/action", 
+            "bower_components/cb-models/manager"
         ], loaded);
 
         function loaded(){

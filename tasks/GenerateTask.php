@@ -133,4 +133,9 @@ class GenerateTask extends \Phalcon\CLI\Task
         list($controller, $action) = $params;
         new Less($controller, $action);
     }
+
+    public function buildAction($params){
+        list($controller, $action) = $params;
+        new Build($controller, $action);
+    }
 }
