@@ -6,9 +6,12 @@ class Build extends \Phalcon\Mvc\User\Component
 {
     public function __construct($controller, $action){
         \Phalcon\Library::loadDir([$this->config->application->controllersDir]);
+        $actions = explode(',', $action);
         if(isset($controller)){
             if(isset($action)){
-                $this->run($controller, $action);
+                foreach($actions as $action){
+                    $this->run($controller, $action);
+                }
             } else {
                 foreach($this->getActions(ucfirst($controller).'Controller') as $action){
                     $this->run($controller, $action);
