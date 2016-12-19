@@ -39,7 +39,7 @@ include __DIR__ . '/config/services.php';
 if(!isset($arguments['task'])){
     Phalcon\Tools\Cli::error('Task missing');
 } else if(!isset($arguments['action'])){
-    Phalcon\Tools\Cli::error('Action missing');
+    $arguments['action']='main';
 }
 
 //Create a console application
