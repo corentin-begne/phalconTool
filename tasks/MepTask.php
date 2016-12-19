@@ -10,10 +10,10 @@ class MepTask extends \Phalcon\CLI\Task
         if(!isset($tag)){
             die(Cli::error('Tag missing'));
         }
+        $tag = $env.'_'.$tag;
         if(exec('cd '.$this->config->application->rootDir.";git branch --list $tag") !== ''){
             die(Cli::error('Tag already exists'));
-        }
-        $tag = $env.'_'.$tag;
+        }  
         // switch to master
         exec('cd '.$this->config->application->rootDir.';git checkout master');
         // create tag branch
