@@ -19,7 +19,8 @@ return new \Phalcon\Config([
         ],
         'mep' => [
             'ssh' => 'login@IP:path',
-            'key' => '' // path to the key or leave empty
+            'key' => '', // path to the key or leave empty
+            'excludes' => null // array or set null
         ]
     ],
     'preprod' => [
@@ -33,7 +34,8 @@ return new \Phalcon\Config([
         ],
         'mep' => [
             'ssh' => 'login@IP:path',
-            'key' => '' // path to the key or leave empty
+            'key' => '', // path to the key or leave empty
+            'excludes' => null // array or set null
         ]
     ],
     'prod' => [
@@ -47,7 +49,8 @@ return new \Phalcon\Config([
         ],
         'mep' => [
             'ssh' => 'login@IP:path',
-            'key' => '' // path to the key or leave empty
+            'key' => '', // path to the key or leave empty
+            'excludes' => null // array or set null
         ]
     ], 
     'version'=>1,

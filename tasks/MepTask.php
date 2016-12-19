@@ -4,32 +4,34 @@ class MepTask extends \Phalcon\CLI\Task
 {
     public function mainAction($params) {
         list($env, $tag) = $params;
-        if(!isset($env) || !isset($this->$config[$env])){
+        if(!isset($env) || !isset($this->config[$env])){
             die(Cli::error('Invalid env : '.$env));
         }
         if(!isset($tag)){
             die(Cli::error('Tag missing'));
         }
-        if(exec('cd '.ROOT_PATH.";git branch --list $tag") !== ''){
+        if(exec('cd '.$this->config->application->rootDir.";git branch --list $tag") !== ''){
             die(Cli::error('Tag already exists'));
         }
         $tag = $env.'_'.$tag;
         // switch to master
-        exec('cd '.ROOT_PATH.';git checkout master');
+        exec('cd '.$this->config->application->rootDir.';git checkout master');
         // create tag branch
-        exec('cd '.ROOT_PATH.';git checkout '.$env.";git checkout -b $tag");
-        $apps = glob(ROOT_PATH.'/apps', GLOB_ONLYDIR);
+        exec('cd '.$this->config->application->rootDir.';git checkout '.$env.";git checkout -b $tag");
+        $apps = glob($this->config->application->rootDir.'apps/*', GLOB_ONLYDIR);
         foreach($apps as $app){
             // recompile less
-            exec('.'.ROOT_PATH.'/phalcon generate:less --env='.ENV.' --app='.$app);
+            exec('cd '.$this->config->application->rootDir.';./phalcon generate:less --env='.$env.' --app='.basename($app));
             // generate js builds
-            exec('.'.ROOT_PATH.'/phalcon generate:build --env='.ENV.' --app='.$app);
+            exec('cd '.$this->config->application->rootDir.';./phalcon generate:build --env='.$env.' --app='.basename($app));
         }
         // commit and push
-        exec('cd '.ROOT_PATH.";git pull origin master;git add -A;git commit -am \"release\";git push origin $tag");
+        exec('cd '.$this->config->application->rootDir.";git add -A;git commit -am \"release\";git push origin $tag");
         /** upload files */
-        exec('scp'.(isset($this->config[ENV]['mep']['key']) ? ' -i '.$this->config[ENV]['mep']['ssh'] : '').' -r '.ROOT_PATH.'/* '.$this->config[ENV]['mep']['key']);
+        $exclude = '" --exclude="';
+        $cmd = 'rsync -zvr '.(isset($this->config[$env]['mep']['key']) ? '-e "ssh -i '.$this->config[$env]['mep']['key'].'" ' : '').(isset($this->config[$env]['mep']['excludes']) ? '--exclude="'.implode($exclude, $this->config[$env]['mep']['excludes']->toArray()).'" ' : '').$this->config->application->rootDir.'* '.$this->config[$env]['mep']['ssh'];
+        exec($cmd);
         // switch to master
-        exec('cd '.ROOT_PATH.';git checkout master');
+        exec('cd '.$this->config->application->rootDir.';git checkout master');
     }
 }
