@@ -122,7 +122,7 @@ phalcon generate:build home index,test // for action index and test of the home 
 phalcon generate:build home // for each action of home controller
 phalcon generate:build // for each controller and action
 ```
-Don't forget to specify the environnement and application with --APP= --ENV=
+Don't forget to specify the environnement and application with --APP= --ENV= in dev the build file isn't uglified.
 So it generate a build.js file in the action directory, it will be automaticaly used in the production environnement.
 
 ### Websocket
