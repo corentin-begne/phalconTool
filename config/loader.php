@@ -13,6 +13,7 @@ $loader->registerDirs($includes)
     'Phalcon\Websocket' => ROOT_PATH.'/src/Websocket'
 ])
 ->registerClasses([
+    'Phalcon\ControllerBase' => ROOT_PATH.'/src/ControllerBase.php',
     'Phalcon\Tools\Cli' => ROOT_PATH.'/src/Tools/Cli.php',
     'Phalcon\Library' => ROOT_PATH.'/src/Library.php',
     'Phalcon\ModelBase' => ROOT_PATH.'/src/ModelBase.php'

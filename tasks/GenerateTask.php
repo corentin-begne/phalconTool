@@ -4,6 +4,7 @@ Phalcon\Builder\Controller,
 Phalcon\Builder\Js,
 Phalcon\Builder\Css,
 Phalcon\Builder\Less,
+Phalcon\Builder\Build,
 Phalcon\Builder\Task,
 Phalcon\Db,
 Phalcon\Builder\Migration,
@@ -134,7 +135,8 @@ class GenerateTask extends \Phalcon\CLI\Task
         new Less($controller, $action);
     }
 
-    public function buildAction($params){
+    public function buildAction($params=[]){
+        error_reporting(0);
         list($controller, $action) = $params;
         new Build($controller, $action);
     }
