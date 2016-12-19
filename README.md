@@ -115,6 +115,16 @@ phalcon generate:less home index,test
 The first command will get all main.less inside the home module and compile/minify them.
 The second command will only do the job for the actions listed
 
+### Generate Js build
+You can generate a javascript build in one file for each controller/action.
+```
+phalcon generate:build home index,test // for action index and test of the home controller
+phalcon generate:build home // for each action of home controller
+phalcon generate:build // for each controller and action
+```
+Don't forget to specify the environnement and application with --APP= --ENV=
+So it generate a build.js file in the action directory, it will be automaticaly used in the production environnement.
+
 ### Websocket
 There's a websocket server with room and users management which could be start on command line :
 ```
