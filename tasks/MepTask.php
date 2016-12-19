@@ -25,6 +25,9 @@ class MepTask extends \Phalcon\CLI\Task
             // generate js builds
             exec('cd '.$this->config->application->rootDir.';./phalcon generate:build --env='.$env.' --app='.basename($app));
         }
+        // need to change the env in the init file
+        $file = str_replace("'dev'", "'$env'", file_get_contents($this->config->application->rootDir.'public/init.php'));
+        file_put_contents($this->config->application->rootDir.'public/init.php', $file);
         // commit and push
         exec('cd '.$this->config->application->rootDir.";git add -A;git commit -am \"release\";git push origin $tag");
         /** upload files */
