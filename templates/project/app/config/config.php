@@ -16,6 +16,10 @@ return new \Phalcon\Config([
                 'clientSecret' => '',
                 'devKey' => ''
             ]
+        ],
+        'mep' => [
+            'ssh' => 'login@IP:path',
+            'key' => '' // path to the key or leave empty
         ]
     ],
     'preprod' => [
@@ -26,6 +30,10 @@ return new \Phalcon\Config([
             'password'    => 'root',
             'dbname'      => 'dbpreprod',
             'charset'     => 'utf8',
+        ],
+        'mep' => [
+            'ssh' => 'login@IP:path',
+            'key' => '' // path to the key or leave empty
         ]
     ],
     'prod' => [
@@ -36,6 +44,10 @@ return new \Phalcon\Config([
             'password'    => 'root',
             'dbname'      => 'dbprod',
             'charset'     => 'utf8',
+        ],
+        'mep' => [
+            'ssh' => 'login@IP:path',
+            'key' => '' // path to the key or leave empty
         ]
     ], 
     'version'=>1,

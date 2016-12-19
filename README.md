@@ -122,7 +122,7 @@ phalcon generate:build home index,test // for action index and test of the home 
 phalcon generate:build home // for each action of home controller
 phalcon generate:build // for each controller and action
 ```
-Don't forget to specify the environnement and application with --app= --env= in dev the build file isn't uglified.  
+Don't forget to specify the environnement and application with --app= --env= in dev and preprod environnement the build files aren't uglified.  
 So it generate a build.js file in the action directory, it will be automaticaly used in the production environnement.
 
 ### Websocket
@@ -194,3 +194,10 @@ or rollback until a specific version
 phalcon migration:rollback 1
 ```
 Actually the system can't handle foreign keys, indexes, primary, unique, and options, i'm working on it.
+
+### Make a release and send to env server
+There's a task made for, you just need to specify the environnement and tag number.  
+The task will use the master branch to create the tag and copy all the content of the root folder to the ssh server set in the config.
+```
+phalcon mep prod 0.0.1
+```
