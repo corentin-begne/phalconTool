@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `social_id` int(11) NOT NULL,
   `lang_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL,
+  `updated_at` timestamp NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `social_id` (`social_id`),
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `User` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `UserSocial` (
-  `id` int(11) NOT NULL,
+  `id` varchar(32) NOT NULL,
   `user_id` int(11) NOT NULL,
   `is_verified` tinyint(4) NOT NULL DEFAULT '0',
   `token` text NOT NULL,

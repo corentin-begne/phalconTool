@@ -56,10 +56,10 @@ class GooglePlus{
                 ]);
                 $userSocial = new \UserSocial();
                 $userSocial->create([
-                    'us_id' => $userPlus->id,
-                    'us_user_id' => $user->id,
-                    'us_is_verified' => $userPlus->verified,
-                    'us_token' => self::$client->getAccessToken()
+                    'usso_id' => $userPlus->id,
+                    'usso_user_id' => $user->us_id,
+                    'usso_is_verified' => $userPlus->verified,
+                    'usso_token' => self::$client->getAccessToken()
                 ]);
             }
         } catch(\Phalcon\Mvc\Model\Exception $e){
