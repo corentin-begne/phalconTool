@@ -1,214 +1,106 @@
 <?
-
-namespace Phalcon\Builder;
-use Phalcon\DI,
-Phalcon\Tools\Cli,
-Phalcon\Text as Utils,
-Phalcon\Db;
-
-class Migration extends \Phalcon\Mvc\User\Component
+use Phalcon\Tools\Cli,
+Phalcon\Builder\Migration,
+Phalcon\Text as Utils;
+class MigrationTask extends \Phalcon\CLI\Task
 {
-    public function __construct(){
-        $modelVersion = '<? 
-    class MigrationVersion[nb]{
-        public function up(){
-            return [up];
-        }
-        public function down(){
-            return [down];
-        }
+    public function mainAction() {
+
     }
-?>';        
-        $definitions = [
-            'tables'=>[
-                'create'=>[], 
-                'drop'=>[]
-            ], 
-            'fields'=>[
-                'add'=>[],
-                'drop'=>[],
-                'modify'=>[]
-            ], 
-            'indexes'=>[
-                'add'=>[],
-                'drop'=>[]
-            ], 
-            'uniques'=>[
-                'add'=>[],
-                'drop'=>[]
-            ], 
-            'keys'=>[ 
-                'foreign'=>[
-                    'add'=>[],
-                    'drop'=>[]
-                ],
-                'primary'=>[
-                    'add'=>[],
-                    'drop'=>[]
-                ]
-            ]
-        ];
-        $modelActionTpl = ['up'=>$definitions, 'down'=>$definitions];
-        $migration = [];
-        // generate migration difference between models and bdd
-        $models = glob($this->config->application->modelsDir.'*.php');
-        if(count($models) === 0){
-            Cli::error('No models to check');
-        }
-        foreach($this->db->listTables($this->config[ENV]->database->dbname) as $table){
-            $sourceModel = Utils::camelize(Utils::uncamelize($table));
-            if(!class_exists("\\$sourceModel")){                
-                $modelActionTpl['up']['tables']['drop'][] = $table;
-                $modelActionTpl['down']['tables']['create'][] = $table;
-                // get all fields for the rollback
-                $modelActionTpl['down']['fields']['add'][$table] = [];
-                foreach($this->db->fetchAll('show columns from '.$table, Db::FETCH_ASSOC) as $field){
-                    $modelActionTpl['down']['fields']['add'][$table][$field['Field']] = $this->normalize($field);
-                }
-            }
-        }
-        foreach($models as $model){
-            $model = basename($model, '.php');
-            $sourceModel = new $model(); 
-            $sourceModel = $sourceModel->getSource();
-            $action = 'update';
-            if(!$this->db->tableExists($sourceModel)){
-                $modelActionTpl['up']['tables']['create'][] = $sourceModel;
-                $modelActionTpl['down']['tables']['drop'][] = $sourceModel;
-                $action = 'create';
-            }
-            $modelActionTpl['up']['fields']['add'][$sourceModel] = [];
-            $modelActionTpl['up']['fields']['drop'][$sourceModel] = [];
-            $modelActionTpl['up']['fields']['modify'][$sourceModel] = [];
-            if(!isset($modelActionTpl['down']['fields']['add'][$sourceModel])){
-                $modelActionTpl['down']['fields']['add'][$sourceModel] = [];
-            }
-            $modelActionTpl['down']['fields']['drop'][$sourceModel] = [];
-            $modelActionTpl['down']['fields']['modify'][$sourceModel] = [];
-            // check fields, get annotations     
-            $fields = $model::getColumnsDescription();
-            foreach($fields as $field => &$fieldAnnotation){
 
-                $field = substr($field, strpos($field, '_')+1);           
-                if($action === 'update'){                       
-                    $fieldDesc = $this->db->fetchOne('show columns from '.$sourceModel.' where Field = \''.$field .'\'', Db::FETCH_ASSOC);
-                    if(!$fieldDesc){
-                        $modelActionTpl['up']['fields']['add'][$sourceModel][$field] = $fieldAnnotation;
-                        $modelActionTpl['down']['fields']['drop'][$sourceModel][$field] = '';
-                    }else if(!$this->checkField($fieldAnnotation, $fieldDesc)){             
-                        $modelActionTpl['up']['fields']['modify'][$sourceModel][$field] = $fieldAnnotation;
-                        $modelActionTpl['down']['fields']['modify'][$sourceModel][$field] = $fieldDesc;                    
-                    }
-                } else {
-                    $modelActionTpl['up']['fields']['add'][$sourceModel][$field] = $fieldAnnotation;
-                    $modelActionTpl['down']['fields']['drop'][$sourceModel][$field] = '';
-                }                
-            }
-            if($action === 'update'){
-                // now need to check the inverse to drop which are removed
-                foreach($this->db->fetchAll('show columns from '.$sourceModel, Db::FETCH_ASSOC) as $fieldDesc){
-
-                    if(!isset($fields[$this->getPrefix($sourceModel).'_'.$fieldDesc['Field']])){
-                        $modelActionTpl['up']['fields']['drop'][$sourceModel][$fieldDesc['Field']] = '';
-                        $modelActionTpl['down']['fields']['add'][$sourceModel][$fieldDesc['Field']] = $this->normalize($fieldDesc);
-                    }
-                }    
-            }        
-        }        
+    public function runAction(){
+        $currentVersion = Migration::getCurrentVersion();
         $migrations = glob($this->config->application->migrationsDir.'*.php');
-        if(self::getCurrentVersion()<count($migrations)){
-            Cli::error('There\'s already a migration to run');
-        } else if($this->isArrayEmpty($modelActionTpl)){
-            Cli::error('No migration to generate');
-        } else {
-            $nb = (count($migrations)+1);
-            $up = var_export($modelActionTpl['up'], true);
-            $down = var_export($modelActionTpl['down'], true);
-            file_put_contents($this->config->application->migrationsDir.'MigrationVersion'.$nb.'.php', str_replace([
-                '[nb]',
-                '[up]',
-                '[down]',
-            ], [
-                $nb,
-                $up,
-                $down
-            ], $modelVersion));
-        }        
+        $version = count($migrations);
+        if((int)$version === $currentVersion){
+            Cli::error('Nothing to migrate');
+        }
+        for($i=($currentVersion+1); $i<=$version; $i++){
+            $class= "MigrationVersion".$i; 
+            $migration = new $class();
+            $this->executeQueries($migration->up());
+
+            Migration::setCurrentVersion($i);
+        }
     }
 
-    private function isArrayEmpty($data){
-        if(is_array($data)){
-        foreach($data as $value){
-                if(!$this->isArrayEmpty($value)) {
-                    return false;
+    private function executeQueries($data){
+        foreach($data['tables'] as $action => $tables){
+            foreach($tables as $table){
+                try{
+                    $query = $action.' TABLE '.$table;
+                    if($action === 'create'){
+                        $query .= ' (';
+                        foreach($data['fields']['add'][$table] as $name => $field){
+                            $query .= $this->getFieldQuery($name, $field).',';  
+                            if(isset($field['extra']) && $field['extra'] === 'auto_increment'){
+                                $query .= 'PRIMARY KEY ('.$name.'),';
+                            }                          
+                        }
+                        unset($data['fields']['add'][$table]);
+                        $query = trim($query, ',').')';
+                    }                    
+                    $this->db->execute($query);
+                    Cli::success($query, true);
+                } catch(PDOException $e){
+                    Cli::error($e->getMessage());
                 }
             }
-        } else if(!empty($data)){
-            return false;
         }
 
-        return true;
-    }
-
-    private function getPrefix($table){
-        $prefix = '';
-        foreach(explode('_', Utils::uncamelize($table)) as $name){
-            $prefix .= $name[0].$name[1];
-        }
-        return $prefix;
-    }
-
-    public function getKeyInfo($field, $key){
-
-    }
-
-    public function normalize($field){
-        $type = $field['Type'];
-        if(strpos($field['Type'], '(') !== false){
-            $type = substr($field['Type'], 0, strpos($field['Type'], '('));
-            $length = substr($field['Type'], strpos($field['Type'], '(')+1);
-            $length = substr($length, 0, strpos($length, ')'));
-            if(strpos($length, ',') !== false){
-                $length = substr($length, 0, strpos($length, ','));
+        foreach($data['fields'] as $action => &$tables){
+            foreach($tables as $table => &$fields){
+                foreach($fields as $name => &$field){
+                    try{
+                        $query = $this->createAlter($table, $action, $name, $field);
+                        $this->db->execute($query);
+                        Cli::success($query, true);
+                    } catch(PDOException $e){
+                        Cli::error($e->getMessage());
+                    }
+                }
             }
         }
-        $data = [
-            'type' => $type,
-            'isNull' => ($field['Null'] === 'NO') ? false : true,
-        ];
-        if(!empty($field['Default'])){
-            $data['default'] = $field['Default'];
-        }
-        if(!empty($field['Extra'])){
-            $data['extra'] = $field['Extra'];
-        }
-        if(!empty($field['Key'])){
-            $data['key'] = $field['Key'];
-        }
-        if(isset($length)){
-            $data['length'] = $length;
-        }
-        return $data;
     }
 
-    public function checkField($new, &$old){
-        $old = $this->normalize($old);
-        if(count(array_diff($new ,$old))>0){
-            return false;
+    private function createAlter($table, $action, $name, $field){
+        if($action === 'drop'){
+            return 'ALTER TABLE '.$table.' DROP COLUMN '.$name;
+        } else {
+            return 'ALTER TABLE '.$table.' '.$action.' '.$this->getFieldQuery($name, $field);
         }
-        return true;
     }
 
-    public static function getCurrentVersion(){
-        $file = DI::getDefault()->getConfig()->application->migrationsDir.ENV.'_version';
-        if(!file_exists($file)){
-            self::setCurrentVersion(0);
+    private function getFieldQuery($name, $field){
+        $length = $field['length'];
+        if(in_array($field['type'], ['set', 'enum'])){
+            $length = '\''.str_replace(',', '\',\'', $length).'\'';
         }
-        return (int)file_get_contents($file);
+        return $name.' '.$field['type'].
+            (isset($field['length']) ? ' ('.$length.')' : '').
+            ($field['isNull'] ? ' NULL' : ' NOT NULL').
+            (isset($field['default']) ? ' default '.$field['default'] : '').
+            (isset($field['extra']) ? ' '.$field['extra'] : '');
     }
 
-    public static function setCurrentVersion($version){
-        return file_put_contents(DI::getDefault()->getConfig()->application->migrationsDir.ENV.'_version', $version);
+    public function rollbackAction($params=[]){
+        $currentVersion = Migration::getCurrentVersion();
+        $migrations = glob($this->config->application->migrationsDir.'*.php');
+        if(count($params)===0){
+            $version = count($migrations)-1;
+        } else {
+            $version = (int)$params[0];
+        }
+        if((int)$version >= $currentVersion){
+            Cli::error('Nothing to migrate');
+        }
+        for($i=$currentVersion; $i>$version; $i--){
+            $class= "MigrationVersion".$i; 
+            $migration = new $class();
+            $this->executeQueries($migration->down());           
+           
+            Migration::setCurrentVersion($i-1);
+        }
     }
 
 }

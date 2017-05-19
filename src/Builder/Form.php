@@ -125,6 +125,18 @@ class Form extends \Phalcon\Tag
                     }
                 }
                 break;  
+            case 'set':
+            case 'enum':
+                $type = 'selectStatic';
+                $list = explode(',', $options['length']);
+                $args = [];
+                if($options['type'] === 'set'){
+                    $args['']='';
+                }
+                foreach($list as $name){
+                    $args[$name] = $name;
+                }
+                break;
             case 'tinyint':
                 $type = 'selectStatic';
                 $args = [

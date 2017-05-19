@@ -23,7 +23,7 @@ class Model extends \Phalcon\Mvc\User\Component
                 $type = substr($field['Type'], 0, strpos($field['Type'], '('));
                 $length = substr($field['Type'], strpos($field['Type'], '(')+1);
                 $length = substr($length, 0, strpos($length, ')'));
-                if(strpos($length, ',') !== false){
+                if(strpos($length, ',') !== false && !in_array($type, ['set', 'enum'])){
                     $length = substr($length, 0, strpos($length, ','));
                 }
             }         
@@ -32,7 +32,7 @@ class Model extends \Phalcon\Mvc\User\Component
             $setting .= (!empty($field['Default'])) ? ', \'default\': \''.$field['Default'].'\'' : '';
             $setting .= (!empty($field['Extra'])) ? ', \'extra\': \''.$field['Extra'].'\'' : '';
             $setting .= (!empty($field['Key'])) ? ', \'key\': \''.$field['Key'].'\'' : '';
-            $setting .= (isset($length)) ? ', \'length\': '.$length : '';
+            $setting .= (isset($length)) ? ', \'length\': '.(in_array($type, ['set', 'enum']) ? '\'' : '').str_replace('\'', '', $length).(in_array($type, ['set', 'enum']) ? '\'' : '') : '';
             $fields .= str_replace(['[setting]', '[name]'], [$setting, '$'.$field['Field']], $modelField);
             $maps[] = "'".$field['Field']."' => '".$this->getPrefix($table)."_".$field['Field']."'";
         }

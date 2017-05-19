@@ -57,7 +57,9 @@ class GenerateTask extends \Phalcon\CLI\Task
                 exec('cp '.TEMPLATE_PATH.'/project/.jshintrc '.HOME_PATH.'/');       
                 exec('cp '.TEMPLATE_PATH.'/project/public/init.php '.$publicPath);
                 exec('cp '.TEMPLATE_PATH.'/project/public/.htaccess '.$publicPath);
-                exec('cp -r '.TEMPLATE_PATH.'/project/public/bower* '.$publicPath);
+                exec('cp -r '.TEMPLATE_PATH.'/project/public/bower.json '.$publicPath);
+                exec('cp -r '.TEMPLATE_PATH.'/project/public/bower_components '.$publicPath);
+                exec('cp -r '.TEMPLATE_PATH.'/project/public/Makefile '.$publicPath);
                 $content = file_get_contents($publicPath.'/.htaccess');
                 file_put_contents($publicPath.'/.htaccess', str_replace('[app]', $appName, $content));
             }     
