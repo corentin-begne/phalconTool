@@ -17,7 +17,9 @@ class ScrudController extends Phalcon\ControllerBase{
         }
         $cleanController = str_replace('custom_', '', $this->dispatcher->getControllerName());
         $currentPath = ($this->dispatcher->getActionName() === 'index') ? $cleanController : $cleanController.'/'.$this->dispatcher->getActionName(); 
+        $this->assets->set('libjs', new Phalcon\Assets\Collection());
         $this->assets->collection('libjs')
+        ->setPrefix('/lib/'.$this->dispatcher->getControllerName().'/public/js/')
         ->addJs('lib/jquery.min.js')  
         ->addJs('lib/jquery.percentageloader-0.2.js')
         ->addJs('model/action.js')
@@ -26,7 +28,7 @@ class ScrudController extends Phalcon\ControllerBase{
         ->addJs('helper/form.js')
         ->addJs('helper/js.js')
         ->addJs($currentPath.'/manager.js')
-        ->addJs($currentPath.'/main.js');             
+        ->addJs($currentPath.'/main.js');              
         $this->models = [];
         $this->limit = 20;
         $models = explode(' ', $this->dispatcher->getParam('model'));

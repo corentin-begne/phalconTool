@@ -18,6 +18,18 @@ INSERT INTO `LangType` (`id`, `name`) VALUES
 (1, 'fr'),
 (2, 'en');
 
+CREATE TABLE IF NOT EXISTS `LangMessage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lang_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `value` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `lang_id_2` (`lang_id`,`name`),
+  KEY `lang_id` (`lang_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 CREATE TABLE IF NOT EXISTS `SocialType` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
@@ -51,6 +63,9 @@ CREATE TABLE IF NOT EXISTS `UserSocial` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `LangMessage`
+  ADD CONSTRAINT `lmid` FOREIGN KEY (`lang_id`) REFERENCES `LangType` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `User`
   ADD CONSTRAINT `gtid` FOREIGN KEY (`gender_id`) REFERENCES `GenderType` (`id`),

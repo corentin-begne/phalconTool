@@ -175,6 +175,13 @@ view inside controller user action login
 $t->_('hi') // $messages['hi']
 $t->__('hi') // $mesages['user_login_hi']
 ```
+You can use scrud to manage translation using the LangMessage default table and the task to import/export data :
+```
+http://localhost/backend/scrud/LangMessage/search // on backend app
+phalcon message:import
+phalcon message:export // can be used with --save option to keep a save of the last files version
+```
+
 ### Migration
 The migration system is based on annotations in the models and report the difference from the database.
 ```
