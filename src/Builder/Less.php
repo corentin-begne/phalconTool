@@ -18,7 +18,7 @@ class Less extends \Phalcon\Mvc\User\Component
         foreach($files as $file){
             $targetFile = str_replace('.less', '.css', $file);
             // compile and compress css
-            exec('lessc --url-args="v='.$this->config->version.'" --global-var=\'urlBase="'.$this->config[ENV]->cdn.'"\' -sm=on -x '.$file.' '.$targetFile);
+            exec('lessc --url-args="v='.$this->config->version.'" --global-var=\'urlBase="'.$urlBase.'"\' -sm=on -x '.$file.' '.$targetFile);
             echo $targetFile."\n";
         }
     }
