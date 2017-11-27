@@ -14,6 +14,7 @@ class Less extends \Phalcon\Mvc\User\Component
         } else {
             $files = self::globRecursive($basePath."main.less");
         }
+        $urlBase = defined('URL_BASE') ? 'http://'.URL_BASE : $this->config[ENV]->cdn;
         foreach($files as $file){
             $targetFile = str_replace('.less', '.css', $file);
             // compile and compress css

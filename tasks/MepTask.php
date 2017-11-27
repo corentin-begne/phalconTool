@@ -19,11 +19,13 @@ class MepTask extends \Phalcon\CLI\Task
         // create tag branch
         exec('cd '.$this->config->application->rootDir.';git checkout '.$env.";git checkout -b $tag");
         $apps = glob($this->config->application->rootDir.'apps/*', GLOB_ONLYDIR);
-        foreach($apps as $app){
-            // recompile less
-            exec('cd '.$this->config->application->rootDir.';./phalcon generate:less --env='.$env.' --app='.basename($app));
-            // generate js builds
-            exec('cd '.$this->config->application->rootDir.';./phalcon generate:build --env='.$env.' --app='.basename($app));
+        if(!defined('NO_BUILD')){
+            foreach($apps as $app){
+                // recompile less
+                exec('cd '.$this->config->application->rootDir.';./phalcon generate:less --env='.$env.' --app='.basename($app));
+                // generate js builds
+                exec('cd '.$this->config->application->rootDir.';./phalcon generate:build --env='.$env.' --app='.basename($app));
+            }
         }
         // need to change the env in the init file
         $file = str_replace("'dev'", "'$env'", file_get_contents($this->config->application->rootDir.'public/init.php'));
