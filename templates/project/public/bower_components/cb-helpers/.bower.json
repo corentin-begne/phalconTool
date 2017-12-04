@@ -23,11 +23,11 @@
     "require": "http://requirejs.org/docs/release/2.1.22/minified/require.js",
     "socket.io-1.4.5": "https://cdn.socket.io/socket.io-1.4.5.js"
   },
-  "_release": "19026ae62e",
+  "_release": "dc25832c94",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "19026ae62eb3a1ea409a5f6b2d7b78ac7f3e1526"
+    "commit": "dc25832c94e4d7dc4505fc0287ce33f0b3d98777"
   },
   "_source": "https://github.com/corentin-begne/jsHelpers.git",
   "_target": "*",

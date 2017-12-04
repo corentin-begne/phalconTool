@@ -12,6 +12,13 @@ class Server extends \Phalcon\Websocket\Server{
         }
     }
 
+    protected function testEvent(&$user, $data) {
+        $this->broadcast(json_encode([
+            'type'=>'test',
+            'data'=>$data
+        ]), $user->room);        
+    }
+
     protected function connected(&$user) {
         $this->broadcast(json_encode([
             'type'=>'userConnected',

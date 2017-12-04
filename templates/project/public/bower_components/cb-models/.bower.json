@@ -19,11 +19,11 @@
   "dependencies": {
     "cb-helpers": "*"
   },
-  "_release": "cb85384104",
+  "_release": "b7f9b851be",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "cb8538410452bf38f309c517e57bc5b571f44b72"
+    "commit": "b7f9b851be8adeca9b73fb562bac82ca6726d2d3"
   },
   "_source": "https://github.com/corentin-begne/jsModels.git",
   "_target": "*",

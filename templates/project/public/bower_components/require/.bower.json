@@ -4,7 +4,8 @@
     "ETag": "\"130a3b2-3dd1-52501d08315c0\"",
     "Last-Modified": "Sat, 21 Nov 2015 00:10:07 GMT",
     "Content-Length": "15825",
-    "Content-Type": "application/javascript"
+    "Content-Type": "application/octet-stream",
+    "Content-Disposition": "attachment"
   },
   "_release": "e-tag:130a3b2-3",
   "main": "index.js",

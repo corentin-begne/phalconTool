@@ -11,9 +11,9 @@ var ActionHelper;
     ActionHelper = function(cb){
         var that = this;
         extendSingleton(ActionHelper);
-        loadCss("/bower_components/jquery.percentageloader/index.css");
+        loadCss((window["baseUrl"] ? window["baseUrl"] : "")+"/bower_components/jquery.percentageloader/index.css");
         require([
-            "/bower_components/jquery-percentageloader/index.js"
+            "bower_components/jquery-percentageloader/index"
         ], loaded);
         this.basePath = "/"+$("body").attr("app")+"/";
         var hasOnProgress = ("onprogress" in $.ajaxSettings.xhr());
@@ -66,7 +66,7 @@ var ActionHelper;
     ActionHelper.prototype.execute = function(data, options){
         if(!isDefined(options.noload)){
             $("body").append("<div class='backdrop'><div id='loader'></div></div>");
-            $("#loader").percentageLoader({
+            var loader = $("#loader").percentageLoader({
                 width : 128, 
                 height : 128, 
                 progress : 0, 
@@ -74,7 +74,7 @@ var ActionHelper;
             });
             if(isDefined(options.upload)){
                 $("body .backdrop").append("<div id='uploader'></div>");
-                $("#uploader").percentageLoader({
+                var uploader = $("#uploader").percentageLoader({
                     width : 64, 
                     height : 64, 
                     progress : 0, 
@@ -105,14 +105,10 @@ var ActionHelper;
                 return false;
             }
             if(event.target instanceof XMLHttpRequest){
-                $("#loader").percentageLoader({
-                    progress : event.loaded / event.total
-                });   
+                loader.setProgress(event.loaded / event.total);   
             } 
             if(isDefined(options.upload) && event.target instanceof XMLHttpRequestUpload){
-                $("#uploader").percentageLoader({
-                    progress : event.loaded / event.total
-                });   
+                uploader.setProgress(event.loaded / event.total);    
             }       
         }
 

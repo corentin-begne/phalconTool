@@ -13,7 +13,7 @@ var ActionModel;
         var that = this;
         extendSingleton(ActionModel);
         require([
-            "/bower_components/cb-helpers/action.min.js", 
+            "bower_components/cb-helpers/action", 
         ], loaded);
 
         function loaded(){
