@@ -40,7 +40,7 @@ class Rest
         $referer = $_SERVER['HTTP_REFERER'];
         $request = 'http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
         $request = str_replace('/api/', '/', substr($request, 0, strrpos($request, '/')));
-        if(APP === "frontend" && strpos($_SERVER['HTTP_REFERER'], 'http://'.$_SERVER["SERVER_NAME"]) === false){
+        if(APP === "frontend" && strpos($_SERVER['HTTP_REFERER'], 'http://'.$_SERVER["SERVER_NAME"]) === false && strpos($_SERVER['HTTP_REFERER'], 'https://'.$_SERVER["SERVER_NAME"]) === false){
             self::renderError("Restricted Access : Invalid Referer !");
         }
     }
