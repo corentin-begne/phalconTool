@@ -17,12 +17,27 @@ abstract class Server {
     protected $headerSecWebSocketProtocolRequired   = false;
     protected $headerSecWebSocketExtensionsRequired = false;
 
-    function __construct($addr, $port, $bufferLength = 2048) {
-        $this->maxBufferSize = $bufferLength;
-        $this->master = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)  or die('Failed: socket_create()');
-        socket_set_option($this->master, SOL_SOCKET, SO_REUSEADDR, 1) or die('Failed: socket_option()');
-        socket_bind($this->master, $addr, $port)                      or die('Failed: socket_bind()');
-        socket_listen($this->master,20)                               or die('Failed: socket_listen()');
+    function __construct($addr, $port, $ssl=[], $bufferLength = 2048) {
+        $this->maxBufferSize = $bufferLength;     
+        $this->protocol = 'HTTP';
+        if(count($ssl) === 0){            
+            $this->isSsl = false;
+            $this->master = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)  or die('Failed: socket_create()');
+            socket_set_option($this->master, SOL_SOCKET, SO_REUSEADDR, 1) or die('Failed: socket_option()');
+            socket_bind($this->master, $addr, $port)                      or die('Failed: socket_bind()');
+            socket_listen($this->master,20)                               or die('Failed: socket_listen()');
+        } else {
+            $this->isSsl = true;
+            //$this->protocol = 'HTTPS';
+            $context = stream_context_create();
+
+            // local_cert must be in PEM format
+            stream_context_set_option($context, 'ssl', 'local_cert', $ssl['pem']);
+            stream_context_set_option($context, 'ssl', 'passphrase', $ssl['crt']);
+            stream_context_set_option($context, 'ssl', 'allow_self_signed', true);
+            stream_context_set_option($context, 'ssl', 'verify_peer', false);
+            $this->master = stream_socket_server('ssl://'.$addr.':'.$port, $errno, $errstr, STREAM_SERVER_BIND|STREAM_SERVER_LISTEN, $context);
+        }
         $this->sockets['m'] = $this->master;
         $this->stdout("Server started\nListening on: $addr:$port\nMaster socket: ".$this->master);
     }
@@ -47,7 +62,11 @@ abstract class Server {
     protected function send(&$user, &$message) {
         if ($user->handshake) {
             $message = $this->frame($message,$user);
-            $result = @socket_write($user->socket, $message, strlen($message));
+            if($this->isSsl){
+                $result = @fwrite($user->socket, $message, strlen($message));
+            } else {
+                $result = @socket_write($user->socket, $message, strlen($message));
+            }
         } else {
             // User has not yet performed their handshake.  Store for sending later.
             $holdingMessage = array('user' => $user, 'message' => $message);
@@ -110,10 +129,18 @@ abstract class Server {
             $write = $except = null;
             $this->_tick();
             $this->tick();
-            @socket_select($read,$write,$except,1);
+            if($this->isSsl){
+                @stream_select($read,$write,$except,1);
+            } else {
+                @socket_select($read,$write,$except,1);
+            }
             foreach ($read as $socket) {
                 if ($socket == $this->master) {
-                    $client = socket_accept($socket);
+                    if($this->isSsl){
+                        $client = stream_socket_accept($socket);
+                    } else{
+                        $client = socket_accept($socket);
+                    }
                     if ($client < 0) {
                         $this->stderr('Failed: socket_accept()');
                         continue;
@@ -121,8 +148,18 @@ abstract class Server {
                         $this->connect($client);                        
                     }
                 } else {
-                    $numBytes = @socket_recv($socket, $buffer, $this->maxBufferSize, 0); 
-                    if ($numBytes === false) {
+                    if($this->isSsl){
+                        $buffer = fread($socket, $this->maxBufferSize);
+                        if(!$buffer){
+                            $numBytes = false;
+                        } else {
+                            $numBytes = strlen($buffer);
+                        }
+                    } else {
+                        $numBytes = @socket_recv($socket, $buffer, $this->maxBufferSize, 
+                            0); 
+                    }
+                    if ($numBytes === false && !$this->isSsl) {
                         $sockErrNo = socket_last_error($socket);
                         switch ($sockErrNo){
                             case 102: // ENETRESET    -- Network dropped connection because of reset
@@ -183,17 +220,25 @@ abstract class Server {
                 unset($this->sockets[$disconnectedUser->id]);
             }
 
-            if (!is_null($sockErrNo)) {
+            if (!is_null($sockErrNo) && !$this->isSsl) {
                 socket_clear_error($socket);
             }
 
             if ($triggerClosed) {
                 $this->stdout("Client disconnected. ".$disconnectedUser->id);
                 $this->closed($disconnectedUser);
-                socket_close($disconnectedUser->socket);
+                if($this->isSsl){
+                    fclose($disconnectedUser->socket);
+                } else {
+                    socket_close($disconnectedUser->socket);
+                }
             } else {
                 $message = $this->frame('', $disconnectedUser, 'close');
-                @socket_write($disconnectedUser->socket, $message, strlen($message));
+                if($this->isSsl){
+                    @fwrite($disconnectedUser->socket, $message, strlen($message));
+                } else {
+                    @socket_write($disconnectedUser->socket, $message, strlen($message));
+                }
             }
 
             if(count($this->rooms[$disconnectedUser->room]) === 0){
@@ -213,7 +258,7 @@ abstract class Server {
                 $headers[strtolower(trim($header[0]))] = trim($header[1]);
             }
             elseif (stripos($line,"get ") !== false) {
-                preg_match("/GET (.*) HTTP/i", $buffer, $reqResource);
+                preg_match("/GET (.*) ".$this->protocol."/i", $buffer, $reqResource);
                 $headers['get'] = trim($reqResource[1]);
             }
         }
@@ -231,38 +276,42 @@ abstract class Server {
             }
         } else {
             // todo: fail the connection
-            $handshakeResponse = "HTTP/1.1 405 Method Not Allowed\r\n\r\n";     
+            $handshakeResponse = $this->protocol."/1.1 405 Method Not Allowed\r\n\r\n";     
         }
         if (!isset($headers['host']) || !$this->checkHost($headers['host'])) {
-            $handshakeResponse = "HTTP/1.1 400 Bad Request";
+            $handshakeResponse = $this->protocol."/1.1 400 Bad Request";
         }
         if (!isset($headers['upgrade']) || strtolower($headers['upgrade']) != 'websocket') {
-            $handshakeResponse = "HTTP/1.1 400 Bad Request";
+            $handshakeResponse = $this->protocol."/1.1 400 Bad Request";
         } 
         if (!isset($headers['connection']) || strpos(strtolower($headers['connection']), 'upgrade') === FALSE) {
-            $handshakeResponse = "HTTP/1.1 400 Bad Request";
+            $handshakeResponse = $this->protocol."/1.1 400 Bad Request";
         }
         if (!isset($headers['sec-websocket-key'])) {
-            $handshakeResponse = "HTTP/1.1 400 Bad Request";
+            $handshakeResponse = $this->protocol."/1.1 400 Bad Request";
         } else {
 
         }
         if (!isset($headers['sec-websocket-version']) || strtolower($headers['sec-websocket-version']) != 13) {
-            $handshakeResponse = "HTTP/1.1 426 Upgrade Required\r\nSec-WebSocketVersion: 13";
+            $handshakeResponse = $this->protocol."/1.1 426 Upgrade Required\r\nSec-WebSocketVersion: 13";
         }
         if (($this->headerOriginRequired && !isset($headers['origin']) ) || ($this->headerOriginRequired && !$this->checkOrigin($headers['origin']))) {
-            $handshakeResponse = "HTTP/1.1 403 Forbidden";
+            $handshakeResponse = $this->protocol."/1.1 403 Forbidden";
         }
         if (($this->headerSecWebSocketProtocolRequired && !isset($headers['sec-websocket-protocol'])) || ($this->headerSecWebSocketProtocolRequired && !$this->checkWebsocProtocol($headers['sec-websocket-protocol']))) {
-            $handshakeResponse = "HTTP/1.1 400 Bad Request";
+            $handshakeResponse = $this->protocol."/1.1 400 Bad Request";
         }
         if (($this->headerSecWebSocketExtensionsRequired && !isset($headers['sec-websocket-extensions'])) || ($this->headerSecWebSocketExtensionsRequired && !$this->checkWebsocExtensions($headers['sec-websocket-extensions']))) {
-            $handshakeResponse = "HTTP/1.1 400 Bad Request";
+            $handshakeResponse = $this->protocol."/1.1 400 Bad Request";
         }
 
         // Done verifying the _required_ headers and optionally required headers.
         if (isset($handshakeResponse)) {
-            socket_write($user->socket,$handshakeResponse,strlen($handshakeResponse));
+            if($this->isSsl){
+                fwrite($user->socket,$handshakeResponse,strlen($handshakeResponse));
+            } else {
+                socket_write($user->socket,$handshakeResponse,strlen($handshakeResponse));
+            }            
             $this->disconnect($user->socket);
             return;
         }
@@ -281,8 +330,12 @@ abstract class Server {
         $subProtocol = (isset($headers['sec-websocket-protocol'])) ? $this->processProtocol($headers['sec-websocket-protocol']) : "";
         $extensions = (isset($headers['sec-websocket-extensions'])) ? $this->processExtensions($headers['sec-websocket-extensions']) : "";
 
-        $handshakeResponse = "HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: $handshakeToken$subProtocol$extensions\r\n";
-        socket_write($user->socket,$handshakeResponse,strlen($handshakeResponse));
+        $handshakeResponse = $this->protocol."/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: $handshakeToken$subProtocol$extensions\r\n";
+        if($this->isSsl){
+            fwrite($user->socket,$handshakeResponse,strlen($handshakeResponse));
+        } else {
+            socket_write($user->socket,$handshakeResponse,strlen($handshakeResponse));
+        }
         $this->connected($user);
     }
 
@@ -499,7 +552,11 @@ abstract class Server {
 
         if ($pongReply) {
             $reply = $this->frame($payload,$user,'pong');
-            socket_write($user->socket,$reply,strlen($reply));
+            if($this->isSsl){
+                fwrite($user->socket,$reply,strlen($reply));
+            } else {
+                socket_write($user->socket,$reply,strlen($reply));
+            }
             return false;
         }
         if ($headers['length'] > strlen($this->applyMask($headers,$payload))) {
