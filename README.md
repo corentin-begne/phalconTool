@@ -9,13 +9,12 @@ This tool allows to manage project with Phalcon MVC Framework access on MYSQL.
 - Internal library Management
 - Full Rest Api
 - Websocket Client / Server
+- Database migration engine
 - SCRUD on the fly with models relations and validations
 - Generate controller/action
 - Generate js/less template
 
 #### In progress
-- Bdd migrations 
-- Bower + Javascript libraries
 - Cli support inline
 - Documentation
 
@@ -126,7 +125,7 @@ Don't forget to specify the environnement and application with --app= --env= in 
 So it generate a build.js file in the action directory, it will be automaticaly used in the production environnement.
 
 ### Websocket
-There's a websocket server with room and users management which could be start on command line :
+There's a websocket server with room and users management supporting ssl connection which could be start on command line :
 ```
 phalcon server:start
 ```
@@ -183,11 +182,11 @@ phalcon message:export // can be used with --save option to keep a save of the l
 ```
 
 ### Migration
-The migration system is based on annotations in the models and report the difference from the database.
+The migration system is based on annotations and modification made in the models and report the difference from the database.
 ```
 phalcon generate:migration
 ```
-Once is done, you can run the migration 
+Once its done, you can run the migration 
 ```
 phalcon migration:run
 ```
@@ -200,7 +199,10 @@ or rollback until a specific version
 ```
 phalcon migration:rollback 1
 ```
-Actually the system can't handle foreign keys, indexes, primary, unique, and options, i'm working on it.
+You can also create a model template 
+```
+phalcon generate:model test
+```
 
 ### Make a release and send to env server
 There's a task made for, you just need to specify the environnement and tag number.  

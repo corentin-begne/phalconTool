@@ -3,7 +3,7 @@ use Phalcon\Tools\Cli;
 class MepTask extends \Phalcon\CLI\Task
 {
     public function mainAction($params) {
-        list($env, $tag) = $params;
+        @list($env, $tag) = $params;
         if(!isset($env) || !isset($this->config[$env])){
             die(Cli::error('Invalid env : '.$env));
         }

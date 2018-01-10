@@ -32,9 +32,17 @@ class Model extends \Phalcon\Mvc\User\Component
             $setting .= (!empty($field['Default'])) ? ', \'default\': \''.$field['Default'].'\'' : '';
             $setting .= (!empty($field['Extra'])) ? ', \'extra\': \''.$field['Extra'].'\'' : '';
             $setting .= (!empty($field['Key'])) ? ', \'key\': \''.$field['Key'].'\'' : '';
+            if(isset($field['Key'])){
+                $constraint = $this->db->fetchOne('SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$table.'\' and COLUMN_NAME=\''.$field['Field'].'\'', Db::FETCH_ASSOC);
+                if($constraint !== false){
+                    $constraint2 = $this->db->fetchOne('SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$table.'\' and REFERENCED_TABLE_NAME=\''.$constraint['REFERENCED_TABLE_NAME'].'\'', Db::FETCH_ASSOC);
+                    $setting .= ', \'onUpdate\': \''.$constraint2['UPDATE_RULE'].'\', \'onDelete\': \''.$constraint2['DELETE_RULE'].'\'';
+                }
+            }            
             $setting .= (isset($length)) ? ', \'length\': '.(in_array($type, ['set', 'enum']) ? '\'' : '').str_replace('\'', '', $length).(in_array($type, ['set', 'enum']) ? '\'' : '') : '';
             $fields .= str_replace(['[setting]', '[name]'], [$setting, '$'.$field['Field']], $modelField);
             $maps[] = "'".$field['Field']."' => '".$this->getPrefix($table)."_".$field['Field']."'";
+            // get onupdate and ondelete if there's a foreign key            
         }
         $maps = implode(",\n\t\t\t", $maps);
     }
@@ -61,7 +69,7 @@ class Model extends \Phalcon\Mvc\User\Component
                 '[local]',
                 '[model]',
                 '[foreign]',
-                '[table]',
+                '[table]'
             ], [
                 'belongsTo',
                 $local,
@@ -82,7 +90,7 @@ class Model extends \Phalcon\Mvc\User\Component
                 '[local]',
                 '[model]',
                 '[foreign]',
-                '[table]',
+                '[table]'
             ], [
                 $type,
                 $foreign,

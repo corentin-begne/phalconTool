@@ -17,7 +17,7 @@ class GenerateTask extends \Phalcon\CLI\Task
     }
 
     public function appAction($params) {
-        list($appName) = $params;
+        @list($appName) = $params;
         if(!isset($appName)){
             Cli::error('Missing app name');
         }
@@ -77,6 +77,38 @@ class GenerateTask extends \Phalcon\CLI\Task
         }
     }
 
+    public function modelAction($params){
+        list($table) = $params;
+        if(!isset($table)){
+            Cli::error('missing table name');
+        }
+        $source = file_get_contents(TEMPLATE_PATH.'/php/model.php');
+        $name = Utils::camelize(Utils::uncamelize($table));
+        $prefix = '';
+        foreach(explode('_', Utils::uncamelize($name)) as $name2){
+            $prefix .= $name2[0].$name2[1];
+        }
+        $content = str_replace([
+            '[fields]', 
+            '[name]', 
+            '[realName]', 
+            '[constraints]', 
+            '[maps]'
+        ], [
+            "/**
+     * @{$prefix}_id(['type':'int', 'isNull': false, 'extra': 'auto_increment', 'key': 'PRI', 'length': 11])
+     */
+    ".'public $id;', 
+            $name, 
+            $table, 
+            '', 
+            "'id'=>'{$prefix}_id'"], 
+            $source);
+        $target = $this->config->application->modelsDir.$name.'.php';
+        file_put_contents($target, $content);
+        echo $target."\n";
+    }
+
     /**
      * generate all models
      */
@@ -113,33 +145,33 @@ class GenerateTask extends \Phalcon\CLI\Task
      * @params([params: [], options: []])
      */
     public function controllerAction($params){
-        list($controller, $actions) = $params;
+        @list($controller, $actions) = $params;
         new Controller($controller, $actions);
     }
 
     public function taskAction($params){
-        list($task, $actions) = $params;
+        @list($task, $actions) = $params;
         new Task($task, $actions);
     }
 
     public function jsAction($params){
-        list($controller, $actions) = $params;
+        @list($controller, $actions) = $params;
         new Js($controller, $actions);
     }
 
     public function cssAction($params){
-        list($controller, $actions) = $params;
+        @list($controller, $actions) = $params;
         new Css($controller, $actions);
     }
 
     public function lessAction($params){
-        list($controller, $action) = $params;
+        @list($controller, $action) = $params;
         new Less($controller, $action);
     }
 
     public function buildAction($params=[]){
         error_reporting(0);
-        list($controller, $action) = $params;
+        @list($controller, $action) = $params;
         new Build($controller, $action);
     }
 }
