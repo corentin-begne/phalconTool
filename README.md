@@ -62,7 +62,7 @@ The default action user/login redirect to the google user authentification to lo
 Before generate models, don't forget to modify the config.php in your app folder.
 On generation, if the databse is empty, it will import the ones used for the User management.
 ```
-phalcon generate:models
+phalcon models:generate
 ```
 Models will be created from the database with column map and all relations.
 By default scrud is no activated, you need to add in config.php inside librairies field api and scrud and add them to the private or public ressources.
@@ -184,7 +184,7 @@ phalcon message:export // can be used with --save option to keep a save of the l
 ### Migration
 The migration system is based on annotations and modification made in the models and report the difference from the database.
 ```
-phalcon generate:migration
+phalcon migration:generate
 ```
 Once its done, you can run the migration 
 ```
