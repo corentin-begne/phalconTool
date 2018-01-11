@@ -1,6 +1,6 @@
 <?
 use Phalcon\Tools\Cli;
-class MepTask extends \Phalcon\CLI\Task
+class ReleaseTask extends \Phalcon\CLI\Task
 {
     public function mainAction($params) {
         @list($env, $tag) = $params;

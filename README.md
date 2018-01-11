@@ -208,5 +208,5 @@ phalcon generate:model test
 There's a task made for, you just need to specify the environnement and tag number.  
 The task will use the master branch to create the tag and copy all the content of the root folder to the ssh server set in the config.
 ```
-phalcon mep prod 0.0.1
+phalcon release prod 0.0.1
 ```

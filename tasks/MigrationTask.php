@@ -24,6 +24,10 @@ class MigrationTask extends \Phalcon\CLI\Task
         }
     }
 
+    public function generateAction(){
+        new Migration();
+    }
+
     private function executeQueries($data){
         if(isset($data['tables'])){
             foreach($data['tables'] as $action => $tables){
