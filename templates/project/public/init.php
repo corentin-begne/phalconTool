@@ -6,9 +6,6 @@ try {
      * Read the configuration
      */
     $config = include __DIR__ . "/../apps/".APP."/config/config.php";
-    if(ENV === 'dev'){
-        $config->version = time();
-    }
     ini_set("session.gc_maxlifetime", $config->session_lifetime);
     ini_set('session.gc_probability',1);
     ini_set('session.gc_divisor',1);

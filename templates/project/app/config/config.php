@@ -55,7 +55,7 @@ return new \Phalcon\Config([
     ], 
     'version'=>1,
     'session_lifetime'=>172800,
-    'libraries' => [],   
+    'libraries' => ['api', 'scrud'],   
     'application' => [
         'controllersDir' => __DIR__ . '/../controllers/',
         'modelsDir'      => __DIR__ . '/../models/',

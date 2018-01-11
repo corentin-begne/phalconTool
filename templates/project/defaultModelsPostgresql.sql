@@ -40,11 +40,9 @@ CREATE TABLE "User" (
 
 CREATE TABLE "UserSocial" (
     "id" integer NOT NULL,
-    "user_id" integer NOT NULL,
     "is_verified" int4 NOT NULL DEFAULT '0',
     "token" text NOT NULL,
-    PRIMARY KEY ("user_id"),
-    UNIQUE ("user_id")
+    PRIMARY KEY ("user_id")
 );
 
 
@@ -62,8 +60,6 @@ ALTER TABLE "User" ADD CONSTRAINT "ltid" FOREIGN KEY ("lang_id") REFERENCES "Lan
 CREATE INDEX ON "User" ("lang_id");
 ALTER TABLE "User" ADD CONSTRAINT "stid" FOREIGN KEY ("social_id") REFERENCES "SocialType" ("id") DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX ON "User" ("social_id");
-ALTER TABLE "UserSocial" ADD CONSTRAINT "uid" FOREIGN KEY ("user_id") REFERENCES "User" ("id") ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
-CREATE INDEX ON "UserSocial" ("user_id");
 
 -- Sequences --
 CREATE SEQUENCE GenderType_id_seq;

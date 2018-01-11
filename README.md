@@ -3,7 +3,7 @@
 This tool allows to manage project with Phalcon MVC Framework access on MYSQL.
 #### Features :
 - Create skeleton project application with default User controller using google connect and websocket client / server example
-- User base database with social relation 
+- User base database with social relation and permissions 
 - Manage multi application/environment
 - Generate models from Mysql database with column map and full relations
 - Internal library Management
@@ -55,7 +55,7 @@ phalcon generate:project
 ```
 It will create apps and public dir in the root project folder initialized with frontend application.  
 The Document root of the server must be the public dir.  
-By default api et scrud libraries are enbaled and the project is secured by google user connect so you need to create an google application, authorize google+ api and generate devKey, client_id and client_secret to set them inside the configuration file.  
+By default api and scrud libraries are enabled and the project is secured by google user connect so you need to create a google application, authorize google+ api and generate devKey, client_id and client_secret to set them inside the configuration file.  
 The default action user/login redirect to the google user authentification to log in the application and redirect to the SCRUD index (in progress).
 
 ### Generate models

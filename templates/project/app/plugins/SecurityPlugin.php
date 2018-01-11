@@ -21,40 +21,39 @@ class SecurityPlugin extends Plugin
         $acl = new AclList();
         // deny all access by default
         $acl->setDefaultAction(Acl::DENY);
-
+        $permissions = [];
         // set roles        
-        foreach(['Users', 'Guests'] as $role){
-            $acl->addRole($role);
+        foreach(PermissionType::find() as $permission){
+            $acl->addRole($permission->pety_name);
+            $permissions[$permission->pety_name] = $permission->pety_id;
         }
 
         // define public/private ressources
-        $privateResources = [
-            'index' => ['*']
+        $private = [
+            'index' => ['*'],
+            'scrud'=> ['*'],
+            'api'=> ['*']
         ];
 
-        $publicResources = [
+        $public = [
            'user'  => ['login', 'connect']
         ];
 
-        foreach ($privateResources as $resource => $actions) {
-            $acl->addResource(new Resource($resource), $actions);
-        }    
-
-        foreach ($publicResources as $resource => $actions) {
-            $acl->addResource(new Resource($resource), $actions);
-        }
-
-        // Grant login access only for guests
-        foreach ($publicResources as $resource => $actions) {
-            foreach ($actions as $action) {
-                $acl->allow('Guests', $resource, $action);
-            }
-        }
-
-        // Grant access to private area only for Users
-        foreach ($privateResources as $resource => $actions) {
-            foreach ($actions as $action) {
-                $acl->allow('Users', $resource, $action);
+        foreach(['private', 'public'] as $type){
+            foreach($$type as $resource => $actions){
+                $acl->addResource(new Resource($resource), $actions);
+                foreach ($actions as $action) {
+                    switch($type){
+                        case 'private':
+                            $acl->allow($permissions['admin'], $resource, $action);
+                            $acl->allow($permissions['user'], $resource, $action);
+                            break;
+                        case 'public':
+                            $acl->allow($permissions['anonymous'], $resource, $action);
+                            break;
+                    }
+                    
+                }
             }
         }
 
@@ -65,8 +64,16 @@ class SecurityPlugin extends Plugin
         switch ($exception->getCode()) {
             case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
             case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
-                $this->response->redirect('/user/login');
+                $this->redirectUser();
                 return false;
+        }
+    }
+
+    private function redirectUser(){
+        if(!UserManager::isAuthenticated()){
+            $this->response->redirect('/user/login');
+        } else {
+            $this->response->redirect('/');
         }
     }
 
@@ -76,8 +83,7 @@ class SecurityPlugin extends Plugin
     public function beforeDispatch(Event $event, Dispatcher $dispatcher)
     {
         // Check user data exists in session
-        $user = $this->session->get('user');
-        $role = UserManager::isAuthenticated() ? 'Users' : 'Guests';
+        $permissions = UserManager::getPermissions();
 
         //Take the active controller/action from the dispatcher
         $controller = $dispatcher->getControllerName();
@@ -86,13 +92,14 @@ class SecurityPlugin extends Plugin
         //Obtain the ACL list
         $acl = $this->getAcl();
         //Check if the Role have access to the controller (resource)
-        $allowed = $acl->isAllowed($role, $controller, $action);
-        if ($allowed != Acl::ALLOW) {
-            if($role === 'Guests'){
-                $this->response->redirect('/user/login');
-            } else {
-                $this->response->redirect('/');
+        foreach($permissions as $permission){
+            $allowed = $acl->isAllowed($permission, $controller, $action);
+            if ($allowed === Acl::ALLOW) {
+                break;
             }
+        }
+        if($allowed !== Acl::ALLOW) {
+            $this->redirectUser();
             $this->view->disable();
         }
     }
