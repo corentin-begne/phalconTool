@@ -1,0 +1,431 @@
+{
+    "name": "Rest",
+    "line": 5,
+    "short_desc": "Manage Rest API request \/ response",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "",
+    "file": "\/var\/www\/phalconTool\/src\/Tools\/Rest.php",
+    "relative_file": null,
+    "hash": "6f6f5c4ef5742de1fbe612e57e6e38e30a370813",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "params": {
+            "name": "params",
+            "line": 11,
+            "short_desc": "Request post data",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 9,
+            "default": {
+                "nodeType": "Expr_Array",
+                "items": [],
+                "attributes": {
+                    "startLine": 11,
+                    "endLine": 11,
+                    "kind": 2
+                }
+            },
+            "errors": []
+        },
+        "currentPage": {
+            "name": "currentPage",
+            "line": 16,
+            "short_desc": "Current page number",
+            "long_desc": "",
+            "hint": [
+                [
+                    "integer",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 9,
+            "default": {
+                "nodeType": "Scalar_LNumber",
+                "value": 1,
+                "attributes": {
+                    "startLine": 16,
+                    "endLine": 16,
+                    "kind": 10
+                }
+            },
+            "errors": []
+        },
+        "limit": {
+            "name": "limit",
+            "line": 21,
+            "short_desc": "Limit of result by page",
+            "long_desc": "",
+            "hint": [
+                [
+                    "integer",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 9,
+            "default": {
+                "nodeType": "Scalar_LNumber",
+                "value": 20,
+                "attributes": {
+                    "startLine": 21,
+                    "endLine": 21,
+                    "kind": 10
+                }
+            },
+            "errors": []
+        },
+        "count": {
+            "name": "count",
+            "line": 26,
+            "short_desc": "Current count relative to the page and limit ($limit*$currentpage)",
+            "long_desc": "",
+            "hint": [
+                [
+                    "integer",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 9,
+            "default": {
+                "nodeType": "Scalar_LNumber",
+                "value": 0,
+                "attributes": {
+                    "startLine": 26,
+                    "endLine": 26,
+                    "kind": 10
+                }
+            },
+            "errors": []
+        },
+        "nbPage": {
+            "name": "nbPage",
+            "line": 31,
+            "short_desc": "The total of the request page",
+            "long_desc": "",
+            "hint": [
+                [
+                    "integer",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 9,
+            "default": {
+                "nodeType": "Scalar_LNumber",
+                "value": 1,
+                "attributes": {
+                    "startLine": 31,
+                    "endLine": 31,
+                    "kind": 10
+                }
+            },
+            "errors": []
+        }
+    },
+    "methods": {
+        "init": {
+            "name": "init",
+            "line": 37,
+            "short_desc": "Check the conformity of the request and get the post data",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "restrict": {
+                    "name": "restrict",
+                    "line": 37,
+                    "short_desc": "Allow to disable the server name check restriction",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\boolean",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": {
+                        "nodeType": "Name_FullyQualified",
+                        "parts": [
+                            "boolean"
+                        ],
+                        "attributes": {
+                            "startLine": 37,
+                            "endLine": 37
+                        }
+                    },
+                    "default": "true",
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "checkRequest": {
+            "name": "checkRequest",
+            "line": 61,
+            "short_desc": "Check if the request is a XMLHttpRequest",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "checkReferer": {
+            "name": "checkReferer",
+            "line": 70,
+            "short_desc": "Check if the referer corresponding to the same server",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "renderError": {
+            "name": "renderError",
+            "line": 83,
+            "short_desc": "Rest response on error",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "error": {
+                    "name": "error",
+                    "line": 83,
+                    "short_desc": "Data corresponding to the error, can be any type",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\any",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": null,
+                    "default": "''",
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "renderSuccess": {
+            "name": "renderSuccess",
+            "line": 91,
+            "short_desc": "Rest response on success",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "data": {
+                    "name": "data",
+                    "line": 91,
+                    "short_desc": "Data render on success, can be any type",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\any",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": null,
+                    "default": "''",
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "renderJson": {
+            "name": "renderJson",
+            "line": 99,
+            "short_desc": "Rest response",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "params": {
+                    "name": "params",
+                    "line": 99,
+                    "short_desc": "Data to render",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "render": {
+            "name": "render",
+            "line": 109,
+            "short_desc": "Normalize data to render",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "result": {
+                    "name": "result",
+                    "line": 109,
+                    "short_desc": "Specify is the response is on success or error",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\boolean",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": {
+                        "nodeType": "Name_FullyQualified",
+                        "parts": [
+                            "boolean"
+                        ],
+                        "attributes": {
+                            "startLine": 109,
+                            "endLine": 109
+                        }
+                    },
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                },
+                "data": {
+                    "name": "data",
+                    "line": 109,
+                    "short_desc": "Data to render",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "checkParams": {
+            "name": "checkParams",
+            "line": 119,
+            "short_desc": "Check the presence of required params",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 9,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "list": {
+                    "name": "list",
+                    "line": 119,
+                    "short_desc": "List of params name to check",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "[]",
+                    "variadic": false,
+                    "is_by_ref": false
+                },
+                "allowEmpty": {
+                    "name": "allowEmpty",
+                    "line": 119,
+                    "short_desc": "Set to true if post data can be empty",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\boolean",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": {
+                        "nodeType": "Name_FullyQualified",
+                        "parts": [
+                            "boolean"
+                        ],
+                        "attributes": {
+                            "startLine": 119,
+                            "endLine": 119
+                        }
+                    },
+                    "default": "false",
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

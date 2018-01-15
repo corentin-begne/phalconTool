@@ -1,15 +1,40 @@
 <?
-
+/**
+ * Manage Rest API request / response
+ */
 class Rest
 {
-
+    /**
+     * Request post data
+     * @var array
+     */
     public static $params=[];
+    /**
+     * Current page number
+     * @var integer
+     */
     public static $currentPage = 1;
+    /**
+     * Limit of result by page
+     * @var integer
+     */
     public static $limit = 20;
+    /**
+     * Current count relative to the page and limit ($limit*$currentpage)
+     * @var integer
+     */
     public static $count = 0;
+    /**
+     * The total of the request page
+     * @var integer
+     */
     public static $nbPage = 1;
 
-    public static function init($restrict=true){
+    /**
+     * Check the conformity of the request and get the post data
+     * @param  boolean $restrict Allow to disable the server name check restriction
+     */
+    public static function init(boolean $restrict=true){
         if($restrict){
             self::checkReferer();
             self::checkRequest();
@@ -30,12 +55,18 @@ class Rest
         }
     }
 
+    /**
+     * Check if the request is a XMLHttpRequest
+     */
     public static function checkRequest(){
         if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || $_SERVER['HTTP_X_REQUESTED_WITH'] !== 'XMLHttpRequest'){
             self::renderError("Restricted Access : Only XMLHttpRequest accepted !");
         }
     }
 
+    /**
+     * Check if the referer corresponding to the same server 
+    */
     public static function checkReferer(){
         $referer = $_SERVER['HTTP_REFERER'];
         $request = 'http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
@@ -45,25 +76,47 @@ class Rest
         }
     }
 
+    /**
+     * Rest response on error
+     * @param  any $error Data corresponding to the error, can be any type
+     */
     public static function renderError($error=''){
         self::render(false, ['error'=>$error]);
     }
 
+    /**
+     * Rest response on success
+     * @param  any $data Data render on success, can be any type
+     */
     public static function renderSuccess($data=''){
         self::render(true, ['data'=>$data]);
     }
 
-    public static function renderJson($params){
+    /**
+     * Rest response
+     * @param  array $params Data to render
+     */
+    public static function renderJson(array $params=[]){
         header('Content-Type: application/json');
         die(json_encode($params));
     }
 
-    public static function render($result, $data){
+    /**
+     * Normalize data to render
+     * @param  boolean $result Specify is the response is on success or error
+     * @param  array $data   Data to render
+     */
+    public static function render(boolean $result, array $data=[]){
         $data['success'] = $result;
         self::renderJson($data);
     }
 
-    public static function checkParams($list, $allowEmpty=false){
+    /**
+     * Check the presence of required params
+     * @param  type  $list  List of params name to check
+     * @param  boolean $allowEmpty Set to true if post data can be empty
+     */
+    public static function checkParams(array $list=[], boolean $allowEmpty=false){
         if(!$allowEmpty && count(self::$params) === 0){
             self::renderError("No post data found !");
         }
