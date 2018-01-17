@@ -34,7 +34,7 @@ class Rest
      * Check the conformity of the request and get the post data
      * @param  boolean $restrict Allow to disable the server name check restriction
      */
-    public static function init(boolean $restrict=true){
+    public static function init($restrict=true){
         if($restrict){
             self::checkReferer();
             self::checkRequest();
@@ -116,7 +116,7 @@ class Rest
      * @param  type  $list  List of params name to check
      * @param  boolean $allowEmpty Set to true if post data can be empty
      */
-    public static function checkParams(array $list=[], boolean $allowEmpty=false){
+    public static function checkParams(array $list=[], $allowEmpty=false){
         if(!$allowEmpty && count(self::$params) === 0){
             self::renderError("No post data found !");
         }

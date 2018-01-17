@@ -8,12 +8,12 @@
     "namespace": "",
     "file": "\/var\/www\/phalconTool\/src\/Tools\/Rest.php",
     "relative_file": null,
-    "hash": "6f6f5c4ef5742de1fbe612e57e6e38e30a370813",
+    "hash": "2fc03d6dee5e9e55d4514065d5102ecb73d7453d",
     "parent": null,
     "modifiers": 0,
     "is_trait": false,
     "is_interface": false,
-    "aliases": [],
+    "aliases": null,
     "errors": [],
     "interfaces": [],
     "traits": [],
@@ -165,21 +165,12 @@
                     "long_desc": null,
                     "hint": [
                         [
-                            "\\boolean",
+                            "boolean",
                             false
                         ]
                     ],
                     "tags": [],
-                    "modifiers": {
-                        "nodeType": "Name_FullyQualified",
-                        "parts": [
-                            "boolean"
-                        ],
-                        "attributes": {
-                            "startLine": 37,
-                            "endLine": 37
-                        }
-                    },
+                    "modifiers": null,
                     "default": "true",
                     "variadic": false,
                     "is_by_ref": false
@@ -405,21 +396,12 @@
                     "long_desc": null,
                     "hint": [
                         [
-                            "\\boolean",
+                            "boolean",
                             false
                         ]
                     ],
                     "tags": [],
-                    "modifiers": {
-                        "nodeType": "Name_FullyQualified",
-                        "parts": [
-                            "boolean"
-                        ],
-                        "attributes": {
-                            "startLine": 119,
-                            "endLine": 119
-                        }
-                    },
+                    "modifiers": null,
                     "default": "false",
                     "variadic": false,
                     "is_by_ref": false

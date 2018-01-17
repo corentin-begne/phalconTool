@@ -1,6 +1,5 @@
 <?
 namespace Websocket;
-use Phalcon\Tools\Cli;
 
 class Server extends \Phalcon\Websocket\Server{
 
