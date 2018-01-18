@@ -3,21 +3,76 @@
 namespace Phalcon\Websocket;
 use Phalcon\Tools\Cli;
 
+/**
+ * Websocket server supporting https
+ */
 abstract class Server {
 
+    /**
+     * User class name
+     * @var string
+     */
     protected $userClass = 'User'; // redefine this if you want a custom user class.  The custom user class should inherit from WebSocketUser.
-    protected $maxBufferSize;        
+    /**
+     * Maximum buffer size
+     * @var integer
+     */
+    protected $maxBufferSize;  
+    /**
+     * Server socket
+     * @var socket_ressource
+     */
     protected $master;
+    /**
+     * Sockets list indexed by id
+     * @var array
+     */
     protected $sockets                              = [];
+    /**
+     * Users list indexed by id
+     * @var array
+     */
     protected $users                                = [];
+    /**
+     * Message waiting gor their user handshake
+     * @var array
+     */
     protected $heldMessages                         = [];
+    /**
+     * Rooms list indexed by name
+     * @var array
+     */
     protected $rooms                                = [];
+    /**
+     * Determine if the server show log message
+     * @var boolean
+     */
     protected $interactive                          = true;
+    /**
+     * Determine if the origin must be check
+     * @var boolean
+     */
     protected $headerOriginRequired                 = false;
+    /**
+     * Determine if the sec-websocket-protocol must be check
+     * @var boolean
+     */
     protected $headerSecWebSocketProtocolRequired   = false;
+
+    /**
+     * Determine if the sec-websocket-extensions must be check
+     * @var boolean
+     */
     protected $headerSecWebSocketExtensionsRequired = false;
 
-    function __construct($addr, $port, $ssl=[], $bufferLength = 2048) {
+    /**
+     * Initialize master socket
+     * @param string  $addr         Ip address to listen on
+     * @param string  $port         listen port
+     * @param array   $ssl          SSL certificate (['pem'=>'','crt'=>''])
+     * @param integer $bufferLength Length of the buffer
+     */
+    function __construct(string $addr, string $port, $ssl=[], $bufferLength = 2048) {
         $this->maxBufferSize = $bufferLength;     
         $this->protocol = 'HTTP';
         if(count($ssl) === 0){            

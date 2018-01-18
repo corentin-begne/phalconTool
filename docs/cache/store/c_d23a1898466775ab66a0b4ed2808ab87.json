@@ -1,20 +1,21 @@
 {
     "name": "ServerTask",
-    "line": 3,
-    "short_desc": "",
+    "line": 7,
+    "short_desc": "Manage Websocket server",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "",
     "file": "\/var\/www\/phalconTool\/templates\/project\/app\/tasks\/ServerTask.php",
     "relative_file": null,
-    "hash": "7d0006e4896fd60a3c59c4955aa7d3e9e7047092",
+    "hash": "8a9eb3e245d8d108c57335afc37a2fa35ef6ed90",
     "parent": "Phalcon\\CLI\\Task",
     "modifiers": 0,
     "is_trait": false,
     "is_interface": false,
     "aliases": {
-        "Server": "Websocket\\Server"
+        "Server": "Websocket\\Server",
+        "Cli": "Phalcon\\Tools\\Cli"
     },
     "errors": [],
     "interfaces": [],
@@ -23,7 +24,7 @@
     "methods": {
         "mainAction": {
             "name": "mainAction",
-            "line": 5,
+            "line": 9,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -37,8 +38,8 @@
         },
         "startAction": {
             "name": "startAction",
-            "line": 9,
-            "short_desc": "",
+            "line": 16,
+            "short_desc": "Start server",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,

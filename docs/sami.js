@@ -121,8 +121,8 @@ window.projectVersion = 'master';
                     {"type": "Method", "fromName": "Phalcon\\Tools\\Cli", "fromLink": "Phalcon/Tools/Cli.html", "link": "Phalcon/Tools/Cli.html#method_successBg", "name": "Phalcon\\Tools\\Cli::successBg", "doc": "&quot;&quot;"},
                     {"type": "Method", "fromName": "Phalcon\\Tools\\Cli", "fromLink": "Phalcon/Tools/Cli.html", "link": "Phalcon/Tools/Cli.html#method_warningBg", "name": "Phalcon\\Tools\\Cli::warningBg", "doc": "&quot;&quot;"},
             
-            {"type": "Class", "fromName": "Phalcon\\Websocket", "fromLink": "Phalcon/Websocket.html", "link": "Phalcon/Websocket/Server.html", "name": "Phalcon\\Websocket\\Server", "doc": "&quot;&quot;"},
-                                                        {"type": "Method", "fromName": "Phalcon\\Websocket\\Server", "fromLink": "Phalcon/Websocket/Server.html", "link": "Phalcon/Websocket/Server.html#method___construct", "name": "Phalcon\\Websocket\\Server::__construct", "doc": "&quot;&quot;"},
+            {"type": "Class", "fromName": "Phalcon\\Websocket", "fromLink": "Phalcon/Websocket.html", "link": "Phalcon/Websocket/Server.html", "name": "Phalcon\\Websocket\\Server", "doc": "&quot;Websocket server supporting https&quot;"},
+                                                        {"type": "Method", "fromName": "Phalcon\\Websocket\\Server", "fromLink": "Phalcon/Websocket/Server.html", "link": "Phalcon/Websocket/Server.html#method___construct", "name": "Phalcon\\Websocket\\Server::__construct", "doc": "&quot;Initialize master socket&quot;"},
                     {"type": "Method", "fromName": "Phalcon\\Websocket\\Server", "fromLink": "Phalcon/Websocket/Server.html", "link": "Phalcon/Websocket/Server.html#method_process", "name": "Phalcon\\Websocket\\Server::process", "doc": "&quot;&quot;"},
                     {"type": "Method", "fromName": "Phalcon\\Websocket\\Server", "fromLink": "Phalcon/Websocket/Server.html", "link": "Phalcon/Websocket/Server.html#method_connected", "name": "Phalcon\\Websocket\\Server::connected", "doc": "&quot;&quot;"},
                     {"type": "Method", "fromName": "Phalcon\\Websocket\\Server", "fromLink": "Phalcon/Websocket/Server.html", "link": "Phalcon/Websocket/Server.html#method_closed", "name": "Phalcon\\Websocket\\Server::closed", "doc": "&quot;&quot;"},
@@ -181,9 +181,9 @@ window.projectVersion = 'master';
                     {"type": "Method", "fromName": "ScrudController", "fromLink": "ScrudController.html", "link": "ScrudController.html#method_updateAction", "name": "ScrudController::updateAction", "doc": "&quot;&quot;"},
                     {"type": "Method", "fromName": "ScrudController", "fromLink": "ScrudController.html", "link": "ScrudController.html#method_deleteAction", "name": "ScrudController::deleteAction", "doc": "&quot;&quot;"},
             
-            {"type": "Class",  "link": "ServerTask.html", "name": "ServerTask", "doc": "&quot;&quot;"},
+            {"type": "Class",  "link": "ServerTask.html", "name": "ServerTask", "doc": "&quot;Manage Websocket server&quot;"},
                                                         {"type": "Method", "fromName": "ServerTask", "fromLink": "ServerTask.html", "link": "ServerTask.html#method_mainAction", "name": "ServerTask::mainAction", "doc": "&quot;&quot;"},
-                    {"type": "Method", "fromName": "ServerTask", "fromLink": "ServerTask.html", "link": "ServerTask.html#method_startAction", "name": "ServerTask::startAction", "doc": "&quot;&quot;"},
+                    {"type": "Method", "fromName": "ServerTask", "fromLink": "ServerTask.html", "link": "ServerTask.html#method_startAction", "name": "ServerTask::startAction", "doc": "&quot;Start server&quot;"},
             
             {"type": "Class", "fromName": "Websocket", "fromLink": "Websocket.html", "link": "Websocket/Server.html", "name": "Websocket\\Server", "doc": "&quot;&quot;"},
                                                         {"type": "Method", "fromName": "Websocket\\Server", "fromLink": "Websocket/Server.html", "link": "Websocket/Server.html#method_process", "name": "Websocket\\Server::process", "doc": "&quot;&quot;"},

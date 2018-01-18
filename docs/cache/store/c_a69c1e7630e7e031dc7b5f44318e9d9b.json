@@ -1,14 +1,14 @@
 {
     "name": "Phalcon\\Websocket\\Server",
-    "line": 6,
-    "short_desc": "",
+    "line": 9,
+    "short_desc": "Websocket server supporting https",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "Phalcon\\Websocket",
     "file": "\/var\/www\/phalconTool\/src\/Websocket\/Server.php",
     "relative_file": null,
-    "hash": "20548190f02c5c41116c8c2c5e9adeec5648639c",
+    "hash": "29804775b5b44d15b0779857d4d68e9fd977c6c6",
     "parent": null,
     "modifiers": 16,
     "is_trait": false,
@@ -22,19 +22,24 @@
     "properties": {
         "userClass": {
             "name": "userClass",
-            "line": 8,
-            "short_desc": "",
+            "line": 15,
+            "short_desc": "User class name",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
                 "nodeType": "Scalar_String",
                 "value": "User",
                 "attributes": {
-                    "startLine": 8,
-                    "endLine": 8,
+                    "startLine": 15,
+                    "endLine": 15,
                     "kind": 1
                 }
             },
@@ -42,11 +47,16 @@
         },
         "maxBufferSize": {
             "name": "maxBufferSize",
-            "line": 9,
-            "short_desc": "",
+            "line": 20,
+            "short_desc": "Maximum buffer size",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "integer",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": null,
@@ -54,11 +64,16 @@
         },
         "master": {
             "name": "master",
-            "line": 10,
-            "short_desc": "",
+            "line": 25,
+            "short_desc": "Server socket",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "\\Phalcon\\Websocket\\socket_ressource",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": null,
@@ -66,19 +81,24 @@
         },
         "sockets": {
             "name": "sockets",
-            "line": 11,
-            "short_desc": "",
+            "line": 30,
+            "short_desc": "Sockets list indexed by id",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
                 "nodeType": "Expr_Array",
                 "items": [],
                 "attributes": {
-                    "startLine": 11,
-                    "endLine": 11,
+                    "startLine": 30,
+                    "endLine": 30,
                     "kind": 2
                 }
             },
@@ -86,19 +106,24 @@
         },
         "users": {
             "name": "users",
-            "line": 12,
-            "short_desc": "",
+            "line": 35,
+            "short_desc": "Users list indexed by id",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
                 "nodeType": "Expr_Array",
                 "items": [],
                 "attributes": {
-                    "startLine": 12,
-                    "endLine": 12,
+                    "startLine": 35,
+                    "endLine": 35,
                     "kind": 2
                 }
             },
@@ -106,19 +131,24 @@
         },
         "heldMessages": {
             "name": "heldMessages",
-            "line": 13,
-            "short_desc": "",
+            "line": 40,
+            "short_desc": "Message waiting gor their user handshake",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
                 "nodeType": "Expr_Array",
                 "items": [],
                 "attributes": {
-                    "startLine": 13,
-                    "endLine": 13,
+                    "startLine": 40,
+                    "endLine": 40,
                     "kind": 2
                 }
             },
@@ -126,19 +156,24 @@
         },
         "rooms": {
             "name": "rooms",
-            "line": 14,
-            "short_desc": "",
+            "line": 45,
+            "short_desc": "Rooms list indexed by name",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
                 "nodeType": "Expr_Array",
                 "items": [],
                 "attributes": {
-                    "startLine": 14,
-                    "endLine": 14,
+                    "startLine": 45,
+                    "endLine": 45,
                     "kind": 2
                 }
             },
@@ -146,11 +181,16 @@
         },
         "interactive": {
             "name": "interactive",
-            "line": 15,
-            "short_desc": "",
+            "line": 50,
+            "short_desc": "Determine if the server show log message",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
@@ -161,8 +201,8 @@
                         "true"
                     ],
                     "attributes": {
-                        "startLine": 15,
-                        "endLine": 15,
+                        "startLine": 50,
+                        "endLine": 50,
                         "namespacedName": {
                             "nodeType": "Name_FullyQualified",
                             "parts": [
@@ -171,26 +211,31 @@
                                 "true"
                             ],
                             "attributes": {
-                                "startLine": 15,
-                                "endLine": 15
+                                "startLine": 50,
+                                "endLine": 50
                             }
                         }
                     }
                 },
                 "attributes": {
-                    "startLine": 15,
-                    "endLine": 15
+                    "startLine": 50,
+                    "endLine": 50
                 }
             },
             "errors": []
         },
         "headerOriginRequired": {
             "name": "headerOriginRequired",
-            "line": 16,
-            "short_desc": "",
+            "line": 55,
+            "short_desc": "Determine if the origin must be check",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
@@ -201,8 +246,8 @@
                         "false"
                     ],
                     "attributes": {
-                        "startLine": 16,
-                        "endLine": 16,
+                        "startLine": 55,
+                        "endLine": 55,
                         "namespacedName": {
                             "nodeType": "Name_FullyQualified",
                             "parts": [
@@ -211,26 +256,31 @@
                                 "false"
                             ],
                             "attributes": {
-                                "startLine": 16,
-                                "endLine": 16
+                                "startLine": 55,
+                                "endLine": 55
                             }
                         }
                     }
                 },
                 "attributes": {
-                    "startLine": 16,
-                    "endLine": 16
+                    "startLine": 55,
+                    "endLine": 55
                 }
             },
             "errors": []
         },
         "headerSecWebSocketProtocolRequired": {
             "name": "headerSecWebSocketProtocolRequired",
-            "line": 17,
-            "short_desc": "",
+            "line": 60,
+            "short_desc": "Determine if the sec-websocket-protocol must be check",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
@@ -241,8 +291,8 @@
                         "false"
                     ],
                     "attributes": {
-                        "startLine": 17,
-                        "endLine": 17,
+                        "startLine": 60,
+                        "endLine": 60,
                         "namespacedName": {
                             "nodeType": "Name_FullyQualified",
                             "parts": [
@@ -251,26 +301,31 @@
                                 "false"
                             ],
                             "attributes": {
-                                "startLine": 17,
-                                "endLine": 17
+                                "startLine": 60,
+                                "endLine": 60
                             }
                         }
                     }
                 },
                 "attributes": {
-                    "startLine": 17,
-                    "endLine": 17
+                    "startLine": 60,
+                    "endLine": 60
                 }
             },
             "errors": []
         },
         "headerSecWebSocketExtensionsRequired": {
             "name": "headerSecWebSocketExtensionsRequired",
-            "line": 18,
-            "short_desc": "",
+            "line": 66,
+            "short_desc": "Determine if the sec-websocket-extensions must be check",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
@@ -281,8 +336,8 @@
                         "false"
                     ],
                     "attributes": {
-                        "startLine": 18,
-                        "endLine": 18,
+                        "startLine": 66,
+                        "endLine": 66,
                         "namespacedName": {
                             "nodeType": "Name_FullyQualified",
                             "parts": [
@@ -291,15 +346,15 @@
                                 "false"
                             ],
                             "attributes": {
-                                "startLine": 18,
-                                "endLine": 18
+                                "startLine": 66,
+                                "endLine": 66
                             }
                         }
                     }
                 },
                 "attributes": {
-                    "startLine": 18,
-                    "endLine": 18
+                    "startLine": 66,
+                    "endLine": 66
                 }
             },
             "errors": []
@@ -308,8 +363,8 @@
     "methods": {
         "__construct": {
             "name": "__construct",
-            "line": 20,
-            "short_desc": "",
+            "line": 75,
+            "short_desc": "Initialize master socket",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -321,34 +376,49 @@
             "parameters": {
                 "addr": {
                     "name": "addr",
-                    "line": 20,
-                    "short_desc": null,
+                    "line": 75,
+                    "short_desc": "Ip address to listen on",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
-                    "modifiers": null,
+                    "modifiers": "string",
                     "default": null,
                     "variadic": false,
                     "is_by_ref": false
                 },
                 "port": {
                     "name": "port",
-                    "line": 20,
-                    "short_desc": null,
+                    "line": 75,
+                    "short_desc": "listen port",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
-                    "modifiers": null,
+                    "modifiers": "string",
                     "default": null,
                     "variadic": false,
                     "is_by_ref": false
                 },
                 "ssl": {
                     "name": "ssl",
-                    "line": 20,
-                    "short_desc": null,
+                    "line": 75,
+                    "short_desc": "SSL certificate (['pem'=>'','crt'=>''])",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": "[]",
@@ -357,10 +427,15 @@
                 },
                 "bufferLength": {
                     "name": "bufferLength",
-                    "line": 20,
-                    "short_desc": null,
+                    "line": 75,
+                    "short_desc": "Length of the buffer",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "integer",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": "2048",
@@ -371,7 +446,7 @@
         },
         "process": {
             "name": "process",
-            "line": 45,
+            "line": 100,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -384,7 +459,7 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 45,
+                    "line": 100,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -396,7 +471,7 @@
                 },
                 "message": {
                     "name": "message",
-                    "line": 45,
+                    "line": 100,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -410,7 +485,7 @@
         },
         "connected": {
             "name": "connected",
-            "line": 46,
+            "line": 101,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -423,7 +498,7 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 46,
+                    "line": 101,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -437,7 +512,7 @@
         },
         "closed": {
             "name": "closed",
-            "line": 47,
+            "line": 102,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -450,7 +525,7 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 47,
+                    "line": 102,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -464,7 +539,7 @@
         },
         "connecting": {
             "name": "connecting",
-            "line": 49,
+            "line": 104,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -477,7 +552,7 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 49,
+                    "line": 104,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -491,7 +566,7 @@
         },
         "openRoom": {
             "name": "openRoom",
-            "line": 54,
+            "line": 109,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -504,7 +579,7 @@
             "parameters": {
                 "name": {
                     "name": "name",
-                    "line": 54,
+                    "line": 109,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -518,7 +593,7 @@
         },
         "closeRoom": {
             "name": "closeRoom",
-            "line": 58,
+            "line": 113,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -531,7 +606,7 @@
             "parameters": {
                 "name": {
                     "name": "name",
-                    "line": 58,
+                    "line": 113,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -545,7 +620,7 @@
         },
         "send": {
             "name": "send",
-            "line": 62,
+            "line": 117,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -558,7 +633,7 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 62,
+                    "line": 117,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -570,7 +645,7 @@
                 },
                 "message": {
                     "name": "message",
-                    "line": 62,
+                    "line": 117,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -584,7 +659,7 @@
         },
         "broadcast": {
             "name": "broadcast",
-            "line": 77,
+            "line": 132,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -597,7 +672,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 77,
+                    "line": 132,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -609,7 +684,7 @@
                 },
                 "room": {
                     "name": "room",
-                    "line": 77,
+                    "line": 132,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -621,7 +696,7 @@
                 },
                 "userFrom": {
                     "name": "userFrom",
-                    "line": 77,
+                    "line": 132,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -635,7 +710,7 @@
         },
         "tick": {
             "name": "tick",
-            "line": 95,
+            "line": 150,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -649,7 +724,7 @@
         },
         "_tick": {
             "name": "_tick",
-            "line": 100,
+            "line": 155,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -663,7 +738,7 @@
         },
         "run": {
             "name": "run",
-            "line": 123,
+            "line": 178,
             "short_desc": "Main processing loop",
             "long_desc": "",
             "hint": null,
@@ -677,7 +752,7 @@
         },
         "connect": {
             "name": "connect",
-            "line": 203,
+            "line": 258,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -690,7 +765,7 @@
             "parameters": {
                 "socket": {
                     "name": "socket",
-                    "line": 203,
+                    "line": 258,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -704,7 +779,7 @@
         },
         "disconnect": {
             "name": "disconnect",
-            "line": 211,
+            "line": 266,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -717,7 +792,7 @@
             "parameters": {
                 "socket": {
                     "name": "socket",
-                    "line": 211,
+                    "line": 266,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -729,7 +804,7 @@
                 },
                 "triggerClosed": {
                     "name": "triggerClosed",
-                    "line": 211,
+                    "line": 266,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -741,7 +816,7 @@
                 },
                 "sockErrNo": {
                     "name": "sockErrNo",
-                    "line": 211,
+                    "line": 266,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -755,7 +830,7 @@
         },
         "doHandshake": {
             "name": "doHandshake",
-            "line": 251,
+            "line": 306,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -768,7 +843,7 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 251,
+                    "line": 306,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -780,7 +855,7 @@
                 },
                 "buffer": {
                     "name": "buffer",
-                    "line": 251,
+                    "line": 306,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -794,7 +869,7 @@
         },
         "checkHost": {
             "name": "checkHost",
-            "line": 342,
+            "line": 397,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -807,7 +882,7 @@
             "parameters": {
                 "hostName": {
                     "name": "hostName",
-                    "line": 342,
+                    "line": 397,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -821,7 +896,7 @@
         },
         "checkOrigin": {
             "name": "checkOrigin",
-            "line": 348,
+            "line": 403,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -834,7 +909,7 @@
             "parameters": {
                 "origin": {
                     "name": "origin",
-                    "line": 348,
+                    "line": 403,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -848,7 +923,7 @@
         },
         "checkWebsocProtocol": {
             "name": "checkWebsocProtocol",
-            "line": 352,
+            "line": 407,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -861,7 +936,7 @@
             "parameters": {
                 "protocol": {
                     "name": "protocol",
-                    "line": 352,
+                    "line": 407,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -875,7 +950,7 @@
         },
         "checkWebsocExtensions": {
             "name": "checkWebsocExtensions",
-            "line": 356,
+            "line": 411,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -888,7 +963,7 @@
             "parameters": {
                 "extensions": {
                     "name": "extensions",
-                    "line": 356,
+                    "line": 411,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -902,7 +977,7 @@
         },
         "processProtocol": {
             "name": "processProtocol",
-            "line": 360,
+            "line": 415,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -915,7 +990,7 @@
             "parameters": {
                 "protocol": {
                     "name": "protocol",
-                    "line": 360,
+                    "line": 415,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -929,7 +1004,7 @@
         },
         "processExtensions": {
             "name": "processExtensions",
-            "line": 367,
+            "line": 422,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -942,7 +1017,7 @@
             "parameters": {
                 "extensions": {
                     "name": "extensions",
-                    "line": 367,
+                    "line": 422,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -956,7 +1031,7 @@
         },
         "getUserBySocket": {
             "name": "getUserBySocket",
-            "line": 371,
+            "line": 426,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -969,7 +1044,7 @@
             "parameters": {
                 "socket": {
                     "name": "socket",
-                    "line": 371,
+                    "line": 426,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -983,7 +1058,7 @@
         },
         "stdout": {
             "name": "stdout",
-            "line": 380,
+            "line": 435,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -996,7 +1071,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 380,
+                    "line": 435,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1010,7 +1085,7 @@
         },
         "stderr": {
             "name": "stderr",
-            "line": 386,
+            "line": 441,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1023,7 +1098,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 386,
+                    "line": 441,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1037,7 +1112,7 @@
         },
         "frame": {
             "name": "frame",
-            "line": 392,
+            "line": 447,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1050,7 +1125,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 392,
+                    "line": 447,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1062,7 +1137,7 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 392,
+                    "line": 447,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1074,7 +1149,7 @@
                 },
                 "messageType": {
                     "name": "messageType",
-                    "line": 392,
+                    "line": 447,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1086,7 +1161,7 @@
                 },
                 "messageContinues": {
                     "name": "messageContinues",
-                    "line": 392,
+                    "line": 447,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1100,7 +1175,7 @@
         },
         "split_packet": {
             "name": "split_packet",
-            "line": 459,
+            "line": 514,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1113,7 +1188,7 @@
             "parameters": {
                 "length": {
                     "name": "length",
-                    "line": 459,
+                    "line": 514,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1125,7 +1200,7 @@
                 },
                 "packet": {
                     "name": "packet",
-                    "line": 459,
+                    "line": 514,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1137,7 +1212,7 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 459,
+                    "line": 514,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1151,7 +1226,7 @@
         },
         "calcoffset": {
             "name": "calcoffset",
-            "line": 497,
+            "line": 552,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1164,7 +1239,7 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 497,
+                    "line": 552,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1178,7 +1253,7 @@
         },
         "deframe": {
             "name": "deframe",
-            "line": 510,
+            "line": 565,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1191,7 +1266,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 510,
+                    "line": 565,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1203,7 +1278,7 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 510,
+                    "line": 565,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1217,7 +1292,7 @@
         },
         "extractHeaders": {
             "name": "extractHeaders",
-            "line": 578,
+            "line": 633,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1230,7 +1305,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 578,
+                    "line": 633,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1244,7 +1319,7 @@
         },
         "extractPayload": {
             "name": "extractPayload",
-            "line": 615,
+            "line": 670,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1257,7 +1332,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 615,
+                    "line": 670,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1269,7 +1344,7 @@
                 },
                 "headers": {
                     "name": "headers",
-                    "line": 615,
+                    "line": 670,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1283,7 +1358,7 @@
         },
         "applyMask": {
             "name": "applyMask",
-            "line": 629,
+            "line": 684,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1296,7 +1371,7 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 629,
+                    "line": 684,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1308,7 +1383,7 @@
                 },
                 "payload": {
                     "name": "payload",
-                    "line": 629,
+                    "line": 684,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1322,7 +1397,7 @@
         },
         "checkRSVBits": {
             "name": "checkRSVBits",
-            "line": 646,
+            "line": 701,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1335,7 +1410,7 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 646,
+                    "line": 701,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1347,7 +1422,7 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 646,
+                    "line": 701,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1361,7 +1436,7 @@
         },
         "strtohex": {
             "name": "strtohex",
-            "line": 654,
+            "line": 709,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1374,7 +1449,7 @@
             "parameters": {
                 "str": {
                     "name": "str",
-                    "line": 654,
+                    "line": 709,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1388,7 +1463,7 @@
         },
         "printHeaders": {
             "name": "printHeaders",
-            "line": 675,
+            "line": 730,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1401,7 +1476,7 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 675,
+                    "line": 730,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,

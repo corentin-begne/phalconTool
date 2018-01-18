@@ -1,6 +1,16 @@
 <?
 /**
  * Manage Rest API request / response
+ * @example
+ * ```php
+ * Rest::init();
+ * Rest::checkParams(['id']);
+ * try{
+ *     Rest::renderSuccess();
+ * } catch(Exception $e){
+ *     Rest::renderError($e->getMessage());
+ * }
+ * ```
  */
 class Rest
 {

@@ -1,14 +1,30 @@
 {
     "name": "Rest",
-    "line": 5,
+    "line": 15,
     "short_desc": "Manage Rest API request \/ response",
     "long_desc": "",
     "hint": null,
-    "tags": [],
+    "tags": {
+        "example": [
+            [
+                "```php\nRest::init();\nRest::checkParams(['id']);\ntry{\n",
+                "",
+                "",
+                "",
+                "Rest::renderSuccess();\n}",
+                "catch(Exception",
+                "$e){\n",
+                "",
+                "",
+                "",
+                "Rest::renderError($e->getMessage());\n}\n```"
+            ]
+        ]
+    },
     "namespace": "",
     "file": "\/var\/www\/phalconTool\/src\/Tools\/Rest.php",
     "relative_file": null,
-    "hash": "2fc03d6dee5e9e55d4514065d5102ecb73d7453d",
+    "hash": "9d37df866b8f84bece04ab6fc4604beaa6bf72ba",
     "parent": null,
     "modifiers": 0,
     "is_trait": false,
@@ -20,7 +36,7 @@
     "properties": {
         "params": {
             "name": "params",
-            "line": 11,
+            "line": 21,
             "short_desc": "Request post data",
             "long_desc": "",
             "hint": [
@@ -36,8 +52,8 @@
                 "nodeType": "Expr_Array",
                 "items": [],
                 "attributes": {
-                    "startLine": 11,
-                    "endLine": 11,
+                    "startLine": 21,
+                    "endLine": 21,
                     "kind": 2
                 }
             },
@@ -45,7 +61,7 @@
         },
         "currentPage": {
             "name": "currentPage",
-            "line": 16,
+            "line": 26,
             "short_desc": "Current page number",
             "long_desc": "",
             "hint": [
@@ -61,8 +77,8 @@
                 "nodeType": "Scalar_LNumber",
                 "value": 1,
                 "attributes": {
-                    "startLine": 16,
-                    "endLine": 16,
+                    "startLine": 26,
+                    "endLine": 26,
                     "kind": 10
                 }
             },
@@ -70,7 +86,7 @@
         },
         "limit": {
             "name": "limit",
-            "line": 21,
+            "line": 31,
             "short_desc": "Limit of result by page",
             "long_desc": "",
             "hint": [
@@ -86,8 +102,8 @@
                 "nodeType": "Scalar_LNumber",
                 "value": 20,
                 "attributes": {
-                    "startLine": 21,
-                    "endLine": 21,
+                    "startLine": 31,
+                    "endLine": 31,
                     "kind": 10
                 }
             },
@@ -95,7 +111,7 @@
         },
         "count": {
             "name": "count",
-            "line": 26,
+            "line": 36,
             "short_desc": "Current count relative to the page and limit ($limit*$currentpage)",
             "long_desc": "",
             "hint": [
@@ -111,8 +127,8 @@
                 "nodeType": "Scalar_LNumber",
                 "value": 0,
                 "attributes": {
-                    "startLine": 26,
-                    "endLine": 26,
+                    "startLine": 36,
+                    "endLine": 36,
                     "kind": 10
                 }
             },
@@ -120,7 +136,7 @@
         },
         "nbPage": {
             "name": "nbPage",
-            "line": 31,
+            "line": 41,
             "short_desc": "The total of the request page",
             "long_desc": "",
             "hint": [
@@ -136,8 +152,8 @@
                 "nodeType": "Scalar_LNumber",
                 "value": 1,
                 "attributes": {
-                    "startLine": 31,
-                    "endLine": 31,
+                    "startLine": 41,
+                    "endLine": 41,
                     "kind": 10
                 }
             },
@@ -147,7 +163,7 @@
     "methods": {
         "init": {
             "name": "init",
-            "line": 37,
+            "line": 47,
             "short_desc": "Check the conformity of the request and get the post data",
             "long_desc": "",
             "hint": null,
@@ -160,7 +176,7 @@
             "parameters": {
                 "restrict": {
                     "name": "restrict",
-                    "line": 37,
+                    "line": 47,
                     "short_desc": "Allow to disable the server name check restriction",
                     "long_desc": null,
                     "hint": [
@@ -179,7 +195,7 @@
         },
         "checkRequest": {
             "name": "checkRequest",
-            "line": 61,
+            "line": 71,
             "short_desc": "Check if the request is a XMLHttpRequest",
             "long_desc": "",
             "hint": null,
@@ -193,7 +209,7 @@
         },
         "checkReferer": {
             "name": "checkReferer",
-            "line": 70,
+            "line": 80,
             "short_desc": "Check if the referer corresponding to the same server",
             "long_desc": "",
             "hint": null,
@@ -207,7 +223,7 @@
         },
         "renderError": {
             "name": "renderError",
-            "line": 83,
+            "line": 93,
             "short_desc": "Rest response on error",
             "long_desc": "",
             "hint": null,
@@ -220,7 +236,7 @@
             "parameters": {
                 "error": {
                     "name": "error",
-                    "line": 83,
+                    "line": 93,
                     "short_desc": "Data corresponding to the error, can be any type",
                     "long_desc": null,
                     "hint": [
@@ -239,7 +255,7 @@
         },
         "renderSuccess": {
             "name": "renderSuccess",
-            "line": 91,
+            "line": 101,
             "short_desc": "Rest response on success",
             "long_desc": "",
             "hint": null,
@@ -252,7 +268,7 @@
             "parameters": {
                 "data": {
                     "name": "data",
-                    "line": 91,
+                    "line": 101,
                     "short_desc": "Data render on success, can be any type",
                     "long_desc": null,
                     "hint": [
@@ -271,7 +287,7 @@
         },
         "renderJson": {
             "name": "renderJson",
-            "line": 99,
+            "line": 109,
             "short_desc": "Rest response",
             "long_desc": "",
             "hint": null,
@@ -284,7 +300,7 @@
             "parameters": {
                 "params": {
                     "name": "params",
-                    "line": 99,
+                    "line": 109,
                     "short_desc": "Data to render",
                     "long_desc": null,
                     "hint": [
@@ -303,7 +319,7 @@
         },
         "render": {
             "name": "render",
-            "line": 109,
+            "line": 119,
             "short_desc": "Normalize data to render",
             "long_desc": "",
             "hint": null,
@@ -316,7 +332,7 @@
             "parameters": {
                 "result": {
                     "name": "result",
-                    "line": 109,
+                    "line": 119,
                     "short_desc": "Specify is the response is on success or error",
                     "long_desc": null,
                     "hint": [
@@ -332,8 +348,8 @@
                             "boolean"
                         ],
                         "attributes": {
-                            "startLine": 109,
-                            "endLine": 109
+                            "startLine": 119,
+                            "endLine": 119
                         }
                     },
                     "default": null,
@@ -342,7 +358,7 @@
                 },
                 "data": {
                     "name": "data",
-                    "line": 109,
+                    "line": 119,
                     "short_desc": "Data to render",
                     "long_desc": null,
                     "hint": [
@@ -361,7 +377,7 @@
         },
         "checkParams": {
             "name": "checkParams",
-            "line": 119,
+            "line": 129,
             "short_desc": "Check the presence of required params",
             "long_desc": "",
             "hint": null,
@@ -374,7 +390,7 @@
             "parameters": {
                 "list": {
                     "name": "list",
-                    "line": 119,
+                    "line": 129,
                     "short_desc": "List of params name to check",
                     "long_desc": null,
                     "hint": [
@@ -391,7 +407,7 @@
                 },
                 "allowEmpty": {
                     "name": "allowEmpty",
-                    "line": 119,
+                    "line": 129,
                     "short_desc": "Set to true if post data can be empty",
                     "long_desc": null,
                     "hint": [
