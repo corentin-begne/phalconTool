@@ -1,7 +1,7 @@
 <?
 /**
- * Manage Rest API request / response
- * @example
+ * Manage Rest API request / response<br>
+ * <u><b>Example :</b></u>
  * ```php
  * Rest::init();
  * Rest::checkParams(['id']);
@@ -106,7 +106,7 @@ class Rest
      * Rest response
      * @param  array $params Data to render
      */
-    public static function renderJson(array $params=[]){
+    public static function renderJson($params=[]){
         header('Content-Type: application/json');
         die(json_encode($params));
     }
@@ -116,7 +116,7 @@ class Rest
      * @param  boolean $result Specify is the response is on success or error
      * @param  array $data   Data to render
      */
-    public static function render(boolean $result, array $data=[]){
+    public static function render($result, $data=[]){
         $data['success'] = $result;
         self::renderJson($data);
     }
@@ -126,11 +126,11 @@ class Rest
      * @param  type  $list  List of params name to check
      * @param  boolean $allowEmpty Set to true if post data can be empty
      */
-    public static function checkParams(array $list=[], $allowEmpty=false){
+    public static function checkParams($list=[], $allowEmpty=false){
         if(!$allowEmpty && count(self::$params) === 0){
             self::renderError("No post data found !");
         }
-        $missing = array();
+        $missing = [];
         foreach($list as $param){
             if(!array_key_exists($param, self::$params))
             {

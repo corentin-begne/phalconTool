@@ -20,7 +20,7 @@ abstract class Server {
     protected $maxBufferSize;  
     /**
      * Server socket
-     * @var socket_ressource
+     * @var \socket_ressource
      */
     protected $master;
     /**
@@ -69,10 +69,16 @@ abstract class Server {
      * Initialize master socket
      * @param string  $addr         Ip address to listen on
      * @param string  $port         listen port
-     * @param array   $ssl          SSL certificate (['pem'=>'','crt'=>''])
+     * @param array   $ssl          SSL certificate in PEM format 
+     * ```
+     * [
+     *     'pem'=>'',
+     *     'crt'=>''
+     * ];
+     * ```
      * @param integer $bufferLength Length of the buffer
      */
-    function __construct(string $addr, string $port, $ssl=[], $bufferLength = 2048) {
+    function __construct($addr, $port, $ssl=[], $bufferLength = 2048) {
         $this->maxBufferSize = $bufferLength;     
         $this->protocol = 'HTTP';
         if(count($ssl) === 0){            
@@ -83,7 +89,6 @@ abstract class Server {
             socket_listen($this->master,20)                               or die('Failed: socket_listen()');
         } else {
             $this->isSsl = true;
-            //$this->protocol = 'HTTPS';
             $context = stream_context_create();
 
             // local_cert must be in PEM format
@@ -97,23 +102,65 @@ abstract class Server {
         $this->stdout("Server started\nListening on: $addr:$port\nMaster socket: ".$this->master);
     }
 
-    abstract protected function process(&$user,&$message); // Called immediately when the data is recieved. 
-    abstract protected function connected(&$user);        // Called after the handshake response is sent to the client.
-    abstract protected function closed(&$user);           // Called after the connection is closed.
+    /**
+     * Called immediately when the data is recieved. 
+     * @param  \Phalcon\Websocket\User &$user  User emitting the event
+     * @param  array &$message Data of the event 
+     * ```
+     * [
+     *     'type'=>'' // name of the event, 
+     *     'data'=>''// data of the event
+     * ];
+     * ```
+     */
+    abstract protected function process(&$user,&$message);
 
+    /**
+     * Called after the handshake response is sent to the client.
+     * @param  \Phalcon\Websocket\User &$user User connected
+     */
+    abstract protected function connected(&$user);
+
+    /**
+     * Called after the connection is closed.
+     * @param  \Phalcon\Websocket\User &$user User socket closed
+     */
+    abstract protected function closed(&$user); 
+
+    /**
+     * Handle a connecting user, after the instance of the User is created, but before the handshake has completed.
+     * @param  \Phalcon\Websocket\User &$user User connection
+     */
     protected function connecting(&$user) {
-    // Override to handle a connecting user, after the instance of the User is created, but before
-    // the handshake has completed.
     }
 
+    /**
+     * Called on room open
+     * @param  string $name Name of the opened room
+     */
     protected function openRoom($name){
         Cli::warning("Room $name opened", true);
     }
 
+    /**
+     * Called on room close
+     * @param  string $name Name of the opened room
+     */
     protected function closeRoom($name){
         Cli::warning("Room $name closed", true);
     }
 
+    /**
+     * Send event to an user
+     * @param  \Phalcon\Websocket\User &$user  User who will receive the event
+     * @param  array &$message Data of the event 
+     * ```
+     * [
+     *     'type'=>'' // name of the event, 
+     *     'data'=>''// data of the event
+     * ];
+     * ```
+     */
     protected function send(&$user, &$message) {
         if ($user->handshake) {
             $message = $this->frame($message,$user);
@@ -129,6 +176,18 @@ abstract class Server {
         }
     }
 
+    /**
+     * Send event to multiple user
+     * @param  array $message  Data of the event 
+     * ```
+     * [
+     *     'type'=>'' // name of the event, 
+     *     'data'=>''// data of the event
+     * ];
+     * ```
+     * @param  string $room     Name of the room, if null send to all user's room
+     * @param  string $userFrom Id of an user to exclude to send
+     */
     protected function broadcast($message, $room=null, $userFrom=null){
         if(!isset($room)){
             foreach($this->sockets as $id => &$socket){
@@ -147,13 +206,16 @@ abstract class Server {
         }
     }
 
+    /**
+     * Happen periodically. Will happen at least once per second, but possibly more often.
+     */
     protected function tick() {
-    // Override this for any process that should happen periodically.  Will happen at least once
-    // per second, but possibly more often.
     }
 
+    /**
+     * Core maintenance processes, such as retrying failed messages.
+     */
     protected function _tick() {
-        // Core maintenance processes, such as retrying failed messages.
         foreach ($this->heldMessages as $key => $hm) {
             $found = false;
             foreach ($this->users as $currentUser) {
@@ -238,7 +300,7 @@ abstract class Server {
                         $this->disconnect($socket);
                         $this->stderr('Client disconnected. TCP connection lost: ' . $socket);
                     } else {
-                        $user = $this->users[md5((string)$socket)];//$this->getUserBySocket($socket);
+                        $user = $this->users[md5((string)$socket)];
                         if (!$user->handshake) {
                             $tmp = str_replace("\r", '', $buffer);
                             if (strpos($tmp, "\n\n") === false ) {
@@ -255,6 +317,10 @@ abstract class Server {
         }
     }
 
+    /**
+     * Connect an user.
+     * @param  \socket_ressource &$socket User socket
+     */
     protected function connect(&$socket) {
         $id = md5((string)$socket);
         $user = new User($id, $socket);
@@ -263,9 +329,15 @@ abstract class Server {
         $this->connecting($user);
     }
 
+    /**
+     * Disconnect an User.
+     * @param  \socket_ressource  &$socket  Socket to disconnect
+     * @param  boolean $triggerClosed Set to true if socket need to be closed
+     * @param  integer  $sockErrNo  Error code, present only on error
+     */
     protected function disconnect(&$socket, $triggerClosed = true, $sockErrNo = null) {
         $id = md5((string)$socket);
-        $disconnectedUser = $this->users[$id];//$this->getUserBySocket($socket);
+        $disconnectedUser = $this->users[$id];
 
         if ($disconnectedUser !== null) {
             unset($this->users[$id]);
@@ -296,6 +368,7 @@ abstract class Server {
                 }
             }
 
+            // close room if empty
             if(count($this->rooms[$disconnectedUser->room]) === 0){
                 unset($this->rooms[$disconnectedUser->room]);
                 $this->closeRoom($disconnectedUser->room);
@@ -303,6 +376,11 @@ abstract class Server {
         }
     }
 
+    /**
+     * Do the handshake client/server
+     * @param  \Phalcon\Websocket\User &$user  User processing the handshake
+     * @param  string &$buffer Buffer containing data
+     */
     protected function doHandshake(&$user, &$buffer) {
         $magicGUID = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
         $headers = [];
@@ -394,35 +472,65 @@ abstract class Server {
         $this->connected($user);
     }
 
+    /**
+     * Override and return false if the host is not one that you would expect.
+     * @param  String $hostName Name of the host to check
+     * @return boolean           Result of the check
+     */
     protected function checkHost($hostName) {
-        return true; // Override and return false if the host is not one that you would expect.
-        // Ex: You only want to accept hosts from the my-domain.com domain,
-        // but you receive a host from malicious-site.com instead.
+        return true;
     }
 
+    /**
+     * Override and return false if the origin is not one that you would expect.
+     * @param  string $origin Origin to check
+     * @return boolean         Result of the check
+     */
     protected function checkOrigin($origin) {
-        return true; // Override and return false if the origin is not one that you would expect.
+        return true;
     }
 
+    /**
+     * Override and return false if a protocol is not found that you would expect.
+     * @param  string $protocol Name of the protocol
+     * @return boolean           Result of the check
+     */
     protected function checkWebsocProtocol($protocol) {
-        return true; // Override and return false if a protocol is not found that you would expect.
+        return true; 
     }
 
+    /**
+     * Override and return false if an extension is not found that you would expect.
+     * @param  string $extensions Extension list
+     * @return boolean             Result of the check
+     */
     protected function checkWebsocExtensions($extensions) {
-        return true; // Override and return false if an extension is not found that you would expect.
+        return true;
     }
 
+    /**
+     * Process a protocol
+     * @param  string $protocol Protocol to process
+     * @return string           Either "Sec-WebSocket-Protocol: SelectedProtocolFromClientList\r\n" or return an empty string. The carriage return/newline combo must appear at the end of a non-empty string, and must not appear at the beginning of the string nor in an otherwise empty string, or it will be considered part of the response body, which will trigger an error in the client as it will not be formatted correctly.
+     */
     protected function processProtocol($protocol) {
-        return ""; // return either "Sec-WebSocket-Protocol: SelectedProtocolFromClientList\r\n" or return an empty string.  
-        // The carriage return/newline combo must appear at the end of a non-empty string, and must not
-        // appear at the beginning of the string nor in an otherwise empty string, or it will be considered part of 
-        // the response body, which will trigger an error in the client as it will not be formatted correctly.
+        return "";
     }
 
+    /**
+     * Process extensions
+     * @param  string $extensions Extensions list
+     * @return string             Either "Sec-WebSocket-Extensions: SelectedExtensions\r\n" or return an empty string.
+     */
     protected function processExtensions($extensions) {
-        return ""; // return either "Sec-WebSocket-Extensions: SelectedExtensions\r\n" or return an empty string.
+        return "";
     }
 
+    /**
+     * Get an user by his socket
+     * @param  \socket_ressource $socket User socket to get
+     * @return \Phalcon\Websocket\User         Valid user or null if socket not exists
+     */
     protected function getUserBySocket($socket) {
         foreach ($this->users as $user) {
             if ($user->socket == $socket) {
@@ -432,18 +540,34 @@ abstract class Server {
         return null;
     }
 
+    /**
+     * Log a success message
+     * @param  string $message Message to display
+     */
     public function stdout($message) {
         if ($this->interactive) {
             Cli::success($message, true);
         }
     }
 
+    /**
+     * Log a warning message
+     * @param  string $message Message to display
+     */
     public function stderr($message) {
         if ($this->interactive) {
             Cli::warning($message, true);
         }
     }
 
+    /**
+     * Create a frame from user message
+     * @param  string  &$message         Message data
+     * @param  \Phalcon\Websocket\User  &$user   User frame
+     * @param  string  $messageType      Type of message
+     * @param  boolean $messageContinues Determine if the message is finished or not
+     * @return string                    Formated message
+     */
     protected function frame(&$message, &$user, $messageType='text', $messageContinues=false) {
         switch ($messageType) {
             case 'continuous':
@@ -510,7 +634,12 @@ abstract class Server {
         return chr($b1) . chr($b2) . $lengthField . $message;
     }
 
-    //check packet if he have more than one frame and process each frame individually
+    /**
+     * Check packet if he have more than one frame and process each frame individually
+     * @param  integer $length $length of the packet
+     * @param  string $packet Packet content
+     * @param  \Phalcon\Websocket\User &$user  User packet
+     */
     protected function split_packet($length,$packet, &$user) {
         //add PartialPacket and calculate the new $length
         if ($user->handlingPartialPacket) {
@@ -549,6 +678,11 @@ abstract class Server {
         }
     }
 
+    /**
+     * Calculate header offset
+     * @param  array &$headers Socket headers
+     * @return integer           Offset calculated
+     */
     protected function calcoffset(&$headers) {
         $offset = 2;
         if ($headers['hasmask']) {
@@ -562,6 +696,12 @@ abstract class Server {
         return $offset;
     }
 
+    /**
+     * [deframe description]
+     * @param  [type] &$message [description]
+     * @param  [type] &$user    [description]
+     * @return [type]           [description]
+     */
     protected function deframe(&$message, &$user) {
         //echo $this->strtohex($message);
         $headers = $this->extractHeaders($message);

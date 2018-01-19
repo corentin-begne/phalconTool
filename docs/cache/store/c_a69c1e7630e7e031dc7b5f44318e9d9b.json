@@ -8,7 +8,7 @@
     "namespace": "Phalcon\\Websocket",
     "file": "\/var\/www\/phalconTool\/src\/Websocket\/Server.php",
     "relative_file": null,
-    "hash": "29804775b5b44d15b0779857d4d68e9fd977c6c6",
+    "hash": "197998be25a98fa9b272556c1377b89cfea07326",
     "parent": null,
     "modifiers": 16,
     "is_trait": false,
@@ -69,7 +69,7 @@
             "long_desc": "",
             "hint": [
                 [
-                    "\\Phalcon\\Websocket\\socket_ressource",
+                    "\\socket_ressource",
                     false
                 ]
             ],
@@ -363,7 +363,7 @@
     "methods": {
         "__construct": {
             "name": "__construct",
-            "line": 75,
+            "line": 81,
             "short_desc": "Initialize master socket",
             "long_desc": "",
             "hint": null,
@@ -376,7 +376,7 @@
             "parameters": {
                 "addr": {
                     "name": "addr",
-                    "line": 75,
+                    "line": 81,
                     "short_desc": "Ip address to listen on",
                     "long_desc": null,
                     "hint": [
@@ -386,14 +386,14 @@
                         ]
                     ],
                     "tags": [],
-                    "modifiers": "string",
+                    "modifiers": null,
                     "default": null,
                     "variadic": false,
                     "is_by_ref": false
                 },
                 "port": {
                     "name": "port",
-                    "line": 75,
+                    "line": 81,
                     "short_desc": "listen port",
                     "long_desc": null,
                     "hint": [
@@ -403,15 +403,15 @@
                         ]
                     ],
                     "tags": [],
-                    "modifiers": "string",
+                    "modifiers": null,
                     "default": null,
                     "variadic": false,
                     "is_by_ref": false
                 },
                 "ssl": {
                     "name": "ssl",
-                    "line": 75,
-                    "short_desc": "SSL certificate (['pem'=>'','crt'=>''])",
+                    "line": 81,
+                    "short_desc": "SSL certificate in PEM format\n```\n[\n    'pem'=>'',\n    'crt'=>''\n];\n```",
                     "long_desc": null,
                     "hint": [
                         [
@@ -427,7 +427,7 @@
                 },
                 "bufferLength": {
                     "name": "bufferLength",
-                    "line": 75,
+                    "line": 81,
                     "short_desc": "Length of the buffer",
                     "long_desc": null,
                     "hint": [
@@ -446,8 +446,8 @@
         },
         "process": {
             "name": "process",
-            "line": 100,
-            "short_desc": "",
+            "line": 116,
+            "short_desc": "Called immediately when the data is recieved.",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -459,10 +459,15 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 100,
-                    "short_desc": null,
+                    "line": 116,
+                    "short_desc": "&$user  User emitting the event",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -471,10 +476,15 @@
                 },
                 "message": {
                     "name": "message",
-                    "line": 100,
-                    "short_desc": null,
+                    "line": 116,
+                    "short_desc": "&$message Data of the event\n```\n[\n    'type'=>'' \/\/ name of the event,\n    'data'=>''\/\/ data of the event\n];\n```",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -485,8 +495,8 @@
         },
         "connected": {
             "name": "connected",
-            "line": 101,
-            "short_desc": "",
+            "line": 122,
+            "short_desc": "Called after the handshake response is sent to the client.",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -498,10 +508,15 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 101,
-                    "short_desc": null,
+                    "line": 122,
+                    "short_desc": "&$user User connected",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -512,8 +527,8 @@
         },
         "closed": {
             "name": "closed",
-            "line": 102,
-            "short_desc": "",
+            "line": 128,
+            "short_desc": "Called after the connection is closed.",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -525,10 +540,15 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 102,
-                    "short_desc": null,
+                    "line": 128,
+                    "short_desc": "&$user User socket closed",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -539,8 +559,8 @@
         },
         "connecting": {
             "name": "connecting",
-            "line": 104,
-            "short_desc": "",
+            "line": 134,
+            "short_desc": "Handle a connecting user, after the instance of the User is created, but before the handshake has completed.",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -552,10 +572,15 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 104,
-                    "short_desc": null,
+                    "line": 134,
+                    "short_desc": "&$user User connection",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -566,8 +591,8 @@
         },
         "openRoom": {
             "name": "openRoom",
-            "line": 109,
-            "short_desc": "",
+            "line": 141,
+            "short_desc": "Called on room open",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -579,10 +604,15 @@
             "parameters": {
                 "name": {
                     "name": "name",
-                    "line": 109,
-                    "short_desc": null,
+                    "line": 141,
+                    "short_desc": "Name of the opened room",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -593,8 +623,8 @@
         },
         "closeRoom": {
             "name": "closeRoom",
-            "line": 113,
-            "short_desc": "",
+            "line": 149,
+            "short_desc": "Called on room close",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -606,10 +636,15 @@
             "parameters": {
                 "name": {
                     "name": "name",
-                    "line": 113,
-                    "short_desc": null,
+                    "line": 149,
+                    "short_desc": "Name of the opened room",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -620,8 +655,8 @@
         },
         "send": {
             "name": "send",
-            "line": 117,
-            "short_desc": "",
+            "line": 164,
+            "short_desc": "Send event to an user",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -633,10 +668,15 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 117,
-                    "short_desc": null,
+                    "line": 164,
+                    "short_desc": "&$user  User who will receive the event",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -645,10 +685,15 @@
                 },
                 "message": {
                     "name": "message",
-                    "line": 117,
-                    "short_desc": null,
+                    "line": 164,
+                    "short_desc": "&$message Data of the event\n```\n[\n    'type'=>'' \/\/ name of the event,\n    'data'=>''\/\/ data of the event\n];\n```",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -659,8 +704,8 @@
         },
         "broadcast": {
             "name": "broadcast",
-            "line": 132,
-            "short_desc": "",
+            "line": 191,
+            "short_desc": "Send event to multiple user",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -672,10 +717,15 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 132,
-                    "short_desc": null,
+                    "line": 191,
+                    "short_desc": "Data of the event\n```\n[\n    'type'=>'' \/\/ name of the event,\n    'data'=>''\/\/ data of the event\n];\n```",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -684,10 +734,15 @@
                 },
                 "room": {
                     "name": "room",
-                    "line": 132,
-                    "short_desc": null,
+                    "line": 191,
+                    "short_desc": "Name of the room, if null send to all user's room",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": "null",
@@ -696,10 +751,15 @@
                 },
                 "userFrom": {
                     "name": "userFrom",
-                    "line": 132,
-                    "short_desc": null,
+                    "line": 191,
+                    "short_desc": "Id of an user to exclude to send",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": "null",
@@ -710,8 +770,8 @@
         },
         "tick": {
             "name": "tick",
-            "line": 150,
-            "short_desc": "",
+            "line": 212,
+            "short_desc": "Happen periodically. Will happen at least once per second, but possibly more often.",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -724,8 +784,8 @@
         },
         "_tick": {
             "name": "_tick",
-            "line": 155,
-            "short_desc": "",
+            "line": 218,
+            "short_desc": "Core maintenance processes, such as retrying failed messages.",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -738,7 +798,7 @@
         },
         "run": {
             "name": "run",
-            "line": 178,
+            "line": 240,
             "short_desc": "Main processing loop",
             "long_desc": "",
             "hint": null,
@@ -752,8 +812,8 @@
         },
         "connect": {
             "name": "connect",
-            "line": 258,
-            "short_desc": "",
+            "line": 324,
+            "short_desc": "Connect an user.",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -765,10 +825,15 @@
             "parameters": {
                 "socket": {
                     "name": "socket",
-                    "line": 258,
-                    "short_desc": null,
+                    "line": 324,
+                    "short_desc": "&$socket User socket",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\socket_ressource",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -779,8 +844,8 @@
         },
         "disconnect": {
             "name": "disconnect",
-            "line": 266,
-            "short_desc": "",
+            "line": 338,
+            "short_desc": "Disconnect an User.",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -792,10 +857,15 @@
             "parameters": {
                 "socket": {
                     "name": "socket",
-                    "line": 266,
-                    "short_desc": null,
+                    "line": 338,
+                    "short_desc": "&$socket  Socket to disconnect",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\socket_ressource",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -804,10 +874,15 @@
                 },
                 "triggerClosed": {
                     "name": "triggerClosed",
-                    "line": 266,
-                    "short_desc": null,
+                    "line": 338,
+                    "short_desc": "Set to true if socket need to be closed",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "boolean",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": "true",
@@ -816,10 +891,15 @@
                 },
                 "sockErrNo": {
                     "name": "sockErrNo",
-                    "line": 266,
-                    "short_desc": null,
+                    "line": 338,
+                    "short_desc": "Error code, present only on error",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "integer",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": "null",
@@ -830,8 +910,8 @@
         },
         "doHandshake": {
             "name": "doHandshake",
-            "line": 306,
-            "short_desc": "",
+            "line": 384,
+            "short_desc": "Do the handshake client\/server",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -843,10 +923,15 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 306,
-                    "short_desc": null,
+                    "line": 384,
+                    "short_desc": "&$user  User processing the handshake",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -855,10 +940,15 @@
                 },
                 "buffer": {
                     "name": "buffer",
-                    "line": 306,
-                    "short_desc": null,
+                    "line": 384,
+                    "short_desc": "&$buffer Buffer containing data",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -869,11 +959,16 @@
         },
         "checkHost": {
             "name": "checkHost",
-            "line": 397,
-            "short_desc": "",
+            "line": 480,
+            "short_desc": "Override and return false if the host is not one that you would expect.",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "Result of the check",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -882,10 +977,15 @@
             "parameters": {
                 "hostName": {
                     "name": "hostName",
-                    "line": 397,
-                    "short_desc": null,
+                    "line": 480,
+                    "short_desc": "Name of the host to check",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "String",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -896,11 +996,16 @@
         },
         "checkOrigin": {
             "name": "checkOrigin",
-            "line": 403,
-            "short_desc": "",
+            "line": 489,
+            "short_desc": "Override and return false if the origin is not one that you would expect.",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "Result of the check",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -909,10 +1014,15 @@
             "parameters": {
                 "origin": {
                     "name": "origin",
-                    "line": 403,
-                    "short_desc": null,
+                    "line": 489,
+                    "short_desc": "Origin to check",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -923,11 +1033,16 @@
         },
         "checkWebsocProtocol": {
             "name": "checkWebsocProtocol",
-            "line": 407,
-            "short_desc": "",
+            "line": 498,
+            "short_desc": "Override and return false if a protocol is not found that you would expect.",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "Result of the check",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -936,10 +1051,15 @@
             "parameters": {
                 "protocol": {
                     "name": "protocol",
-                    "line": 407,
-                    "short_desc": null,
+                    "line": 498,
+                    "short_desc": "Name of the protocol",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -950,11 +1070,16 @@
         },
         "checkWebsocExtensions": {
             "name": "checkWebsocExtensions",
-            "line": 411,
-            "short_desc": "",
+            "line": 507,
+            "short_desc": "Override and return false if an extension is not found that you would expect.",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "Result of the check",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -963,10 +1088,15 @@
             "parameters": {
                 "extensions": {
                     "name": "extensions",
-                    "line": 411,
-                    "short_desc": null,
+                    "line": 507,
+                    "short_desc": "Extension list",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -977,11 +1107,16 @@
         },
         "processProtocol": {
             "name": "processProtocol",
-            "line": 415,
-            "short_desc": "",
+            "line": 516,
+            "short_desc": "Process a protocol",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Either \"Sec-WebSocket-Protocol: SelectedProtocolFromClientList\\r\\n\" or return an empty string. The carriage return\/newline combo must appear at the end of a non-empty string, and must not appear at the beginning of the string nor in an otherwise empty string, or it will be considered part of the response body, which will trigger an error in the client as it will not be formatted correctly.",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -990,10 +1125,15 @@
             "parameters": {
                 "protocol": {
                     "name": "protocol",
-                    "line": 415,
-                    "short_desc": null,
+                    "line": 516,
+                    "short_desc": "Protocol to process",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1004,11 +1144,16 @@
         },
         "processExtensions": {
             "name": "processExtensions",
-            "line": 422,
-            "short_desc": "",
+            "line": 525,
+            "short_desc": "Process extensions",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Either \"Sec-WebSocket-Extensions: SelectedExtensions\\r\\n\" or return an empty string.",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -1017,10 +1162,15 @@
             "parameters": {
                 "extensions": {
                     "name": "extensions",
-                    "line": 422,
-                    "short_desc": null,
+                    "line": 525,
+                    "short_desc": "Extensions list",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1031,7 +1181,7 @@
         },
         "getUserBySocket": {
             "name": "getUserBySocket",
-            "line": 426,
+            "line": 529,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1044,7 +1194,7 @@
             "parameters": {
                 "socket": {
                     "name": "socket",
-                    "line": 426,
+                    "line": 529,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1058,7 +1208,7 @@
         },
         "stdout": {
             "name": "stdout",
-            "line": 435,
+            "line": 538,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1071,7 +1221,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 435,
+                    "line": 538,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1085,7 +1235,7 @@
         },
         "stderr": {
             "name": "stderr",
-            "line": 441,
+            "line": 544,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1098,7 +1248,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 441,
+                    "line": 544,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1112,7 +1262,7 @@
         },
         "frame": {
             "name": "frame",
-            "line": 447,
+            "line": 550,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1125,7 +1275,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 447,
+                    "line": 550,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1137,7 +1287,7 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 447,
+                    "line": 550,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1149,7 +1299,7 @@
                 },
                 "messageType": {
                     "name": "messageType",
-                    "line": 447,
+                    "line": 550,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1161,7 +1311,7 @@
                 },
                 "messageContinues": {
                     "name": "messageContinues",
-                    "line": 447,
+                    "line": 550,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1175,7 +1325,7 @@
         },
         "split_packet": {
             "name": "split_packet",
-            "line": 514,
+            "line": 617,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1188,7 +1338,7 @@
             "parameters": {
                 "length": {
                     "name": "length",
-                    "line": 514,
+                    "line": 617,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1200,7 +1350,7 @@
                 },
                 "packet": {
                     "name": "packet",
-                    "line": 514,
+                    "line": 617,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1212,7 +1362,7 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 514,
+                    "line": 617,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1226,7 +1376,7 @@
         },
         "calcoffset": {
             "name": "calcoffset",
-            "line": 552,
+            "line": 655,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1239,7 +1389,7 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 552,
+                    "line": 655,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1253,7 +1403,7 @@
         },
         "deframe": {
             "name": "deframe",
-            "line": 565,
+            "line": 668,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1266,7 +1416,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 565,
+                    "line": 668,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1278,7 +1428,7 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 565,
+                    "line": 668,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1292,7 +1442,7 @@
         },
         "extractHeaders": {
             "name": "extractHeaders",
-            "line": 633,
+            "line": 736,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1305,7 +1455,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 633,
+                    "line": 736,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1319,7 +1469,7 @@
         },
         "extractPayload": {
             "name": "extractPayload",
-            "line": 670,
+            "line": 773,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1332,7 +1482,7 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 670,
+                    "line": 773,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1344,7 +1494,7 @@
                 },
                 "headers": {
                     "name": "headers",
-                    "line": 670,
+                    "line": 773,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1358,7 +1508,7 @@
         },
         "applyMask": {
             "name": "applyMask",
-            "line": 684,
+            "line": 787,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1371,7 +1521,7 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 684,
+                    "line": 787,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1383,7 +1533,7 @@
                 },
                 "payload": {
                     "name": "payload",
-                    "line": 684,
+                    "line": 787,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1397,7 +1547,7 @@
         },
         "checkRSVBits": {
             "name": "checkRSVBits",
-            "line": 701,
+            "line": 804,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1410,7 +1560,7 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 701,
+                    "line": 804,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1422,7 +1572,7 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 701,
+                    "line": 804,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1436,7 +1586,7 @@
         },
         "strtohex": {
             "name": "strtohex",
-            "line": 709,
+            "line": 812,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1449,7 +1599,7 @@
             "parameters": {
                 "str": {
                     "name": "str",
-                    "line": 709,
+                    "line": 812,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -1463,7 +1613,7 @@
         },
         "printHeaders": {
             "name": "printHeaders",
-            "line": 730,
+            "line": 833,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -1476,7 +1626,7 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 730,
+                    "line": 833,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,

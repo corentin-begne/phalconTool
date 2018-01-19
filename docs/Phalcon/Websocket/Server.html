@@ -111,7 +111,7 @@
             </tr>
                     <tr>
                 <td class="type" id="property_master">
-                                        protected                                        <abbr title="Phalcon\Websocket\socket_ressource">socket_ressource</abbr>
+                                        protected                                        socket_ressource
                 </td>
                 <td>$master</td>
                 <td class="last">Server socket</td>
@@ -202,10 +202,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_process">process</a>($user, $message)
+                    <a href="#method_process">process</a>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, array $message)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Called immediately when the data is recieved.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -213,10 +212,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_connected">connected</a>($user)
+                    <a href="#method_connected">connected</a>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Called after the handshake response is sent to the client.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -224,10 +222,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_closed">closed</a>($user)
+                    <a href="#method_closed">closed</a>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Called after the connection is closed.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -235,10 +232,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_connecting">connecting</a>($user)
+                    <a href="#method_connecting">connecting</a>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Handle a connecting user, after the instance of the User is created, but before the handshake has completed.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -246,10 +242,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_openRoom">openRoom</a>($name)
+                    <a href="#method_openRoom">openRoom</a>(string $name)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Called on room open</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -257,10 +252,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_closeRoom">closeRoom</a>($name)
+                    <a href="#method_closeRoom">closeRoom</a>(string $name)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Called on room close</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -268,10 +262,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_send">send</a>($user, $message)
+                    <a href="#method_send">send</a>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, array $message)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Send event to an user</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -279,10 +272,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_broadcast">broadcast</a>($message, $room = null, $userFrom = null)
+                    <a href="#method_broadcast">broadcast</a>(array $message, string $room = null, string $userFrom = null)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Send event to multiple user</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -292,8 +284,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_tick">tick</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Happen periodically. Will happen at least once per second, but possibly more often.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -303,8 +294,7 @@
                 <div class="col-md-8 type">
                     <a href="#method__tick">_tick</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Core maintenance processes, such as retrying failed messages.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -322,10 +312,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_connect">connect</a>($socket)
+                    <a href="#method_connect">connect</a>(socket_ressource $socket)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Connect an user.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -333,10 +322,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_disconnect">disconnect</a>($socket, $triggerClosed = true, $sockErrNo = null)
+                    <a href="#method_disconnect">disconnect</a>(socket_ressource $socket, boolean $triggerClosed = true, integer $sockErrNo = null)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Disconnect an User.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -344,76 +332,69 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_doHandshake">doHandshake</a>($user, $buffer)
+                    <a href="#method_doHandshake">doHandshake</a>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, string $buffer)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Do the handshake client/server</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_checkHost">checkHost</a>($hostName)
+                    <a href="#method_checkHost">checkHost</a>(String $hostName)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Override and return false if the host is not one that you would expect.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_checkOrigin">checkOrigin</a>($origin)
+                    <a href="#method_checkOrigin">checkOrigin</a>(string $origin)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Override and return false if the origin is not one that you would expect.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_checkWebsocProtocol">checkWebsocProtocol</a>($protocol)
+                    <a href="#method_checkWebsocProtocol">checkWebsocProtocol</a>(string $protocol)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Override and return false if a protocol is not found that you would expect.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_checkWebsocExtensions">checkWebsocExtensions</a>($extensions)
+                    <a href="#method_checkWebsocExtensions">checkWebsocExtensions</a>(string $extensions)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Override and return false if an extension is not found that you would expect.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_processProtocol">processProtocol</a>($protocol)
+                    <a href="#method_processProtocol">processProtocol</a>(string $protocol)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Process a protocol</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_processExtensions">processExtensions</a>($extensions)
+                    <a href="#method_processExtensions">processExtensions</a>(string $extensions)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Process extensions</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -567,7 +548,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at         line 75</div>
+        <div class="location">at         line 81</div>
         <code>                    
     <strong>__construct</strong>(string $addr, string $port, array $ssl = [], integer $bufferLength = 2048)
         </code>
@@ -595,7 +576,14 @@
                     <tr>
                 <td>array</td>
                 <td>$ssl</td>
-                <td>SSL certificate (['pem'=>'','crt'=>''])</td>
+                <td>SSL certificate in PEM format</p>
+
+<pre><code>[
+    'pem'=&gt;'',
+    'crt'=&gt;''
+];
+</code></pre>
+</td>
             </tr>
                     <tr>
                 <td>integer</td>
@@ -613,28 +601,37 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_process">
-        <div class="location">at         line 100</div>
+        <div class="location">at         line 116</div>
         <code>    abstract        protected        
-    <strong>process</strong>($user, $message)
+    <strong>process</strong>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, array $message)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Called immediately when the data is recieved.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user  User emitting the event</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message Data of the event</p>
+
+<pre><code>[
+    'type'=&gt;'' // name of the event,
+    'data'=&gt;''// data of the event
+];
+</code></pre>
+</td>
             </tr>
             </table>
 
@@ -647,23 +644,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_connected">
-        <div class="location">at         line 101</div>
+        <div class="location">at         line 122</div>
         <code>    abstract        protected        
-    <strong>connected</strong>($user)
+    <strong>connected</strong>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Called after the handshake response is sent to the client.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user User connected</td>
             </tr>
             </table>
 
@@ -676,23 +675,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_closed">
-        <div class="location">at         line 102</div>
+        <div class="location">at         line 128</div>
         <code>    abstract        protected        
-    <strong>closed</strong>($user)
+    <strong>closed</strong>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Called after the connection is closed.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user User socket closed</td>
             </tr>
             </table>
 
@@ -705,23 +706,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_connecting">
-        <div class="location">at         line 104</div>
+        <div class="location">at         line 134</div>
         <code>            protected        
-    <strong>connecting</strong>($user)
+    <strong>connecting</strong>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Handle a connecting user, after the instance of the User is created, but before the handshake has completed.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user User connection</td>
             </tr>
             </table>
 
@@ -734,23 +737,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_openRoom">
-        <div class="location">at         line 109</div>
+        <div class="location">at         line 141</div>
         <code>            protected        
-    <strong>openRoom</strong>($name)
+    <strong>openRoom</strong>(string $name)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Called on room open</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td>Name of the opened room</td>
             </tr>
             </table>
 
@@ -763,23 +768,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_closeRoom">
-        <div class="location">at         line 113</div>
+        <div class="location">at         line 149</div>
         <code>            protected        
-    <strong>closeRoom</strong>($name)
+    <strong>closeRoom</strong>(string $name)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Called on room close</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td>Name of the opened room</td>
             </tr>
             </table>
 
@@ -792,28 +799,37 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_send">
-        <div class="location">at         line 117</div>
+        <div class="location">at         line 164</div>
         <code>            protected        
-    <strong>send</strong>($user, $message)
+    <strong>send</strong>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, array $message)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Send event to an user</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user  User who will receive the event</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message Data of the event</p>
+
+<pre><code>[
+    'type'=&gt;'' // name of the event,
+    'data'=&gt;''// data of the event
+];
+</code></pre>
+</td>
             </tr>
             </table>
 
@@ -826,33 +842,42 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_broadcast">
-        <div class="location">at         line 132</div>
+        <div class="location">at         line 191</div>
         <code>            protected        
-    <strong>broadcast</strong>($message, $room = null, $userFrom = null)
+    <strong>broadcast</strong>(array $message, string $room = null, string $userFrom = null)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Send event to multiple user</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$message</td>
-                <td></td>
+                <td>Data of the event</p>
+
+<pre><code>[
+    'type'=&gt;'' // name of the event,
+    'data'=&gt;''// data of the event
+];
+</code></pre>
+</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$room</td>
-                <td></td>
+                <td>Name of the room, if null send to all user's room</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$userFrom</td>
-                <td></td>
+                <td>Id of an user to exclude to send</td>
             </tr>
             </table>
 
@@ -865,7 +890,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_tick">
-        <div class="location">at         line 150</div>
+        <div class="location">at         line 212</div>
         <code>            protected        
     <strong>tick</strong>()
         </code>
@@ -874,6 +899,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Happen periodically. Will happen at least once per second, but possibly more often.</p>                                                </div>
                 <div class="tags">
             
             
@@ -884,7 +911,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method__tick">
-        <div class="location">at         line 155</div>
+        <div class="location">at         line 218</div>
         <code>            protected        
     <strong>_tick</strong>()
         </code>
@@ -893,6 +920,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Core maintenance processes, such as retrying failed messages.</p>                                                </div>
                 <div class="tags">
             
             
@@ -903,7 +932,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_run">
-        <div class="location">at         line 178</div>
+        <div class="location">at         line 240</div>
         <code>                    
     <strong>run</strong>()
         </code>
@@ -924,23 +953,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_connect">
-        <div class="location">at         line 258</div>
+        <div class="location">at         line 324</div>
         <code>            protected        
-    <strong>connect</strong>($socket)
+    <strong>connect</strong>(socket_ressource $socket)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Connect an user.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>socket_ressource</td>
                 <td>$socket</td>
-                <td></td>
+                <td>&amp;$socket User socket</td>
             </tr>
             </table>
 
@@ -953,33 +984,35 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_disconnect">
-        <div class="location">at         line 266</div>
+        <div class="location">at         line 338</div>
         <code>            protected        
-    <strong>disconnect</strong>($socket, $triggerClosed = true, $sockErrNo = null)
+    <strong>disconnect</strong>(socket_ressource $socket, boolean $triggerClosed = true, integer $sockErrNo = null)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Disconnect an User.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>socket_ressource</td>
                 <td>$socket</td>
-                <td></td>
+                <td>&amp;$socket  Socket to disconnect</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>boolean</td>
                 <td>$triggerClosed</td>
-                <td></td>
+                <td>Set to true if socket need to be closed</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>integer</td>
                 <td>$sockErrNo</td>
-                <td></td>
+                <td>Error code, present only on error</td>
             </tr>
             </table>
 
@@ -992,28 +1025,30 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_doHandshake">
-        <div class="location">at         line 306</div>
+        <div class="location">at         line 384</div>
         <code>            protected        
-    <strong>doHandshake</strong>($user, $buffer)
+    <strong>doHandshake</strong>(<a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, string $buffer)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Do the handshake client/server</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user  User processing the handshake</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$buffer</td>
-                <td></td>
+                <td>&amp;$buffer Buffer containing data</td>
             </tr>
             </table>
 
@@ -1026,27 +1061,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_checkHost">
-        <div class="location">at         line 397</div>
-        <code>            protected        
-    <strong>checkHost</strong>($hostName)
+        <div class="location">at         line 480</div>
+        <code>            protected        boolean
+    <strong>checkHost</strong>(String $hostName)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Override and return false if the host is not one that you would expect.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>String</td>
                 <td>$hostName</td>
-                <td></td>
+                <td>Name of the host to check</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1055,27 +1101,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_checkOrigin">
-        <div class="location">at         line 403</div>
-        <code>            protected        
-    <strong>checkOrigin</strong>($origin)
+        <div class="location">at         line 489</div>
+        <code>            protected        boolean
+    <strong>checkOrigin</strong>(string $origin)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Override and return false if the origin is not one that you would expect.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$origin</td>
-                <td></td>
+                <td>Origin to check</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1084,27 +1141,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_checkWebsocProtocol">
-        <div class="location">at         line 407</div>
-        <code>            protected        
-    <strong>checkWebsocProtocol</strong>($protocol)
+        <div class="location">at         line 498</div>
+        <code>            protected        boolean
+    <strong>checkWebsocProtocol</strong>(string $protocol)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Override and return false if a protocol is not found that you would expect.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$protocol</td>
-                <td></td>
+                <td>Name of the protocol</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1113,27 +1181,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_checkWebsocExtensions">
-        <div class="location">at         line 411</div>
-        <code>            protected        
-    <strong>checkWebsocExtensions</strong>($extensions)
+        <div class="location">at         line 507</div>
+        <code>            protected        boolean
+    <strong>checkWebsocExtensions</strong>(string $extensions)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Override and return false if an extension is not found that you would expect.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$extensions</td>
-                <td></td>
+                <td>Extension list</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1142,27 +1221,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_processProtocol">
-        <div class="location">at         line 415</div>
-        <code>            protected        
-    <strong>processProtocol</strong>($protocol)
+        <div class="location">at         line 516</div>
+        <code>            protected        string
+    <strong>processProtocol</strong>(string $protocol)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Process a protocol</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$protocol</td>
-                <td></td>
+                <td>Protocol to process</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Either "Sec-WebSocket-Protocol: SelectedProtocolFromClientList\r\n" or return an empty string. The carriage return/newline combo must appear at the end of a non-empty string, and must not appear at the beginning of the string nor in an otherwise empty string, or it will be considered part of the response body, which will trigger an error in the client as it will not be formatted correctly.</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1171,27 +1261,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_processExtensions">
-        <div class="location">at         line 422</div>
-        <code>            protected        
-    <strong>processExtensions</strong>($extensions)
+        <div class="location">at         line 525</div>
+        <code>            protected        string
+    <strong>processExtensions</strong>(string $extensions)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Process extensions</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$extensions</td>
-                <td></td>
+                <td>Extensions list</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Either "Sec-WebSocket-Extensions: SelectedExtensions\r\n" or return an empty string.</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1200,7 +1301,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getUserBySocket">
-        <div class="location">at         line 426</div>
+        <div class="location">at         line 529</div>
         <code>            protected        
     <strong>getUserBySocket</strong>($socket)
         </code>
@@ -1229,7 +1330,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_stdout">
-        <div class="location">at         line 435</div>
+        <div class="location">at         line 538</div>
         <code>                    
     <strong>stdout</strong>($message)
         </code>
@@ -1258,7 +1359,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_stderr">
-        <div class="location">at         line 441</div>
+        <div class="location">at         line 544</div>
         <code>                    
     <strong>stderr</strong>($message)
         </code>
@@ -1287,7 +1388,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_frame">
-        <div class="location">at         line 447</div>
+        <div class="location">at         line 550</div>
         <code>            protected        
     <strong>frame</strong>($message, $user, $messageType = &#039;text&#039;, $messageContinues = false)
         </code>
@@ -1331,7 +1432,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_split_packet">
-        <div class="location">at         line 514</div>
+        <div class="location">at         line 617</div>
         <code>            protected        
     <strong>split_packet</strong>($length, $packet, $user)
         </code>
@@ -1370,7 +1471,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_calcoffset">
-        <div class="location">at         line 552</div>
+        <div class="location">at         line 655</div>
         <code>            protected        
     <strong>calcoffset</strong>($headers)
         </code>
@@ -1399,7 +1500,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_deframe">
-        <div class="location">at         line 565</div>
+        <div class="location">at         line 668</div>
         <code>            protected        
     <strong>deframe</strong>($message, $user)
         </code>
@@ -1433,7 +1534,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_extractHeaders">
-        <div class="location">at         line 633</div>
+        <div class="location">at         line 736</div>
         <code>            protected        
     <strong>extractHeaders</strong>($message)
         </code>
@@ -1462,7 +1563,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_extractPayload">
-        <div class="location">at         line 670</div>
+        <div class="location">at         line 773</div>
         <code>            protected        
     <strong>extractPayload</strong>($message, $headers)
         </code>
@@ -1496,7 +1597,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_applyMask">
-        <div class="location">at         line 684</div>
+        <div class="location">at         line 787</div>
         <code>            protected        
     <strong>applyMask</strong>($headers, $payload)
         </code>
@@ -1530,7 +1631,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_checkRSVBits">
-        <div class="location">at         line 701</div>
+        <div class="location">at         line 804</div>
         <code>            protected        
     <strong>checkRSVBits</strong>($headers, $user)
         </code>
@@ -1564,7 +1665,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_strtohex">
-        <div class="location">at         line 709</div>
+        <div class="location">at         line 812</div>
         <code>            protected        
     <strong>strtohex</strong>($str)
         </code>
@@ -1593,7 +1694,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_printHeaders">
-        <div class="location">at         line 730</div>
+        <div class="location">at         line 833</div>
         <code>            protected        
     <strong>printHeaders</strong>($headers)
         </code>

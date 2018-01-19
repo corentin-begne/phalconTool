@@ -238,7 +238,18 @@
                                             
                 </div>
                 <div class="col-md-6">
-                    Manage Rest API request / response
+                    Manage Rest API request / response<br>
+<u><b>Example :</b></u></p>
+
+<pre><code class="php">Rest::init();
+Rest::checkParams(['id']);
+try{
+    Rest::renderSuccess();
+} catch(Exception $e){
+    Rest::renderError($e-&gt;getMessage());
+}
+</code></pre>
+
                 </div>
             </div>
                     <div class="row">

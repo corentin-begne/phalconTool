@@ -80,7 +80,18 @@
     
 
             <div class="description">
-            <p>Manage Rest API request / response</p>                                </div>
+            <p>Manage Rest API request / response<br>
+<u><b>Example :</b></u></p>
+
+<pre><code class="php">Rest::init();
+Rest::checkParams(['id']);
+try{
+    Rest::renderSuccess();
+} catch(Exception $e){
+    Rest::renderError($e-&gt;getMessage());
+}
+</code></pre>
+</p>                                </div>
     
     
     
@@ -208,7 +219,7 @@
                     static&nbsp;
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_checkParams">checkParams</a>(array $list = [], boolean $allowEmpty = false)
+                    <a href="#method_checkParams">checkParams</a>(type $list = [], boolean $allowEmpty = false)
         
                                             <p>Check the presence of required params</p>                </div>
                 <div class="col-md-2"></div>
@@ -425,7 +436,7 @@
                     <h3 id="method_checkParams">
         <div class="location">at         line 129</div>
         <code>        static            
-    <strong>checkParams</strong>(array $list = [], boolean $allowEmpty = false)
+    <strong>checkParams</strong>(type $list = [], boolean $allowEmpty = false)
         </code>
     </h3>
     <div class="details">
@@ -439,7 +450,7 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td>array</td>
+                <td>type</td>
                 <td>$list</td>
                 <td>List of params name to check</td>
             </tr>

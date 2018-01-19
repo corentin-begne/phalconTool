@@ -22,7 +22,7 @@
         "process": {
             "name": "process",
             "line": 6,
-            "short_desc": "",
+            "short_desc": "Called immediately when the data is recieved.",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -35,9 +35,14 @@
                 "user": {
                     "name": "user",
                     "line": 6,
-                    "short_desc": null,
+                    "short_desc": "&$user  User emitting the event",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -47,9 +52,14 @@
                 "message": {
                     "name": "message",
                     "line": 6,
-                    "short_desc": null,
+                    "short_desc": "&$message Data of the event\n```\n[\n    'type'=>'' \/\/ name of the event,\n    'data'=>''\/\/ data of the event\n];\n```",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -100,7 +110,7 @@
         "connected": {
             "name": "connected",
             "line": 21,
-            "short_desc": "",
+            "short_desc": "Called after the handshake response is sent to the client.",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -113,9 +123,14 @@
                 "user": {
                     "name": "user",
                     "line": 21,
-                    "short_desc": null,
+                    "short_desc": "&$user User connected",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -127,7 +142,7 @@
         "closed": {
             "name": "closed",
             "line": 33,
-            "short_desc": "",
+            "short_desc": "Called after the connection is closed.",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -140,9 +155,14 @@
                 "user": {
                     "name": "user",
                     "line": 33,
-                    "short_desc": null,
+                    "short_desc": "&$user User socket closed",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,

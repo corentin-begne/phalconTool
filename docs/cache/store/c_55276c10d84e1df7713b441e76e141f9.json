@@ -1,30 +1,14 @@
 {
     "name": "Rest",
     "line": 15,
-    "short_desc": "Manage Rest API request \/ response",
+    "short_desc": "Manage Rest API request \/ response<br>\n<u><b>Example :<\/b><\/u>\n```php\nRest::init();\nRest::checkParams(['id']);\ntry{\n    Rest::renderSuccess();\n} catch(Exception $e){\n    Rest::renderError($e->getMessage());\n}\n```",
     "long_desc": "",
     "hint": null,
-    "tags": {
-        "example": [
-            [
-                "```php\nRest::init();\nRest::checkParams(['id']);\ntry{\n",
-                "",
-                "",
-                "",
-                "Rest::renderSuccess();\n}",
-                "catch(Exception",
-                "$e){\n",
-                "",
-                "",
-                "",
-                "Rest::renderError($e->getMessage());\n}\n```"
-            ]
-        ]
-    },
+    "tags": [],
     "namespace": "",
     "file": "\/var\/www\/phalconTool\/src\/Tools\/Rest.php",
     "relative_file": null,
-    "hash": "9d37df866b8f84bece04ab6fc4604beaa6bf72ba",
+    "hash": "23452468d4f157717c7bf4fcc494bc3df10f45d8",
     "parent": null,
     "modifiers": 0,
     "is_trait": false,
@@ -310,7 +294,7 @@
                         ]
                     ],
                     "tags": [],
-                    "modifiers": "array",
+                    "modifiers": null,
                     "default": "[]",
                     "variadic": false,
                     "is_by_ref": false
@@ -337,21 +321,12 @@
                     "long_desc": null,
                     "hint": [
                         [
-                            "\\boolean",
+                            "boolean",
                             false
                         ]
                     ],
                     "tags": [],
-                    "modifiers": {
-                        "nodeType": "Name_FullyQualified",
-                        "parts": [
-                            "boolean"
-                        ],
-                        "attributes": {
-                            "startLine": 119,
-                            "endLine": 119
-                        }
-                    },
+                    "modifiers": null,
                     "default": null,
                     "variadic": false,
                     "is_by_ref": false
@@ -368,7 +343,7 @@
                         ]
                     ],
                     "tags": [],
-                    "modifiers": "array",
+                    "modifiers": null,
                     "default": "[]",
                     "variadic": false,
                     "is_by_ref": false
@@ -395,12 +370,12 @@
                     "long_desc": null,
                     "hint": [
                         [
-                            "array",
+                            "\\type",
                             false
                         ]
                     ],
                     "tags": [],
-                    "modifiers": "array",
+                    "modifiers": null,
                     "default": "[]",
                     "variadic": false,
                     "is_by_ref": false
