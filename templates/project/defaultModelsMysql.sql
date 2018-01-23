@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `LangMessage` (
   `name` varchar(255) NOT NULL,
   `value` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `lang_id_2` (`lang_id`,`name`),
   KEY `lang_id` (`lang_id`)
