@@ -1,6 +1,6 @@
 <?
 use Phalcon\Tools\Cli;
-class ModelTask extends \Phalcon\CLI\Task
+class ModelsTask extends \Phalcon\CLI\Task
 {
     public function mainAction($params) {
 
