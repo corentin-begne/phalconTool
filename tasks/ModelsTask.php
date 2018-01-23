@@ -1,5 +1,6 @@
 <?
-use Phalcon\Tools\Cli;
+use Phalcon\Tools\Cli,
+Phalcon\Builder\Model;
 class ModelsTask extends \Phalcon\CLI\Task
 {
     public function mainAction($params) {

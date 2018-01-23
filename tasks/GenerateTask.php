@@ -1,6 +1,5 @@
 <?
-use Phalcon\Builder\Model,
-Phalcon\Builder\Controller,
+use Phalcon\Builder\Controller,
 Phalcon\Builder\Js,
 Phalcon\Builder\Css,
 Phalcon\Builder\Less,
