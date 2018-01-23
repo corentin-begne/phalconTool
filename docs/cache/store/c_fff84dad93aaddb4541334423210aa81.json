@@ -1,0 +1,173 @@
+{
+    "name": "AssetsPlugin",
+    "line": 9,
+    "short_desc": "The Assets plugin manages all assets (CSS\/JS) on application.",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "",
+    "file": "\/var\/www\/phalconTool\/templates\/project\/app\/plugins\/AssetsPlugin.php",
+    "relative_file": null,
+    "hash": "21b2215b46cc36ad8838c3b932e141fca77a83c2",
+    "parent": "Phalcon\\Mvc\\User\\Component",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "UserManager": "Manager\\User",
+        "GooglePlusManager": "Manager\\Social\\GooglePlus",
+        "Event": "Phalcon\\Events\\Event",
+        "Component": "Phalcon\\Mvc\\User\\Component",
+        "Dispatcher": "Phalcon\\Mvc\\Dispatcher",
+        "Jsmin": "Phalcon\\Assets\\Filters\\Jsmin"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "beforeDispatch": {
+            "name": "beforeDispatch",
+            "line": 16,
+            "short_desc": "The event is called before the controller action.",
+            "long_desc": "We create collection for assets.",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "event": {
+                    "name": "event",
+                    "line": 16,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Events\\Event",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": {
+                        "nodeType": "Name_FullyQualified",
+                        "parts": [
+                            "Phalcon",
+                            "Events",
+                            "Event"
+                        ],
+                        "attributes": {
+                            "startLine": 16,
+                            "endLine": 16
+                        }
+                    },
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                },
+                "dispatcher": {
+                    "name": "dispatcher",
+                    "line": 16,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Mvc\\Dispatcher",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": {
+                        "nodeType": "Name_FullyQualified",
+                        "parts": [
+                            "Phalcon",
+                            "Mvc",
+                            "Dispatcher"
+                        ],
+                        "attributes": {
+                            "startLine": 16,
+                            "endLine": 16
+                        }
+                    },
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "afterDispatch": {
+            "name": "afterDispatch",
+            "line": 46,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "event": {
+                    "name": "event",
+                    "line": 46,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Events\\Event",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": {
+                        "nodeType": "Name_FullyQualified",
+                        "parts": [
+                            "Phalcon",
+                            "Events",
+                            "Event"
+                        ],
+                        "attributes": {
+                            "startLine": 46,
+                            "endLine": 46
+                        }
+                    },
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                },
+                "dispatcher": {
+                    "name": "dispatcher",
+                    "line": 46,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Mvc\\Dispatcher",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": {
+                        "nodeType": "Name_FullyQualified",
+                        "parts": [
+                            "Phalcon",
+                            "Mvc",
+                            "Dispatcher"
+                        ],
+                        "attributes": {
+                            "startLine": 46,
+                            "endLine": 46
+                        }
+                    },
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}
