@@ -1,14 +1,14 @@
 {
     "name": "Manager\\Social\\GooglePlus",
-    "line": 8,
-    "short_desc": "",
+    "line": 11,
+    "short_desc": "Manage Google Plus connection",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "Manager\\Social",
     "file": "\/var\/www\/phalconTool\/templates\/project\/app\/classes\/Manager\/Social\/GooglePlus.php",
     "relative_file": null,
-    "hash": "ebfeaa1ecdbc3c6fe6c6e85cc44210748943f33c",
+    "hash": "d812efc3a71ef920df24281f26fd0a48359f9ad3",
     "parent": null,
     "modifiers": 0,
     "is_trait": false,
@@ -25,11 +25,16 @@
     "properties": {
         "client": {
             "name": "client",
-            "line": 10,
-            "short_desc": "",
+            "line": 17,
+            "short_desc": "Google Client instance",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "\\Google_Client",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 9,
             "default": null,
@@ -39,8 +44,8 @@
     "methods": {
         "init": {
             "name": "init",
-            "line": 12,
-            "short_desc": "",
+            "line": 22,
+            "short_desc": "Initialize the Google api",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -53,11 +58,16 @@
         },
         "createAuthUrl": {
             "name": "createAuthUrl",
-            "line": 32,
-            "short_desc": "",
+            "line": 46,
+            "short_desc": "Create the authentification url",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Authentification url",
             "tags": [],
             "modifiers": 9,
             "is_by_ref": "",
@@ -67,8 +77,8 @@
         },
         "connect": {
             "name": "connect",
-            "line": 37,
-            "short_desc": "",
+            "line": 55,
+            "short_desc": "Authenticate Google Plus user, create if not exists and connect to  the application",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -80,10 +90,15 @@
             "parameters": {
                 "code": {
                     "name": "code",
-                    "line": 37,
-                    "short_desc": null,
+                    "line": 55,
+                    "short_desc": "Code corresponding to the browser authentification result",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,

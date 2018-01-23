@@ -79,6 +79,8 @@
         
     
 
+            <div class="description">
+            <p>Provide actions to search, create, update and delete models data and autocompletion on field data search</p>                                </div>
     
     
     
@@ -94,11 +96,11 @@
                 <td><small>from&nbsp;<a href="Phalcon/ControllerBase.html#property_messages"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a></small></td>
             </tr>
                     <tr>
-                <td class="type" id="property_model">
-                                                                                
+                <td class="type" id="property_models">
+                                                                                array
                 </td>
-                <td>$model</td>
-                <td class="last"></td>
+                <td>$models</td>
+                <td class="last">Current request models</td>
                 <td></td>
             </tr>
             </table>
@@ -114,8 +116,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_beforeExecuteRoute">beforeExecuteRoute</a>($dispatcher)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Check url models conformity</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -153,13 +154,12 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    [type]
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_findAction">findAction</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Get models result filtered by conditions</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -169,8 +169,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_getTypeAction">getTypeAction</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Get the type of models column</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -180,8 +179,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_completeAction">completeAction</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Autocomplete models field data search</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -191,8 +189,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_createAction">createAction</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Create models entry</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -202,8 +199,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_updateAction">updateAction</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Update models entry</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -213,8 +209,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_deleteAction">deleteAction</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Delete models entry</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -225,7 +220,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_beforeExecuteRoute">
-        <div class="location">at         line 8</div>
+        <div class="location">at         line 20</div>
         <code>                    
     <strong>beforeExecuteRoute</strong>($dispatcher)
         </code>
@@ -234,6 +229,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Check url models conformity</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
@@ -341,8 +338,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_findAction">
-        <div class="location">at         line 28</div>
-        <code>                    
+        <div class="location">at         line 44</div>
+        <code>                    [type]
     <strong>findAction</strong>()
         </code>
     </h3>
@@ -350,8 +347,19 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Get models result filtered by conditions</p>                                                </div>
                 <div class="tags">
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>[type]</td>
+            <td>[description]</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -360,7 +368,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getTypeAction">
-        <div class="location">at         line 64</div>
+        <div class="location">at         line 83</div>
         <code>                    
     <strong>getTypeAction</strong>()
         </code>
@@ -369,6 +377,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Get the type of models column</p>                                                </div>
                 <div class="tags">
             
             
@@ -379,7 +389,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_completeAction">
-        <div class="location">at         line 70</div>
+        <div class="location">at         line 92</div>
         <code>                    
     <strong>completeAction</strong>()
         </code>
@@ -388,6 +398,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Autocomplete models field data search</p>                                                </div>
                 <div class="tags">
             
             
@@ -398,7 +410,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_createAction">
-        <div class="location">at         line 87</div>
+        <div class="location">at         line 112</div>
         <code>                    
     <strong>createAction</strong>()
         </code>
@@ -407,6 +419,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Create models entry</p>                                                </div>
                 <div class="tags">
             
             
@@ -417,7 +431,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_updateAction">
-        <div class="location">at         line 114</div>
+        <div class="location">at         line 142</div>
         <code>                    
     <strong>updateAction</strong>()
         </code>
@@ -426,6 +440,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Update models entry</p>                                                </div>
                 <div class="tags">
             
             
@@ -436,7 +452,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteAction">
-        <div class="location">at         line 149</div>
+        <div class="location">at         line 180</div>
         <code>                    
     <strong>deleteAction</strong>()
         </code>
@@ -445,6 +461,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Delete models entry</p>                                                </div>
                 <div class="tags">
             
             

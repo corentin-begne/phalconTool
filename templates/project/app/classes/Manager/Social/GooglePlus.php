@@ -5,10 +5,20 @@ Phalcon\DI,
 Manager\User as UserManager,
 Phalcon\Mvc\Model;
 
+/**
+ * Manage Google Plus connection
+ */
 class GooglePlus{    
 
+    /**
+     * Google Client instance
+     * @var \Google_Client
+     */
     public static $client;
 
+    /**
+     * Initialize the Google api
+     */
     public static function init(){
         if(isset(self::$client)){
             return false;
@@ -29,11 +39,19 @@ class GooglePlus{
         self::$client->setRedirectUri('http://' . $di->getRequest()->getHttpHost() .$di['config']->application->baseUri.'user/connect');
     }
 
+    /**
+     * Create the authentification url
+     * @return string Authentification url
+     */
     public static function createAuthUrl(){
         self::init();
         return self::$client->createAuthUrl();
     }
 
+    /**
+     * Authenticate Google Plus user, create if not exists and connect to  the application
+     * @param  string $code Code corresponding to the browser authentification result
+     */
     public static function connect($code){
         self::init();
         self::$client->authenticate($code);

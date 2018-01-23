@@ -1,10 +1,22 @@
 <?
 use Phalcon\Text as Utils,
 Phalcon\Mvc\Model\Query\Builder;
+
+/**
+ * Provide actions to search, create, update and delete models data and autocompletion on field data search
+ */
 class ApiController extends Phalcon\ControllerBase{
 
-    public $model;
+    /**
+     * Current request models
+     * @var array
+     */
+    public $models = [];
 
+    /**
+     * Check url models conformity
+     * @param  \Phalcon\Mvc\Dispatcher $dispatcher Application dispatcher
+     */
     public function beforeExecuteRoute($dispatcher){
         Rest::init();
 
@@ -25,6 +37,10 @@ class ApiController extends Phalcon\ControllerBase{
         }
     }
 
+    /**
+     * Get models result filtered by conditions
+     * @return [type] [description]
+     */
     public function findAction(){
         $params = [];
         $conditions = [];
@@ -61,19 +77,25 @@ class ApiController extends Phalcon\ControllerBase{
         }
     }
 
+    /**
+     * Get the type of models column
+     */
     public function getTypeAction(){
         Rest::checkParams(['field']);
         $model = $this->models[0];
         Rest::renderSuccess($model::getType(Rest::$params['field']));
     }
 
+    /**
+     * Autocomplete models field data search
+     */
     public function completeAction(){
         Rest::checkParams(['field', 'value']);
         $limit = isset(Rest::$params['limit']) ? (int)Rest::$params['limit'] : 10;
         $model = $this->models[0];
         $result = [];
         $rows =  $model::find([
-            Rest::$params['field']." like '".Rest::$params['value']."%'",
+            'distinct '.Rest::$params['field']." like '".Rest::$params['value']."%'",
             'limit' => $limit,
             'order' => Rest::$params['field']
         ]);
@@ -84,6 +106,9 @@ class ApiController extends Phalcon\ControllerBase{
         Rest::renderSuccess($result);
     }
 
+    /**
+     * Create models entry
+     */
     public function createAction(){
         $result = [];
         $refModel = $this->models[0];
@@ -111,6 +136,9 @@ class ApiController extends Phalcon\ControllerBase{
         }
     }
 
+    /**
+     * Update models entry
+     */
     public function updateAction(){
         $refModel = $this->models[0];
         $primaryKey = $refModel::getPrimaryKey();
@@ -146,6 +174,9 @@ class ApiController extends Phalcon\ControllerBase{
         Rest::renderSuccess();
     }
 
+    /**
+     * Delete models entry
+     */
     public function deleteAction(){
         $model = $this->models[0];
         $primaryKey = $model::getMapped($model::getPrimaryKey());

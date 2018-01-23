@@ -90,13 +90,12 @@
             <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_beforeException">beforeException</a>($event, $dispatcher, $exception)
+                    <a href="#method_beforeException">beforeException</a>(<abbr title="Phalcon\Events\Event">Event</abbr> $event, <abbr title="Phalcon\Mvc\Dispatcher">Dispatcher</abbr> $dispatcher, <abbr title="Phalcon\Exception">Exception</abbr> $exception)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Redirect user to default route if no controller/action found</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -106,7 +105,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_beforeDispatch">beforeDispatch</a>(<abbr title="Phalcon\Events\Event">Event</abbr> $event, <abbr title="Phalcon\Mvc\Dispatcher">Dispatcher</abbr> $dispatcher)
         
-                                            <p>Event called before each controller action.</p>                </div>
+                                            <p>Check user permissions vs ACL and redirect to default route if not allowed</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -117,37 +116,48 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_beforeException">
-        <div class="location">at         line 63</div>
-        <code>                    
-    <strong>beforeException</strong>($event, $dispatcher, $exception)
+        <div class="location">at         line 70</div>
+        <code>                    boolean
+    <strong>beforeException</strong>(<abbr title="Phalcon\Events\Event">Event</abbr> $event, <abbr title="Phalcon\Mvc\Dispatcher">Dispatcher</abbr> $dispatcher, <abbr title="Phalcon\Exception">Exception</abbr> $exception)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Redirect user to default route if no controller/action found</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><abbr title="Phalcon\Events\Event">Event</abbr></td>
                 <td>$event</td>
-                <td></td>
+                <td>Event of the request</td>
             </tr>
                     <tr>
-                <td></td>
+                <td><abbr title="Phalcon\Mvc\Dispatcher">Dispatcher</abbr></td>
                 <td>$dispatcher</td>
-                <td></td>
+                <td>Application dispatcher</td>
             </tr>
                     <tr>
-                <td></td>
+                <td><abbr title="Phalcon\Exception">Exception</abbr></td>
                 <td>$exception</td>
-                <td></td>
+                <td>Current Exception</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Return false on exception found to stop propagation to view engine</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -156,7 +166,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_beforeDispatch">
-        <div class="location">at         line 83</div>
+        <div class="location">at         line 93</div>
         <code>                    
     <strong>beforeDispatch</strong>(<abbr title="Phalcon\Events\Event">Event</abbr> $event, <abbr title="Phalcon\Mvc\Dispatcher">Dispatcher</abbr> $dispatcher)
         </code>
@@ -166,7 +176,7 @@
     
 
                     <div class="method-description">
-                                    <p>Event called before each controller action.</p>                                                </div>
+                                    <p>Check user permissions vs ACL and redirect to default route if not allowed</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 

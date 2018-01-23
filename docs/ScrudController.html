@@ -79,6 +79,8 @@
         
     
 
+            <div class="description">
+            <p>Manage tables index, model search, create and read</p>                                </div>
     
     
     
@@ -94,11 +96,11 @@
                 <td><small>from&nbsp;<a href="Phalcon/ControllerBase.html#property_messages"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a></small></td>
             </tr>
                     <tr>
-                <td class="type" id="property_excludes">
-                                                                                
+                <td class="type" id="property_models">
+                                                                                array
                 </td>
-                <td>$excludes</td>
-                <td class="last"></td>
+                <td>$models</td>
+                <td class="last">Current request models</td>
                 <td></td>
             </tr>
             </table>
@@ -153,13 +155,12 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_initialize">initialize</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Check url models conformity and include/configure all dependencies</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -169,8 +170,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_indexAction">indexAction</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>List all database tables by alphabetical order</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -180,8 +180,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_listAction">listAction</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Get current selected models items</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -191,8 +190,10 @@
                 <div class="col-md-8 type">
                     <a href="#method_searchAction">searchAction</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p><ul>
+<li>Display the search interface</li>
+</ul>
+</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -202,8 +203,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_readAction">readAction</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Display the read interface</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -213,30 +213,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_createAction">createAction</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_updateAction">updateAction</a>()
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_deleteAction">deleteAction</a>()
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Display the create interface</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -363,8 +340,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_initialize">
-        <div class="location">at         line 8</div>
-        <code>                    
+        <div class="location">at         line 19</div>
+        <code>                    boolean
     <strong>initialize</strong>()
         </code>
     </h3>
@@ -372,8 +349,19 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Check url models conformity and include/configure all dependencies</p>                                                </div>
                 <div class="tags">
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>False on index action to have another process</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -382,7 +370,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_indexAction">
-        <div class="location">at         line 54</div>
+        <div class="location">at         line 68</div>
         <code>                    
     <strong>indexAction</strong>()
         </code>
@@ -391,6 +379,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>List all database tables by alphabetical order</p>                                                </div>
                 <div class="tags">
             
             
@@ -401,7 +391,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_listAction">
-        <div class="location">at         line 67</div>
+        <div class="location">at         line 84</div>
         <code>                    
     <strong>listAction</strong>()
         </code>
@@ -410,6 +400,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Get current selected models items</p>                                                </div>
                 <div class="tags">
             
             
@@ -420,7 +412,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_searchAction">
-        <div class="location">at         line 135</div>
+        <div class="location">at         line 160</div>
         <code>                    
     <strong>searchAction</strong>()
         </code>
@@ -429,6 +421,11 @@
             
     
 
+                    <div class="method-description">
+                                    <p><ul>
+<li>Display the search interface</li>
+</ul>
+</p>                                                </div>
                 <div class="tags">
             
             
@@ -439,7 +436,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_readAction">
-        <div class="location">at         line 184</div>
+        <div class="location">at         line 212</div>
         <code>                    
     <strong>readAction</strong>()
         </code>
@@ -448,6 +445,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Display the read interface</p>                                                </div>
                 <div class="tags">
             
             
@@ -458,7 +457,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_createAction">
-        <div class="location">at         line 212</div>
+        <div class="location">at         line 243</div>
         <code>                    
     <strong>createAction</strong>()
         </code>
@@ -467,44 +466,8 @@
             
     
 
-                <div class="tags">
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_updateAction">
-        <div class="location">at         line 215</div>
-        <code>                    
-    <strong>updateAction</strong>()
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                <div class="tags">
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_deleteAction">
-        <div class="location">at         line 219</div>
-        <code>                    
-    <strong>deleteAction</strong>()
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
+                    <div class="method-description">
+                                    <p>Display the create interface</p>                                                </div>
                 <div class="tags">
             
             

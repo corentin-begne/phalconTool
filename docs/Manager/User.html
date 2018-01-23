@@ -85,6 +85,8 @@
         
     
 
+            <div class="description">
+            <p>Manage User connection and data</p>                                </div>
     
     
     
@@ -99,8 +101,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_disconnect">disconnect</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Disconnect user from application and destroy session</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -108,54 +109,49 @@
                     static&nbsp;
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_connect">connect</a>($user)
+                    <a href="#method_connect">connect</a>(User $user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Connect an user to the application</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;
+                    static&nbsp;<abbr title="Manager\any">any</abbr>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_get">get</a>($name = null)
+                    <a href="#method_get">get</a>(string $name = null)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Get user data</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;
+                    static&nbsp;array
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getPermissions">getPermissions</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Get all user permissions</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;
+                    static&nbsp;boolean
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_havePermission">havePermission</a>(int $id)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Check if user have a permission</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;
+                    static&nbsp;boolean
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_isAuthenticated">isAuthenticated</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Check if the user is connected to the application</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -166,7 +162,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_disconnect">
-        <div class="location">at         line 6</div>
+        <div class="location">at         line 12</div>
         <code>        static            
     <strong>disconnect</strong>()
         </code>
@@ -175,6 +171,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Disconnect user from application and destroy session</p>                                                </div>
                 <div class="tags">
             
             
@@ -185,23 +183,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_connect">
-        <div class="location">at         line 11</div>
+        <div class="location">at         line 22</div>
         <code>        static            
-    <strong>connect</strong>($user)
+    <strong>connect</strong>(User $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Connect an user to the application</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>User</td>
                 <td>$user</td>
-                <td></td>
+                <td>User model instance</td>
             </tr>
             </table>
 
@@ -214,27 +214,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_get">
-        <div class="location">at         line 20</div>
-        <code>        static            
-    <strong>get</strong>($name = null)
+        <div class="location">at         line 36</div>
+        <code>        static            <abbr title="Manager\any">any</abbr>
+    <strong>get</strong>(string $name = null)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Get user data</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td>Data name</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Manager\any">any</abbr></td>
+            <td>Return the wanted data or all if null</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -243,8 +254,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getPermissions">
-        <div class="location">at         line 28</div>
-        <code>        static            
+        <div class="location">at         line 48</div>
+        <code>        static            array
     <strong>getPermissions</strong>()
         </code>
     </h3>
@@ -252,8 +263,19 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Get all user permissions</p>                                                </div>
                 <div class="tags">
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>User permission ids</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -262,8 +284,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_havePermission">
-        <div class="location">at         line 32</div>
-        <code>        static            
+        <div class="location">at         line 57</div>
+        <code>        static            boolean
     <strong>havePermission</strong>(int $id)
         </code>
     </h3>
@@ -271,6 +293,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Check if user have a permission</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
@@ -278,11 +302,20 @@
                     <tr>
                 <td>int</td>
                 <td>$id</td>
-                <td></td>
+                <td>Permission id</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -291,8 +324,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_isAuthenticated">
-        <div class="location">at         line 36</div>
-        <code>        static            
+        <div class="location">at         line 65</div>
+        <code>        static            boolean
     <strong>isAuthenticated</strong>()
         </code>
     </h3>
@@ -300,8 +333,19 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Check if the user is connected to the application</p>                                                </div>
                 <div class="tags">
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
