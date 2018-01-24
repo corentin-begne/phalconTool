@@ -8,6 +8,8 @@ $iterator = Finder::create()
     ->in(__DIR__.'/src')
     ->in(__DIR__.'/templates/project/app/tasks')
     ->in(__DIR__.'/templates/project/app/classes')
+    ->in(__DIR__.'/templates/project/app/plugins')
+    ->in(__DIR__.'/templates/project/app/controllers')
 ;
 
 return new Sami($iterator, [

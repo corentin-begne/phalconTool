@@ -1,14 +1,14 @@
 {
     "name": "Phalcon\\Websocket\\User",
-    "line": 4,
-    "short_desc": "",
+    "line": 7,
+    "short_desc": "User of the Websocket server",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "Phalcon\\Websocket",
     "file": "\/var\/www\/phalconTool\/src\/Websocket\/User.php",
     "relative_file": null,
-    "hash": "f2daa39a8081ef50ce829396f5d304cbadbd33ea",
+    "hash": "dfad30c34a191cd44728793fe9607e7970d09c2c",
     "parent": null,
     "modifiers": 0,
     "is_trait": false,
@@ -20,11 +20,16 @@
     "properties": {
         "socket": {
             "name": "socket",
-            "line": 6,
-            "short_desc": "",
+            "line": 13,
+            "short_desc": "User socket",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "\\socket_ressouce",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": null,
@@ -32,11 +37,16 @@
         },
         "id": {
             "name": "id",
-            "line": 7,
-            "short_desc": "",
+            "line": 18,
+            "short_desc": "User id",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": null,
@@ -44,19 +54,24 @@
         },
         "headers": {
             "name": "headers",
-            "line": 8,
-            "short_desc": "",
+            "line": 23,
+            "short_desc": "Headers of the user current message",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": {
                 "nodeType": "Expr_Array",
                 "items": [],
                 "attributes": {
-                    "startLine": 8,
-                    "endLine": 8,
+                    "startLine": 23,
+                    "endLine": 23,
                     "kind": 2
                 }
             },
@@ -64,11 +79,16 @@
         },
         "room": {
             "name": "room",
-            "line": 9,
-            "short_desc": "",
+            "line": 28,
+            "short_desc": "User room",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": null,
@@ -76,11 +96,16 @@
         },
         "data": {
             "name": "data",
-            "line": 10,
-            "short_desc": "",
+            "line": 33,
+            "short_desc": "User data",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": null,
@@ -88,11 +113,16 @@
         },
         "handshake": {
             "name": "handshake",
-            "line": 11,
-            "short_desc": "",
+            "line": 38,
+            "short_desc": "Indicate if the User processing handshake",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": {
@@ -103,8 +133,8 @@
                         "false"
                     ],
                     "attributes": {
-                        "startLine": 11,
-                        "endLine": 11,
+                        "startLine": 38,
+                        "endLine": 38,
                         "namespacedName": {
                             "nodeType": "Name_FullyQualified",
                             "parts": [
@@ -113,26 +143,31 @@
                                 "false"
                             ],
                             "attributes": {
-                                "startLine": 11,
-                                "endLine": 11
+                                "startLine": 38,
+                                "endLine": 38
                             }
                         }
                     }
                 },
                 "attributes": {
-                    "startLine": 11,
-                    "endLine": 11
+                    "startLine": 38,
+                    "endLine": 38
                 }
             },
             "errors": []
         },
         "handlingPartialPacket": {
             "name": "handlingPartialPacket",
-            "line": 13,
-            "short_desc": "",
+            "line": 43,
+            "short_desc": "Indicate if the User is handling a partial packet",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": {
@@ -143,8 +178,8 @@
                         "false"
                     ],
                     "attributes": {
-                        "startLine": 13,
-                        "endLine": 13,
+                        "startLine": 43,
+                        "endLine": 43,
                         "namespacedName": {
                             "nodeType": "Name_FullyQualified",
                             "parts": [
@@ -153,34 +188,39 @@
                                 "false"
                             ],
                             "attributes": {
-                                "startLine": 13,
-                                "endLine": 13
+                                "startLine": 43,
+                                "endLine": 43
                             }
                         }
                     }
                 },
                 "attributes": {
-                    "startLine": 13,
-                    "endLine": 13
+                    "startLine": 43,
+                    "endLine": 43
                 }
             },
             "errors": []
         },
         "partialBuffer": {
             "name": "partialBuffer",
-            "line": 14,
-            "short_desc": "",
+            "line": 48,
+            "short_desc": "Content of the partial buffer",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": {
                 "nodeType": "Scalar_String",
                 "value": "",
                 "attributes": {
-                    "startLine": 14,
-                    "endLine": 14,
+                    "startLine": 48,
+                    "endLine": 48,
                     "kind": 2
                 }
             },
@@ -188,11 +228,16 @@
         },
         "sendingContinuous": {
             "name": "sendingContinuous",
-            "line": 16,
-            "short_desc": "",
+            "line": 54,
+            "short_desc": "Determine if the message is finished or not",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": {
@@ -203,8 +248,8 @@
                         "false"
                     ],
                     "attributes": {
-                        "startLine": 16,
-                        "endLine": 16,
+                        "startLine": 54,
+                        "endLine": 54,
                         "namespacedName": {
                             "nodeType": "Name_FullyQualified",
                             "parts": [
@@ -213,34 +258,39 @@
                                 "false"
                             ],
                             "attributes": {
-                                "startLine": 16,
-                                "endLine": 16
+                                "startLine": 54,
+                                "endLine": 54
                             }
                         }
                     }
                 },
                 "attributes": {
-                    "startLine": 16,
-                    "endLine": 16
+                    "startLine": 54,
+                    "endLine": 54
                 }
             },
             "errors": []
         },
         "partialMessage": {
             "name": "partialMessage",
-            "line": 17,
-            "short_desc": "",
+            "line": 59,
+            "short_desc": "Content of the partial messsage",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": {
                 "nodeType": "Scalar_String",
                 "value": "",
                 "attributes": {
-                    "startLine": 17,
-                    "endLine": 17,
+                    "startLine": 59,
+                    "endLine": 59,
                     "kind": 2
                 }
             },
@@ -248,11 +298,16 @@
         },
         "hasSentClose": {
             "name": "hasSentClose",
-            "line": 19,
-            "short_desc": "",
+            "line": 65,
+            "short_desc": "To know if the User has sent a close message",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": {
@@ -263,8 +318,8 @@
                         "false"
                     ],
                     "attributes": {
-                        "startLine": 19,
-                        "endLine": 19,
+                        "startLine": 65,
+                        "endLine": 65,
                         "namespacedName": {
                             "nodeType": "Name_FullyQualified",
                             "parts": [
@@ -273,15 +328,15 @@
                                 "false"
                             ],
                             "attributes": {
-                                "startLine": 19,
-                                "endLine": 19
+                                "startLine": 65,
+                                "endLine": 65
                             }
                         }
                     }
                 },
                 "attributes": {
-                    "startLine": 19,
-                    "endLine": 19
+                    "startLine": 65,
+                    "endLine": 65
                 }
             },
             "errors": []
@@ -290,8 +345,8 @@
     "methods": {
         "__construct": {
             "name": "__construct",
-            "line": 21,
-            "short_desc": "",
+            "line": 72,
+            "short_desc": "Create an user instance",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -303,10 +358,15 @@
             "parameters": {
                 "id": {
                     "name": "id",
-                    "line": 21,
-                    "short_desc": null,
+                    "line": 72,
+                    "short_desc": "User id",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -315,10 +375,15 @@
                 },
                 "socket": {
                     "name": "socket",
-                    "line": 21,
-                    "short_desc": null,
+                    "line": 72,
+                    "short_desc": "User socket",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\socket_ressource",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -329,8 +394,8 @@
         },
         "parseData": {
             "name": "parseData",
-            "line": 26,
-            "short_desc": "",
+            "line": 80,
+            "short_desc": "Parse data query string",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,

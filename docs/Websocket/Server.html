@@ -93,90 +93,90 @@
             <table class="table table-condensed">
                     <tr>
                 <td class="type" id="property_userClass">
-                                        protected                                        
+                                        protected                                        string
                 </td>
                 <td>$userClass</td>
-                <td class="last"></td>
+                <td class="last">User class name</td>
                 <td><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#property_userClass"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_maxBufferSize">
-                                        protected                                        
+                                        protected                                        integer
                 </td>
                 <td>$maxBufferSize</td>
-                <td class="last"></td>
+                <td class="last">Maximum buffer size</td>
                 <td><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#property_maxBufferSize"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_master">
-                                        protected                                        
+                                        protected                                        socket_ressource
                 </td>
                 <td>$master</td>
-                <td class="last"></td>
+                <td class="last">Server socket</td>
                 <td><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#property_master"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_sockets">
-                                        protected                                        
+                                        protected                                        array
                 </td>
                 <td>$sockets</td>
-                <td class="last"></td>
+                <td class="last">Sockets list indexed by id</td>
                 <td><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#property_sockets"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_users">
-                                        protected                                        
+                                        protected                                        array
                 </td>
                 <td>$users</td>
-                <td class="last"></td>
+                <td class="last">Users list indexed by id</td>
                 <td><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#property_users"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_heldMessages">
-                                        protected                                        
+                                        protected                                        array
                 </td>
                 <td>$heldMessages</td>
-                <td class="last"></td>
+                <td class="last">Message waiting gor their user handshake</td>
                 <td><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#property_heldMessages"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_rooms">
-                                        protected                                        
+                                        protected                                        array
                 </td>
                 <td>$rooms</td>
-                <td class="last"></td>
+                <td class="last">Rooms list indexed by name</td>
                 <td><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#property_rooms"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_interactive">
-                                        protected                                        
+                                        protected                                        boolean
                 </td>
                 <td>$interactive</td>
-                <td class="last"></td>
+                <td class="last">Determine if the server show log message</td>
                 <td><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#property_interactive"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_headerOriginRequired">
-                                        protected                                        
+                                        protected                                        boolean
                 </td>
                 <td>$headerOriginRequired</td>
-                <td class="last"></td>
+                <td class="last">Determine if the origin must be check</td>
                 <td><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#property_headerOriginRequired"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_headerSecWebSocketProtocolRequired">
-                                        protected                                        
+                                        protected                                        boolean
                 </td>
                 <td>$headerSecWebSocketProtocolRequired</td>
-                <td class="last"></td>
+                <td class="last">Determine if the sec-websocket-protocol must be check</td>
                 <td><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#property_headerSecWebSocketProtocolRequired"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></td>
             </tr>
                     <tr>
                 <td class="type" id="property_headerSecWebSocketExtensionsRequired">
-                                        protected                                        
+                                        protected                                        boolean
                 </td>
                 <td>$headerSecWebSocketExtensionsRequired</td>
-                <td class="last"></td>
+                <td class="last">Determine if the sec-websocket-extensions must be check</td>
                 <td><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#property_headerSecWebSocketExtensionsRequired"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></td>
             </tr>
             </table>
@@ -190,10 +190,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method___construct">__construct</a>($addr, $port, $ssl = [], $bufferLength = 2048)
+                    <a href="#method___construct">__construct</a>(string $addr, string $port, array $ssl = [], integer $bufferLength = 2048)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Initialize master socket</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method___construct"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -201,10 +200,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_process">process</a>($user, $message)
+                    <a href="#method_process">process</a>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, array $message)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Process a user messsage as an event and delegate to [name]Event function if defined</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -212,10 +210,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_connected">connected</a>($user)
+                    <a href="#method_connected">connected</a>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Trigger on user connect</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -223,10 +220,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_closed">closed</a>($user)
+                    <a href="#method_closed">closed</a>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Trigger on user connection closed</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -234,10 +230,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_connecting">connecting</a>($user)
+                    <a href="#method_connecting">connecting</a>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Handle a connecting user, after the instance of the User is created, but before the handshake has completed.</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_connecting"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -245,10 +240,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_openRoom">openRoom</a>($name)
+                    <a href="#method_openRoom">openRoom</a>(string $name)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Called on room open</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_openRoom"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -256,10 +250,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_closeRoom">closeRoom</a>($name)
+                    <a href="#method_closeRoom">closeRoom</a>(string $name)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Called on room close</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_closeRoom"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -267,10 +260,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_send">send</a>($user, $message)
+                    <a href="#method_send">send</a>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, array $message)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Send event to an user</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_send"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -278,10 +270,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_broadcast">broadcast</a>($message, $room = null, $userFrom = null)
+                    <a href="#method_broadcast">broadcast</a>(array $message, string $room = null, string $userFrom = null)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Send event to multiple user</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_broadcast"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -291,8 +282,7 @@
                 <div class="col-md-8 type">
                     <a href="#method_tick">tick</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Happen periodically. Will happen at least once per second, but possibly more often.</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_tick"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -302,8 +292,7 @@
                 <div class="col-md-8 type">
                     <a href="#method__tick">_tick</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Core maintenance processes, such as retrying failed messages.</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method__tick"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -321,10 +310,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_connect">connect</a>($socket)
+                    <a href="#method_connect">connect</a>(socket_ressource $socket)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Connect an user.</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_connect"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -332,10 +320,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_disconnect">disconnect</a>($socket, $triggerClosed = true, $sockErrNo = null)
+                    <a href="#method_disconnect">disconnect</a>(socket_ressource $socket, boolean $triggerClosed = true, integer $sockErrNo = null)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Disconnect an User.</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_disconnect"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -343,87 +330,79 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_doHandshake">doHandshake</a>($user, $buffer)
+                    <a href="#method_doHandshake">doHandshake</a>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, string $buffer)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Do the handshake client/server</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_doHandshake"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_checkHost">checkHost</a>($hostName)
+                    <a href="#method_checkHost">checkHost</a>(String $hostName)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Override and return false if the host is not one that you would expect.</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_checkHost"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_checkOrigin">checkOrigin</a>($origin)
+                    <a href="#method_checkOrigin">checkOrigin</a>(string $origin)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Override and return false if the origin is not one that you would expect.</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_checkOrigin"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_checkWebsocProtocol">checkWebsocProtocol</a>($protocol)
+                    <a href="#method_checkWebsocProtocol">checkWebsocProtocol</a>(string $protocol)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Override and return false if a protocol is not found that you would expect.</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_checkWebsocProtocol"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_checkWebsocExtensions">checkWebsocExtensions</a>($extensions)
+                    <a href="#method_checkWebsocExtensions">checkWebsocExtensions</a>(string $extensions)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Override and return false if an extension is not found that you would expect.</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_checkWebsocExtensions"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_processProtocol">processProtocol</a>($protocol)
+                    <a href="#method_processProtocol">processProtocol</a>(string $protocol)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Process a protocol</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_processProtocol"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_processExtensions">processExtensions</a>($extensions)
+                    <a href="#method_processExtensions">processExtensions</a>(string $extensions)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Process extensions</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_processExtensions"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    <a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_getUserBySocket">getUserBySocket</a>($socket)
+                    <a href="#method_getUserBySocket">getUserBySocket</a>(socket_ressource $socket)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Get an user by his socket</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_getUserBySocket"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -431,10 +410,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_stdout">stdout</a>($message)
+                    <a href="#method_stdout">stdout</a>(string $message)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Log a success message</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_stdout"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -442,21 +420,19 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_stderr">stderr</a>($message)
+                    <a href="#method_stderr">stderr</a>(string $message)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Log a warning message</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_stderr"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_frame">frame</a>($message, $user, $messageType = &#039;text&#039;, $messageContinues = false)
+                    <a href="#method_frame">frame</a>(string $message, <a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, string $messageType = &#039;text&#039;, boolean $messageContinues = false)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Create a frame from user message</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_frame"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -464,87 +440,79 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_split_packet">split_packet</a>($length, $packet, $user)
+                    <a href="#method_split_packet">split_packet</a>(integer $length, string $packet, <a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Check packet if he have more than one frame and process each frame individually</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_split_packet"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    integer
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_calcoffset">calcoffset</a>($headers)
+                    <a href="#method_calcoffset">calcoffset</a>(array $headers)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Calculate header offset</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_calcoffset"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_deframe">deframe</a>($message, $user)
+                    <a href="#method_deframe">deframe</a>(string $message, <a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Process a frame</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_deframe"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    array
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_extractHeaders">extractHeaders</a>($message)
+                    <a href="#method_extractHeaders">extractHeaders</a>(string $message)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Extract the headers of a message</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_extractHeaders"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_extractPayload">extractPayload</a>($message, $headers)
+                    <a href="#method_extractPayload">extractPayload</a>(string $message, array $headers)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Extract the payload of the message</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_extractPayload"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_applyMask">applyMask</a>($headers, $payload)
+                    <a href="#method_applyMask">applyMask</a>(array $headers, string $payload)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Apply a mask on the payload</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_applyMask"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    boolean
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_checkRSVBits">checkRSVBits</a>($headers, $user)
+                    <a href="#method_checkRSVBits">checkRSVBits</a>(array $headers, <a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Override this method if you are using an extension where the RSV bits are used.</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_checkRSVBits"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_strtohex">strtohex</a>($str)
+                    <a href="#method_strtohex">strtohex</a>(string $str)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Convert a string to his hexadecimal value</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_strtohex"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -552,10 +520,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_printHeaders">printHeaders</a>($headers)
+                    <a href="#method_printHeaders">printHeaders</a>(array $headers)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Display formated headers on screen</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../Phalcon/Websocket/Server.html#method_printHeaders"><abbr title="Phalcon\Websocket\Server">Server</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -563,21 +530,20 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_testEvent">testEvent</a>($user, $data)
+                    <a href="#method_testEvent">testEvent</a>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, array $data)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Test event</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    array
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getUsers">getUsers</a>($user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Get all user of the user room except him
+\Phalcon\Websocket\User &amp;$user User instance</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -588,38 +554,47 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method___construct"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 20</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method___construct"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 81</div>
         <code>                    
-    <strong>__construct</strong>($addr, $port, $ssl = [], $bufferLength = 2048)
+    <strong>__construct</strong>(string $addr, string $port, array $ssl = [], integer $bufferLength = 2048)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Initialize master socket</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$addr</td>
-                <td></td>
+                <td>Ip address to listen on</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$port</td>
-                <td></td>
+                <td>listen port</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$ssl</td>
-                <td></td>
+                <td>SSL certificate in PEM format</p>
+
+<pre><code>[
+    'pem'=&gt;'',
+    'crt'=&gt;''
+];
+</code></pre>
+</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>integer</td>
                 <td>$bufferLength</td>
-                <td></td>
+                <td>Length of the buffer</td>
             </tr>
             </table>
 
@@ -632,28 +607,37 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_process">
-        <div class="location">at         line 6</div>
+        <div class="location">at         line 12</div>
         <code>            protected        
-    <strong>process</strong>($user, $message)
+    <strong>process</strong>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, array $message)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Process a user messsage as an event and delegate to [name]Event function if defined</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user  User instance</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message Data of the event</p>
+
+<pre><code>[
+    'type'=&gt;'' // name of the event,
+    'data'=&gt;''// data of the event
+];
+</code></pre>
+</td>
             </tr>
             </table>
 
@@ -666,23 +650,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_connected">
-        <div class="location">at         line 21</div>
+        <div class="location">at         line 36</div>
         <code>            protected        
-    <strong>connected</strong>($user)
+    <strong>connected</strong>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Trigger on user connect</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user User instance</td>
             </tr>
             </table>
 
@@ -695,23 +681,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_closed">
-        <div class="location">at         line 33</div>
+        <div class="location">at         line 55</div>
         <code>            protected        
-    <strong>closed</strong>($user)
+    <strong>closed</strong>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Trigger on user connection closed</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user User instance</td>
             </tr>
             </table>
 
@@ -724,23 +712,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_connecting">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_connecting"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 49</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_connecting"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 134</div>
         <code>            protected        
-    <strong>connecting</strong>($user)
+    <strong>connecting</strong>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Handle a connecting user, after the instance of the User is created, but before the handshake has completed.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user User instance</td>
             </tr>
             </table>
 
@@ -753,23 +743,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_openRoom">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_openRoom"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 54</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_openRoom"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 141</div>
         <code>            protected        
-    <strong>openRoom</strong>($name)
+    <strong>openRoom</strong>(string $name)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Called on room open</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td>Name of the opened room</td>
             </tr>
             </table>
 
@@ -782,23 +774,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_closeRoom">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_closeRoom"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 58</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_closeRoom"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 149</div>
         <code>            protected        
-    <strong>closeRoom</strong>($name)
+    <strong>closeRoom</strong>(string $name)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Called on room close</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$name</td>
-                <td></td>
+                <td>Name of the opened room</td>
             </tr>
             </table>
 
@@ -811,28 +805,37 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_send">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_send"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 62</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_send"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 164</div>
         <code>            protected        
-    <strong>send</strong>($user, $message)
+    <strong>send</strong>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, array $message)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Send event to an user</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user  User instance</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message Data of the event</p>
+
+<pre><code>[
+    'type'=&gt;'' // name of the event,
+    'data'=&gt;''// data of the event
+];
+</code></pre>
+</td>
             </tr>
             </table>
 
@@ -845,33 +848,42 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_broadcast">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_broadcast"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 77</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_broadcast"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 191</div>
         <code>            protected        
-    <strong>broadcast</strong>($message, $room = null, $userFrom = null)
+    <strong>broadcast</strong>(array $message, string $room = null, string $userFrom = null)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Send event to multiple user</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$message</td>
-                <td></td>
+                <td>Data of the event</p>
+
+<pre><code>[
+    'type'=&gt;'' // name of the event,
+    'data'=&gt;''// data of the event
+];
+</code></pre>
+</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$room</td>
-                <td></td>
+                <td>Name of the room, if null send to all user's room</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$userFrom</td>
-                <td></td>
+                <td>Id of an user to exclude to send</td>
             </tr>
             </table>
 
@@ -884,7 +896,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_tick">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_tick"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 95</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_tick"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 212</div>
         <code>            protected        
     <strong>tick</strong>()
         </code>
@@ -893,6 +905,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Happen periodically. Will happen at least once per second, but possibly more often.</p>                                                </div>
                 <div class="tags">
             
             
@@ -903,7 +917,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method__tick">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method__tick"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 100</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method__tick"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 218</div>
         <code>            protected        
     <strong>_tick</strong>()
         </code>
@@ -912,6 +926,8 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Core maintenance processes, such as retrying failed messages.</p>                                                </div>
                 <div class="tags">
             
             
@@ -922,7 +938,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_run">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_run"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 123</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_run"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 240</div>
         <code>                    
     <strong>run</strong>()
         </code>
@@ -943,23 +959,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_connect">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_connect"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 203</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_connect"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 324</div>
         <code>            protected        
-    <strong>connect</strong>($socket)
+    <strong>connect</strong>(socket_ressource $socket)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Connect an user.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>socket_ressource</td>
                 <td>$socket</td>
-                <td></td>
+                <td>&amp;$socket User socket</td>
             </tr>
             </table>
 
@@ -972,33 +990,35 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_disconnect">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_disconnect"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 211</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_disconnect"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 338</div>
         <code>            protected        
-    <strong>disconnect</strong>($socket, $triggerClosed = true, $sockErrNo = null)
+    <strong>disconnect</strong>(socket_ressource $socket, boolean $triggerClosed = true, integer $sockErrNo = null)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Disconnect an User.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>socket_ressource</td>
                 <td>$socket</td>
-                <td></td>
+                <td>&amp;$socket  Socket to disconnect</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>boolean</td>
                 <td>$triggerClosed</td>
-                <td></td>
+                <td>Set to true if socket need to be closed</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>integer</td>
                 <td>$sockErrNo</td>
-                <td></td>
+                <td>Error code, present only on error</td>
             </tr>
             </table>
 
@@ -1011,28 +1031,30 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_doHandshake">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_doHandshake"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 251</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_doHandshake"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 384</div>
         <code>            protected        
-    <strong>doHandshake</strong>($user, $buffer)
+    <strong>doHandshake</strong>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, string $buffer)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Do the handshake client/server</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user  User instance</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$buffer</td>
-                <td></td>
+                <td>&amp;$buffer Buffer containing data</td>
             </tr>
             </table>
 
@@ -1045,27 +1067,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_checkHost">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_checkHost"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 342</div>
-        <code>            protected        
-    <strong>checkHost</strong>($hostName)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_checkHost"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 480</div>
+        <code>            protected        boolean
+    <strong>checkHost</strong>(String $hostName)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Override and return false if the host is not one that you would expect.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>String</td>
                 <td>$hostName</td>
-                <td></td>
+                <td>Name of the host to check</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1074,27 +1107,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_checkOrigin">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_checkOrigin"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 348</div>
-        <code>            protected        
-    <strong>checkOrigin</strong>($origin)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_checkOrigin"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 489</div>
+        <code>            protected        boolean
+    <strong>checkOrigin</strong>(string $origin)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Override and return false if the origin is not one that you would expect.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$origin</td>
-                <td></td>
+                <td>Origin to check</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1103,27 +1147,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_checkWebsocProtocol">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_checkWebsocProtocol"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 352</div>
-        <code>            protected        
-    <strong>checkWebsocProtocol</strong>($protocol)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_checkWebsocProtocol"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 498</div>
+        <code>            protected        boolean
+    <strong>checkWebsocProtocol</strong>(string $protocol)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Override and return false if a protocol is not found that you would expect.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$protocol</td>
-                <td></td>
+                <td>Name of the protocol</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1132,27 +1187,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_checkWebsocExtensions">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_checkWebsocExtensions"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 356</div>
-        <code>            protected        
-    <strong>checkWebsocExtensions</strong>($extensions)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_checkWebsocExtensions"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 507</div>
+        <code>            protected        boolean
+    <strong>checkWebsocExtensions</strong>(string $extensions)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Override and return false if an extension is not found that you would expect.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$extensions</td>
-                <td></td>
+                <td>Extension list</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1161,27 +1227,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_processProtocol">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_processProtocol"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 360</div>
-        <code>            protected        
-    <strong>processProtocol</strong>($protocol)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_processProtocol"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 516</div>
+        <code>            protected        string
+    <strong>processProtocol</strong>(string $protocol)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Process a protocol</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$protocol</td>
-                <td></td>
+                <td>Protocol to process</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Either "Sec-WebSocket-Protocol: SelectedProtocolFromClientList\r\n" or return an empty string. The carriage return/newline combo must appear at the end of a non-empty string, and must not appear at the beginning of the string nor in an otherwise empty string, or it will be considered part of the response body, which will trigger an error in the client as it will not be formatted correctly.</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1190,27 +1267,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_processExtensions">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_processExtensions"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 367</div>
-        <code>            protected        
-    <strong>processExtensions</strong>($extensions)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_processExtensions"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 525</div>
+        <code>            protected        string
+    <strong>processExtensions</strong>(string $extensions)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Process extensions</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$extensions</td>
-                <td></td>
+                <td>Extensions list</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Either "Sec-WebSocket-Extensions: SelectedExtensions\r\n" or return an empty string.</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1219,27 +1307,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getUserBySocket">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_getUserBySocket"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 371</div>
-        <code>            protected        
-    <strong>getUserBySocket</strong>($socket)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_getUserBySocket"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 534</div>
+        <code>            protected        <a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a>
+    <strong>getUserBySocket</strong>(socket_ressource $socket)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Get an user by his socket</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>socket_ressource</td>
                 <td>$socket</td>
-                <td></td>
+                <td>User socket to get</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
+            <td>Valid user or null if socket not exists</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1248,23 +1347,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_stdout">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_stdout"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 380</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_stdout"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 547</div>
         <code>                    
-    <strong>stdout</strong>($message)
+    <strong>stdout</strong>(string $message)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Log a success message</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>Message to display</td>
             </tr>
             </table>
 
@@ -1277,23 +1378,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_stderr">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_stderr"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 386</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_stderr"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 557</div>
         <code>                    
-    <strong>stderr</strong>($message)
+    <strong>stderr</strong>(string $message)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Log a warning message</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>Message to display</td>
             </tr>
             </table>
 
@@ -1306,42 +1409,53 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_frame">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_frame"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 392</div>
-        <code>            protected        
-    <strong>frame</strong>($message, $user, $messageType = &#039;text&#039;, $messageContinues = false)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_frame"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 571</div>
+        <code>            protected        string
+    <strong>frame</strong>(string $message, <a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, string $messageType = &#039;text&#039;, boolean $messageContinues = false)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Create a frame from user message</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message         Message data</td>
             </tr>
                     <tr>
-                <td></td>
+                <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user   User instance</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$messageType</td>
-                <td></td>
+                <td>Type of message</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>boolean</td>
                 <td>$messageContinues</td>
-                <td></td>
+                <td>Determine if the message is finished or not</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Formated message</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1350,33 +1464,35 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_split_packet">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_split_packet"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 459</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_split_packet"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 643</div>
         <code>            protected        
-    <strong>split_packet</strong>($length, $packet, $user)
+    <strong>split_packet</strong>(integer $length, string $packet, <a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Check packet if he have more than one frame and process each frame individually</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>integer</td>
                 <td>$length</td>
-                <td></td>
+                <td>$length of the packet</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$packet</td>
-                <td></td>
+                <td>Packet content</td>
             </tr>
                     <tr>
-                <td></td>
+                <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user  User instance</td>
             </tr>
             </table>
 
@@ -1389,27 +1505,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_calcoffset">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_calcoffset"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 497</div>
-        <code>            protected        
-    <strong>calcoffset</strong>($headers)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_calcoffset"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 686</div>
+        <code>            protected        integer
+    <strong>calcoffset</strong>(array $headers)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Calculate header offset</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$headers</td>
-                <td></td>
+                <td>&amp;$headers Socket headers</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>integer</td>
+            <td>Offset calculated</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1418,32 +1545,43 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_deframe">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_deframe"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 510</div>
-        <code>            protected        
-    <strong>deframe</strong>($message, $user)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_deframe"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 705</div>
+        <code>            protected        boolean
+    <strong>deframe</strong>(string $message, <a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Process a frame</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message Message data</td>
             </tr>
                     <tr>
-                <td></td>
+                <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user  User instance</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>The frame processed of false on fail</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1452,27 +1590,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_extractHeaders">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_extractHeaders"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 578</div>
-        <code>            protected        
-    <strong>extractHeaders</strong>($message)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_extractHeaders"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 778</div>
+        <code>            protected        array
+    <strong>extractHeaders</strong>(string $message)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Extract the headers of a message</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message Message data</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>Headers extracted</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1481,32 +1630,43 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_extractPayload">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_extractPayload"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 615</div>
-        <code>            protected        
-    <strong>extractPayload</strong>($message, $headers)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_extractPayload"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 819</div>
+        <code>            protected        string
+    <strong>extractPayload</strong>(string $message, array $headers)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Extract the payload of the message</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message Message data</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$headers</td>
-                <td></td>
+                <td>&amp;$headers Headers of the message</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Payload of the message</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1515,32 +1675,43 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_applyMask">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_applyMask"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 629</div>
-        <code>            protected        
-    <strong>applyMask</strong>($headers, $payload)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_applyMask"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 839</div>
+        <code>            protected        string
+    <strong>applyMask</strong>(array $headers, string $payload)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Apply a mask on the payload</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$headers</td>
-                <td></td>
+                <td>&amp;$headers Headers of the message</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$payload</td>
-                <td></td>
+                <td>&amp;$payload Payload of the message</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Payload with mask a applied</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1549,32 +1720,43 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_checkRSVBits">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_checkRSVBits"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 646</div>
-        <code>            protected        
-    <strong>checkRSVBits</strong>($headers, $user)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_checkRSVBits"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 863</div>
+        <code>            protected        boolean
+    <strong>checkRSVBits</strong>(array $headers, <a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Override this method if you are using an extension where the RSV bits are used.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$headers</td>
-                <td></td>
+                <td>&amp;$headers Headers of the message</td>
             </tr>
                     <tr>
-                <td></td>
+                <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user User instance</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1583,27 +1765,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_strtohex">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_strtohex"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 654</div>
-        <code>            protected        
-    <strong>strtohex</strong>($str)
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_strtohex"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 876</div>
+        <code>            protected        string
+    <strong>strtohex</strong>(string $str)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Convert a string to his hexadecimal value</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$str</td>
-                <td></td>
+                <td>&amp;$str String to convert</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>The converted value</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1612,23 +1805,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_printHeaders">
-        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_printHeaders"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 675</div>
+        <div class="location">in <a href="../Phalcon/Websocket/Server.html#method_printHeaders"><abbr title="Phalcon\Websocket\Server">Server</abbr></a> at         line 901</div>
         <code>            protected        
-    <strong>printHeaders</strong>($headers)
+    <strong>printHeaders</strong>(array $headers)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Display formated headers on screen</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$headers</td>
-                <td></td>
+                <td>&amp;$headers Headers of the message</td>
             </tr>
             </table>
 
@@ -1641,28 +1836,30 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_testEvent">
-        <div class="location">at         line 14</div>
+        <div class="location">at         line 25</div>
         <code>            protected        
-    <strong>testEvent</strong>($user, $data)
+    <strong>testEvent</strong>(<a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, array $data)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Test event</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><a href="../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user User instance</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$data</td>
-                <td></td>
+                <td>Data of the event</td>
             </tr>
             </table>
 
@@ -1675,8 +1872,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getUsers">
-        <div class="location">at         line 40</div>
-        <code>            protected        
+        <div class="location">at         line 68</div>
+        <code>            protected        array
     <strong>getUsers</strong>($user)
         </code>
     </h3>
@@ -1684,6 +1881,9 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Get all user of the user room except him
+\Phalcon\Websocket\User &amp;$user User instance</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
@@ -1696,6 +1896,15 @@
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>Users of the room</td>
+        </tr>
+    </table>
+
             
             
                     </div>

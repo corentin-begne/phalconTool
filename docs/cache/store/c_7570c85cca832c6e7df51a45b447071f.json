@@ -1,0 +1,49 @@
+{
+    "name": "IndexController",
+    "line": 4,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "",
+    "file": "\/var\/www\/phalconTool\/templates\/project\/app\/controllers\/IndexController.php",
+    "relative_file": null,
+    "hash": "074677e0a5e2cac15f0ebbe43be30baeb2ee3e27",
+    "parent": "Phalcon\\ControllerBase",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Event": "Phalcon\\Events\\Event",
+        "Component": "Phalcon\\Mvc\\User\\Component",
+        "Dispatcher": "Phalcon\\Mvc\\Dispatcher",
+        "Jsmin": "Phalcon\\Assets\\Filters\\Jsmin",
+        "Acl": "Phalcon\\Acl",
+        "Role": "Phalcon\\Acl\\Role",
+        "AclList": "Phalcon\\Acl\\Adapter\\Memory",
+        "Resource": "Phalcon\\Acl\\Resource",
+        "Plugin": "Phalcon\\Mvc\\User\\Plugin",
+        "UserManager": "Manager\\User"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "indexAction": {
+            "name": "indexAction",
+            "line": 6,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -8,7 +8,7 @@
     "namespace": "Phalcon\\Websocket",
     "file": "\/var\/www\/phalconTool\/src\/Websocket\/Server.php",
     "relative_file": null,
-    "hash": "197998be25a98fa9b272556c1377b89cfea07326",
+    "hash": "2560e3e90f009326d517ab2ce295f3b3d726b0fd",
     "parent": null,
     "modifiers": 16,
     "is_trait": false,
@@ -460,7 +460,7 @@
                 "user": {
                     "name": "user",
                     "line": 116,
-                    "short_desc": "&$user  User emitting the event",
+                    "short_desc": "&$user  User instance",
                     "long_desc": null,
                     "hint": [
                         [
@@ -509,7 +509,7 @@
                 "user": {
                     "name": "user",
                     "line": 122,
-                    "short_desc": "&$user User connected",
+                    "short_desc": "&$user User instance",
                     "long_desc": null,
                     "hint": [
                         [
@@ -541,7 +541,7 @@
                 "user": {
                     "name": "user",
                     "line": 128,
-                    "short_desc": "&$user User socket closed",
+                    "short_desc": "&$user User instance",
                     "long_desc": null,
                     "hint": [
                         [
@@ -573,7 +573,7 @@
                 "user": {
                     "name": "user",
                     "line": 134,
-                    "short_desc": "&$user User connection",
+                    "short_desc": "&$user User instance",
                     "long_desc": null,
                     "hint": [
                         [
@@ -669,7 +669,7 @@
                 "user": {
                     "name": "user",
                     "line": 164,
-                    "short_desc": "&$user  User who will receive the event",
+                    "short_desc": "&$user  User instance",
                     "long_desc": null,
                     "hint": [
                         [
@@ -924,7 +924,7 @@
                 "user": {
                     "name": "user",
                     "line": 384,
-                    "short_desc": "&$user  User processing the handshake",
+                    "short_desc": "&$user  User instance",
                     "long_desc": null,
                     "hint": [
                         [
@@ -1181,11 +1181,16 @@
         },
         "getUserBySocket": {
             "name": "getUserBySocket",
-            "line": 529,
-            "short_desc": "",
+            "line": 534,
+            "short_desc": "Get an user by his socket",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "\\Phalcon\\Websocket\\User",
+                    false
+                ]
+            ],
+            "hint_desc": "Valid user or null if socket not exists",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -1194,10 +1199,15 @@
             "parameters": {
                 "socket": {
                     "name": "socket",
-                    "line": 529,
-                    "short_desc": null,
+                    "line": 534,
+                    "short_desc": "User socket to get",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\socket_ressource",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1208,8 +1218,8 @@
         },
         "stdout": {
             "name": "stdout",
-            "line": 538,
-            "short_desc": "",
+            "line": 547,
+            "short_desc": "Log a success message",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -1221,10 +1231,15 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 538,
-                    "short_desc": null,
+                    "line": 547,
+                    "short_desc": "Message to display",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1235,8 +1250,8 @@
         },
         "stderr": {
             "name": "stderr",
-            "line": 544,
-            "short_desc": "",
+            "line": 557,
+            "short_desc": "Log a warning message",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -1248,10 +1263,15 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 544,
-                    "short_desc": null,
+                    "line": 557,
+                    "short_desc": "Message to display",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1262,11 +1282,16 @@
         },
         "frame": {
             "name": "frame",
-            "line": 550,
-            "short_desc": "",
+            "line": 571,
+            "short_desc": "Create a frame from user message",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Formated message",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -1275,10 +1300,15 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 550,
-                    "short_desc": null,
+                    "line": 571,
+                    "short_desc": "&$message         Message data",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1287,10 +1317,15 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 550,
-                    "short_desc": null,
+                    "line": 571,
+                    "short_desc": "&$user   User instance",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1299,10 +1334,15 @@
                 },
                 "messageType": {
                     "name": "messageType",
-                    "line": 550,
-                    "short_desc": null,
+                    "line": 571,
+                    "short_desc": "Type of message",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": "'text'",
@@ -1311,10 +1351,15 @@
                 },
                 "messageContinues": {
                     "name": "messageContinues",
-                    "line": 550,
-                    "short_desc": null,
+                    "line": 571,
+                    "short_desc": "Determine if the message is finished or not",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "boolean",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": "false",
@@ -1325,8 +1370,8 @@
         },
         "split_packet": {
             "name": "split_packet",
-            "line": 617,
-            "short_desc": "",
+            "line": 643,
+            "short_desc": "Check packet if he have more than one frame and process each frame individually",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -1338,10 +1383,15 @@
             "parameters": {
                 "length": {
                     "name": "length",
-                    "line": 617,
-                    "short_desc": null,
+                    "line": 643,
+                    "short_desc": "$length of the packet",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "integer",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1350,10 +1400,15 @@
                 },
                 "packet": {
                     "name": "packet",
-                    "line": 617,
-                    "short_desc": null,
+                    "line": 643,
+                    "short_desc": "Packet content",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1362,10 +1417,15 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 617,
-                    "short_desc": null,
+                    "line": 643,
+                    "short_desc": "&$user  User instance",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1376,11 +1436,16 @@
         },
         "calcoffset": {
             "name": "calcoffset",
-            "line": 655,
-            "short_desc": "",
+            "line": 686,
+            "short_desc": "Calculate header offset",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "integer",
+                    false
+                ]
+            ],
+            "hint_desc": "Offset calculated",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -1389,10 +1454,15 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 655,
-                    "short_desc": null,
+                    "line": 686,
+                    "short_desc": "&$headers Socket headers",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1403,11 +1473,16 @@
         },
         "deframe": {
             "name": "deframe",
-            "line": 668,
-            "short_desc": "",
+            "line": 705,
+            "short_desc": "Process a frame",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "The frame processed of false on fail",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -1416,10 +1491,15 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 668,
-                    "short_desc": null,
+                    "line": 705,
+                    "short_desc": "&$message Message data",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1428,10 +1508,15 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 668,
-                    "short_desc": null,
+                    "line": 705,
+                    "short_desc": "&$user  User instance",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1442,11 +1527,16 @@
         },
         "extractHeaders": {
             "name": "extractHeaders",
-            "line": 736,
-            "short_desc": "",
+            "line": 778,
+            "short_desc": "Extract the headers of a message",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "Headers extracted",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -1455,10 +1545,15 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 736,
-                    "short_desc": null,
+                    "line": 778,
+                    "short_desc": "&$message Message data",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1469,11 +1564,16 @@
         },
         "extractPayload": {
             "name": "extractPayload",
-            "line": 773,
-            "short_desc": "",
+            "line": 819,
+            "short_desc": "Extract the payload of the message",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Payload of the message",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -1482,10 +1582,15 @@
             "parameters": {
                 "message": {
                     "name": "message",
-                    "line": 773,
-                    "short_desc": null,
+                    "line": 819,
+                    "short_desc": "&$message Message data",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1494,10 +1599,15 @@
                 },
                 "headers": {
                     "name": "headers",
-                    "line": 773,
-                    "short_desc": null,
+                    "line": 819,
+                    "short_desc": "&$headers Headers of the message",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1508,11 +1618,16 @@
         },
         "applyMask": {
             "name": "applyMask",
-            "line": 787,
-            "short_desc": "",
+            "line": 839,
+            "short_desc": "Apply a mask on the payload",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Payload with mask a applied",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -1521,10 +1636,15 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 787,
-                    "short_desc": null,
+                    "line": 839,
+                    "short_desc": "&$headers Headers of the message",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1533,10 +1653,15 @@
                 },
                 "payload": {
                     "name": "payload",
-                    "line": 787,
-                    "short_desc": null,
+                    "line": 839,
+                    "short_desc": "&$payload Payload of the message",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1547,11 +1672,16 @@
         },
         "checkRSVBits": {
             "name": "checkRSVBits",
-            "line": 804,
-            "short_desc": "",
+            "line": 863,
+            "short_desc": "Override this method if you are using an extension where the RSV bits are used.",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "Result of the check",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -1560,10 +1690,15 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 804,
-                    "short_desc": null,
+                    "line": 863,
+                    "short_desc": "&$headers Headers of the message",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1572,10 +1707,15 @@
                 },
                 "user": {
                     "name": "user",
-                    "line": 804,
-                    "short_desc": null,
+                    "line": 863,
+                    "short_desc": "&$user User instance",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Websocket\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1586,11 +1726,16 @@
         },
         "strtohex": {
             "name": "strtohex",
-            "line": 812,
-            "short_desc": "",
+            "line": 876,
+            "short_desc": "Convert a string to his hexadecimal value",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The converted value",
             "tags": [],
             "modifiers": 2,
             "is_by_ref": "",
@@ -1599,10 +1744,15 @@
             "parameters": {
                 "str": {
                     "name": "str",
-                    "line": 812,
-                    "short_desc": null,
+                    "line": 876,
+                    "short_desc": "&$str String to convert",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1613,8 +1763,8 @@
         },
         "printHeaders": {
             "name": "printHeaders",
-            "line": 833,
-            "short_desc": "",
+            "line": 901,
+            "short_desc": "Display formated headers on screen",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -1626,10 +1776,15 @@
             "parameters": {
                 "headers": {
                     "name": "headers",
-                    "line": 833,
-                    "short_desc": null,
+                    "line": 901,
+                    "short_desc": "&$headers Headers of the message",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,

@@ -104,7 +104,7 @@ abstract class Server {
 
     /**
      * Called immediately when the data is recieved. 
-     * @param  \Phalcon\Websocket\User &$user  User emitting the event
+     * @param  \Phalcon\Websocket\User &$user  User instance
      * @param  array &$message Data of the event 
      * ```
      * [
@@ -117,19 +117,19 @@ abstract class Server {
 
     /**
      * Called after the handshake response is sent to the client.
-     * @param  \Phalcon\Websocket\User &$user User connected
+     * @param  \Phalcon\Websocket\User &$user User instance
      */
     abstract protected function connected(&$user);
 
     /**
      * Called after the connection is closed.
-     * @param  \Phalcon\Websocket\User &$user User socket closed
+     * @param  \Phalcon\Websocket\User &$user User instance
      */
     abstract protected function closed(&$user); 
 
     /**
      * Handle a connecting user, after the instance of the User is created, but before the handshake has completed.
-     * @param  \Phalcon\Websocket\User &$user User connection
+     * @param  \Phalcon\Websocket\User &$user User instance
      */
     protected function connecting(&$user) {
     }
@@ -152,7 +152,7 @@ abstract class Server {
 
     /**
      * Send event to an user
-     * @param  \Phalcon\Websocket\User &$user  User who will receive the event
+     * @param  \Phalcon\Websocket\User &$user  User instance
      * @param  array &$message Data of the event 
      * ```
      * [
@@ -378,7 +378,7 @@ abstract class Server {
 
     /**
      * Do the handshake client/server
-     * @param  \Phalcon\Websocket\User &$user  User processing the handshake
+     * @param  \Phalcon\Websocket\User &$user  User instance
      * @param  string &$buffer Buffer containing data
      */
     protected function doHandshake(&$user, &$buffer) {
@@ -563,7 +563,7 @@ abstract class Server {
     /**
      * Create a frame from user message
      * @param  string  &$message         Message data
-     * @param  \Phalcon\Websocket\User  &$user   User frame
+     * @param  \Phalcon\Websocket\User  &$user   User instance
      * @param  string  $messageType      Type of message
      * @param  boolean $messageContinues Determine if the message is finished or not
      * @return string                    Formated message
@@ -638,7 +638,7 @@ abstract class Server {
      * Check packet if he have more than one frame and process each frame individually
      * @param  integer $length $length of the packet
      * @param  string $packet Packet content
-     * @param  \Phalcon\Websocket\User &$user  User packet
+     * @param  \Phalcon\Websocket\User &$user  User instance
      */
     protected function split_packet($length,$packet, &$user) {
         //add PartialPacket and calculate the new $length
@@ -697,10 +697,10 @@ abstract class Server {
     }
 
     /**
-     * [deframe description]
-     * @param  [type] &$message [description]
-     * @param  [type] &$user    [description]
-     * @return [type]           [description]
+     * Process a frame
+     * @param  string &$message Message data
+     * @param  \Phalcon\Websocket\User &$user  User instance
+     * @return boolean  The frame processed of false on fail
      */
     protected function deframe(&$message, &$user) {
         //echo $this->strtohex($message);
@@ -770,6 +770,11 @@ abstract class Server {
         return false;
     }
 
+    /**
+     * Extract the headers of a message
+     * @param  string &$message Message data
+     * @return array  Headers extracted
+     */
     protected function extractHeaders(&$message) {
         $header = array('fin'     => $message[0] & chr(128),
             'rsv1'    => $message[0] & chr(64),
@@ -802,11 +807,15 @@ abstract class Server {
         } elseif ($header['hasmask']) {
             $header['mask'] = $message[2] . $message[3] . $message[4] . $message[5];
         }
-        //echo $this->strtohex($message);
-        //$this->printHeaders($header);
         return $header;
     }
 
+    /**
+     * Extract the payload of the message
+     * @param  string &$message Message data
+     * @param  array &$headers Headers of the message
+     * @return string Payload of the message
+     */
     protected function extractPayload(&$message,&$headers) {
         $offset = 2;
         if ($headers['hasmask']) {
@@ -821,6 +830,12 @@ abstract class Server {
         return substr($message,$offset);
     }
 
+    /**
+     * Apply a mask on the payload
+     * @param  array &$headers Headers of the message
+     * @param  string &$payload Payload of the message
+     * @return string Payload with mask a applied
+     */
     protected function applyMask(&$headers,&$payload) {
         $effectiveMask = "";
         if ($headers['hasmask']) {
@@ -838,7 +853,14 @@ abstract class Server {
         }
         return $effectiveMask ^ $payload;
     }
-    protected function checkRSVBits(&$headers,&$user) { // override this method if you are using an extension where the RSV bits are used.
+
+    /**
+     * Override this method if you are using an extension where the RSV bits are used.
+     * @param  array &$headers Headers of the message
+     * @param  \Phalcon\Websocket\User &$user User instance
+     * @return boolean    Result of the check
+     */
+    protected function checkRSVBits(&$headers,&$user) { // 
         if (ord($headers['rsv1']) + ord($headers['rsv2']) + ord($headers['rsv3']) > 0) {
             //$this->disconnect($user); // todo: fail connection
             return true;
@@ -846,6 +868,11 @@ abstract class Server {
         return false;
     }
 
+    /**
+     * Convert a string to his hexadecimal value
+     * @param  string &$str String to convert
+     * @return string The converted value
+     */
     protected function strtohex(&$str) {
         $strout = "";
         for ($i = 0; $i < strlen($str); $i++) {
@@ -867,6 +894,10 @@ abstract class Server {
         return $strout . "\n";
     }
 
+    /**
+     * Display formated headers on screen
+     * @param  array &$headers Headers of the message
+     */
     protected function printHeaders(&$headers) {
         echo "Array\n(\n";
         foreach ($headers as $key => $value) {

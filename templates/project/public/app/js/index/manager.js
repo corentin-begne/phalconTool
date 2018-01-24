@@ -14,9 +14,9 @@ var IndexManager;
         this.basePath = "index/";
 
         require([
-            "bower_components/cb-models/action.min", 
-            "bower_components/cb-models/manager.min",
-            "bower_components/cb-helpers/websocket.min",
+            "bower_components/cb-models/action", 
+            "bower_components/cb-models/manager",
+            "bower_components/cb-helpers/websocket",
         ], loaded);
 
         function loaded(){

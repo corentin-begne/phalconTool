@@ -39,10 +39,6 @@ class GooglePlus{
         self::$client->authenticate($code);
         $plus = new \Google_Service_Plus(self::$client);
         $userPlus = $plus->people->get('me');
-        // get user
-     /*   Model::setup([
-            'columnRenaming' => false
-        ]);*/
         try{
         $user = \User::findFirstByUsEmail($userPlus->emails[0]->value);
             if(!$user){ // create if not exists

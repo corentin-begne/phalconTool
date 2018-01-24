@@ -1,0 +1,157 @@
+{
+    "name": "SecurityPlugin",
+    "line": 14,
+    "short_desc": "The security plugin manages the Access Control List (ACL).",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "",
+    "file": "\/var\/www\/phalconTool\/templates\/project\/app\/plugins\/SecurityPlugin.php",
+    "relative_file": null,
+    "hash": "1a940e4d95a777eb2ceb52c6417dad6e453e921f",
+    "parent": "Phalcon\\Mvc\\User\\Plugin",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Event": "Phalcon\\Events\\Event",
+        "Component": "Phalcon\\Mvc\\User\\Component",
+        "Dispatcher": "Phalcon\\Mvc\\Dispatcher",
+        "Jsmin": "Phalcon\\Assets\\Filters\\Jsmin",
+        "Acl": "Phalcon\\Acl",
+        "Role": "Phalcon\\Acl\\Role",
+        "AclList": "Phalcon\\Acl\\Adapter\\Memory",
+        "Resource": "Phalcon\\Acl\\Resource",
+        "Plugin": "Phalcon\\Mvc\\User\\Plugin",
+        "UserManager": "Manager\\User"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "beforeException": {
+            "name": "beforeException",
+            "line": 63,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "event": {
+                    "name": "event",
+                    "line": 63,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": null,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                },
+                "dispatcher": {
+                    "name": "dispatcher",
+                    "line": 63,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": null,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                },
+                "exception": {
+                    "name": "exception",
+                    "line": 63,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": null,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "beforeDispatch": {
+            "name": "beforeDispatch",
+            "line": 83,
+            "short_desc": "Event called before each controller action.",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "event": {
+                    "name": "event",
+                    "line": 83,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Events\\Event",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": {
+                        "nodeType": "Name_FullyQualified",
+                        "parts": [
+                            "Phalcon",
+                            "Events",
+                            "Event"
+                        ],
+                        "attributes": {
+                            "startLine": 83,
+                            "endLine": 83
+                        }
+                    },
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                },
+                "dispatcher": {
+                    "name": "dispatcher",
+                    "line": 83,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Mvc\\Dispatcher",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": {
+                        "nodeType": "Name_FullyQualified",
+                        "parts": [
+                            "Phalcon",
+                            "Mvc",
+                            "Dispatcher"
+                        ],
+                        "attributes": {
+                            "startLine": 83,
+                            "endLine": 83
+                        }
+                    },
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

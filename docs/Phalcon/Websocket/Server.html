@@ -399,13 +399,12 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    <a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_getUserBySocket">getUserBySocket</a>($socket)
+                    <a href="#method_getUserBySocket">getUserBySocket</a>(socket_ressource $socket)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Get an user by his socket</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -413,10 +412,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_stdout">stdout</a>($message)
+                    <a href="#method_stdout">stdout</a>(string $message)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Log a success message</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -424,10 +422,19 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_stderr">stderr</a>($message)
+                    <a href="#method_stderr">stderr</a>(string $message)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Log a warning message</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_frame">frame</a>(string $message, <a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, string $messageType = &#039;text&#039;, boolean $messageContinues = false)
+        
+                                            <p>Create a frame from user message</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -435,10 +442,79 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_frame">frame</a>($message, $user, $messageType = &#039;text&#039;, $messageContinues = false)
+                    <a href="#method_split_packet">split_packet</a>(integer $length, string $packet, <a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Check packet if he have more than one frame and process each frame individually</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    integer
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_calcoffset">calcoffset</a>(array $headers)
+        
+                                            <p>Calculate header offset</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_deframe">deframe</a>(string $message, <a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
+        
+                                            <p>Process a frame</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_extractHeaders">extractHeaders</a>(string $message)
+        
+                                            <p>Extract the headers of a message</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_extractPayload">extractPayload</a>(string $message, array $headers)
+        
+                                            <p>Extract the payload of the message</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_applyMask">applyMask</a>(array $headers, string $payload)
+        
+                                            <p>Apply a mask on the payload</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_checkRSVBits">checkRSVBits</a>(array $headers, <a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
+        
+                                            <p>Override this method if you are using an extension where the RSV bits are used.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_strtohex">strtohex</a>(string $str)
+        
+                                            <p>Convert a string to his hexadecimal value</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -446,98 +522,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_split_packet">split_packet</a>($length, $packet, $user)
+                    <a href="#method_printHeaders">printHeaders</a>(array $headers)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_calcoffset">calcoffset</a>($headers)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_deframe">deframe</a>($message, $user)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_extractHeaders">extractHeaders</a>($message)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_extractPayload">extractPayload</a>($message, $headers)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_applyMask">applyMask</a>($headers, $payload)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_checkRSVBits">checkRSVBits</a>($headers, $user)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_strtohex">strtohex</a>($str)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_printHeaders">printHeaders</a>($headers)
-        
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Display formated headers on screen</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -619,7 +606,7 @@
                     <tr>
                 <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td>&amp;$user  User emitting the event</td>
+                <td>&amp;$user  User instance</td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -662,7 +649,7 @@
                     <tr>
                 <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td>&amp;$user User connected</td>
+                <td>&amp;$user User instance</td>
             </tr>
             </table>
 
@@ -693,7 +680,7 @@
                     <tr>
                 <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td>&amp;$user User socket closed</td>
+                <td>&amp;$user User instance</td>
             </tr>
             </table>
 
@@ -724,7 +711,7 @@
                     <tr>
                 <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td>&amp;$user User connection</td>
+                <td>&amp;$user User instance</td>
             </tr>
             </table>
 
@@ -817,7 +804,7 @@
                     <tr>
                 <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td>&amp;$user  User who will receive the event</td>
+                <td>&amp;$user  User instance</td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -1043,7 +1030,7 @@
                     <tr>
                 <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td>&amp;$user  User processing the handshake</td>
+                <td>&amp;$user  User instance</td>
             </tr>
                     <tr>
                 <td>string</td>
@@ -1301,27 +1288,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getUserBySocket">
-        <div class="location">at         line 529</div>
-        <code>            protected        
-    <strong>getUserBySocket</strong>($socket)
+        <div class="location">at         line 534</div>
+        <code>            protected        <a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a>
+    <strong>getUserBySocket</strong>(socket_ressource $socket)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Get an user by his socket</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>socket_ressource</td>
                 <td>$socket</td>
-                <td></td>
+                <td>User socket to get</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
+            <td>Valid user or null if socket not exists</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1330,23 +1328,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_stdout">
-        <div class="location">at         line 538</div>
+        <div class="location">at         line 547</div>
         <code>                    
-    <strong>stdout</strong>($message)
+    <strong>stdout</strong>(string $message)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Log a success message</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>Message to display</td>
             </tr>
             </table>
 
@@ -1359,23 +1359,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_stderr">
-        <div class="location">at         line 544</div>
+        <div class="location">at         line 557</div>
         <code>                    
-    <strong>stderr</strong>($message)
+    <strong>stderr</strong>(string $message)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Log a warning message</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>Message to display</td>
             </tr>
             </table>
 
@@ -1388,42 +1390,53 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_frame">
-        <div class="location">at         line 550</div>
-        <code>            protected        
-    <strong>frame</strong>($message, $user, $messageType = &#039;text&#039;, $messageContinues = false)
+        <div class="location">at         line 571</div>
+        <code>            protected        string
+    <strong>frame</strong>(string $message, <a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user, string $messageType = &#039;text&#039;, boolean $messageContinues = false)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Create a frame from user message</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message         Message data</td>
             </tr>
                     <tr>
-                <td></td>
+                <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user   User instance</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$messageType</td>
-                <td></td>
+                <td>Type of message</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>boolean</td>
                 <td>$messageContinues</td>
-                <td></td>
+                <td>Determine if the message is finished or not</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Formated message</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1432,33 +1445,35 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_split_packet">
-        <div class="location">at         line 617</div>
+        <div class="location">at         line 643</div>
         <code>            protected        
-    <strong>split_packet</strong>($length, $packet, $user)
+    <strong>split_packet</strong>(integer $length, string $packet, <a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Check packet if he have more than one frame and process each frame individually</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>integer</td>
                 <td>$length</td>
-                <td></td>
+                <td>$length of the packet</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$packet</td>
-                <td></td>
+                <td>Packet content</td>
             </tr>
                     <tr>
-                <td></td>
+                <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user  User instance</td>
             </tr>
             </table>
 
@@ -1471,27 +1486,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_calcoffset">
-        <div class="location">at         line 655</div>
-        <code>            protected        
-    <strong>calcoffset</strong>($headers)
+        <div class="location">at         line 686</div>
+        <code>            protected        integer
+    <strong>calcoffset</strong>(array $headers)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Calculate header offset</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$headers</td>
-                <td></td>
+                <td>&amp;$headers Socket headers</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>integer</td>
+            <td>Offset calculated</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1500,32 +1526,43 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_deframe">
-        <div class="location">at         line 668</div>
-        <code>            protected        
-    <strong>deframe</strong>($message, $user)
+        <div class="location">at         line 705</div>
+        <code>            protected        boolean
+    <strong>deframe</strong>(string $message, <a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Process a frame</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message Message data</td>
             </tr>
                     <tr>
-                <td></td>
+                <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user  User instance</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>The frame processed of false on fail</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1534,27 +1571,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_extractHeaders">
-        <div class="location">at         line 736</div>
-        <code>            protected        
-    <strong>extractHeaders</strong>($message)
+        <div class="location">at         line 778</div>
+        <code>            protected        array
+    <strong>extractHeaders</strong>(string $message)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Extract the headers of a message</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message Message data</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>Headers extracted</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1563,32 +1611,43 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_extractPayload">
-        <div class="location">at         line 773</div>
-        <code>            protected        
-    <strong>extractPayload</strong>($message, $headers)
+        <div class="location">at         line 819</div>
+        <code>            protected        string
+    <strong>extractPayload</strong>(string $message, array $headers)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Extract the payload of the message</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$message</td>
-                <td></td>
+                <td>&amp;$message Message data</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$headers</td>
-                <td></td>
+                <td>&amp;$headers Headers of the message</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Payload of the message</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1597,32 +1656,43 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_applyMask">
-        <div class="location">at         line 787</div>
-        <code>            protected        
-    <strong>applyMask</strong>($headers, $payload)
+        <div class="location">at         line 839</div>
+        <code>            protected        string
+    <strong>applyMask</strong>(array $headers, string $payload)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Apply a mask on the payload</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$headers</td>
-                <td></td>
+                <td>&amp;$headers Headers of the message</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$payload</td>
-                <td></td>
+                <td>&amp;$payload Payload of the message</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Payload with mask a applied</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1631,32 +1701,43 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_checkRSVBits">
-        <div class="location">at         line 804</div>
-        <code>            protected        
-    <strong>checkRSVBits</strong>($headers, $user)
+        <div class="location">at         line 863</div>
+        <code>            protected        boolean
+    <strong>checkRSVBits</strong>(array $headers, <a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a> $user)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Override this method if you are using an extension where the RSV bits are used.</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$headers</td>
-                <td></td>
+                <td>&amp;$headers Headers of the message</td>
             </tr>
                     <tr>
-                <td></td>
+                <td><a href="../../Phalcon/Websocket/User.html"><abbr title="Phalcon\Websocket\User">User</abbr></a></td>
                 <td>$user</td>
-                <td></td>
+                <td>&amp;$user User instance</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td>Result of the check</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1665,27 +1746,38 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_strtohex">
-        <div class="location">at         line 812</div>
-        <code>            protected        
-    <strong>strtohex</strong>($str)
+        <div class="location">at         line 876</div>
+        <code>            protected        string
+    <strong>strtohex</strong>(string $str)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Convert a string to his hexadecimal value</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$str</td>
-                <td></td>
+                <td>&amp;$str String to convert</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>The converted value</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -1694,23 +1786,25 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_printHeaders">
-        <div class="location">at         line 833</div>
+        <div class="location">at         line 901</div>
         <code>            protected        
-    <strong>printHeaders</strong>($headers)
+    <strong>printHeaders</strong>(array $headers)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Display formated headers on screen</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$headers</td>
-                <td></td>
+                <td>&amp;$headers Headers of the message</td>
             </tr>
             </table>
 
