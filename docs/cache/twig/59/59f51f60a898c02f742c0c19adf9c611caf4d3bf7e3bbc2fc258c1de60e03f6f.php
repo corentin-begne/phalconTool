@@ -202,7 +202,7 @@ class __TwigTemplate_bf02ff8612d152573d8e2ba0d046e72971c33fefce817dedb0957786f35
         ob_start();
         try {
             // line 28
-            $context["__internal_f0023820bd1cccd59cb215c324972d0026baf5cc1a706420025f36eea4fb3bf1"] = $this;
+            $context["__internal_53ba97c6297e2d5efe2187eb5785f1aa4843d181a81f8f27bee16ba45e8472d8"] = $this;
             // line 30
             if ((isset($context["hints"]) || array_key_exists("hints", $context) ? $context["hints"] : (function () { throw new Twig_Error_Runtime('Variable "hints" does not exist.', 30, $this->getSourceContext()); })())) {
                 // line 31
@@ -225,7 +225,7 @@ class __TwigTemplate_bf02ff8612d152573d8e2ba0d046e72971c33fefce817dedb0957786f35
                     // line 32
                     if (twig_get_attribute($this->env, $this->getSourceContext(), $context["hint"], "class", array())) {
                         // line 33
-                        echo $context["__internal_f0023820bd1cccd59cb215c324972d0026baf5cc1a706420025f36eea4fb3bf1"]->macro_class_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["hint"], "name", array()));
+                        echo $context["__internal_53ba97c6297e2d5efe2187eb5785f1aa4843d181a81f8f27bee16ba45e8472d8"]->macro_class_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["hint"], "name", array()));
                     } elseif (twig_get_attribute($this->env, $this->getSourceContext(),                     // line 34
 $context["hint"], "name", array())) {
                         // line 35
@@ -357,7 +357,7 @@ $context["hint"], "name", array())) {
         ob_start();
         try {
             // line 62
-            $context["__internal_ba8720e8238ada49ecfb1756b446faa3888cd9af41deeff0d619149f77dc5457"] = $this->loadTemplate("macros.twig", "macros.twig", 62);
+            $context["__internal_33f5b3f4d4acf2208dda880365a74bafcd2df058270574e289dca1fffa93010a"] = $this->loadTemplate("macros.twig", "macros.twig", 62);
             // line 63
             echo "(";
             // line 64
@@ -379,7 +379,7 @@ $context["hint"], "name", array())) {
             foreach ($context['_seq'] as $context["_key"] => $context["parameter"]) {
                 // line 65
                 if (twig_get_attribute($this->env, $this->getSourceContext(), $context["parameter"], "hashint", array())) {
-                    echo $context["__internal_ba8720e8238ada49ecfb1756b446faa3888cd9af41deeff0d619149f77dc5457"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["parameter"], "hint", array()));
+                    echo $context["__internal_33f5b3f4d4acf2208dda880365a74bafcd2df058270574e289dca1fffa93010a"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["parameter"], "hint", array()));
                     echo " ";
                 }
                 // line 66
@@ -431,7 +431,7 @@ $context["hint"], "name", array())) {
         ob_start();
         try {
             // line 74
-            $context["__internal_977ad7f9cfd9340b776e78a5ef2c49ed35f4a382b7f56160c6f9e689ea99913b"] = $this;
+            $context["__internal_df8c5ac677894fc11ea33998318b41007aee0158330cd6a3f848ec481a08db9c"] = $this;
             // line 75
             echo "
     <div class=\"container-fluid underlined\">
@@ -448,19 +448,19 @@ $context["hint"], "name", array())) {
                 if (twig_get_attribute($this->env, $this->getSourceContext(), $context["class"], "isInterface", array())) {
                     // line 81
                     echo "                        <em>";
-                    echo $context["__internal_977ad7f9cfd9340b776e78a5ef2c49ed35f4a382b7f56160c6f9e689ea99913b"]->macro_class_link($context["class"], true);
+                    echo $context["__internal_df8c5ac677894fc11ea33998318b41007aee0158330cd6a3f848ec481a08db9c"]->macro_class_link($context["class"], true);
                     echo "</em>
                     ";
                 } else {
                     // line 83
                     echo "                        ";
-                    echo $context["__internal_977ad7f9cfd9340b776e78a5ef2c49ed35f4a382b7f56160c6f9e689ea99913b"]->macro_class_link($context["class"], true);
+                    echo $context["__internal_df8c5ac677894fc11ea33998318b41007aee0158330cd6a3f848ec481a08db9c"]->macro_class_link($context["class"], true);
                     echo "
                     ";
                 }
                 // line 85
                 echo "                    ";
-                echo $context["__internal_977ad7f9cfd9340b776e78a5ef2c49ed35f4a382b7f56160c6f9e689ea99913b"]->macro_deprecated($context["class"]);
+                echo $context["__internal_df8c5ac677894fc11ea33998318b41007aee0158330cd6a3f848ec481a08db9c"]->macro_deprecated($context["class"]);
                 echo "
                 </div>
                 <div class=\"col-md-6\">
@@ -567,7 +567,7 @@ $context["hint"], "name", array())) {
         try {
             // line 112
             echo "    ";
-            $context["__internal_bb6d422cc9c09f6e9516626247ee68aec88fba69c0df781ce9b245d7926b8644"] = $this;
+            $context["__internal_8198eba7999ea27e6801014f9ca85f688417dd51691cddd33648e31aca00468a"] = $this;
             // line 113
             echo "
     ";
@@ -577,7 +577,7 @@ $context["hint"], "name", array())) {
                 echo "        <p>
             ";
                 // line 116
-                echo $context["__internal_bb6d422cc9c09f6e9516626247ee68aec88fba69c0df781ce9b245d7926b8644"]->macro_deprecated((isset($context["reflection"]) || array_key_exists("reflection", $context) ? $context["reflection"] : (function () { throw new Twig_Error_Runtime('Variable "reflection" does not exist.', 116, $this->getSourceContext()); })()));
+                echo $context["__internal_8198eba7999ea27e6801014f9ca85f688417dd51691cddd33648e31aca00468a"]->macro_deprecated((isset($context["reflection"]) || array_key_exists("reflection", $context) ? $context["reflection"] : (function () { throw new Twig_Error_Runtime('Variable "reflection" does not exist.', 116, $this->getSourceContext()); })()));
                 echo "
             ";
                 // line 117
@@ -649,7 +649,7 @@ $context["hint"], "name", array())) {
         try {
             // line 132
             echo "        ";
-            $context["__internal_566d2301974ea17215c86e9af0e67607181326d16094d4b332e81fcc49872f99"] = $this;
+            $context["__internal_f6902444b9b8e4b19a254ceebf349d076b4e9854ff6492cd30ee6d9d77b72127"] = $this;
             // line 133
             echo "
         ";
@@ -659,7 +659,7 @@ $context["hint"], "name", array())) {
                 echo "            <p>
                 ";
                 // line 136
-                echo $context["__internal_566d2301974ea17215c86e9af0e67607181326d16094d4b332e81fcc49872f99"]->macro_todo((isset($context["reflection"]) || array_key_exists("reflection", $context) ? $context["reflection"] : (function () { throw new Twig_Error_Runtime('Variable "reflection" does not exist.', 136, $this->getSourceContext()); })()));
+                echo $context["__internal_f6902444b9b8e4b19a254ceebf349d076b4e9854ff6492cd30ee6d9d77b72127"]->macro_todo((isset($context["reflection"]) || array_key_exists("reflection", $context) ? $context["reflection"] : (function () { throw new Twig_Error_Runtime('Variable "reflection" does not exist.', 136, $this->getSourceContext()); })()));
                 echo "
                 ";
                 // line 137

@@ -60,6 +60,13 @@ class SecurityPlugin extends Plugin
         return $acl;
     }
 
+    /**
+     * Redirect user to default route if no controller/action found
+     * @param  \Phalcon\Events\Event $event      Event of the request
+     * @param  \Phalcon\Mvc\Dispatcher $dispatcher Application dispatcher
+     * @param  \Phalcon\Exception         $exception  Current Exception
+     * @return boolean             Return false on exception found to stop propagation to view engine
+     */
     public function beforeException($event, $dispatcher, $exception) {
         switch ($exception->getCode()) {
             case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
@@ -69,6 +76,9 @@ class SecurityPlugin extends Plugin
         }
     }
 
+    /**
+     * Redirect user to default route
+     */
     private function redirectUser(){
         if(!UserManager::isAuthenticated()){
             $this->response->redirect('/user/login');
@@ -78,7 +88,7 @@ class SecurityPlugin extends Plugin
     }
 
     /**
-     * Event called before each controller action.
+     * Check user permissions vs ACL and redirect to default route if not allowed
      */
     public function beforeDispatch(Event $event, Dispatcher $dispatcher)
     {

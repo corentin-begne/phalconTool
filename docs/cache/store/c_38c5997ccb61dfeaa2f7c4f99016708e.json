@@ -1,14 +1,14 @@
 {
     "name": "Manager\\User",
-    "line": 4,
-    "short_desc": "",
+    "line": 7,
+    "short_desc": "Manage User connection and data",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "Manager",
     "file": "\/var\/www\/phalconTool\/templates\/project\/app\/classes\/Manager\/User.php",
     "relative_file": null,
-    "hash": "59280dea779738382de96a794119f023e0fea521",
+    "hash": "0cf623780a9ecbc932758bb35b31ad555463652e",
     "parent": null,
     "modifiers": 0,
     "is_trait": false,
@@ -23,8 +23,8 @@
     "methods": {
         "disconnect": {
             "name": "disconnect",
-            "line": 6,
-            "short_desc": "",
+            "line": 12,
+            "short_desc": "Disconnect user from application and destroy session",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -37,8 +37,8 @@
         },
         "connect": {
             "name": "connect",
-            "line": 11,
-            "short_desc": "",
+            "line": 22,
+            "short_desc": "Connect an user to the application",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -50,10 +50,15 @@
             "parameters": {
                 "user": {
                     "name": "user",
-                    "line": 11,
-                    "short_desc": null,
+                    "line": 22,
+                    "short_desc": "User model instance",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\User",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -64,11 +69,16 @@
         },
         "get": {
             "name": "get",
-            "line": 20,
-            "short_desc": "",
+            "line": 36,
+            "short_desc": "Get user data",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "\\Manager\\any",
+                    false
+                ]
+            ],
+            "hint_desc": "Return the wanted data or all if null",
             "tags": [],
             "modifiers": 9,
             "is_by_ref": "",
@@ -77,10 +87,15 @@
             "parameters": {
                 "name": {
                     "name": "name",
-                    "line": 20,
-                    "short_desc": null,
+                    "line": 36,
+                    "short_desc": "Data name",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": "null",
@@ -91,11 +106,16 @@
         },
         "getPermissions": {
             "name": "getPermissions",
-            "line": 28,
-            "short_desc": "",
+            "line": 48,
+            "short_desc": "Get all user permissions",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "User permission ids",
             "tags": [],
             "modifiers": 9,
             "is_by_ref": "",
@@ -105,11 +125,16 @@
         },
         "havePermission": {
             "name": "havePermission",
-            "line": 32,
-            "short_desc": "",
+            "line": 57,
+            "short_desc": "Check if user have a permission",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "Result of the check",
             "tags": [],
             "modifiers": 9,
             "is_by_ref": "",
@@ -118,8 +143,8 @@
             "parameters": {
                 "id": {
                     "name": "id",
-                    "line": 32,
-                    "short_desc": null,
+                    "line": 57,
+                    "short_desc": "Permission id",
                     "long_desc": null,
                     "hint": [
                         [
@@ -137,11 +162,16 @@
         },
         "isAuthenticated": {
             "name": "isAuthenticated",
-            "line": 36,
-            "short_desc": "",
+            "line": 65,
+            "short_desc": "Check if the user is connected to the application",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "Result of the check",
             "tags": [],
             "modifiers": 9,
             "is_by_ref": "",

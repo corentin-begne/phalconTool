@@ -1,10 +1,21 @@
 <?
 use Phalcon\Text as Utils,
 Phalcon\Tag;
+/**
+ * Manage tables index, model search, create and read
+ */
 class ScrudController extends Phalcon\ControllerBase{
     
-    public $excludes = [];
+    /**
+     * Current request models
+     * @var array
+     */
+    public $models = [];
 
+    /**
+     * Check url models conformity and include/configure all dependencies
+     * @return boolean False on index action to have another process
+     */
     public function initialize()
     {               
         if($this->dispatcher->getControllerName() === 'scrud'){
@@ -51,6 +62,9 @@ class ScrudController extends Phalcon\ControllerBase{
         $this->view->actionModel = $this->dispatcher->getParam('model');
     }
 
+    /**
+     * List all database tables by alphabetical order
+     */
     public function indexAction(){
         $this->assets->set('libjs', new Phalcon\Assets\Collection());
         $models = [];
@@ -64,6 +78,9 @@ class ScrudController extends Phalcon\ControllerBase{
         $this->view->models = $models;
     }
 
+    /**
+     * Get current selected models items
+     */
     public function listAction(){
         $fields = $this->request->get('fields');
         $filters = $this->request->get('filters');
@@ -121,6 +138,11 @@ class ScrudController extends Phalcon\ControllerBase{
         
     }
 
+    /**
+     * Get all rows of the selected models
+     * @param  array &$params Query params
+     * @return array          List of model instances
+     */
     private function getRows(&$params){
         $model = $this->models[0];
         $primaryKey = $model::getMapped($model::getPrimaryKey());
@@ -132,6 +154,9 @@ class ScrudController extends Phalcon\ControllerBase{
         return $builder->getQuery()->execute();
     }
 
+    /**
+     * * Display the search interface
+     */
     public function searchAction(){
         $this->assets->collection('libjs')
         ->addJs('helper/autocompletion.js')
@@ -181,6 +206,9 @@ class ScrudController extends Phalcon\ControllerBase{
         Tag::setDefault('sort', 'asc');
     }
 
+    /**
+     * Display the read interface
+     */
     public function readAction(){
         $refModel = $this->models[0];
         $primaryKey = $refModel::getPrimaryKey();
@@ -209,15 +237,10 @@ class ScrudController extends Phalcon\ControllerBase{
         $this->view->primaryKey= $primaryKey;
     }
 
+    /**
+     * Display the create interface
+     */
     public function createAction(){
-    }
-
-    public function updateAction(){
-
-    }
-
-    public function deleteAction(){
-
     }
 
 }

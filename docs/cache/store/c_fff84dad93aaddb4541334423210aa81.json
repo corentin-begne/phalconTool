@@ -14,6 +14,8 @@
     "is_trait": false,
     "is_interface": false,
     "aliases": {
+        "UserManager": "Manager\\User",
+        "GooglePlusManager": "Manager\\Social\\GooglePlus",
         "Event": "Phalcon\\Events\\Event",
         "Component": "Phalcon\\Mvc\\User\\Component",
         "Dispatcher": "Phalcon\\Mvc\\Dispatcher",

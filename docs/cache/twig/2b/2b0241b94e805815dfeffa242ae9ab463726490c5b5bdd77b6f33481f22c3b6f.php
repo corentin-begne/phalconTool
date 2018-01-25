@@ -24,7 +24,7 @@ class __TwigTemplate_546059b884c424665d5f8c36833bcc53cc0c0be5be6e696a3d4cb5df864
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 2
-        $context["__internal_54948df28c9b6110a408118150733018de6b8e19d992a24c1afab2e2d5e20504"] = $this->loadTemplate("macros.twig", "doc-index.twig", 2);
+        $context["__internal_53cd881c77ef326e24aa1ac44ed0eeb982d154136fdc99c0d1e60774da3c6dc0"] = $this->loadTemplate("macros.twig", "doc-index.twig", 2);
         // line 1
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
@@ -109,10 +109,10 @@ class __TwigTemplate_546059b884c424665d5f8c36833bcc53cc0c0be5be6e696a3d4cb5df864
                 if (("class" == (isset($context["type"]) || array_key_exists("type", $context) ? $context["type"] : (function () { throw new Twig_Error_Runtime('Variable "type" does not exist.', 28, $this->getSourceContext()); })()))) {
                     // line 29
                     echo "<dt>";
-                    echo $context["__internal_54948df28c9b6110a408118150733018de6b8e19d992a24c1afab2e2d5e20504"]->macro_class_link((isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 29, $this->getSourceContext()); })()));
+                    echo $context["__internal_53cd881c77ef326e24aa1ac44ed0eeb982d154136fdc99c0d1e60774da3c6dc0"]->macro_class_link((isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 29, $this->getSourceContext()); })()));
                     if ((isset($context["has_namespaces"]) || array_key_exists("has_namespaces", $context) ? $context["has_namespaces"] : (function () { throw new Twig_Error_Runtime('Variable "has_namespaces" does not exist.', 29, $this->getSourceContext()); })())) {
                         echo " &mdash; <em>Class in namespace ";
-                        echo $context["__internal_54948df28c9b6110a408118150733018de6b8e19d992a24c1afab2e2d5e20504"]->macro_namespace_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 29, $this->getSourceContext()); })()), "namespace", array()));
+                        echo $context["__internal_53cd881c77ef326e24aa1ac44ed0eeb982d154136fdc99c0d1e60774da3c6dc0"]->macro_namespace_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 29, $this->getSourceContext()); })()), "namespace", array()));
                     }
                     echo "</em></dt>
                     <dd>";
@@ -123,9 +123,9 @@ class __TwigTemplate_546059b884c424665d5f8c36833bcc53cc0c0be5be6e696a3d4cb5df864
 (isset($context["type"]) || array_key_exists("type", $context) ? $context["type"] : (function () { throw new Twig_Error_Runtime('Variable "type" does not exist.', 31, $this->getSourceContext()); })()))) {
                     // line 32
                     echo "<dt>";
-                    echo $context["__internal_54948df28c9b6110a408118150733018de6b8e19d992a24c1afab2e2d5e20504"]->macro_method_link((isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 32, $this->getSourceContext()); })()));
+                    echo $context["__internal_53cd881c77ef326e24aa1ac44ed0eeb982d154136fdc99c0d1e60774da3c6dc0"]->macro_method_link((isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 32, $this->getSourceContext()); })()));
                     echo "() &mdash; <em>Method in class ";
-                    echo $context["__internal_54948df28c9b6110a408118150733018de6b8e19d992a24c1afab2e2d5e20504"]->macro_class_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 32, $this->getSourceContext()); })()), "class", array()));
+                    echo $context["__internal_53cd881c77ef326e24aa1ac44ed0eeb982d154136fdc99c0d1e60774da3c6dc0"]->macro_class_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 32, $this->getSourceContext()); })()), "class", array()));
                     echo "</em></dt>
                     <dd>";
                     // line 33
@@ -135,9 +135,9 @@ class __TwigTemplate_546059b884c424665d5f8c36833bcc53cc0c0be5be6e696a3d4cb5df864
 (isset($context["type"]) || array_key_exists("type", $context) ? $context["type"] : (function () { throw new Twig_Error_Runtime('Variable "type" does not exist.', 34, $this->getSourceContext()); })()))) {
                     // line 35
                     echo "<dt>\$";
-                    echo $context["__internal_54948df28c9b6110a408118150733018de6b8e19d992a24c1afab2e2d5e20504"]->macro_property_link((isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 35, $this->getSourceContext()); })()));
+                    echo $context["__internal_53cd881c77ef326e24aa1ac44ed0eeb982d154136fdc99c0d1e60774da3c6dc0"]->macro_property_link((isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 35, $this->getSourceContext()); })()));
                     echo " &mdash; <em>Property in class ";
-                    echo $context["__internal_54948df28c9b6110a408118150733018de6b8e19d992a24c1afab2e2d5e20504"]->macro_class_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 35, $this->getSourceContext()); })()), "class", array()));
+                    echo $context["__internal_53cd881c77ef326e24aa1ac44ed0eeb982d154136fdc99c0d1e60774da3c6dc0"]->macro_class_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["value"]) || array_key_exists("value", $context) ? $context["value"] : (function () { throw new Twig_Error_Runtime('Variable "value" does not exist.', 35, $this->getSourceContext()); })()), "class", array()));
                     echo "</em></dt>
                     <dd>";
                     // line 36

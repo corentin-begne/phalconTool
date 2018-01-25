@@ -8,12 +8,14 @@
     "namespace": "",
     "file": "\/var\/www\/phalconTool\/templates\/project\/app\/plugins\/SecurityPlugin.php",
     "relative_file": null,
-    "hash": "1a940e4d95a777eb2ceb52c6417dad6e453e921f",
+    "hash": "a54819a5c9393ce7cb6cef7b9c6378f714b0cd18",
     "parent": "Phalcon\\Mvc\\User\\Plugin",
     "modifiers": 0,
     "is_trait": false,
     "is_interface": false,
     "aliases": {
+        "UserManager": "Manager\\User",
+        "GooglePlusManager": "Manager\\Social\\GooglePlus",
         "Event": "Phalcon\\Events\\Event",
         "Component": "Phalcon\\Mvc\\User\\Component",
         "Dispatcher": "Phalcon\\Mvc\\Dispatcher",
@@ -22,8 +24,7 @@
         "Role": "Phalcon\\Acl\\Role",
         "AclList": "Phalcon\\Acl\\Adapter\\Memory",
         "Resource": "Phalcon\\Acl\\Resource",
-        "Plugin": "Phalcon\\Mvc\\User\\Plugin",
-        "UserManager": "Manager\\User"
+        "Plugin": "Phalcon\\Mvc\\User\\Plugin"
     },
     "errors": [],
     "interfaces": [],
@@ -32,11 +33,16 @@
     "methods": {
         "beforeException": {
             "name": "beforeException",
-            "line": 63,
-            "short_desc": "",
+            "line": 70,
+            "short_desc": "Redirect user to default route if no controller\/action found",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "Return false on exception found to stop propagation to view engine",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -45,10 +51,15 @@
             "parameters": {
                 "event": {
                     "name": "event",
-                    "line": 63,
-                    "short_desc": null,
+                    "line": 70,
+                    "short_desc": "Event of the request",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Events\\Event",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -57,10 +68,15 @@
                 },
                 "dispatcher": {
                     "name": "dispatcher",
-                    "line": 63,
-                    "short_desc": null,
+                    "line": 70,
+                    "short_desc": "Application dispatcher",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Mvc\\Dispatcher",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -69,10 +85,15 @@
                 },
                 "exception": {
                     "name": "exception",
-                    "line": 63,
-                    "short_desc": null,
+                    "line": 70,
+                    "short_desc": "Current Exception",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Exception",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -83,8 +104,8 @@
         },
         "beforeDispatch": {
             "name": "beforeDispatch",
-            "line": 83,
-            "short_desc": "Event called before each controller action.",
+            "line": 93,
+            "short_desc": "Check user permissions vs ACL and redirect to default route if not allowed",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -96,7 +117,7 @@
             "parameters": {
                 "event": {
                     "name": "event",
-                    "line": 83,
+                    "line": 93,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": [
@@ -114,8 +135,8 @@
                             "Event"
                         ],
                         "attributes": {
-                            "startLine": 83,
-                            "endLine": 83
+                            "startLine": 93,
+                            "endLine": 93
                         }
                     },
                     "default": null,
@@ -124,7 +145,7 @@
                 },
                 "dispatcher": {
                     "name": "dispatcher",
-                    "line": 83,
+                    "line": 93,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": [
@@ -142,8 +163,8 @@
                             "Dispatcher"
                         ],
                         "attributes": {
-                            "startLine": 83,
-                            "endLine": 83
+                            "startLine": 93,
+                            "endLine": 93
                         }
                     },
                     "default": null,

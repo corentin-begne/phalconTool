@@ -1,14 +1,14 @@
 {
     "name": "ScrudController",
-    "line": 4,
-    "short_desc": "",
+    "line": 7,
+    "short_desc": "Manage tables index, model search, create and read",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "",
     "file": "\/var\/www\/phalconTool\/src\/lib\/scrud\/ScrudController.php",
     "relative_file": null,
-    "hash": "dd5828b5b860ac0cb6cf3f2689e8763bbc28fd00",
+    "hash": "931846df2cf09ff57f577ff56afe700581d115fe",
     "parent": "Phalcon\\ControllerBase",
     "modifiers": 0,
     "is_trait": false,
@@ -21,21 +21,26 @@
     "interfaces": [],
     "traits": [],
     "properties": {
-        "excludes": {
-            "name": "excludes",
-            "line": 6,
-            "short_desc": "",
+        "models": {
+            "name": "models",
+            "line": 13,
+            "short_desc": "Current request models",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": {
                 "nodeType": "Expr_Array",
                 "items": [],
                 "attributes": {
-                    "startLine": 6,
-                    "endLine": 6,
+                    "startLine": 13,
+                    "endLine": 13,
                     "kind": 2
                 }
             },
@@ -45,11 +50,16 @@
     "methods": {
         "initialize": {
             "name": "initialize",
-            "line": 8,
-            "short_desc": "",
+            "line": 19,
+            "short_desc": "Check url models conformity and include\/configure all dependencies",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "False on index action to have another process",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -59,8 +69,8 @@
         },
         "indexAction": {
             "name": "indexAction",
-            "line": 54,
-            "short_desc": "",
+            "line": 68,
+            "short_desc": "List all database tables by alphabetical order",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -73,8 +83,8 @@
         },
         "listAction": {
             "name": "listAction",
-            "line": 67,
-            "short_desc": "",
+            "line": 84,
+            "short_desc": "Get current selected models items",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -87,8 +97,8 @@
         },
         "searchAction": {
             "name": "searchAction",
-            "line": 135,
-            "short_desc": "",
+            "line": 160,
+            "short_desc": "* Display the search interface",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -101,8 +111,8 @@
         },
         "readAction": {
             "name": "readAction",
-            "line": 184,
-            "short_desc": "",
+            "line": 212,
+            "short_desc": "Display the read interface",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -115,36 +125,8 @@
         },
         "createAction": {
             "name": "createAction",
-            "line": 212,
-            "short_desc": "",
-            "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
-            "tags": [],
-            "modifiers": 1,
-            "is_by_ref": "",
-            "exceptions": [],
-            "errors": [],
-            "parameters": []
-        },
-        "updateAction": {
-            "name": "updateAction",
-            "line": 215,
-            "short_desc": "",
-            "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
-            "tags": [],
-            "modifiers": 1,
-            "is_by_ref": "",
-            "exceptions": [],
-            "errors": [],
-            "parameters": []
-        },
-        "deleteAction": {
-            "name": "deleteAction",
-            "line": 219,
-            "short_desc": "",
+            "line": 243,
+            "short_desc": "Display the create interface",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,

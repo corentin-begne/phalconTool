@@ -38,7 +38,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 2
-        $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"] = $this->loadTemplate("macros.twig", "class.twig", 2);
+        $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"] = $this->loadTemplate("macros.twig", "class.twig", 2);
         // line 1
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
@@ -78,7 +78,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
             echo "</span></li>
                 ";
             // line 12
-            echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_breadcrumbs(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 12, $this->getSourceContext()); })()), "namespace", array()));
+            echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_breadcrumbs(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 12, $this->getSourceContext()); })()), "namespace", array()));
             // line 13
             echo "<li>";
             echo twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 13, $this->getSourceContext()); })()), "shortname", array());
@@ -102,7 +102,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
         echo "
             ";
         // line 24
-        echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_deprecated((isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 24, $this->getSourceContext()); })()));
+        echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_deprecated((isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 24, $this->getSourceContext()); })()));
         echo "
         </h1>
     </div>
@@ -114,7 +114,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
 
     ";
         // line 30
-        echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_deprecations((isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 30, $this->getSourceContext()); })()));
+        echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_deprecations((isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 30, $this->getSourceContext()); })()));
         echo "
 
     ";
@@ -143,7 +143,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
             if ((twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new Twig_Error_Runtime('Variable "project" does not exist.', 40, $this->getSourceContext()); })()), "config", array(0 => "insert_todos"), "method") == true)) {
                 // line 41
                 echo "                ";
-                echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_todos((isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 41, $this->getSourceContext()); })()));
+                echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_todos((isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 41, $this->getSourceContext()); })()));
                 echo "
             ";
             }
@@ -161,7 +161,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
 
         ";
             // line 49
-            echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_render_classes((isset($context["traits"]) || array_key_exists("traits", $context) ? $context["traits"] : (function () { throw new Twig_Error_Runtime('Variable "traits" does not exist.', 49, $this->getSourceContext()); })()));
+            echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_render_classes((isset($context["traits"]) || array_key_exists("traits", $context) ? $context["traits"] : (function () { throw new Twig_Error_Runtime('Variable "traits" does not exist.', 49, $this->getSourceContext()); })()));
             echo "
     ";
         }
@@ -238,7 +238,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
         if (twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 80, $this->getSourceContext()); })()), "parent", array())) {
             // line 81
             echo "        extends ";
-            echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_class_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 81, $this->getSourceContext()); })()), "parent", array()));
+            echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_class_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 81, $this->getSourceContext()); })()), "parent", array()));
         }
         // line 83
         if ((twig_length_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 83, $this->getSourceContext()); })()), "interfaces", array())) > 0)) {
@@ -263,7 +263,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
             }
             foreach ($context['_seq'] as $context["_key"] => $context["interface"]) {
                 // line 86
-                echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_class_link($context["interface"]);
+                echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_class_link($context["interface"]);
                 // line 87
                 if ( !twig_get_attribute($this->env, $this->getSourceContext(), $context["loop"], "last", array())) {
                     echo ", ";
@@ -282,7 +282,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
             $context = array_intersect_key($context, $_parent) + $_parent;
         }
         // line 90
-        echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_source_link((isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new Twig_Error_Runtime('Variable "project" does not exist.', 90, $this->getSourceContext()); })()), (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 90, $this->getSourceContext()); })()));
+        echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_source_link((isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new Twig_Error_Runtime('Variable "project" does not exist.', 90, $this->getSourceContext()); })()), (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 90, $this->getSourceContext()); })()));
         echo "
 ";
     }
@@ -316,7 +316,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
         }
         // line 99
         echo "    ";
-        echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 99, $this->getSourceContext()); })()), "hint", array()));
+        echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 99, $this->getSourceContext()); })()), "hint", array()));
         echo "
     <strong>";
         // line 100
@@ -329,13 +329,13 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
     public function block_method_parameters_signature($context, array $blocks = array())
     {
         // line 104
-        $context["__internal_d0d58643865cbe88f824c6b0587af1835f68cda3d0b4d7cdb2166bd5563a1bcd"] = $this->loadTemplate("macros.twig", "class.twig", 104);
+        $context["__internal_1691ca2685babc151fbc19a9b1a2a47cf9ed2573fe5b1413577f5ef6fc0d18dd"] = $this->loadTemplate("macros.twig", "class.twig", 104);
         // line 105
-        echo $context["__internal_d0d58643865cbe88f824c6b0587af1835f68cda3d0b4d7cdb2166bd5563a1bcd"]->macro_method_parameters_signature((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 105, $this->getSourceContext()); })()));
+        echo $context["__internal_1691ca2685babc151fbc19a9b1a2a47cf9ed2573fe5b1413577f5ef6fc0d18dd"]->macro_method_parameters_signature((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 105, $this->getSourceContext()); })()));
         echo "
     ";
         // line 106
-        echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_deprecated((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 106, $this->getSourceContext()); })()));
+        echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_deprecated((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 106, $this->getSourceContext()); })()));
     }
 
     // line 109
@@ -353,7 +353,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
                 <td>";
             // line 113
             if (twig_get_attribute($this->env, $this->getSourceContext(), $context["parameter"], "hint", array())) {
-                echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["parameter"], "hint", array()));
+                echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["parameter"], "hint", array()));
             }
             echo "</td>
                 <td>";
@@ -387,7 +387,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
         <tr>
             <td>";
         // line 124
-        echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 124, $this->getSourceContext()); })()), "hint", array()));
+        echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 124, $this->getSourceContext()); })()), "hint", array()));
         echo "</td>
             <td>";
         // line 125
@@ -412,7 +412,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
             echo "            <tr>
                 <td>";
             // line 134
-            echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_class_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["exception"], 0, array(), "array"));
+            echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_class_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["exception"], 0, array(), "array"));
             echo "</td>
                 <td>";
             // line 135
@@ -530,7 +530,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
             }
             // line 174
             echo "                    ";
-            echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["property"], "hint", array()));
+            echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["property"], "hint", array()));
             echo "
                 </td>
                 <td>\$";
@@ -546,7 +546,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
             if ( !(twig_get_attribute($this->env, $this->getSourceContext(), $context["property"], "class", array()) === (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 179, $this->getSourceContext()); })()))) {
                 // line 180
                 echo "<small>from&nbsp;";
-                echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_property_link($context["property"], false, true);
+                echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_property_link($context["property"], false, true);
                 echo "</small>";
             }
             // line 182
@@ -593,7 +593,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
             if (twig_get_attribute($this->env, $this->getSourceContext(), $context["method"], "static", array())) {
                 echo "static&nbsp;";
             }
-            echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["method"], "hint", array()));
+            echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_hint_link(twig_get_attribute($this->env, $this->getSourceContext(), $context["method"], "hint", array()));
             echo "
                 </div>
                 <div class=\"col-md-8 type\">
@@ -624,7 +624,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
             if ( !(twig_get_attribute($this->env, $this->getSourceContext(), $context["method"], "class", array()) === (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 204, $this->getSourceContext()); })()))) {
                 // line 205
                 echo "<small>from&nbsp;";
-                echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_method_link($context["method"], false, true);
+                echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_method_link($context["method"], false, true);
                 echo "</small>";
             }
             // line 207
@@ -707,11 +707,11 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
         // line 225
         if ( !(twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 225, $this->getSourceContext()); })()), "class", array()) === (isset($context["class"]) || array_key_exists("class", $context) ? $context["class"] : (function () { throw new Twig_Error_Runtime('Variable "class" does not exist.', 225, $this->getSourceContext()); })()))) {
             echo "in ";
-            echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_method_link((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 225, $this->getSourceContext()); })()), false, true);
+            echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_method_link((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 225, $this->getSourceContext()); })()), false, true);
             echo " ";
         }
         echo "at ";
-        echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_method_source_link((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 225, $this->getSourceContext()); })()));
+        echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_method_source_link((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 225, $this->getSourceContext()); })()));
         echo "</div>
         <code>";
         // line 226
@@ -721,7 +721,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
     <div class=\"details\">
         ";
         // line 229
-        echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_deprecations((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 229, $this->getSourceContext()); })()));
+        echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_deprecations((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 229, $this->getSourceContext()); })()));
         echo "
 
         ";
@@ -758,7 +758,7 @@ class __TwigTemplate_60fdc70c16fd5b50b82512fcd634f1c9e4e08ec2dc2ea077154912d3a83
             if ((twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new Twig_Error_Runtime('Variable "project" does not exist.', 243, $this->getSourceContext()); })()), "config", array(0 => "insert_todos"), "method") == true)) {
                 // line 244
                 echo "                    ";
-                echo $context["__internal_2a826bb412bd413b825d34ef70130f0a74a299ed8ab1a330b4c5f8cc6d741cd8"]->macro_todos((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 244, $this->getSourceContext()); })()));
+                echo $context["__internal_819ec872ea5d45d791dca190be8894377465d53e48d763a9f203a42c04a8d817"]->macro_todos((isset($context["method"]) || array_key_exists("method", $context) ? $context["method"] : (function () { throw new Twig_Error_Runtime('Variable "method" does not exist.', 244, $this->getSourceContext()); })()));
                 echo "
                 ";
             }

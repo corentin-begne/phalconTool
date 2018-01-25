@@ -85,6 +85,8 @@
         
     
 
+            <div class="description">
+            <p>Base class of all controllers</p>                                </div>
     
     
     
@@ -93,10 +95,10 @@
             <table class="table table-condensed">
                     <tr>
                 <td class="type" id="property_messages">
-                                                                                
+                                                                                array
                 </td>
                 <td>$messages</td>
-                <td class="last"></td>
+                <td class="last">Current lang translated texts</td>
                 <td></td>
             </tr>
             </table>
@@ -110,32 +112,29 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_beforeExecuteRoute">beforeExecuteRoute</a>($dispatcher)
+                    <a href="#method_beforeExecuteRoute">beforeExecuteRoute</a>(<abbr title="Phalcon\Mvc\Dispatcher">Dispatcher</abbr> $dispatcher)
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Set default view data</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    <abbr title="Phalcon\[type]">[type]</abbr>
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getTranslation">getTranslation</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Store all current lang texts translations</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    <abbr title="Phalcon\[type]">[type]</abbr>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method___">__</a>($key, $params = [])
+                    <a href="#method___">__</a>(string $key, array $params = [])
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Get a translation by his label in controller/action context</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -157,23 +156,25 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_beforeExecuteRoute">
-        <div class="location">at         line 7</div>
+        <div class="location">at         line 18</div>
         <code>                    
-    <strong>beforeExecuteRoute</strong>($dispatcher)
+    <strong>beforeExecuteRoute</strong>(<abbr title="Phalcon\Mvc\Dispatcher">Dispatcher</abbr> $dispatcher)
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Set default view data</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><abbr title="Phalcon\Mvc\Dispatcher">Dispatcher</abbr></td>
                 <td>$dispatcher</td>
-                <td></td>
+                <td>Applciation dispatcher</td>
             </tr>
             </table>
 
@@ -186,8 +187,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getTranslation">
-        <div class="location">at         line 15</div>
-        <code>                    
+        <div class="location">at         line 30</div>
+        <code>                    <abbr title="Phalcon\[type]">[type]</abbr>
     <strong>getTranslation</strong>()
         </code>
     </h3>
@@ -195,8 +196,19 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Store all current lang texts translations</p>                                                </div>
                 <div class="tags">
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Phalcon\[type]">[type]</abbr></td>
+            <td>[description]</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -205,32 +217,43 @@
             </div>
                     <div class="method-item">
                     <h3 id="method___">
-        <div class="location">at         line 33</div>
-        <code>                    
-    <strong>__</strong>($key, $params = [])
+        <div class="location">at         line 54</div>
+        <code>                    <abbr title="Phalcon\[type]">[type]</abbr>
+    <strong>__</strong>(string $key, array $params = [])
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Get a translation by his label in controller/action context</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$key</td>
-                <td></td>
+                <td>Label of the text</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$params</td>
-                <td></td>
+                <td>[description]</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Phalcon\[type]">[type]</abbr></td>
+            <td>[description]</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -239,7 +262,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method__">
-        <div class="location">at         line 38</div>
+        <div class="location">at         line 59</div>
         <code>                    
     <strong>_</strong>($key, $params = [])
         </code>

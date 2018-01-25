@@ -1,14 +1,14 @@
 {
     "name": "Phalcon\\ControllerBase",
-    "line": 4,
-    "short_desc": "",
+    "line": 7,
+    "short_desc": "Base class of all controllers",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "Phalcon",
     "file": "\/var\/www\/phalconTool\/src\/ControllerBase.php",
     "relative_file": null,
-    "hash": "56ef9e8500481c28467a13d64b6a46af635c25cc",
+    "hash": "e4be24f4e7c946932674c4d272fb5b055fc6a469",
     "parent": "Phalcon\\Mvc\\Controller",
     "modifiers": 0,
     "is_trait": false,
@@ -20,11 +20,16 @@
     "properties": {
         "messages": {
             "name": "messages",
-            "line": 5,
-            "short_desc": "",
+            "line": 12,
+            "short_desc": "Current lang translated texts",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "default": null,
@@ -34,8 +39,8 @@
     "methods": {
         "beforeExecuteRoute": {
             "name": "beforeExecuteRoute",
-            "line": 7,
-            "short_desc": "",
+            "line": 18,
+            "short_desc": "Set default view data",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -47,10 +52,15 @@
             "parameters": {
                 "dispatcher": {
                     "name": "dispatcher",
-                    "line": 7,
-                    "short_desc": null,
+                    "line": 18,
+                    "short_desc": "Applciation dispatcher",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Mvc\\Dispatcher",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -61,11 +71,16 @@
         },
         "getTranslation": {
             "name": "getTranslation",
-            "line": 15,
-            "short_desc": "",
+            "line": 30,
+            "short_desc": "Store all current lang texts translations",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "\\Phalcon\\[type]",
+                    false
+                ]
+            ],
+            "hint_desc": "[description]",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -75,11 +90,16 @@
         },
         "__": {
             "name": "__",
-            "line": 33,
-            "short_desc": "",
+            "line": 54,
+            "short_desc": "Get a translation by his label in controller\/action context",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "\\Phalcon\\[type]",
+                    false
+                ]
+            ],
+            "hint_desc": "[description]",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -88,10 +108,15 @@
             "parameters": {
                 "key": {
                     "name": "key",
-                    "line": 33,
-                    "short_desc": null,
+                    "line": 54,
+                    "short_desc": "Label of the text",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -100,10 +125,15 @@
                 },
                 "params": {
                     "name": "params",
-                    "line": 33,
-                    "short_desc": null,
+                    "line": 54,
+                    "short_desc": "[description]",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": "[]",
@@ -114,7 +144,7 @@
         },
         "_": {
             "name": "_",
-            "line": 38,
+            "line": 59,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -127,7 +157,7 @@
             "parameters": {
                 "key": {
                     "name": "key",
-                    "line": 38,
+                    "line": 59,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -139,7 +169,7 @@
                 },
                 "params": {
                     "name": "params",
-                    "line": 38,
+                    "line": 59,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,

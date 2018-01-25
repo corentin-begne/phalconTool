@@ -14,15 +14,6 @@
     "is_trait": false,
     "is_interface": false,
     "aliases": {
-        "Event": "Phalcon\\Events\\Event",
-        "Component": "Phalcon\\Mvc\\User\\Component",
-        "Dispatcher": "Phalcon\\Mvc\\Dispatcher",
-        "Jsmin": "Phalcon\\Assets\\Filters\\Jsmin",
-        "Acl": "Phalcon\\Acl",
-        "Role": "Phalcon\\Acl\\Role",
-        "AclList": "Phalcon\\Acl\\Adapter\\Memory",
-        "Resource": "Phalcon\\Acl\\Resource",
-        "Plugin": "Phalcon\\Mvc\\User\\Plugin",
         "UserManager": "Manager\\User"
     },
     "errors": [],

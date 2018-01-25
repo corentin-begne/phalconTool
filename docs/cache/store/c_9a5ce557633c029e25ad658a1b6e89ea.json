@@ -1,14 +1,14 @@
 {
     "name": "Phalcon\\Library",
-    "line": 5,
-    "short_desc": "",
+    "line": 8,
+    "short_desc": "Manage internal library access and includes",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "Phalcon",
     "file": "\/var\/www\/phalconTool\/src\/Library.php",
     "relative_file": null,
-    "hash": "77a684e08737e19a932b909aba6848ef38fab404",
+    "hash": "0ab1977e52b26262f35ae2d6e523cca4b92bf466",
     "parent": "Phalcon\\Mvc\\User\\Component",
     "modifiers": 0,
     "is_trait": false,
@@ -21,8 +21,8 @@
     "methods": {
         "get": {
             "name": "get",
-            "line": 7,
-            "short_desc": "",
+            "line": 16,
+            "short_desc": "Include the config type file of each librariries",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -34,10 +34,15 @@
             "parameters": {
                 "type": {
                     "name": "type",
-                    "line": 7,
-                    "short_desc": null,
+                    "line": 16,
+                    "short_desc": "Name of the type [loader|route]",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -46,10 +51,15 @@
                 },
                 "config": {
                     "name": "config",
-                    "line": 7,
-                    "short_desc": null,
+                    "line": 16,
+                    "short_desc": "Config instance",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Config",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -58,13 +68,18 @@
                 },
                 "object": {
                     "name": "object",
-                    "line": 7,
-                    "short_desc": null,
+                    "line": 16,
+                    "short_desc": "&$object Loader instance",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Phalcon\\Loader",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
-                    "default": "null",
+                    "default": null,
                     "variadic": false,
                     "is_by_ref": true
                 }
@@ -72,8 +87,8 @@
         },
         "loadDir": {
             "name": "loadDir",
-            "line": 22,
-            "short_desc": "",
+            "line": 35,
+            "short_desc": "Load some directories",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -85,10 +100,15 @@
             "parameters": {
                 "paths": {
                     "name": "paths",
-                    "line": 22,
-                    "short_desc": null,
+                    "line": 35,
+                    "short_desc": "Paths to include",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -99,8 +119,8 @@
         },
         "loadNamespaces": {
             "name": "loadNamespaces",
-            "line": 28,
-            "short_desc": "",
+            "line": 45,
+            "short_desc": "Load some namespaces",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -112,10 +132,15 @@
             "parameters": {
                 "namespaces": {
                     "name": "namespaces",
-                    "line": 28,
-                    "short_desc": null,
+                    "line": 45,
+                    "short_desc": "Namespaces to include",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,

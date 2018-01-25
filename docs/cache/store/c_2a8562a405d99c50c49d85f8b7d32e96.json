@@ -1,14 +1,14 @@
 {
-    "name": "ServerTask",
-    "line": 7,
-    "short_desc": "Manage Websocket server",
+    "name": "ReleaseTask",
+    "line": 3,
+    "short_desc": "",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "",
-    "file": "\/var\/www\/phalconTool\/templates\/project\/app\/tasks\/ServerTask.php",
+    "file": "\/var\/www\/phalconTool\/tasks\/ReleaseTask.php",
     "relative_file": null,
-    "hash": "8a9eb3e245d8d108c57335afc37a2fa35ef6ed90",
+    "hash": "758940c2ff872ebfc395ffd6d6dd82a1f5c48c63",
     "parent": "Phalcon\\CLI\\Task",
     "modifiers": 0,
     "is_trait": false,
@@ -24,8 +24,7 @@
         "Build": "Phalcon\\Builder\\Build",
         "Task": "Phalcon\\Builder\\Task",
         "Db": "Phalcon\\Db",
-        "Model": "Phalcon\\Builder\\Model",
-        "Server": "Websocket\\Server"
+        "Model": "Phalcon\\Builder\\Model"
     },
     "errors": [],
     "interfaces": [],
@@ -34,7 +33,7 @@
     "methods": {
         "mainAction": {
             "name": "mainAction",
-            "line": 9,
+            "line": 5,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -44,21 +43,20 @@
             "is_by_ref": "",
             "exceptions": [],
             "errors": [],
-            "parameters": []
-        },
-        "startAction": {
-            "name": "startAction",
-            "line": 16,
-            "short_desc": "Start server",
-            "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
-            "tags": [],
-            "modifiers": 1,
-            "is_by_ref": "",
-            "exceptions": [],
-            "errors": [],
-            "parameters": []
+            "parameters": {
+                "params": {
+                    "name": "params",
+                    "line": 5,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": null,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
         }
     },
     "constants": []

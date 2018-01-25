@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>ApiController | PhalconTool</title>
+    <title>GenerateTask | PhalconTool</title>
 
             <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:ApiController" data-root-path="">
+    <body id="class" data-name="class:GenerateTask" data-root-path="">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -67,44 +67,21 @@
                 
     <div class="page-header">
         <h1>
-            ApiController
+            GenerateTask
                 
         </h1>
     </div>
 
     <p>    class
-    <strong>ApiController</strong>        extends <a href="Phalcon/ControllerBase.html"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a>
+    <strong>GenerateTask</strong>        extends <abbr title="Phalcon\CLI\Task">Task</abbr>
 </p>
 
         
     
 
-            <div class="description">
-            <p>Provide actions to search, create, update and delete models data and autocompletion on field data search</p>                                </div>
     
     
     
-            <h2>Properties</h2>
-
-            <table class="table table-condensed">
-                    <tr>
-                <td class="type" id="property_messages">
-                                                                                
-                </td>
-                <td>$messages</td>
-                <td class="last"></td>
-                <td><small>from&nbsp;<a href="Phalcon/ControllerBase.html#property_messages"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a></small></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_models">
-                                                                                array
-                </td>
-                <td>$models</td>
-                <td class="last">Current request models</td>
-                <td></td>
-            </tr>
-            </table>
-
     
             <h2>Methods</h2>
 
@@ -114,52 +91,32 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_beforeExecuteRoute">beforeExecuteRoute</a>($dispatcher)
-        
-                                            <p>Check url models conformity</p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_getTranslation">getTranslation</a>()
+                    <a href="#method_mainAction">mainAction</a>()
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="Phalcon/ControllerBase.html#method_getTranslation"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method___">__</a>($key, $params = [])
+                    <a href="#method_appAction">appAction</a>($params)
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="Phalcon/ControllerBase.html#method___"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method__">_</a>($key, $params = [])
+                    <a href="#method_projectAction">projectAction</a>()
         
                                             <p class="no-description">No description</p>
                                     </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="Phalcon/ControllerBase.html#method__"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a></small></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    [type]
-                </div>
-                <div class="col-md-8 type">
-                    <a href="#method_findAction">findAction</a>()
-        
-                                            <p>Get models result filtered by conditions</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -167,9 +124,10 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_getTypeAction">getTypeAction</a>()
+                    <a href="#method_modelAction">modelAction</a>($params)
         
-                                            <p>Get the type of models column</p>                </div>
+                                            <p class="no-description">No description</p>
+                                    </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -177,9 +135,9 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_completeAction">completeAction</a>()
+                    <a href="#method_controllerAction">controllerAction</a>($params)
         
-                                            <p>Autocomplete models field data search</p>                </div>
+                                            <p>generate module, action, css/js, rest, security</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -187,9 +145,10 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_createAction">createAction</a>()
+                    <a href="#method_taskAction">taskAction</a>($params)
         
-                                            <p>Create models entry</p>                </div>
+                                            <p class="no-description">No description</p>
+                                    </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -197,9 +156,10 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_updateAction">updateAction</a>()
+                    <a href="#method_jsAction">jsAction</a>($params)
         
-                                            <p>Update models entry</p>                </div>
+                                            <p class="no-description">No description</p>
+                                    </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -207,9 +167,32 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_deleteAction">deleteAction</a>()
+                    <a href="#method_cssAction">cssAction</a>($params)
         
-                                            <p>Delete models entry</p>                </div>
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_lessAction">lessAction</a>($params)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_buildAction">buildAction</a>($params = [])
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -219,41 +202,10 @@
 
             <div id="method-details">
                     <div class="method-item">
-                    <h3 id="method_beforeExecuteRoute">
-        <div class="location">at         line 20</div>
+                    <h3 id="method_mainAction">
+        <div class="location">at         line 14</div>
         <code>                    
-    <strong>beforeExecuteRoute</strong>($dispatcher)
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                    <div class="method-description">
-                                    <p>Check url models conformity</p>                                                </div>
-                <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td></td>
-                <td>$dispatcher</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_getTranslation">
-        <div class="location">in <a href="Phalcon/ControllerBase.html#method_getTranslation"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a> at         line 15</div>
-        <code>                    
-    <strong>getTranslation</strong>()
+    <strong>mainAction</strong>()
         </code>
     </h3>
     <div class="details">
@@ -269,10 +221,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method___">
-        <div class="location">in <a href="Phalcon/ControllerBase.html#method___"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a> at         line 33</div>
+                    <h3 id="method_appAction">
+        <div class="location">at         line 18</div>
         <code>                    
-    <strong>__</strong>($key, $params = [])
+    <strong>appAction</strong>($params)
         </code>
     </h3>
     <div class="details">
@@ -283,11 +235,6 @@
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
-                    <tr>
-                <td></td>
-                <td>$key</td>
-                <td></td>
-            </tr>
                     <tr>
                 <td></td>
                 <td>$params</td>
@@ -303,10 +250,29 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method__">
-        <div class="location">in <a href="Phalcon/ControllerBase.html#method__"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a> at         line 38</div>
+                    <h3 id="method_projectAction">
+        <div class="location">at         line 43</div>
         <code>                    
-    <strong>_</strong>($key, $params = [])
+    <strong>projectAction</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_modelAction">
+        <div class="location">at         line 75</div>
+        <code>                    
+    <strong>modelAction</strong>($params)
         </code>
     </h3>
     <div class="details">
@@ -317,11 +283,6 @@
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
-                    <tr>
-                <td></td>
-                <td>$key</td>
-                <td></td>
-            </tr>
                     <tr>
                 <td></td>
                 <td>$params</td>
@@ -337,10 +298,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_findAction">
-        <div class="location">at         line 44</div>
-        <code>                    [type]
-    <strong>findAction</strong>()
+                    <h3 id="method_controllerAction">
+        <div class="location">at         line 111</div>
+        <code>                    
+    <strong>controllerAction</strong>($params)
         </code>
     </h3>
     <div class="details">
@@ -348,38 +309,18 @@
     
 
                     <div class="method-description">
-                                    <p>Get models result filtered by conditions</p>                                                </div>
+                                    <p>generate module, action, css/js, rest, security</p>                                                </div>
                 <div class="tags">
-            
-                            <h4>Return Value</h4>
+                            <h4>Parameters</h4>
 
                     <table class="table table-condensed">
-        <tr>
-            <td>[type]</td>
-            <td>[description]</td>
-        </tr>
-    </table>
+                    <tr>
+                <td></td>
+                <td>$params</td>
+                <td></td>
+            </tr>
+            </table>
 
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_getTypeAction">
-        <div class="location">at         line 83</div>
-        <code>                    
-    <strong>getTypeAction</strong>()
-        </code>
-    </h3>
-    <div class="details">
-            
-    
-
-                    <div class="method-description">
-                                    <p>Get the type of models column</p>                                                </div>
-                <div class="tags">
             
             
             
@@ -388,19 +329,27 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_completeAction">
-        <div class="location">at         line 92</div>
+                    <h3 id="method_taskAction">
+        <div class="location">at         line 116</div>
         <code>                    
-    <strong>completeAction</strong>()
+    <strong>taskAction</strong>($params)
         </code>
     </h3>
     <div class="details">
             
     
 
-                    <div class="method-description">
-                                    <p>Autocomplete models field data search</p>                                                </div>
                 <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$params</td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
             
@@ -409,19 +358,27 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_createAction">
-        <div class="location">at         line 112</div>
+                    <h3 id="method_jsAction">
+        <div class="location">at         line 121</div>
         <code>                    
-    <strong>createAction</strong>()
+    <strong>jsAction</strong>($params)
         </code>
     </h3>
     <div class="details">
             
     
 
-                    <div class="method-description">
-                                    <p>Create models entry</p>                                                </div>
                 <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$params</td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
             
@@ -430,19 +387,27 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_updateAction">
-        <div class="location">at         line 142</div>
+                    <h3 id="method_cssAction">
+        <div class="location">at         line 126</div>
         <code>                    
-    <strong>updateAction</strong>()
+    <strong>cssAction</strong>($params)
         </code>
     </h3>
     <div class="details">
             
     
 
-                    <div class="method-description">
-                                    <p>Update models entry</p>                                                </div>
                 <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$params</td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
             
@@ -451,19 +416,56 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_deleteAction">
-        <div class="location">at         line 180</div>
+                    <h3 id="method_lessAction">
+        <div class="location">at         line 131</div>
         <code>                    
-    <strong>deleteAction</strong>()
+    <strong>lessAction</strong>($params)
         </code>
     </h3>
     <div class="details">
             
     
 
-                    <div class="method-description">
-                                    <p>Delete models entry</p>                                                </div>
                 <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$params</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_buildAction">
+        <div class="location">at         line 136</div>
+        <code>                    
+    <strong>buildAction</strong>($params = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$params</td>
+                <td></td>
+            </tr>
+            </table>
+
             
             
             

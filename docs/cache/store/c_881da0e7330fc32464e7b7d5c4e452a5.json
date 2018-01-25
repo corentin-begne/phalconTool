@@ -1,14 +1,14 @@
 {
-    "name": "ServerTask",
-    "line": 7,
-    "short_desc": "Manage Websocket server",
+    "name": "MessageTask",
+    "line": 2,
+    "short_desc": "",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "",
-    "file": "\/var\/www\/phalconTool\/templates\/project\/app\/tasks\/ServerTask.php",
+    "file": "\/var\/www\/phalconTool\/tasks\/MessageTask.php",
     "relative_file": null,
-    "hash": "8a9eb3e245d8d108c57335afc37a2fa35ef6ed90",
+    "hash": "63d6cb5757c30fa3747e0fb3cc34dcf6efef496d",
     "parent": "Phalcon\\CLI\\Task",
     "modifiers": 0,
     "is_trait": false,
@@ -23,9 +23,7 @@
         "Less": "Phalcon\\Builder\\Less",
         "Build": "Phalcon\\Builder\\Build",
         "Task": "Phalcon\\Builder\\Task",
-        "Db": "Phalcon\\Db",
-        "Model": "Phalcon\\Builder\\Model",
-        "Server": "Websocket\\Server"
+        "Db": "Phalcon\\Db"
     },
     "errors": [],
     "interfaces": [],
@@ -34,7 +32,7 @@
     "methods": {
         "mainAction": {
             "name": "mainAction",
-            "line": 9,
+            "line": 4,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -46,10 +44,24 @@
             "errors": [],
             "parameters": []
         },
-        "startAction": {
-            "name": "startAction",
-            "line": 16,
-            "short_desc": "Start server",
+        "importAction": {
+            "name": "importAction",
+            "line": 8,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "exportAction": {
+            "name": "exportAction",
+            "line": 26,
+            "short_desc": "",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
