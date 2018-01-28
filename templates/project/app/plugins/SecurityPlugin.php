@@ -108,7 +108,7 @@ class SecurityPlugin extends Plugin
                 break;
             }
         }
-        if($allowed !== Acl::ALLOW) {
+        if($allowed != Acl::ALLOW) {
             $this->redirectUser();
             $this->view->disable();
         }

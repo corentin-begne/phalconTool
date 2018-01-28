@@ -12,14 +12,16 @@ class Js extends \Phalcon\Mvc\User\Component
                     $this->create($source, $target, [
                         $action.ucfirst($controller),
                         ucfirst($action).ucfirst($controller),
-                        $controller.'/'.$action.'/'
+                        $controller.'/'.$action.'/',
+                        APP
                     ]);
                 }
             } else{
                 $this->create($source, $target, [
                     $controller,
                     ucfirst($controller),
-                    $controller.'/'
+                    $controller.'/',
+                    APP
                 ]);
             }
         }
@@ -27,7 +29,7 @@ class Js extends \Phalcon\Mvc\User\Component
 
     private function create($source, $target, $params){
         $content = file_get_contents($source);
-        $content = str_replace(['[name]', '[className]', '[path]'], $params, $content);
+        $content = str_replace(['[name]', '[className]', '[path]', '[app]'], $params, $content);
         $target .= $params[2];
         exec("mkdir -p $target");
         $target .= basename($source);

@@ -39,12 +39,12 @@ $di->set('router', function () use ($config) {
         'action'     => 'index'
     ]);
 
-    $router->add("/", [
+    $router->add('/', [
         'controller' => 'index',
         'action'     => 'index'
     ]);
 
-    $router->add("/:action", [
+    $router->add('/:action', [
         'controller' => 'index',
         'action'     => '1'
     ]);
@@ -81,7 +81,7 @@ $di->set('db', function () use ($config) {
         'username' => $config[ENV]->database->username,
         'password' => $config[ENV]->database->password,
         'dbname' => $config[ENV]->database->dbname,
-        "charset" => $config[ENV]->database->charset
+        'charset' => $config[ENV]->database->charset
     ]);
 });
 
@@ -109,7 +109,7 @@ $di->set('dispatcher', function() {
     $asset = new AssetsPlugin();
     $eventsManager->attach('dispatch:beforeDispatch', $security);
     $eventsManager->attach('dispatch:beforeDispatch', $asset);
-    $eventsManager->attach("dispatch:beforeException", $security);
+    $eventsManager->attach('dispatch:beforeException', $security);
     $eventsManager->attach('dispatch:afterDispatch', $asset);
 
     $dispatcher = new Dispatcher();   
