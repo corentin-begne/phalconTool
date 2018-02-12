@@ -95,9 +95,11 @@ class ApiController extends Phalcon\ControllerBase{
         $model = $this->models[0];
         $result = [];
         $rows =  $model::find([
-            'distinct '.Rest::$params['field']." like '".Rest::$params['value']."%'",
+            Rest::$params['field']." like '".Rest::$params['value']."%'",
+            'columns'=>'distinct('.Rest::$params['field'].'), pety_id, pety_name',
             'limit' => $limit,
-            'order' => Rest::$params['field']
+            'order' => Rest::$params['field'],
+            'group'=> Rest::$params['field']
         ]);
         foreach($rows as $row){
             $field = Rest::$params['field'];

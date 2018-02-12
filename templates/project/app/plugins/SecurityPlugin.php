@@ -24,7 +24,7 @@ class SecurityPlugin extends Plugin
         $permissions = [];
         // set roles        
         foreach(PermissionType::find() as $permission){
-            $acl->addRole($permission->pety_name);
+            $acl->addRole($permission->pety_id);
             $permissions[$permission->pety_name] = $permission->pety_id;
         }
 

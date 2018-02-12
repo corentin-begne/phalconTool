@@ -46,7 +46,12 @@ class User{
      * @return array User permission ids
      */
     public static function getPermissions(){
-        return DI::getDefault()->getSession()->get('permissions');
+        $permissions = DI::getDefault()->getSession()->get('permissions');
+        if(!isset($permissions)){
+            return [\PermissionType::findFirstByPetyName('anonymous')->pety_id];
+        }else {
+            return $permissions;
+        }
     }
 
     /**
