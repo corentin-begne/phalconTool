@@ -8,7 +8,7 @@
     "namespace": "",
     "file": "\/var\/www\/phalconTool\/src\/Tools\/Rest.php",
     "relative_file": null,
-    "hash": "23452468d4f157717c7bf4fcc494bc3df10f45d8",
+    "hash": "9109fe33c936e869a905c5ee5a8d8db7830199e0",
     "parent": null,
     "modifiers": 0,
     "is_trait": false,
@@ -370,7 +370,7 @@
                     "long_desc": null,
                     "hint": [
                         [
-                            "\\type",
+                            "array",
                             false
                         ]
                     ],

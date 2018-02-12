@@ -89,10 +89,10 @@
             <table class="table table-condensed">
                     <tr>
                 <td class="type" id="property_messages">
-                                                                                
+                                                                                array
                 </td>
                 <td>$messages</td>
-                <td class="last"></td>
+                <td class="last">Current lang translated texts</td>
                 <td><small>from&nbsp;<a href="Phalcon/ControllerBase.html#property_messages"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a></small></td>
             </tr>
                     <tr>
@@ -114,31 +114,29 @@
                     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_beforeExecuteRoute">beforeExecuteRoute</a>($dispatcher)
+                    <a href="#method_beforeExecuteRoute">beforeExecuteRoute</a>(<abbr title="Phalcon\Mvc\Dispatcher">Dispatcher</abbr> $dispatcher)
         
                                             <p>Check url models conformity</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    <abbr title="Phalcon\[type]">[type]</abbr>
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_getTranslation">getTranslation</a>()
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Store all current lang texts translations</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="Phalcon/ControllerBase.html#method_getTranslation"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    
+                    <abbr title="Phalcon\[type]">[type]</abbr>
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method___">__</a>($key, $params = [])
+                    <a href="#method___">__</a>(string $key, array $params = [])
         
-                                            <p class="no-description">No description</p>
-                                    </div>
+                                            <p>Get a translation by his label in controller/action context</p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="Phalcon/ControllerBase.html#method___"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a></small></div>
             </div>
                     <div class="row">
@@ -154,7 +152,7 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    [type]
+                    
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_findAction">findAction</a>()
@@ -222,7 +220,7 @@
                     <h3 id="method_beforeExecuteRoute">
         <div class="location">at         line 20</div>
         <code>                    
-    <strong>beforeExecuteRoute</strong>($dispatcher)
+    <strong>beforeExecuteRoute</strong>(<abbr title="Phalcon\Mvc\Dispatcher">Dispatcher</abbr> $dispatcher)
         </code>
     </h3>
     <div class="details">
@@ -236,9 +234,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td><abbr title="Phalcon\Mvc\Dispatcher">Dispatcher</abbr></td>
                 <td>$dispatcher</td>
-                <td></td>
+                <td>Applciation dispatcher</td>
             </tr>
             </table>
 
@@ -251,8 +249,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getTranslation">
-        <div class="location">in <a href="Phalcon/ControllerBase.html#method_getTranslation"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a> at         line 15</div>
-        <code>                    
+        <div class="location">in <a href="Phalcon/ControllerBase.html#method_getTranslation"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a> at         line 30</div>
+        <code>                    <abbr title="Phalcon\[type]">[type]</abbr>
     <strong>getTranslation</strong>()
         </code>
     </h3>
@@ -260,8 +258,19 @@
             
     
 
+                    <div class="method-description">
+                                    <p>Store all current lang texts translations</p>                                                </div>
                 <div class="tags">
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Phalcon\[type]">[type]</abbr></td>
+            <td>[description]</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -270,32 +279,43 @@
             </div>
                     <div class="method-item">
                     <h3 id="method___">
-        <div class="location">in <a href="Phalcon/ControllerBase.html#method___"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a> at         line 33</div>
-        <code>                    
-    <strong>__</strong>($key, $params = [])
+        <div class="location">in <a href="Phalcon/ControllerBase.html#method___"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a> at         line 54</div>
+        <code>                    <abbr title="Phalcon\[type]">[type]</abbr>
+    <strong>__</strong>(string $key, array $params = [])
         </code>
     </h3>
     <div class="details">
             
     
 
+                    <div class="method-description">
+                                    <p>Get a translation by his label in controller/action context</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>string</td>
                 <td>$key</td>
-                <td></td>
+                <td>Label of the text</td>
             </tr>
                     <tr>
-                <td></td>
+                <td>array</td>
                 <td>$params</td>
-                <td></td>
+                <td>[description]</td>
             </tr>
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Phalcon\[type]">[type]</abbr></td>
+            <td>[description]</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -304,7 +324,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method__">
-        <div class="location">in <a href="Phalcon/ControllerBase.html#method__"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a> at         line 38</div>
+        <div class="location">in <a href="Phalcon/ControllerBase.html#method__"><abbr title="Phalcon\ControllerBase">ControllerBase</abbr></a> at         line 59</div>
         <code>                    
     <strong>_</strong>($key, $params = [])
         </code>
@@ -338,8 +358,8 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_findAction">
-        <div class="location">at         line 44</div>
-        <code>                    [type]
+        <div class="location">at         line 43</div>
+        <code>                    
     <strong>findAction</strong>()
         </code>
     </h3>
@@ -351,15 +371,6 @@
                                     <p>Get models result filtered by conditions</p>                                                </div>
                 <div class="tags">
             
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>[type]</td>
-            <td>[description]</td>
-        </tr>
-    </table>
-
             
             
                     </div>
@@ -368,7 +379,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getTypeAction">
-        <div class="location">at         line 83</div>
+        <div class="location">at         line 82</div>
         <code>                    
     <strong>getTypeAction</strong>()
         </code>
@@ -389,7 +400,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_completeAction">
-        <div class="location">at         line 92</div>
+        <div class="location">at         line 91</div>
         <code>                    
     <strong>completeAction</strong>()
         </code>
@@ -410,7 +421,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_createAction">
-        <div class="location">at         line 112</div>
+        <div class="location">at         line 113</div>
         <code>                    
     <strong>createAction</strong>()
         </code>
@@ -431,7 +442,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_updateAction">
-        <div class="location">at         line 142</div>
+        <div class="location">at         line 143</div>
         <code>                    
     <strong>updateAction</strong>()
         </code>
@@ -452,7 +463,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_deleteAction">
-        <div class="location">at         line 180</div>
+        <div class="location">at         line 181</div>
         <code>                    
     <strong>deleteAction</strong>()
         </code>

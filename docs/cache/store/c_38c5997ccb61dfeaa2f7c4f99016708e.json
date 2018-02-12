@@ -8,7 +8,7 @@
     "namespace": "Manager",
     "file": "\/var\/www\/phalconTool\/templates\/project\/app\/classes\/Manager\/User.php",
     "relative_file": null,
-    "hash": "0cf623780a9ecbc932758bb35b31ad555463652e",
+    "hash": "ab05f30aac11bcad3d5d82563e9108a7cf45cf92",
     "parent": null,
     "modifiers": 0,
     "is_trait": false,
@@ -74,7 +74,7 @@
             "long_desc": "",
             "hint": [
                 [
-                    "\\Manager\\any",
+                    "\\any",
                     false
                 ]
             ],
@@ -125,7 +125,7 @@
         },
         "havePermission": {
             "name": "havePermission",
-            "line": 57,
+            "line": 62,
             "short_desc": "Check if user have a permission",
             "long_desc": "",
             "hint": [
@@ -143,7 +143,7 @@
             "parameters": {
                 "id": {
                     "name": "id",
-                    "line": 57,
+                    "line": 62,
                     "short_desc": "Permission id",
                     "long_desc": null,
                     "hint": [
@@ -162,7 +162,7 @@
         },
         "isAuthenticated": {
             "name": "isAuthenticated",
-            "line": 65,
+            "line": 70,
             "short_desc": "Check if the user is connected to the application",
             "long_desc": "",
             "hint": [

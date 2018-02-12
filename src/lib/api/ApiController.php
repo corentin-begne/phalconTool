@@ -39,7 +39,6 @@ class ApiController extends Phalcon\ControllerBase{
 
     /**
      * Get models result filtered by conditions
-     * @return [type] [description]
      */
     public function findAction(){
         $params = [];

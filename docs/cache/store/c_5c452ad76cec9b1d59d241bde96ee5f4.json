@@ -8,14 +8,13 @@
     "namespace": "",
     "file": "\/var\/www\/phalconTool\/src\/lib\/api\/ApiController.php",
     "relative_file": null,
-    "hash": "d6f5ca3e5550de5b2b68b0705392ecf875b3faaf",
+    "hash": "cb0e96c3d0f34db43ca35b65e5566b429cf279d7",
     "parent": "Phalcon\\ControllerBase",
     "modifiers": 0,
     "is_trait": false,
     "is_interface": false,
     "aliases": {
         "Utils": "Phalcon\\Text",
-        "Tag": "Phalcon\\Tag",
         "Builder": "Phalcon\\Mvc\\Model\\Query\\Builder"
     },
     "errors": [],
@@ -52,7 +51,7 @@
         "beforeExecuteRoute": {
             "name": "beforeExecuteRoute",
             "line": 20,
-            "short_desc": "Set default view data",
+            "short_desc": "Check url models conformity",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -83,16 +82,11 @@
         },
         "findAction": {
             "name": "findAction",
-            "line": 44,
+            "line": 43,
             "short_desc": "Get models result filtered by conditions",
             "long_desc": "",
-            "hint": [
-                [
-                    "\\[type]",
-                    false
-                ]
-            ],
-            "hint_desc": "[description]",
+            "hint": null,
+            "hint_desc": null,
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -102,7 +96,7 @@
         },
         "getTypeAction": {
             "name": "getTypeAction",
-            "line": 83,
+            "line": 82,
             "short_desc": "Get the type of models column",
             "long_desc": "",
             "hint": null,
@@ -116,7 +110,7 @@
         },
         "completeAction": {
             "name": "completeAction",
-            "line": 92,
+            "line": 91,
             "short_desc": "Autocomplete models field data search",
             "long_desc": "",
             "hint": null,
@@ -130,7 +124,7 @@
         },
         "createAction": {
             "name": "createAction",
-            "line": 112,
+            "line": 113,
             "short_desc": "Create models entry",
             "long_desc": "",
             "hint": null,
@@ -144,7 +138,7 @@
         },
         "updateAction": {
             "name": "updateAction",
-            "line": 142,
+            "line": 143,
             "short_desc": "Update models entry",
             "long_desc": "",
             "hint": null,
@@ -158,7 +152,7 @@
         },
         "deleteAction": {
             "name": "deleteAction",
-            "line": 180,
+            "line": 181,
             "short_desc": "Delete models entry",
             "long_desc": "",
             "hint": null,

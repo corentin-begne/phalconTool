@@ -123,7 +123,7 @@ class Rest
 
     /**
      * Check the presence of required params
-     * @param  type  $list  List of params name to check
+     * @param  array  $list  List of params name to check
      * @param  boolean $allowEmpty Set to true if post data can be empty
      */
     public static function checkParams($list=[], $allowEmpty=false){

@@ -31,7 +31,7 @@ class User{
     /**
      * Get user data
      * @param  string $name Data name
-     * @return any       Return the wanted data or all if null
+     * @return \any       Return the wanted data or all if null
      */
     public static function get($name=null){
         if(!isset($name)){
