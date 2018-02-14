@@ -8,7 +8,7 @@
     "namespace": "",
     "file": "\/var\/www\/phalconTool\/src\/lib\/api\/ApiController.php",
     "relative_file": null,
-    "hash": "cb0e96c3d0f34db43ca35b65e5566b429cf279d7",
+    "hash": "48c5cfdcaa472fea66f92b7d3205eafb9076ce69",
     "parent": "Phalcon\\ControllerBase",
     "modifiers": 0,
     "is_trait": false,
@@ -96,7 +96,7 @@
         },
         "getTypeAction": {
             "name": "getTypeAction",
-            "line": 82,
+            "line": 85,
             "short_desc": "Get the type of models column",
             "long_desc": "",
             "hint": null,
@@ -110,7 +110,7 @@
         },
         "completeAction": {
             "name": "completeAction",
-            "line": 91,
+            "line": 94,
             "short_desc": "Autocomplete models field data search",
             "long_desc": "",
             "hint": null,
@@ -124,7 +124,7 @@
         },
         "createAction": {
             "name": "createAction",
-            "line": 113,
+            "line": 116,
             "short_desc": "Create models entry",
             "long_desc": "",
             "hint": null,
@@ -138,7 +138,7 @@
         },
         "updateAction": {
             "name": "updateAction",
-            "line": 143,
+            "line": 146,
             "short_desc": "Update models entry",
             "long_desc": "",
             "hint": null,
@@ -152,7 +152,7 @@
         },
         "deleteAction": {
             "name": "deleteAction",
-            "line": 181,
+            "line": 184,
             "short_desc": "Delete models entry",
             "long_desc": "",
             "hint": null,
