@@ -25,7 +25,6 @@ class ControllerBase extends Mvc\Controller{
 
     /**
      * Store all current lang texts translations
-     * @return [type] [description]
      */
     public function getTranslation()
     {
@@ -48,14 +47,26 @@ class ControllerBase extends Mvc\Controller{
     /**
      * Get a translation by his label in controller/action context
      * @param  string $key    Label of the text
-     * @param  array  $params [description]
-     * @return [type]         [description]
+     * @param  array  $params Data to bind
+     * @return string         Text translated in the correct lang
+     * @example
+     * <!-- Label: controller_action_hi-name => 'Hello %name%' -->
+     * <p><?=$t->__("hi-name", ["name" => $name])?></p>
      */
     public function __($key, $params=[]){
         $this->getTranslation();
         return $this->messages->_($this->router->getControllerName().'_'.$this->router->getActionName().'_'.$key, $params);
     }
 
+    /**
+     * Get a translation by his label in global context
+     * @param  string $key    Label of the text
+     * @param  array  $params Data to bind
+     * @return string         Text translated in the correct lang
+     * @example
+     * <!-- Label: hi-name => 'Hello %name%' -->
+     * <p><?=$t->__("hi-name", ["name" => $name])?></p>
+     */
     public function _($key, $params=[]){
         $this->getTranslation();
         return $this->messages->_($key, $params);

@@ -63,6 +63,9 @@ class ApiController extends Phalcon\ControllerBase{
         if(isset(Rest::$params['limit'])){
             $params['limit'] = Rest::$params['limit'];
         }
+        if(isset(Rest::$params['offset'])){
+            $params['offset'] = Rest::$params['offset'];
+        }
         $primaryKey = $model::getMapped($model::getPrimaryKey());
         $builder = new Builder($params);
         for($i=1; $i<count($this->models); $i++){
