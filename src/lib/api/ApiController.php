@@ -95,13 +95,13 @@ class ApiController extends Phalcon\ControllerBase{
         Rest::checkParams(['field', 'value']);
         $limit = isset(Rest::$params['limit']) ? (int)Rest::$params['limit'] : 10;
         $model = $this->models[0];
+        $prefix = $model::getPrefix();
         $result = [];
         $rows =  $model::find([
             Rest::$params['field']." like '".Rest::$params['value']."%'",
-            'columns'=>'distinct('.Rest::$params['field'].'), pety_id, pety_name',
+            'columns'=>Rest::$params['field'].', '.$prefix.'_id',
             'limit' => $limit,
-            'order' => Rest::$params['field'],
-            'group'=> Rest::$params['field']
+            'order' => Rest::$params['field']
         ]);
         foreach($rows as $row){
             $field = Rest::$params['field'];
