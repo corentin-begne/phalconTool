@@ -2,6 +2,7 @@
 use Phalcon\Builder\Controller,
 Phalcon\Builder\Js,
 Phalcon\Builder\Css,
+Phalcon\Builder\Scss,
 Phalcon\Builder\Less,
 Phalcon\Builder\Sass,
 Phalcon\Builder\Build,
@@ -127,6 +128,11 @@ class GenerateTask extends \Phalcon\CLI\Task
     public function cssAction($params){
         @list($controller, $actions) = $params;
         new Css($controller, $actions);
+    }
+
+    public function scssAction($params){
+        @list($controller, $actions) = $params;
+        new Scss($controller, $actions);
     }
 
     public function lessAction($params){
