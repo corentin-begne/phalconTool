@@ -3,6 +3,7 @@ use Phalcon\Builder\Controller,
 Phalcon\Builder\Js,
 Phalcon\Builder\Css,
 Phalcon\Builder\Less,
+Phalcon\Builder\Sass,
 Phalcon\Builder\Build,
 Phalcon\Builder\Task,
 Phalcon\Db,
@@ -131,6 +132,11 @@ class GenerateTask extends \Phalcon\CLI\Task
     public function lessAction($params){
         @list($controller, $action) = $params;
         new Less($controller, $action);
+    }
+
+    public function sassAction($params){
+        @list($controller, $action) = $params;
+        new Sass($controller, $action);
     }
 
     public function buildAction($params=[]){
