@@ -30,6 +30,6 @@ class Scss extends \Phalcon\Mvc\User\Component
                 echo $file."\n";
             }
         }
-        new Less($controller, $action);
+        new Sass($controller, $action);
     }
 }
