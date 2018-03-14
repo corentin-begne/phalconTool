@@ -52,7 +52,8 @@ class GenerateTask extends \Phalcon\CLI\Task
             if(!file_exists($publicPath)){               
                 exec('mkdir '.$publicPath);     
                 //exec('cp '.TEMPLATE_PATH.'/project/.jshintrc '.HOME_PATH.'/'); 
-                exec('cp -rf '.TEMPLATE_PATH.'/project/docs/* '.HOME_PATH.'/');      
+                exec('cp -rf '.TEMPLATE_PATH.'/project/docs/* '.HOME_PATH.'/'); 
+                exec('cp -rf '.TEMPLATE_PATH.'/project/docs/.* '.HOME_PATH.'/');      
                 exec('cp '.TEMPLATE_PATH.'/project/public/init.php '.$publicPath);
                 exec('cp '.TEMPLATE_PATH.'/project/public/.htaccess '.$publicPath);
                 exec('cp -r '.TEMPLATE_PATH.'/project/public/bower.json '.$publicPath);
