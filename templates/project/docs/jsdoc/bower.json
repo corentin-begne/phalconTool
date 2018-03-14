@@ -1,0 +1,14 @@
+{
+  "name": "jsdoc",
+  "homepage": "https://github.com/corentin-begne/jsHelpers",
+  "authors": [
+    "corentin-begne <corentin.begne@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jaguarjs-jsdoc": "*"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "jaguarjs-jsdoc",
+  "homepage": "https://github.com/davidshimjs/jaguarjs-jsdoc",
+  "_release": "56aa60f9d5",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "56aa60f9d510ac439d19249924fb0314acb7f291"
+  },
+  "_source": "https://github.com/davidshimjs/jaguarjs-jsdoc.git",
+  "_target": "*",
+  "_originalSource": "jaguarjs-jsdoc"
+}

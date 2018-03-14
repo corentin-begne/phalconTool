@@ -1,0 +1,30 @@
+@import '../main';
+@include body();
+.align-top{
+	vertical-align:top;
+}
+.margin{
+	margin:5px;
+	padding: 5px;
+}
+.margin-right{
+	margin-right:20px;
+}
+.w2{
+    margin-right:5px;
+    padding:10px;
+} 
+.fixHeight{
+	height:100px;
+	line-height: 100px;
+}
+.block{
+    display: block !important;
+} 
+.menu-items{ 
+    top:10px  !important;    
+    width: 100%;  
+} 
+.menu-items h2{ 
+    text-align: center;  
+}      

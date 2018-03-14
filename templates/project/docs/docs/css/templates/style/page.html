@@ -1,0 +1,16 @@
+<% _.each(page.blocks, function(block) {
+    if (block.content != ""){
+%>
+            <div class="kalei-documentation">
+            	<div class="kalei-comments-container">
+            		<div class="kalei-comments ">
+                        <%= block.content %>
+            		</div>
+            	</div>
+            	<div style="clear: both;"></div>
+            </div>
+<%
+        }
+    });
+%>
+<div style="clear: both;"></div>

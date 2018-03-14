@@ -1,0 +1,48 @@
+@mixin disableTextSelection(){
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+}
+@mixin skew($deg){
+    @include transform(skew($deg));
+}
+@mixin transform($fn){
+    -webkit-transform: $fn;
+    -ms-transform: $fn;
+    -o-transform: $fn;
+    -moz-transform: $fn;
+    transform: $fn;
+}
+@mixin scale($val){
+    @include transform(scale($val));
+}
+@mixin rotate($deg){
+    @include transform(rotate($deg));
+}
+@mixin radius($border: 1px){
+    -webkit-border-radius: $border;
+    -moz-border-radius: $border;
+    border-radius: $border;
+}
+@mixin transition($properties, $duration: 0.2, $type: linear){
+    -webkit-transition-property: $properties;
+    -webkit-transition-duration: #{$duration}s;
+    -webkit-transition-timing-function: $type;
+    -ms-transition-property: $properties;
+    -ms-transition-duration: #{$duration}s;
+    -ms-transition-timing-function: $type;
+    -o-transition-property: $properties;
+    -o-transition-duration: #{$duration}s;
+    -o-transition-timing-function: $type;
+    -moz-transition-property: $properties;
+    -moz-transition-duration: #{$duration}s;
+    -moz-transition-timing-function: $type;
+    transition-property: $properties;
+    transition-duration: #{$duration}s;
+    transition-timing-function: $type;
+}
