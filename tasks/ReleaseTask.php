@@ -22,7 +22,11 @@ class ReleaseTask extends \Phalcon\CLI\Task
         if(!defined('NO_BUILD')){
             foreach($apps as $app){
                 // recompile less
-                exec('cd '.$this->config->application->rootDir.';./phalcon generate:less --env='.$env.' --app='.basename($app));
+                if(defined('COMPILE_LESS')){
+                    exec('cd '.$this->config->application->rootDir.';./phalcon generate:less --env='.$env.' --app='.basename($app));
+                } else {
+                    exec('cd '.$this->config->application->rootDir.';./phalcon generate:sass --env='.$env.' --app='.basename($app));
+                }
                 // generate js builds
                 exec('cd '.$this->config->application->rootDir.';./phalcon generate:build --env='.$env.' --app='.basename($app));
             }
@@ -34,7 +38,7 @@ class ReleaseTask extends \Phalcon\CLI\Task
         exec('cd '.$this->config->application->rootDir.";git add -A;git commit -am \"release\";git push origin $tag");
         /** upload files */
         $exclude = '" --exclude="';
-        $cmd = 'rsync -zvr '.(isset($this->config[$env]['mep']['key']) ? '-e "ssh -i '.$this->config[$env]['mep']['key'].'" ' : '').(isset($this->config[$env]['mep']['excludes']) ? '--exclude="'.implode($exclude, $this->config[$env]['mep']['excludes']->toArray()).'" ' : '').$this->config->application->rootDir.'* '.$this->config[$env]['mep']['ssh'];
+        $cmd = 'rsync -zvr --links '.(isset($this->config[$env]['mep']['key']) ? '-e "ssh -i '.$this->config[$env]['mep']['key'].'" ' : '').(isset($this->config[$env]['mep']['excludes']) ? '--exclude="'.implode($exclude, $this->config[$env]['mep']['excludes']->toArray()).'" ' : '').$this->config->application->rootDir.'* '.$this->config[$env]['mep']['ssh'];
         exec($cmd);
         // switch to master
         exec('cd '.$this->config->application->rootDir.';git checkout master');
