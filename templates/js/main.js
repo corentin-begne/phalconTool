@@ -1,5 +1,4 @@
-/*global [className]Manager, require */
-var [name]Manager;
+/*global [className]Manager, require, JsHelper */
 (function(){    
     require.config({
         baseUrl: "/",
@@ -26,7 +25,7 @@ var [name]Manager;
 
             function loaded(){
                 new JsHelper();
-                [name]Manager = [className]Manager.getInstance();            
+                [className]Manager.getInstance();            
             }      
         }
     }

@@ -1,12 +1,12 @@
-/*global ActionModel, require */
+/*global ActionModel, require, extendSingleton, ManagerModel, isDefined, getSingleton */
 var IndexManager;
 (function(){
     "use strict";
     /**
-    * @class TemplateManager
+    * @name IndexManager
     * @constructor
     * @property {ActionModel} action Instance of ActionModel
-    * @description  Manage template
+    * @description  Manage index
     */
     IndexManager = function(cb){
         var that = this;
@@ -15,12 +15,11 @@ var IndexManager;
 
         require([
             "bower_components/cb-models/action", 
-            "bower_components/cb-models/manager",
-            "bower_components/cb-helpers/websocket",
+            "bower_components/cb-models/manager"
         ], loaded);
 
         function loaded(){
-            ActionModel.getInstance(loadedAction);
+            ActionModel.getInstance(loadedAction);            
 
             function loadedAction(instance){
                 that.action = instance;
@@ -28,15 +27,9 @@ var IndexManager;
 
                 function loadedManager(instance){
                     that.manager = instance;
-                    WebsocketHelper.getInstance(loadedWebsocket);
-
-                    function loadedWebsocket(instance){
-                        that.socket = instance;
-                        that.manager.init();
-                        that.init();
-                        if(isDefined(cb)){
-                            cb(that);
-                        }
+                    that.manager.init();
+                    if(isDefined(cb)){
+                        cb(that);
                     }
                 }
             }
@@ -49,43 +42,6 @@ var IndexManager;
         } else {
             return getSingleton(IndexManager);
         }
-    };
-
-    IndexManager.prototype.init = function() {
-        var that = this;
-        this.data = this.manager.getVars("body");
-        this.socket.connect("ws://"+document.domain+":9000/rts", this.data, connected);
-
-        function connected(){
-            that.socket.addEvents({
-                "test": test,
-                "userConnected": userConnected,
-                "userDisconnected": userDisconnected,
-                "connected": ready
-            });
-            that.socket.send("test", {yo:"yo"});
-            
-
-            function test(data){
-                console.log("receive test event", data);
-            }
-
-            function userConnected(data){
-                console.log("new user connected", data);
-            }
-
-            function userDisconnected(data){
-                console.log("user leave room", data);
-            }
-
-            function ready(data){
-                console.log("connected to room", data);
-            }
-        }
-    };        
-
-    IndexManager.prototype.test = function(element, event, data) {
-        console.log($(element), data, event);
     };
     
 })();

@@ -1,12 +1,12 @@
-/*global ActionModel, require */
+/*global ActionModel, require, extendSingleton, ManagerModel, isDefined, getSingleton */
 var [className]Manager;
 (function(){
     "use strict";
     /**
-    * @class TemplateManager
+    * @name [className]Manager
     * @constructor
     * @property {ActionModel} action Instance of ActionModel
-    * @description  Manage template
+    * @description  Manage [name]
     */
     [className]Manager = function(cb){
         var that = this;

@@ -1,7 +1,9 @@
-/*global IndexManager, require */
-var indexManager;
-(function(){
-    require(["/bower_components/jquery/dist/jquery.min.js"], ready);
+/*global IndexManager, require, JsHelper */
+(function(){    
+    require.config({
+        baseUrl: "/",
+    });
+    require(["bower_components/jquery/dist/jquery"], ready);
 
     function ready(){
         /** on document ready */
@@ -12,13 +14,19 @@ var indexManager;
          * @event
          * @description initialize index
          */
-         function init(){
-            require(["/bower_components/cb-helpers/js.min.js"], loaded);
+        function init(){             
+            require.config({
+                urlArgs: "v="+($("body").is("[version]") ? $("body").attr("version") : (new Date()).getTime())
+            });   
+            require([
+                "bower_components/cb-helpers/js",
+                "frontend/js/index/manager"
+            ], loaded);
 
             function loaded(){
                 new JsHelper();
-                indexManager = IndexManager.getInstance();
-            }
+                IndexManager.getInstance();            
+            }      
         }
     }
 })();
