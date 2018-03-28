@@ -1,6 +1,6 @@
 {
     "name": "GenerateTask",
-    "line": 12,
+    "line": 14,
     "short_desc": "",
     "long_desc": "",
     "hint": null,
@@ -8,22 +8,24 @@
     "namespace": "",
     "file": "\/var\/www\/phalconTool\/tasks\/GenerateTask.php",
     "relative_file": null,
-    "hash": "97921fa81df841fd23ace75f73f82f8c0c6a8257",
+    "hash": "947269ce8394744cbec6b154206c956f1159799a",
     "parent": "Phalcon\\CLI\\Task",
     "modifiers": 0,
     "is_trait": false,
     "is_interface": false,
     "aliases": {
         "Cli": "Phalcon\\Tools\\Cli",
-        "Migration": "Phalcon\\Builder\\Migration",
-        "Utils": "Phalcon\\Text",
         "Controller": "Phalcon\\Builder\\Controller",
         "Js": "Phalcon\\Builder\\Js",
         "Css": "Phalcon\\Builder\\Css",
+        "Scss": "Phalcon\\Builder\\Scss",
         "Less": "Phalcon\\Builder\\Less",
+        "Sass": "Phalcon\\Builder\\Sass",
         "Build": "Phalcon\\Builder\\Build",
         "Task": "Phalcon\\Builder\\Task",
-        "Db": "Phalcon\\Db"
+        "Db": "Phalcon\\Db",
+        "Migration": "Phalcon\\Builder\\Migration",
+        "Utils": "Phalcon\\Text"
     },
     "errors": [],
     "interfaces": [],
@@ -32,7 +34,7 @@
     "methods": {
         "mainAction": {
             "name": "mainAction",
-            "line": 14,
+            "line": 16,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -46,7 +48,7 @@
         },
         "appAction": {
             "name": "appAction",
-            "line": 18,
+            "line": 20,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -59,7 +61,7 @@
             "parameters": {
                 "params": {
                     "name": "params",
-                    "line": 18,
+                    "line": 20,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -73,7 +75,7 @@
         },
         "projectAction": {
             "name": "projectAction",
-            "line": 43,
+            "line": 45,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -87,7 +89,7 @@
         },
         "modelAction": {
             "name": "modelAction",
-            "line": 75,
+            "line": 77,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -100,7 +102,7 @@
             "parameters": {
                 "params": {
                     "name": "params",
-                    "line": 75,
+                    "line": 77,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -114,7 +116,7 @@
         },
         "controllerAction": {
             "name": "controllerAction",
-            "line": 111,
+            "line": 113,
             "short_desc": "generate module, action, css\/js, rest, security",
             "long_desc": "",
             "hint": null,
@@ -136,7 +138,7 @@
             "parameters": {
                 "params": {
                     "name": "params",
-                    "line": 111,
+                    "line": 113,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -150,7 +152,7 @@
         },
         "taskAction": {
             "name": "taskAction",
-            "line": 116,
+            "line": 118,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -163,7 +165,7 @@
             "parameters": {
                 "params": {
                     "name": "params",
-                    "line": 116,
+                    "line": 118,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -177,7 +179,7 @@
         },
         "jsAction": {
             "name": "jsAction",
-            "line": 121,
+            "line": 123,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -190,7 +192,7 @@
             "parameters": {
                 "params": {
                     "name": "params",
-                    "line": 121,
+                    "line": 123,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -204,7 +206,7 @@
         },
         "cssAction": {
             "name": "cssAction",
-            "line": 126,
+            "line": 128,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -217,7 +219,34 @@
             "parameters": {
                 "params": {
                     "name": "params",
-                    "line": 126,
+                    "line": 128,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": null,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "scssAction": {
+            "name": "scssAction",
+            "line": 133,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "params": {
+                    "name": "params",
+                    "line": 133,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -231,7 +260,7 @@
         },
         "lessAction": {
             "name": "lessAction",
-            "line": 131,
+            "line": 138,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -244,7 +273,34 @@
             "parameters": {
                 "params": {
                     "name": "params",
-                    "line": 131,
+                    "line": 138,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": null,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "sassAction": {
+            "name": "sassAction",
+            "line": 143,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "params": {
+                    "name": "params",
+                    "line": 143,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -258,7 +314,7 @@
         },
         "buildAction": {
             "name": "buildAction",
-            "line": 136,
+            "line": 148,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -271,7 +327,7 @@
             "parameters": {
                 "params": {
                     "name": "params",
-                    "line": 136,
+                    "line": 148,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,

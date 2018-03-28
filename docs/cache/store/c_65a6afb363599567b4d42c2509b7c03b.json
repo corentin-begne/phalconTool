@@ -1,29 +1,27 @@
 {
-    "name": "ReleaseTask",
-    "line": 3,
+    "name": "Phalcon\\Builder\\Scss",
+    "line": 5,
     "short_desc": "",
     "long_desc": "",
     "hint": null,
     "tags": [],
-    "namespace": "",
-    "file": "\/var\/www\/phalconTool\/tasks\/ReleaseTask.php",
+    "namespace": "Phalcon\\Builder",
+    "file": "\/var\/www\/phalconTool\/src\/Builder\/Scss.php",
     "relative_file": null,
-    "hash": "4bab6b23198e6cb38ee70dddf3c6dfd2ef91430f",
-    "parent": "Phalcon\\CLI\\Task",
+    "hash": "d6b7b63db3af03fe57dece145df21bf92258a7da",
+    "parent": "Phalcon\\Mvc\\User\\Component",
     "modifiers": 0,
     "is_trait": false,
     "is_interface": false,
-    "aliases": {
-        "Cli": "Phalcon\\Tools\\Cli"
-    },
+    "aliases": [],
     "errors": [],
     "interfaces": [],
     "traits": [],
     "properties": [],
     "methods": {
-        "mainAction": {
-            "name": "mainAction",
-            "line": 5,
+        "__construct": {
+            "name": "__construct",
+            "line": 7,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -34,9 +32,21 @@
             "exceptions": [],
             "errors": [],
             "parameters": {
-                "params": {
-                    "name": "params",
-                    "line": 5,
+                "controller": {
+                    "name": "controller",
+                    "line": 7,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": null,
+                    "default": null,
+                    "variadic": false,
+                    "is_by_ref": false
+                },
+                "actions": {
+                    "name": "actions",
+                    "line": 7,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
