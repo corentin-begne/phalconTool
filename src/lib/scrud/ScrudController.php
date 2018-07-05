@@ -171,11 +171,11 @@ class ScrudController extends Phalcon\ControllerBase{
                 '<=' => '<='
             ],
             'text' => [
-                'like' => 'like',
-                'not like' => 'not like',
-                'like%' => 'like%',
-                '%like' => '%like',
                 '%like%' => '%like%',
+                '%like' => '%like',
+                'like%' => 'like%',
+                'like' => 'like',
+                'not like' => 'not like',        
                 'not like%' => 'not like%',
                 'not %like' => 'not %like',
                 'not %like%' => 'not %like%',
