@@ -80,6 +80,7 @@ class User {
     public function parseData(){
         list($room, $data) = explode('?', $this->requestedResource);
         $this->room = trim($room, '/');
-        parse_str($data, $this->data);
+        $data = rawurldecode($data);
+        $this->data = json_decode($data, true);
     }
 }
