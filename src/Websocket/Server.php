@@ -161,7 +161,7 @@ abstract class Server {
      * ];
      * ```
      */
-    protected function send(&$user, &$message) {
+    protected function send(&$user, $message) {
         if ($user->handshake) {
             $message = $this->frame($message,$user);
             if($this->isSsl){
