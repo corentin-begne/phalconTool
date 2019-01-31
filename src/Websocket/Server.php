@@ -330,6 +330,14 @@ abstract class Server {
     }
 
     /**
+     * Event triggered when an user is disconnected
+     * @param  \Phalcon\Websocket\User $user User instance
+     */
+    protected function disconnected($user){
+
+    }
+
+    /**
      * Disconnect an User.
      * @param  \socket_ressource  &$socket  Socket to disconnect
      * @param  boolean $triggerClosed Set to true if socket need to be closed
@@ -373,6 +381,7 @@ abstract class Server {
                 unset($this->rooms[$disconnectedUser->room]);
                 $this->closeRoom($disconnectedUser->room);
             }
+            $this->disconnected($disconnectedUser);
         }
     }
 
