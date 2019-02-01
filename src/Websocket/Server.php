@@ -219,6 +219,9 @@ abstract class Server {
         foreach ($this->heldMessages as $key => $hm) {
             $found = false;
             foreach ($this->users as $currentUser) {
+                if($currentUser === null){
+                    continue;
+                }
                 if ($hm['user']->socket == $currentUser->socket) {
                     $found = true;
                     if ($currentUser->handshake) {
