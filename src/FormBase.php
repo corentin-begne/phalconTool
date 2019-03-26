@@ -43,8 +43,7 @@ class FormBase extends Form
 	        if(!$options['isNull']){
 	            $option += ['required'=>''];
 	        }
-	        $type = 'text'; 
-	        var_dump($name);       
+	        $type = 'text';        
 	        switch($options['type']){
 	            case 'bigint':
 	            case 'int':
