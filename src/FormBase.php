@@ -18,11 +18,11 @@ Phalcon\Forms\Element\Numeric;
 
 class FormBase extends Form
 {
-    private $patterns = [
+    protected $patterns = [
         'phone'=>['pattern'=>'\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})'],
         'postal_code'=>['pattern'=>'^(([0-8][0-9])|(9[0-5]))[0-9]{3}$'],
-        'password'=>'', 
-        'email'=>'',
+        'password'=>[], 
+        'email'=>[],
     ];
 
     public function initialize($entity, $data=[]){
@@ -100,6 +100,8 @@ class FormBase extends Form
 	                        } else {
 	                            if($pattern == 'phone'){
 	                                $type = 'Tel';
+	                            }else if($pattern == 'password'){
+	                            	$type='password';
 	                            }
 	                            $option += $datas;
 	                        }
