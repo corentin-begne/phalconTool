@@ -44,7 +44,7 @@ class Build extends \Phalcon\Mvc\User\Component
         } else {
             $action .= '/';
         }
-        $controller = strtolower(str_replace('Controller', '', $controller));
+        $controller = lcfirst(str_replace('Controller', '', $controller));
         if(!file_exists($this->config->application->publicDir.'js/'.$controller.'/'.$action.'main.js')){
             return false;
         }
