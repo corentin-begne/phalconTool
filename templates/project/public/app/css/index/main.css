@@ -1,2 +1,168 @@
-html,body{margin:0;padding:0;overflow:auto}html .bg-fade,body .bg-fade{-webkit-transition-property:background-color;-webkit-transition-duration:.2s;-webkit-transition-timing-function:linear;-ms-transition-property:background-color;-ms-transition-duration:.2s;-ms-transition-timing-function:linear;-o-transition-property:background-color;-o-transition-duration:.2s;-o-transition-timing-function:linear;-moz-transition-property:background-color;-moz-transition-duration:.2s;-moz-transition-timing-function:linear;transition-property:background-color;transition-duration:.2s;transition-timing-function:linear}html .rounded,body .rounded{-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}html .hide,body .hide{display:none}html .text-left,body .text-left{text-align:left}html .text-right,body .text-right{text-align:right}html .text-center,body .text-center{text-align:center}html .pull-left,body .pull-left{float:left}html .pull-right,body .pull-right{float:right}html table,body table{border:none;border-spacing:10px;border-collapse:separate;padding:10px;width:100%}html .max-width,html html,html body,body .max-width,body html,body body{width:100%}html .max-height,html html,html body,body .max-height,body html,body body{height:100%}html .block,body .block{display:block}html .inline-block,body .inline-block{display:inline-block}html .margin-auto,body .margin-auto{margin:0 auto}html .clearfix:before,body .clearfix:before{display:table;content:" "}
+/*
+# Globals
+Some global usefull classes
+
+## Text align
+
+```
+<div class='text-left'>
+    Text left
+</div>
+<div class='text-center'>
+    Text center
+</div>
+<div class='text-right'>
+    Text right
+</div>
+```
+
+## Float
+
+```
+<div class'clearfix'>
+    <div class='pull-left'>
+        Float left
+    </div>
+    <div class='pull-right'>
+        Float right
+    </div>
+</div>
+```
+
+## Display
+
+```
+<div class='block'>
+    Display block
+</div>
+<div class='inline-block'>
+    Display inline-block
+</div>
+<div class='none'>
+    Display none
+</div>
+```
+
+## Others
+
+<div class='inline-block rounded black-bg white margin'>
+    rounded
+</div>
+<div style='width:200px;height:200px' class='inline-block'>
+    <div class='max-height max-width'>
+        width 100%; height 100%
+    </div>
+</div>
+<div class='margin-auto' style='width:200px;height:200px'>
+    margin 0 auto
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>
+                head first column
+            </th>
+            <th>
+                head second column
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>first column</td>
+            <td>second column</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>foot first column</td>
+            <td>foot second column</td>
+        </tr>
+    </tfoot>
+</table>
+*/
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+html .bg-fade, body .bg-fade {
+  -webkit-transition-property: background-color;
+  -webkit-transition-duration: 0.2s;
+  -webkit-transition-timing-function: linear;
+  -ms-transition-property: background-color;
+  -ms-transition-duration: 0.2s;
+  -ms-transition-timing-function: linear;
+  -o-transition-property: background-color;
+  -o-transition-duration: 0.2s;
+  -o-transition-timing-function: linear;
+  -moz-transition-property: background-color;
+  -moz-transition-duration: 0.2s;
+  -moz-transition-timing-function: linear;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+}
+
+html .rounded, body .rounded {
+  border-radius: 3px;
+}
+
+html .hide, body .hide {
+  display: none;
+}
+
+html .text-left, body .text-left {
+  text-align: left;
+}
+
+html .text-right, body .text-right {
+  text-align: right;
+}
+
+html .text-center, body .text-center {
+  text-align: center;
+}
+
+html .pull-left, body .pull-left {
+  float: left;
+}
+
+html .pull-right, body .pull-right {
+  float: right;
+}
+
+html table, body table {
+  border: none;
+  border-spacing: 10px;
+  border-collapse: separate;
+  padding: 10px;
+  width: 100%;
+}
+
+html .max-width, html html, html body, body .max-width, body html, body body {
+  width: 100%;
+}
+
+html .max-height, html html, html body, body .max-height, body html, body body {
+  height: 100%;
+}
+
+html .block, body .block {
+  display: block;
+}
+
+html .inline-block, body .inline-block {
+  display: inline-block;
+}
+
+html .margin-auto, body .margin-auto {
+  margin: 0 auto;
+}
+
+html .clearfix:before, body .clearfix:before {
+  display: table;
+  content: " ";
+}
 /*# sourceMappingURL=main.css.map */
