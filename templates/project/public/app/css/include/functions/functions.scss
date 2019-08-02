@@ -29,7 +29,7 @@
     -moz-border-radius: $border;
     border-radius: $border;
 }
-@mixin transition($properties, $duration: 0.2, $type: linear){
+@mixin transition($properties, $duration: 0.2, $type: cubic-bezier(0.25, 0.1, 0.25, 1), $delay: 0){
     -webkit-transition-property: $properties;
     -webkit-transition-duration: #{$duration}s;
     -webkit-transition-timing-function: $type;
@@ -45,4 +45,17 @@
     transition-property: $properties;
     transition-duration: #{$duration}s;
     transition-timing-function: $type;
+    -webkit-transition-delay: #{$delay}s;
+    -moz-transition-delay: #{$delay}s;
+    -o-transition-delay: #{$delay}s;
+    -ms-transition-delay: #{$delay}s;
+    transition-delay: #{$delay}s;
+}
+
+@mixin centerTransform($x,$y){
+    -moz-transform:translate($x, $y);
+    -webkit-transform:translate($x, $y);
+    -o-transform:translate($x, $y);
+    -ms-transform:translate($x, $y);
+    transform: translate($x, $y);
 }
