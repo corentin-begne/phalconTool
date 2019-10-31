@@ -1,5 +1,5 @@
 <?
-namespace Phalcon;
+namespace Phalcon; 
 
 use Phalcon\Annotations\Adapter\Memory,
 Phalcon\Mvc\Model\Behavior\Timestampable,
