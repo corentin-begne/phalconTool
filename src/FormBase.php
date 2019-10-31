@@ -11,7 +11,6 @@ Phalcon\Forms\Element\Check,
 Phalcon\Forms\Element\TextArea,
 Phalcon\Forms\Element\Hidden,
 Phalcon\Forms\Element\File,
-Phalcon\Forms\Element\Tel,
 Phalcon\Forms\Element\Date,
 Phalcon\Text as Utils,
 Phalcon\Forms\Element\Numeric;
@@ -98,9 +97,7 @@ class FormBase extends Form
 	                        if($pattern === 'Email'){
 	                            $type = 'Email';
 	                        } else {
-	                            if($pattern == 'phone'){
-	                                $type = 'Tel';
-	                            }else if($pattern == 'password'){
+	                            if($pattern == 'password'){
 	                            	$type='password';
 	                            }
 	                            $option += $datas;
