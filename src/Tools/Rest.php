@@ -50,6 +50,7 @@ class Rest
             self::checkRequest();
         }
         self::$params = $_REQUEST;
+        unset(self::$params['_url']);
         self::$currentPage = isset(rest::$params['current_page']) ? (int)rest::$params['current_page'] : self::$currentPage ;
         self::$limit = isset(rest::$params['limit']) ? (int)rest::$params['limit'] : self::$limit ;
         unset(rest::$params['limit']);
@@ -124,11 +125,11 @@ class Rest
     /**
      * Check the presence of required params
      * @param  array  $list  List of params name to check
-     * @param  boolean $allowEmpty Set to true if post data can be empty
+     * @param  boolean $allowEmpty Set to true if data can be empty
      */
     public static function checkParams($list=[], $allowEmpty=false){
         if(!$allowEmpty && count(self::$params) === 0){
-            self::renderError("No post data found !");
+            self::renderError("No data found !");
         }
         $missing = [];
         foreach($list as $param){
