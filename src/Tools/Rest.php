@@ -49,7 +49,7 @@ class Rest
             self::checkReferer();
             self::checkRequest();
         }
-        self::$params = $_POST;
+        self::$params = $_REQUEST;
         self::$currentPage = isset(rest::$params['current_page']) ? (int)rest::$params['current_page'] : self::$currentPage ;
         self::$limit = isset(rest::$params['limit']) ? (int)rest::$params['limit'] : self::$limit ;
         unset(rest::$params['limit']);
