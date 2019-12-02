@@ -15,7 +15,7 @@ class Scss extends \Phalcon\Mvc\User\Component
         }
     }
 
-    private function create($target, $controller, $action){
+    private function create($target, $controller, $action=''){
         $target .= $controller.'/';
         $target .= isset($action) ? $action.'/' : '';
         exec("mkdir -p $target");
