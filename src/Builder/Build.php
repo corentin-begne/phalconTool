@@ -38,7 +38,7 @@ class Build extends \Phalcon\Mvc\User\Component
     }
 
     public function run($controller, $action){
-        $action = strtolower(str_replace('Action', '', $action));
+        $action = str_replace('Action', '', $action);
         if($action === 'index'){
             $action = '';
         } else {
