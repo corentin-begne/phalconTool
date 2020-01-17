@@ -225,7 +225,7 @@ phalcon data:export User
 ### Data Import
 All csv in the dump folder will be imported, add truncate option to truncate table before import else it will do a replace base on the primary key.
 ```
-phalcon data:export --truncate
+phalcon data:import --truncate
 ```
 
 ### Make a release and send to env server
