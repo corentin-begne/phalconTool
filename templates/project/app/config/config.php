@@ -59,6 +59,7 @@ return new \Phalcon\Config([
     'application' => [
         'controllersDir' => __DIR__ . '/../controllers/',
         'modelsDir'      => __DIR__ . '/../models/',
+        'dumpDir'        => __DIR__ . '/../dump/',
         'viewsDir'       => __DIR__ . '/../views/',
         'classesDir'     => __DIR__ . '/../classes/',
         'pluginsDir'     => __DIR__ . '/../plugins/',

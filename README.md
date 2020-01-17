@@ -9,7 +9,7 @@ This tool allows to manage project with Phalcon MVC Framework access on MYSQL.
 - Internal library Management
 - Full Rest Api
 - Websocket Client / Server
-- Database migration engine
+- Database migration engine and data management
 - SCRUD on the fly with models relations and validations
 - Generate controller/action
 - Generate js/less/sass template
@@ -213,6 +213,19 @@ phalcon migration:rollback 1
 You can also create a model template 
 ```
 phalcon generate:model test
+```
+
+### Data Export
+Run this command to export tables from the database, if you leave the param empty all tables will be exported.
+Tables will be exported as csv in the dump folder.
+```
+phalcon data:export User
+```
+
+### Data Import
+All csv in the dump folder will be imported, add truncate option to truncate table before import else it will do a replace base on the primary key.
+```
+phalcon data:export --truncate
 ```
 
 ### Make a release and send to env server
