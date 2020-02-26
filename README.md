@@ -54,6 +54,7 @@ sudo ln -s /var/www/project/vendor/v-cult/phalcon/application.php /usr/bin/phalc
 You need to 
 - Replace Phalcon\Mvc\User\Plugin and Phalcon\Mvc\User\Component by Phalcon\DI\Injectable
 - Add $_SERVER['REQUEST_URI'] as parameter of the handle function in public/init.php
+- Regenerate models
 - Update apps/x/config/servces.php to change Url, Session and Translation according to [services.php](https://github.com/corentin-begne/phalconTool/blob/master/templates/project/app/config/services.php)
 
 ## Quick start
