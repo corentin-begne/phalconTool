@@ -26,7 +26,7 @@ The documentation is in progress but accessible there, a complete tutorial envir
 ## Installation
 
 #### Requirement
-- [Phalcon >= 2.0.x](https://phalconphp.com/fr/download)
+- [Phalcon <= 3.4](https://phalconphp.com/fr/download)
 - php >=5.4
 
 using composer
