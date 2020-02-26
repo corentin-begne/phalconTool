@@ -2,7 +2,7 @@
 
 namespace Phalcon\Builder;
 
-class Css extends \Phalcon\Mvc\User\Component
+class Css extends \Phalcon\DI\Injectable
 {
     public function __construct($controller, $actions){
         $target = $this->config->application->publicDir.'css/';

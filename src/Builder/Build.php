@@ -2,7 +2,7 @@
 
 namespace Phalcon\Builder;
 
-class Build extends \Phalcon\Mvc\User\Component
+class Build extends \Phalcon\DI\Injectable
 {
     public function __construct($controller, $action){
         \Phalcon\Library::loadDir([$this->config->application->controllersDir]);

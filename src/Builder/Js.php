@@ -2,7 +2,7 @@
 
 namespace Phalcon\Builder;
 
-class Js extends \Phalcon\Mvc\User\Component
+class Js extends \Phalcon\DI\Injectable
 {
     public function __construct($controller, $actions){
         foreach(glob(TEMPLATE_PATH.'/js/*.js') as $source){

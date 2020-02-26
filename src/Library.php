@@ -5,7 +5,7 @@ namespace Phalcon;
 /**
  * Manage internal library access and includes
  */
-class Library extends \Phalcon\Mvc\User\Component{
+class Library extends \Phalcon\Di\Injectable{
 
     /**
      * Include the config type file of each librariries

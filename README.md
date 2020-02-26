@@ -26,8 +26,8 @@ The documentation is in progress but accessible there, a complete tutorial envir
 ## Installation
 
 #### Requirement
-- [Phalcon >= 2.0.x](https://phalconphp.com/fr/download)
-- php >=5.4
+- [Phalcon = 4.0](https://phalconphp.com/fr/download)
+- php >=7.2
 
 using composer
 ```
@@ -48,6 +48,13 @@ or in /usr/bin to be used globally
 ```
 sudo ln -s /var/www/project/vendor/v-cult/phalcon/application.php /usr/bin/phalcon
 ```
+
+## Upgrade v3 project to v4
+
+You need to 
+- Replace Phalcon\Mvc\User\Plugin and Phalcon\Mvc\User\Component by Phalcon\DI\Injectable
+- Add $_SERVER['REQUEST_URI'] as parameter of the handle function in public/init.php
+- Update apps/x/config/servces.php to change Url, Session and Translation according to [services.php](https://github.com/corentin-begne/phalconTool/blob/v3/templates/project/app/config/services.php)
 
 ## Quick start
 

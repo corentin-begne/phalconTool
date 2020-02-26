@@ -4,7 +4,7 @@ namespace Phalcon\Builder;
 
 use Phalcon\Text as Utils;
 
-class Task extends \Phalcon\Mvc\User\Component
+class Task extends \Phalcon\DI\Injectable
 {
     public function __construct($task, $actions=''){        
         $source = file_get_contents(TEMPLATE_PATH.'/php/task.php');

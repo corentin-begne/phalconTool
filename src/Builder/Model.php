@@ -2,9 +2,9 @@
 
 namespace Phalcon\Builder;
 
-use Phalcon\Db\Column, Phalcon\Db;
+use Phalcon\Db\Column;
 use Phalcon\Text as Utils;
-class Model extends \Phalcon\Mvc\User\Component
+class Model extends \Phalcon\DI\Injectable
 {
     public $constraints = [];
 
@@ -15,7 +15,7 @@ class Model extends \Phalcon\Mvc\User\Component
 \t */
 \tpublic [name];\n";   
         // fields and map
-        foreach($this->db->fetchAll('desc '.$table, Db::FETCH_ASSOC) as &$field){
+        foreach($this->db->fetchAll('desc '.$table, \Phalcon\Db\Enum::FETCH_ASSOC) as &$field){
             $setting = $this->getPrefix($table)."_".$field['Field'].'([';
             $type = $field['Type'];
             $length = null;
@@ -33,9 +33,9 @@ class Model extends \Phalcon\Mvc\User\Component
             $setting .= (!empty($field['Extra'])) ? ', \'extra\': \''.$field['Extra'].'\'' : '';
             $setting .= (!empty($field['Key'])) ? ', \'key\': \''.$field['Key'].'\'' : '';
             if(isset($field['Key'])){
-                $constraint = $this->db->fetchOne('SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$table.'\' and COLUMN_NAME=\''.$field['Field'].'\'', Db::FETCH_ASSOC);
+                $constraint = $this->db->fetchOne('SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$table.'\' and COLUMN_NAME=\''.$field['Field'].'\'', \Phalcon\Db\Enum::FETCH_ASSOC);
                 if($constraint !== false){
-                    $constraint2 = $this->db->fetchOne('SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$table.'\' and REFERENCED_TABLE_NAME=\''.$constraint['REFERENCED_TABLE_NAME'].'\'', Db::FETCH_ASSOC);
+                    $constraint2 = $this->db->fetchOne('SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$table.'\' and REFERENCED_TABLE_NAME=\''.$constraint['REFERENCED_TABLE_NAME'].'\'', \Phalcon\Db\Enum::FETCH_ASSOC);
                     $setting .= ', \'onUpdate\': \''.$constraint2['UPDATE_RULE'].'\', \'onDelete\': \''.$constraint2['DELETE_RULE'].'\'';
                 }
             }            
@@ -62,7 +62,7 @@ class Model extends \Phalcon\Mvc\User\Component
             $foreignTable = $reference->getReferencedTable();                        
             $local = $this->getPrefix($table).'_'.$reference->getColumns()[0];
             $foreign = $this->getPrefix($foreignTable).'_'.$reference->getReferencedColumns()[0];           
-            $fieldDesc = $this->db->fetchOne('show columns from '.$table.' where Field = \''.$reference->getColumns()[0] .'\'', Db::FETCH_ASSOC);
+            $fieldDesc = $this->db->fetchOne('show columns from '.$table.' where Field = \''.$reference->getColumns()[0] .'\'', \Phalcon\Db\Enum::FETCH_ASSOC);
             $model = Utils::camelize(Utils::uncamelize($foreignTable));
             $constraints .= str_replace([
                 '[type]',

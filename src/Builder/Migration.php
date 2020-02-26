@@ -6,7 +6,7 @@ Phalcon\Tools\Cli,
 Phalcon\Text as Utils,
 Phalcon\Db;
 
-class Migration extends \Phalcon\Mvc\User\Component
+class Migration extends \Phalcon\DI\Injectable
 {
     public function __construct(){
         $modelVersion = '<? 

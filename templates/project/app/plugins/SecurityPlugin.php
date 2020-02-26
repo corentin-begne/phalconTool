@@ -4,14 +4,14 @@ use Phalcon\Acl\Role;
 use Phalcon\Acl\Adapter\Memory as AclList;
 use Phalcon\Acl\Resource;
 use Phalcon\Events\Event;
-use Phalcon\Mvc\User\Plugin;
+use Phalcon\DI\Injectable;
 use Phalcon\Mvc\Dispatcher;
 use Manager\User as UserManager;
 
 /**
  * The security plugin manages the Access Control List (ACL).
  */
-class SecurityPlugin extends Plugin
+class SecurityPlugin extends Injectable
 {
     /**
      * Get the application acl list.

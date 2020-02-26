@@ -2,7 +2,7 @@
 
 namespace Phalcon\Builder;
 
-class Sass extends \Phalcon\Mvc\User\Component
+class Sass extends \Phalcon\DI\Injectable
 {
     public function __construct($controller, $action){
         $basePath = $this->config->application->publicDir.'css/';

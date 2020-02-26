@@ -4,7 +4,7 @@ namespace Phalcon\Builder;
 
 use Phalcon\Text as Utils;
 
-class Controller extends \Phalcon\Mvc\User\Component
+class Controller extends \Phalcon\DI\Injectable
 {
     public $controller;
 

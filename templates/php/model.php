@@ -8,13 +8,10 @@ class [name] extends Phalcon\ModelBase
     public function initialize()
     {
 [constraints]
+        $this->setSource('[realName]');
         parent::initialize();
     }
 
-    public function getSource()
-    {
-        return '[realName]';
-    }
     /**
      * Independent Column Mapping.
      * Keys are the real names in the table and the values their names in the application

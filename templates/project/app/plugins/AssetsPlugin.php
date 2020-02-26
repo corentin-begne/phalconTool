@@ -1,12 +1,12 @@
 <?
 use Phalcon\Events\Event;
-use Phalcon\Mvc\User\Component;
+use Phalcon\DI\Injectable;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Assets\Filters\Jsmin;
 /**
  * The Assets plugin manages all assets (CSS/JS) on application.
  */
-class AssetsPlugin extends Component
+class AssetsPlugin extends Injectable
 {
     /**
      * The event is called before the controller action.

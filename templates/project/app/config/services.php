@@ -2,10 +2,13 @@
 
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Mvc\View;
-use Phalcon\Mvc\Url;
+use Phalcon\Url;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
-use Phalcon\Session\Adapter\Files as SessionAdapter;
+use Phalcon\Session\Manager;
+use Phalcon\Translate\InterpolatorFactory;
+use Phalcon\Translate\TranslateFactory;
+use Phalcon\Session\Adapter\Stream;
 use Phalcon\Mvc\Router;
 use Phalcon\Events\Manager as EventsManager;
 use Phalcon\Mvc\Dispatcher;
@@ -96,10 +99,41 @@ $di->set('modelsMetadata', function () {
  * Start the session the first time some component request the session service
  */
 $di->set('session', function () {
-    $session = new SessionAdapter();
-    $session->start();
+    $session = new Manager();
+    $files = new Stream(
+        [
+            'savePath' => '/tmp',
+        ]
+    );
+    $session->setAdapter($files);
 
     return $session;
+});
+
+$di->set('translation', function() use ($config, $di){
+    if (file_exists($config->application->messagesDir.$di->getLang().'.php')) {
+        require $config->application->messagesDir.$di->getLang().'.php';
+    } else {
+        require $config->application->messagesDir.'en.php';
+    }
+    $interpolator = new InterpolatorFactory();
+    $factory      = new TranslateFactory($interpolator);
+    
+    return $factory->newInstance(
+        'array',
+        [
+            'content' => $messages,
+        ]
+    );
+});
+
+$di->set('lang', function() use ($di){
+    $lang = $di->getSession()->get('lang');
+    if(!isset($lang)){
+        $lang = explode('-', $di->getRequest()->getBestLanguage())[0]; 
+        $di->getSession()->set('lang', $lang); 
+    } 
+    return $lang;
 });
 
 $di->set('dispatcher', function() {
