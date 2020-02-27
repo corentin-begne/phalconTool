@@ -5,7 +5,7 @@ use Phalcon\Acl\Adapter\Memory as AclList;
 use Phalcon\Acl\Resource;
 use Phalcon\Events\Event;
 use Phalcon\DI\Injectable;
-use Phalcon\Mvc\Dispatcher;
+use Phalcon\Dispatcher\Exception;
 use Manager\User as UserManager;
 
 /**
@@ -39,6 +39,7 @@ class SecurityPlugin extends Injectable
            'user'  => ['login', 'connect']
         ];
 
+
         foreach(['private', 'public'] as $type){
             foreach($$type as $resource => $actions){
                 $acl->addResource(new Resource($resource), $actions);
@@ -69,8 +70,8 @@ class SecurityPlugin extends Injectable
      */
     public function beforeException($event, $dispatcher, $exception) {
         switch ($exception->getCode()) {
-            case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
-            case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
+            case Exception::EXCEPTION_HANDLER_NOT_FOUND:
+            case Exception::EXCEPTION_ACTION_NOT_FOUND:
                 $this->redirectUser();
                 return false;
         }
@@ -90,7 +91,7 @@ class SecurityPlugin extends Injectable
     /**
      * Check user permissions vs ACL and redirect to default route if not allowed
      */
-    public function beforeDispatch(Event $event, Dispatcher $dispatcher)
+    public function beforeDispatch($event, $dispatcher)
     {
         // Check user data exists in session
         $permissions = UserManager::getPermissions();

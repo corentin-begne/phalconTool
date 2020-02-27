@@ -55,6 +55,9 @@ You need to
 - Replace Phalcon\Mvc\User\Plugin and Phalcon\Mvc\User\Component by Phalcon\DI\Injectable
 - Add $_SERVER['REQUEST_URI'] as parameter of the handle function in public/init.php
 - Regenerate models
+- Update jsHelpers with bower
+- Check about $model::findFirst it return NULL and longer false if the result is not found
+- Replace in SecurityPlugin.php Phalcon\Dispatcher by Phalcon\Dispatcher\Exception to get constants
 - Update apps/x/config/servces.php to change Url, Session and Translation according to [services.php](https://github.com/corentin-begne/phalconTool/blob/master/templates/project/app/config/services.php)
 
 ## Quick start

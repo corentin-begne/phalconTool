@@ -106,7 +106,7 @@ $di->set('session', function () {
         ]
     );
     $session->setAdapter($files);
-
+    $session->start();
     return $session;
 });
 
