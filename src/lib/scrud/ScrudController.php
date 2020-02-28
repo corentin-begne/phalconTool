@@ -225,7 +225,7 @@ class ScrudController extends Phalcon\ControllerBase{
             }    
             $fn = 'findFirstBy'.Utils::camelize($field);
             $row = $model::$fn($refValue);
-            if(!$row){
+            if($row === null){
                 continue;
                // die($this->flash->error("$primaryKey $refValue not Found !"));
             }

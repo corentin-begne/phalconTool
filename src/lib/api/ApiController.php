@@ -161,7 +161,7 @@ class ApiController extends Phalcon\ControllerBase{
                 $fn = 'findFirstBy'.Utils::camelize($field);
                 $row = $model::$fn($refValue);
                 $params = $model::filterParams(Rest::$params);
-                if(!$row){
+                if($row === null){
                     //Rest::renderError("$primaryKey $refValue not Found !");
                     $row = new $model();
                     $row->$field = $refValue;
