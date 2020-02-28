@@ -58,7 +58,8 @@ You need to
 - Update jsHelpers with bower
 - Check about $model::findFirst it return NULL and longer false if the result is not found
 - Replace in SecurityPlugin.php Phalcon\Dispatcher by Phalcon\Dispatcher\Exception to get constants
-- Update apps/x/config/servces.php to change Url, Session and Translation according to [services.php](https://github.com/corentin-begne/phalconTool/blob/master/templates/project/app/config/services.php)
+- Update apps/x/config/servces.php to change Url, Routes, Session and Translation according to [services.php](https://github.com/corentin-begne/phalconTool/blob/master/templates/project/app/config/services.php)
+- If project had ACL update it according to [SecurityPlugin.php](https://github.com/corentin-begne/phalconTool/blob/master/templates/project/app/plugins/SecurityPlugin.php)
 
 ## Quick start
 
