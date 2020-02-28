@@ -33,21 +33,21 @@ $di->set('router', function () use ($config) {
 
     $router = new Router(false);
 
-    $router->add('/:controller/:action', [
+    $router->add($config->application->baseUri.':controller/:action', [
         'controller' => 1,
         'action'     => 2
     ]);
-    $router->add('/:controller/', [
+    $router->add($config->application->baseUri.':controller/', [
         'controller' => 1,
         'action'     => 'index'
     ]);
 
-    $router->add('/', [
+    $router->add($config->application->baseUri, [
         'controller' => 'index',
         'action'     => 'index'
     ]);
 
-    $router->add('/:action', [
+    $router->add($config->application->baseUri.':action', [
         'controller' => 'index',
         'action'     => '1'
     ]);

@@ -1,6 +1,5 @@
 <?
-use Phalcon\Acl;
-use Phalcon\Acl\Role;
+use Phalcon\Acl\Enum;
 use Phalcon\Acl\Adapter\Memory as AclList;
 use Phalcon\Acl\Resource;
 use Phalcon\Events\Event;
@@ -13,6 +12,16 @@ use Manager\User as UserManager;
  */
 class SecurityPlugin extends Injectable
 {
+    private function getActions($class){
+        $result = [];
+        foreach(get_class_methods($class) as $fn){
+            if(strpos($fn, 'Action') !== false){
+                $result[] = str_replace('Action', '', $fn);
+            }
+        }
+        return $result;
+    }
+
     /**
      * Get the application acl list.
      */
@@ -20,7 +29,7 @@ class SecurityPlugin extends Injectable
     {
         $acl = new AclList();
         // deny all access by default
-        $acl->setDefaultAction(Acl::DENY);
+        $acl->setDefaultAction(Enum::DENY);
         $permissions = [];
         // set roles        
         foreach(PermissionType::find() as $permission){
@@ -28,11 +37,21 @@ class SecurityPlugin extends Injectable
             $permissions[$permission->pety_name] = $permission->pety_id;
         }
 
+        foreach([
+            $this->config->application->controllersDir.'*Controller.php',
+            $this->config->application->rootDir.'vendor/v-cult/phalcon/src/lib/*/*Controller.php'
+        ] as $path){
+            foreach(glob($path) as $controller){
+                $controller = basename($controller, '.php');
+                $acl->addComponent(lcfirst(str_replace('Controller', '', $controller)), $this->getActions($controller));
+            }
+        }
+
         // define public/private ressources
         $private = [
-            'index' => ['*'],
-            'scrud'=> ['*'],
-            'api'=> ['*']
+            'index' => '*',
+            'scrud'=> '*',
+            'api'=> '*'
         ];
 
         $public = [
@@ -42,18 +61,14 @@ class SecurityPlugin extends Injectable
 
         foreach(['private', 'public'] as $type){
             foreach($$type as $resource => $actions){
-                $acl->addResource(new Resource($resource), $actions);
-                foreach ($actions as $action) {
-                    switch($type){
-                        case 'private':
-                            $acl->allow($permissions['admin'], $resource, $action);
-                            $acl->allow($permissions['user'], $resource, $action);
-                            break;
-                        case 'public':
-                            $acl->allow($permissions['anonymous'], $resource, $action);
-                            break;
-                    }
-                    
+                switch($type){
+                    case 'private':
+                        $acl->allow($permissions['admin'], $resource, $actions);
+                        $acl->allow($permissions['user'], $resource, $actions);
+                        break;
+                    case 'public':
+                        $acl->allow($permissions['anonymous'], $resource, $actions);
+                        break;
                 }
             }
         }
@@ -109,7 +124,7 @@ class SecurityPlugin extends Injectable
                 break;
             }
         }
-        if($allowed != Acl::ALLOW) {
+        if($allowed != Enum::ALLOW) {
             $this->redirectUser();
             $this->view->disable();
         }
