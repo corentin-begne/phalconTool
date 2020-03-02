@@ -120,7 +120,7 @@ class SecurityPlugin extends Injectable
         //Check if the Role have access to the controller (resource)
         foreach($permissions as $permission){
             $allowed = $acl->isAllowed($permission, $controller, $action);
-            if ($allowed === Acl::ALLOW) {
+            if ($allowed === Enum::ALLOW) {
                 break;
             }
         }
