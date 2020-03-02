@@ -128,11 +128,16 @@ $di->set('translation', function() use ($config, $di){
 });
 
 $di->set('lang', function() use ($di){
-    $lang = $di->getSession()->get('lang');
-    if(!isset($lang)){
-        $lang = explode('-', $di->getRequest()->getBestLanguage())[0]; 
-        $di->getSession()->set('lang', $lang); 
-    } 
+    if($di->getRequest()->has('lang')){
+        $lang = $di->getRequest()->get('lang');
+        $di->getSession()->set('lang', $lang);
+    } else {
+        $lang = $di->getSession()->get('lang');
+        if(!isset($lang)){
+            $lang = explode('-', $di->getRequest()->getBestLanguage())[0]; 
+            $di->getSession()->set('lang', $lang);     
+        } 
+    }       
     return $lang;
 });
 
