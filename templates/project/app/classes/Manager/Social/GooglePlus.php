@@ -59,7 +59,7 @@ class GooglePlus{
         $userPlus = $plus->people->get('me');
         try{
         $user = \User::findFirstByUsEmail($userPlus->emails[0]->value);
-            if(!$user){ // create if not exists
+            if($user === false){ // create if not exists
                 $user = new \User();
                 $user->create([
                     'us_email' => $userPlus->emails[0]->value,
