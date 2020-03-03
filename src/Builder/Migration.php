@@ -4,6 +4,7 @@ namespace Phalcon\Builder;
 use Phalcon\DI,
 Phalcon\Tools\Cli,
 Phalcon\Text as Utils,
+Phalcon\Db\Enum,
 Phalcon\Db;
 
 class Migration extends \Phalcon\DI\Injectable
@@ -63,7 +64,7 @@ class Migration extends \Phalcon\DI\Injectable
                 $modelActionTpl['down']['tables']['create'][] = $table;
                 // get all fields, constraints, indexes, uniques for the rollback
                 $modelActionTpl['down']['fields']['add'][$table] = [];
-                foreach($this->db->fetchAll('show columns from '.$table, Db::FETCH_ASSOC) as $field){
+                foreach($this->db->fetchAll('show columns from '.$table, Enum::FETCH_ASSOC) as $field){
                     $modelActionTpl['down']['fields']['add'][$table][$field['Field']] = $this->normalize($field);
                     switch($field['Key']){
                         case 'PRI':
@@ -76,7 +77,7 @@ class Migration extends \Phalcon\DI\Injectable
                             $modelActionTpl['down']['uniques']['add'][$table][] = $field['Key'];
                             break;
                         case 'MUL':
-                            $constraint = $this->db->fetchOne('SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$table.'\' and COLUMN_NAME=\''.$field['Field'].'\'', Db::FETCH_ASSOC);
+                            $constraint = $this->db->fetchOne('SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$table.'\' and COLUMN_NAME=\''.$field['Field'].'\'', Enum::FETCH_ASSOC);
                             if(!$constraint){
                                 if(!isset($modelActionTpl['down']['indexes']['add'][$table])){
                                     $modelActionTpl['down']['indexes']['add'][$table] =[];
@@ -142,7 +143,7 @@ class Migration extends \Phalcon\DI\Injectable
                 $field = $columns[$field];  
                 // check relations         
                 if($action === 'update'){                       
-                    $fieldDesc = $this->db->fetchOne('show columns from '.$sourceModel.' where Field = \''.$field .'\'', Db::FETCH_ASSOC);
+                    $fieldDesc = $this->db->fetchOne('show columns from '.$sourceModel.' where Field = \''.$field .'\'', Enum::FETCH_ASSOC);
                     if(!$fieldDesc){
                         $modelActionTpl['up']['fields']['add'][$sourceModel][$field] = $fieldAnnotation;
                         $modelActionTpl['down']['fields']['drop'][$sourceModel][$field] = '';
@@ -216,7 +217,7 @@ class Migration extends \Phalcon\DI\Injectable
 
             if($action === 'update'){
                 // now need to check the inverse to drop which are removed
-                foreach($this->db->fetchAll('show columns from '.$sourceModel, Db::FETCH_ASSOC) as $fieldDesc){
+                foreach($this->db->fetchAll('show columns from '.$sourceModel, Enum::FETCH_ASSOC) as $fieldDesc){
 
                     if(!isset($fields[$this->getPrefix($sourceModel).'_'.$fieldDesc['Field']])){
                         $modelActionTpl['up']['fields']['drop'][$sourceModel][$fieldDesc['Field']] = '';
@@ -231,7 +232,7 @@ class Migration extends \Phalcon\DI\Injectable
                 $modelActionTpl['down']['keys']['foreign']['add'][$sourceModel] = [];
                 $modelActionTpl['down']['keys']['foreign']['drop'][$sourceModel] = [];
             }              
-            $constraints = $this->db->fetchAll('SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\'', Db::FETCH_ASSOC);
+            $constraints = $this->db->fetchAll('SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\'', Enum::FETCH_ASSOC);
             $relations = $this->di->getModelsManager()->getRelations($sourceModel);
             if($constraints !== false){
                 foreach($constraints as $constraint){
@@ -243,7 +244,7 @@ class Migration extends \Phalcon\DI\Injectable
                         }
                     }
                     if(!$relationExists){
-                        $constraint2 = $this->db->fetchOne('SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\' and REFERENCED_TABLE_NAME=\''.$constraint['REFERENCED_TABLE_NAME'].'\'', Db::FETCH_ASSOC);
+                        $constraint2 = $this->db->fetchOne('SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\' and REFERENCED_TABLE_NAME=\''.$constraint['REFERENCED_TABLE_NAME'].'\'', Enum::FETCH_ASSOC);
                         $modelActionTpl['up']['keys']['foreign']['drop'][$sourceModel][]= $constraint2['CONSTRAINT_NAME'];
                         $modelActionTpl['down']['keys']['foreign']['add'][$sourceModel][]= [
                             'column'=>$constraint['COLUMN_NAME'],
@@ -259,9 +260,9 @@ class Migration extends \Phalcon\DI\Injectable
             foreach(['hasOne', 'belongsTo'] as $type){
                 $relations = $source->returnRelations($type);
                 foreach($relations as $name => $relation){                    
-                    $constraint = $this->db->fetchOne('SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\' and COLUMN_NAME=\''.$columns[$name].'\'', Db::FETCH_ASSOC);
+                    $constraint = $this->db->fetchOne('SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\' and COLUMN_NAME=\''.$columns[$name].'\'', Enum::FETCH_ASSOC);
                     if($constraint !== false){                    
-                        $constraint2 = $this->db->fetchOne('SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\' and REFERENCED_TABLE_NAME=\''.$constraint['REFERENCED_TABLE_NAME'].'\'', Db::FETCH_ASSOC);
+                        $constraint2 = $this->db->fetchOne('SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\' and REFERENCED_TABLE_NAME=\''.$constraint['REFERENCED_TABLE_NAME'].'\'', Enum::FETCH_ASSOC);
                         if(!$constraint2 || $constraint2['UPDATE_RULE'] !== $fields[$name]['onUpdate'] || $constraint2['DELETE_RULE'] !== $fields[$name]['onDelete']){
                             $modelActionTpl['up']['keys']['foreign']['add'][$sourceModel][] = [
                                 'column'=>$columns[$name],
@@ -338,7 +339,7 @@ class Migration extends \Phalcon\DI\Injectable
                                 unset($data[$tName][$aName][$taName][$taName2]);
                             } else if(is_array($table2)){
                                 foreach($table2 as $taName3 =>&$table3){
-                                    if(count($table3) === 0){
+                                    if(is_array($table3) && count($table3) === 0){
                                         unset($data[$tName][$aName][$taName][$taName2][$taName3]);
                                     }
                                 }
