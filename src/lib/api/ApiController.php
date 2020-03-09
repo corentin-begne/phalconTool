@@ -125,8 +125,8 @@ class ApiController extends Phalcon\ControllerBase{
                 }
                 Rest::checkParams($model::getRequired()); 
                 $params = $model::filterParams(Rest::$params);                
-                $model = new $model();
-                if(!$model->create($params)){
+                $model = new $model($params);
+                if(!$model->create()){
                     Rest::renderError($model->getErrors());
                 }
                 if($i===0){

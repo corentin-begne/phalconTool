@@ -3,12 +3,12 @@
  * Manage Rest API request / response<br>
  * <u><b>Example :</b></u>
  * ```php
- * Rest::init();
- * Rest::checkParams(['id']);
+ * self::init();
+ * self::checkParams(['id']);
  * try{
- *     Rest::renderSuccess();
+ *     self::renderSuccess();
  * } catch(Exception $e){
- *     Rest::renderError($e->getMessage());
+ *     self::renderError($e->getMessage());
  * }
  * ```
  */
@@ -51,10 +51,10 @@ class Rest
         }
         self::$params = $_REQUEST;
         unset(self::$params['_url']);
-        self::$currentPage = isset(rest::$params['current_page']) ? (int)rest::$params['current_page'] : self::$currentPage ;
-        self::$limit = isset(rest::$params['limit']) ? (int)rest::$params['limit'] : self::$limit ;
-        unset(rest::$params['limit']);
-        unset(rest::$params['current_page']);
+        self::$currentPage = isset(self::$params['current_page']) ? (int)self::$params['current_page'] : self::$currentPage ;
+        self::$limit = isset(self::$params['limit']) ? (int)self::$params['limit'] : self::$limit ;
+        unset(self::$params['limit']);
+        unset(self::$params['current_page']);
         foreach(self::$params as $name => &$param){
             if($param === "true" || $param === "yes"){
                 $param = true;
