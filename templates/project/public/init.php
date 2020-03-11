@@ -7,6 +7,7 @@ try {
      */
     $config = include __DIR__ . "/../apps/".APP."/config/config.php";
     ini_set("session.gc_maxlifetime", $config->session_lifetime);
+    ini_set("session.cookie_lifetime", $config->session_lifetime);
     ini_set('session.gc_probability',1);
     ini_set('session.gc_divisor',1);
     ini_set('session.save_path', '/tmp');
