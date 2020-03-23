@@ -135,12 +135,12 @@ class GenerateTask extends \Phalcon\CLI\Task
         new Scss($controller, $actions);
     }
 
-    public function lessAction($params){
+    public function lessAction($params=[]){
         @list($controller, $action) = $params;
         new Less($controller, $action);
     }
 
-    public function sassAction($params){
+    public function sassAction($params=[]){
         @list($controller, $action) = $params;
         new Sass($controller, $action);
     }
