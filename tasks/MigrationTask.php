@@ -176,13 +176,11 @@ class MigrationTask extends \Phalcon\CLI\Task
             (isset($field['extra']) ? ' '.$field['extra'] : '');
     }
 
-    public function rollbackAction($params=[]){
+    public function rollbackAction($version=null){
         $currentVersion = Migration::getCurrentVersion();
         $migrations = glob($this->config->application->migrationsDir.'*.php');
-        if(count($params)===0){
+        if(!isset($version)){
             $version = count($migrations)-1;
-        } else {
-            $version = (int)$params[0];
         }
         if((int)$version >= $currentVersion){
             Cli::error('Nothing to migrate');

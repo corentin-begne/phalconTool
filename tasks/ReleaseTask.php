@@ -2,9 +2,9 @@
 use Phalcon\Tools\Cli;
 class ReleaseTask extends \Phalcon\CLI\Task
 {
-    public function mainAction($params) {
+    public function mainAction($env, $tag) {
         @list($env, $tag) = $params;
-        if(!isset($env) || !isset($this->config[$env])){
+        if(!isset($this->config[$env])){
             die(Cli::error('Invalid env : '.$env));
         }
         if(!isset($tag)){

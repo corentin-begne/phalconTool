@@ -17,8 +17,7 @@ class GenerateTask extends \Phalcon\CLI\Task
 
     }
 
-    public function appAction($params) {
-        @list($appName) = $params;
+    public function appAction($appName) {
         if(!isset($appName)){
             Cli::error('Missing app name');
         }
@@ -74,8 +73,7 @@ class GenerateTask extends \Phalcon\CLI\Task
         }
     }
 
-    public function modelAction($params){
-        list($table) = $params;
+    public function modelAction($table){
         if(!isset($table)){
             Cli::error('missing table name');
         }
@@ -110,44 +108,37 @@ class GenerateTask extends \Phalcon\CLI\Task
      * generate module, action, css/js, rest, security
      * @params([params: [], options: []])
      */
-    public function controllerAction($params){
-        @list($controller, $actions) = $params;
+    public function controllerAction($controller, $actions=null){
         new Controller($controller, $actions);
     }
 
-    public function taskAction($params){
-        @list($task, $actions) = $params;
+    public function taskAction($task, $actions=null){
         new Task($task, $actions);
     }
 
-    public function jsAction($params){
-        @list($controller, $actions) = $params;
+    public function jsAction($controller, $actions=null){
         new Js($controller, $actions);
     }
 
-    public function cssAction($params){
-        @list($controller, $actions) = $params;
+    public function cssAction($controller, $actions=null){
         new Css($controller, $actions);
     }
 
-    public function scssAction($params){
+    public function scssAction($controller, $actions=null){
         @list($controller, $actions) = $params;
         new Scss($controller, $actions);
     }
 
-    public function lessAction($params=[]){
-        @list($controller, $action) = $params;
+    public function lessAction($controller=null, $action=null){
         new Less($controller, $action);
     }
 
-    public function sassAction($params=[]){
-        @list($controller, $action) = $params;
+    public function sassAction($controller=null, $action=null){
         new Sass($controller, $action);
     }
 
-    public function buildAction($params=[]){
+    public function buildAction($controller=null, $action=null){
         error_reporting(0);
-        @list($controller, $action) = $params;
         new Build($controller, $action);
     }
 }

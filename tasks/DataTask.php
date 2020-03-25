@@ -6,7 +6,7 @@ class DataTask extends \Phalcon\CLI\Task
 
     }
 
-    public function importAction($params) { 
+    public function importAction() { 
         exec('rm -rf '.$this->config->application->dumpDir.'*.log');       
         foreach(glob($this->config->application->dumpDir.'*.csv') as $file){
             $table = basename($file, '.csv');
@@ -43,8 +43,8 @@ class DataTask extends \Phalcon\CLI\Task
         }
     }
 
-    public function exportAction($params) {
-        $tables = isset($params[0]) ? explode(',', $params[0]) : [];
+    public function exportAction($tables=null) {
+        $tables = isset($tables) ? explode(',', $tables) : [];
         //clean folder
         exec('rm -rf '.$this->config->application->dumpDir.'*');
         foreach($this->db->listTables($this->config[ENV]->database->dbname) as $table){
