@@ -125,7 +125,6 @@ class GenerateTask extends \Phalcon\CLI\Task
     }
 
     public function scssAction($controller, $actions=null){
-        @list($controller, $actions) = $params;
         new Scss($controller, $actions);
     }
 
