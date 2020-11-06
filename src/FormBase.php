@@ -105,6 +105,9 @@ class FormBase extends Form
 	                        break;
 	                    }
 	                }
+	                if(str_replace($model::getPrefix().'_', '', $name) === 'email'){
+	                	$type='Email';
+	                }
 	                break;  
 	            case 'set':
 	            case 'enum':
