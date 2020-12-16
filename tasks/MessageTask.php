@@ -15,7 +15,7 @@ class MessageTask extends \Phalcon\CLI\Task
             foreach($messages as $name => $message){
                 $langMessage = new LangMessage([
                     'lame_name'=>$name,
-                    'lame_value'=>$message,
+                    'lame_value'=>html_entity_decode($message),
                     'lame_lang_id'=>$lang->laty_id
                 ]);
                 $langMessage->save();
@@ -43,7 +43,7 @@ $messages = [
             if(!isset($result[$lang])){
                 $result[$lang] = $template;
             }
-            $result[$lang] .= str_replace(['[name]', '[value]'],[$message->lame_name, htmlentities($message->lame_value, ENT_QUOTES)],$part);
+            $result[$lang] .= str_replace(['[name]', '[value]'],[$message->lame_name, $message->lame_value/*htmlentities($message->lame_value, ENT_QUOTES)*/],$part);
         }
         foreach($result as $lang => $content){
             $content = $content.'];';
