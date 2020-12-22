@@ -7,6 +7,9 @@ class DataTask extends \Phalcon\CLI\Task
     }
 
     public function importAction() { 
+        if($this->config->application->dumpDir === ''){
+            Cli::error('dumpDir path is empty');
+        }
         exec('rm -rf '.$this->config->application->dumpDir.'*.log');       
         foreach(glob($this->config->application->dumpDir.'*.csv') as $file){
             $table = basename($file, '.csv');
@@ -45,6 +48,9 @@ class DataTask extends \Phalcon\CLI\Task
 
     public function exportAction($tables=null) {
         $tables = isset($tables) ? explode(',', $tables) : [];
+        if($this->config->application->dumpDir === ''){
+            Cli::error('dumpDir path is empty');
+        }
         //clean folder
         exec('rm -rf '.$this->config->application->dumpDir.'*');
         foreach($this->db->listTables($this->config[ENV]->database->dbname) as $table){

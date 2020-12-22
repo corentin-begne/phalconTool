@@ -6,7 +6,7 @@ class MessageTask extends \Phalcon\CLI\Task
     }
 
     public function importAction() {
-        $files = glob($this->config->application->rootDir.'/apps/'.APP.'/messages/*.php');
+        $files = glob($this->config->application->messagesDir.'*.php');
         $this->di->get('db')->query('delete from LangMessage');
         foreach($files as $file){
             include($file);
@@ -29,7 +29,10 @@ $messages = [
 ';
         $part = "   '[name]' => '[value]',\n";
         $tmp = time();
-        $path = $this->config->application->rootDir.'/apps/'.APP.'/messages/';
+        $path = $this->config->application->messagesDir;
+        if($path === ''){
+            Cli::error('messagesDir path is empty');
+        }
         if(!defined('SAVE')){
             exec('rm -rf '.$path.'*.php');
         } else {

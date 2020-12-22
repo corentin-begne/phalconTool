@@ -32,6 +32,9 @@ class ModelsTask extends \Phalcon\CLI\Task
      */
     public function generateAction() {
         exec('rm -rf '.$this->config->application->modelsDir.'*');
+        if($this->config->application->modelsDir === ''){
+            Cli::error('modelsDir path is empty');
+        }
         $constraints = [];
         $tables = $this->db->listTables($this->config[ENV]->database->dbname);
         if(count($tables) === 0){ // no table in bdd, load the default
