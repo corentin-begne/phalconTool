@@ -81,9 +81,9 @@ class FormBase extends Form
 	                $type = 'Numeric';
 	                $option += [
 	                    'min'=>0, 
-	                    'max'=>((int)str_pad('1', $options['length'], '0')-1),
+	               /*     'max'=>((int)str_pad('1', $options['length'], '0')-1),
 	                    'maxlength'=>$options['length'],
-	                    'size'=>$options['length'],
+	                    'size'=>$options['length'],*/
 	                    'step'=>'0.01'
 	                ];
 	                break;
