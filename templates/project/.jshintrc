@@ -8,7 +8,7 @@
     // == Enforcing Options ===============================================
     // When set to true, these options will make JSHint produce more
     // warnings about your code.
-    
+    "esversion": 6,
     "camelcase": true, // This option allows you to force all variable names to use either camelCase style or UPPER_CASE with underscores.
     "curly": true, // Require {} for every new block or scope
     "eqeqeq": true, // Require triple equals i.e. `===`

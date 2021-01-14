@@ -1,0 +1,34 @@
+@mixin loader($border-color:#f3f3f3, $color:#000000, $size:50px){
+    body > .backdrop{
+        cursor:progress;
+        background:rgba(0,0,0,0.3);
+        width:100%;
+        height:100%;
+        z-index: 999999;
+        position:fixed;
+        @include disableTextSelection();
+        top:0px;
+        left:0px;
+        #loader{
+            position:absolute;
+            left:50%;
+            top:50%;
+            border: 16px solid $border-color;
+            border-top: 16px solid $color;
+            border-radius: 50%;
+            width: $size;
+            height: $size;
+            @include centerTransform(-50%, -50%);
+            animation: spin 2s linear infinite;
+
+            @keyframes spin {
+                0% { 
+                    @include rotate(0deg); 
+                }
+                100% { 
+                    @include rotate(360deg); 
+                }
+            }
+        }
+    }
+}

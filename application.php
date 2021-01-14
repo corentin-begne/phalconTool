@@ -62,8 +62,11 @@ function getOptions(&$args){
     foreach($args as $index => &$arg){
         if(strpos($arg, '--') === 0){
             $arg = substr($arg, 2);                 
-            list($name, $value) = explode('=', $arg);
-            define(strtoupper($name),$value);
+            $data = explode('=', $arg);
+            if(count($data)===1){
+                $data[] = true;
+            }
+            define(strtoupper($data[0]),$data[1]);
             unset($args[$index]);
         }
     }

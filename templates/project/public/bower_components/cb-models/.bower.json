@@ -13,17 +13,17 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "jsdoc",
+    "docs"
   ],
   "dependencies": {
     "cb-helpers": "*"
   },
-  "_release": "b7f9b851be",
+  "_release": "d62342c4ec",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "b7f9b851be8adeca9b73fb562bac82ca6726d2d3"
+    "commit": "d62342c4ecc23654028534c0d47198d2152cd593"
   },
   "_source": "https://github.com/corentin-begne/jsModels.git",
   "_target": "*",

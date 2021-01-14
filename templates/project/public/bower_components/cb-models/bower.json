@@ -13,8 +13,8 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "jsdoc",
+    "docs"
   ],
   "dependencies": {
     "cb-helpers": "*"

@@ -20,17 +20,20 @@ class AssetsPlugin extends Injectable
         $this->assets->collection('libjs')
         ->setPrefix('/lib/'.$dispatcher->getControllerName().'/public/js/');
 
-        $this->assets->collection('js')
-        ->setPrefix(APP.'/js/');
+        $this->assets->collection('mjs')
+        ->setPrefix(APP.'/js/'.((ENV==="prod") ? '' : 'modules/'));
 
         $this->assets->collection('bowerjs')
-        ->setPrefix('/bower_components/')
-        ->addJs('require/index.js');
+        ->setPrefix('/bower_components/');
+        //->addJs('require/index.js');
 
         $prefix = in_array($dispatcher->getControllerName(), $this->config->libraries->toArray()) ? 'lib' : '';
 
-        $this->assets->collection($prefix.'js')
-        ->addJs("$currentPath/".((ENV==="prod") ? "build" : "main").".js");
+        /*$this->assets->collection($prefix.'js')
+        ->addJs("$currentPath/".((ENV==="prod") ? "build" : "main").".js");*/
+
+        $this->assets->collection($prefix.'mjs')
+        ->addJs("$currentPath/".((ENV==="prod") ? "build" : "main").".mjs");
         
         $this->assets->collection('libcss')
         ->setPrefix('/lib/'.$dispatcher->getControllerName().'/public/css/');
@@ -41,14 +44,5 @@ class AssetsPlugin extends Injectable
         $this->assets->collection($prefix.'css')
         ->addCss("$currentPath/main.css");
         
-    }
-
-    public function afterDispatch(Event $event, Dispatcher $dispatcher)
-    {
-        foreach($this->assets->getCollections() as $name => $collection){
-            foreach($this->assets->collection($name) as $ressource){
-                $ressource->setPath($ressource->getPath().'?v='.$this->config->version); 
-            }
-        }
     }
 }

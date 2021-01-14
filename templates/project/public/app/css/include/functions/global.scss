@@ -82,6 +82,7 @@ Some global usefull classes
 </table>
 */
 @mixin body(){
+    @include loader();
 	html, body {
     	@extend .max-width;
         @extend .max-height;
@@ -119,7 +120,7 @@ Some global usefull classes
                 #{$type}:100%;
             }
         }
-        @each $type in block, inline-block{
+        @each $type in block, inline-block, none{
             .#{$type}{      
                 display:$type;
             }
@@ -127,12 +128,9 @@ Some global usefull classes
         .margin-auto{
             margin:0 auto;
         }
-        .clearfix:before{
+        .clearfix:before, .clearfix:after{
             display: table;
             content: " ";
-        }
-        .clearfix:after{
-            @extend .clearfix;
         }
     }
 }

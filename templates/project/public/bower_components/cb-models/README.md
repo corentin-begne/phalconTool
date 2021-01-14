@@ -1,1 +1,1 @@
-# jsModels
+[Documentation](http://corentin-begne.github.io/jsModels/docs)
