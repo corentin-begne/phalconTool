@@ -2,3 +2,4 @@
 *.webm
 vendor
 *.lock
+apps/*/migrations/*_version
