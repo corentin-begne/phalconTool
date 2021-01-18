@@ -21,7 +21,7 @@ class AssetsPlugin extends Injectable
         ->setPrefix('/lib/'.$dispatcher->getControllerName().'/public/js/');
 
         $this->assets->collection('mjs')
-        ->setPrefix(APP.'/js/'.((ENV==="prod") ? '' : 'modules/'));
+        ->setPrefix(APP.'/js/modules/');
 
         $this->assets->collection('bowerjs')
         ->setPrefix('/bower_components/');
