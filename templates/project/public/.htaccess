@@ -7,3 +7,7 @@ AddDefaultCharset UTF-8
     RewriteRule .* - [L]
     RewriteRule ^(.*)$ /[app]/index.php?_url=/$1 [QSA,L]
 </IfModule>
+
+<IfModule mod_mime.c>
+  AddType text/javascript js mjs
+</IfModule>

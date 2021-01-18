@@ -154,36 +154,36 @@ phalcon server:start
 ```
 A websocket Javascript library is available to work with, accessible in the bower_components, it just recreate user events management and can be used like this :
 ```
-WebsocketHelper.getInstance(loadedWebsocket);
+websocket.connect("wss://"+document.domain+":9000/myRoom", {"id":new Date().getTime()}).then(success).catch(error);
 
-function loadedWebsocket(instance){
-    var socket = instance;
-    socket.connect("ws://"+document.domain+":9000/myRoom", {"id":"123456"}, connected);
-    function connected(){
-        that.socket.addEvents({
-            "test": test,
-            "userConnected": userConnected,
-            "userDisconnected": userDisconnected,
-            "connected": ready
-        });
-        that.socket.send("test", {yo:"yo"});
-        
+function error(event){
+    console.error(event);
+}
 
-        function test(data){
-            console.log("receive test event", data);
-        }
+function success(){
+    websocket.setEvents({
+        "test": test,
+        "userConnected": userConnected,
+        "userDisconnected": userDisconnected,
+        "connected": ready
+    });
+    websocket.send("test", {yo:"yo"});
+    
 
-        function userConnected(data){
-            console.log("new user connected", data);
-        }
+    function test(data){
+        console.log("receive test event", data);
+    }
 
-        function userDisconnected(data){
-            console.log("user leave room", data);
-        }
+    function userConnected(data){
+        console.log("new user connected", data);
+    }
 
-        function ready(data){
-            console.log("connected to room", data);
-        }
+    function userDisconnected(data){
+        console.log("user leave room", data);
+    }
+
+    function ready(data){
+        console.log("connected to room", data);
     }
 }
 ```
