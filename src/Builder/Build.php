@@ -1,12 +1,17 @@
 <?
 
 namespace Phalcon\Builder;
-
+use Phalcon\Tools\Cli;
 class Build extends \Phalcon\DI\Injectable
 {
-    public function __construct($controller, $action){
+    public function __construct($controller, $action){        
+        $this->rollup = $this->config->application->rootDir.'/node_modules/rollup/dist/bin/rollup';
+        $this->uglify = $this->config->application->rootDir.'/node_modules/uglify-js-es6/bin/uglifyjs';
+        $this->basePath = $this->config->application->publicDir.'js/'.(defined('MODULE')?'modules/':'');
+        $this->ext = (defined('MODULE')?'m':'').'js';
+        $this->format = defined('MODULE')?'es':'iife';        
         \Phalcon\Library::loadDir([$this->config->application->controllersDir]);
-        $actions = explode(',', $action);
+        $actions = explode(',', $action);        
         if(isset($controller)){
             if(isset($action)){
                 foreach($actions as $action){
@@ -37,7 +42,16 @@ class Build extends \Phalcon\DI\Injectable
         return $result;
     }
 
-    public function run($controller, $action){
+    private function exec($cmd){
+        $result = exec($cmd.' >&1 2>&1', $r);
+        if($result === false){
+            return $result;
+        } else {
+            return implode("\n", $r);
+        }
+    }
+
+    public function run($controller, $action){      
         $action = str_replace('Action', '', $action);
         if($action === 'index'){
             $action = '';
@@ -45,10 +59,29 @@ class Build extends \Phalcon\DI\Injectable
             $action .= '/';
         }
         $controller = lcfirst(str_replace('Controller', '', $controller));
-        if(!file_exists($this->config->application->publicDir.'js/'.$controller.'/'.$action.'main.js')){
+        $main = $this->basePath.$controller.'/'.$action.'main.'.$this->ext;
+        $build = $this->basePath.$controller.'/'.$action.'build.'.$this->ext;
+        if(!file_exists($main)){
             return false;
         }
-        \Phalcon\Tools\Cli::success($controller.' : '.(($action === '') ? 'index' : trim($action, '/')), true);
-        exec('cd '.$this->config->application->publicDir.'../;make '.ENV.' APP='.APP.' ACTION='.$action.' CONTROLLER='.$controller);
+        Cli::success($controller.' : '.(($action === '') ? 'index' : trim($action, '/')), true);
+        if(file_exists($build)){
+            exec('rm -f '.$build);
+        }
+        $result = $this->exec($this->rollup.' '.$main.' --file '.$build.' --format '.$this->format);
+        if($result === false){
+            Cli::error('rollup command failed');
+        }
+        $result .= "\n".$this->exec($this->uglify.' '.$build.' -c -o '.$build);
+        if(defined('DEBUG')){
+            echo "\n".trim($result)."\n\n";
+        }
+        if(file_exists($build)){
+            echo $build."\n";
+        } else {
+            Cli::warning("build failed", true);
+            echo "\n".trim($result)."\n\n";
+        }
+        //exec('cd '.$this->config->application->publicDir.'../;make '.ENV.' APP='.APP.' ACTION='.$action.' CONTROLLER='.$controller);
     }
 }
