@@ -6,7 +6,7 @@ class Build extends \Phalcon\DI\Injectable
 {
     public function __construct($controller, $action){        
         $this->rollup = $this->config->application->rootDir.'/node_modules/rollup/dist/bin/rollup';
-        $this->uglify = $this->config->application->rootDir.'/node_modules/uglify-js-es6/bin/uglifyjs';
+        $this->uglify = $this->config->application->rootDir.'/node_modules/uglify-es/bin/uglifyjs';
         $this->basePath = $this->config->application->publicDir.'js/'.(defined('MODULE')?'modules/':'');
         $this->ext = (defined('MODULE')?'m':'').'js';
         $this->format = defined('MODULE')?'es':'iife';        
