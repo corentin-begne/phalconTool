@@ -85,5 +85,5 @@ class ManagerModel{
 
 }
 
-let managerModel = new ManagerModel();
+const managerModel = new ManagerModel();
 export default managerModel;

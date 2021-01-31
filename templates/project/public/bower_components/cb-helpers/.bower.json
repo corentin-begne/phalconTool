@@ -19,11 +19,11 @@
   "dependencies": {
     "jQuery": "master"
   },
-  "_release": "cee69fa1eb",
+  "_release": "d24aeb0e4a",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "cee69fa1ebcf002a130b55161a35ec8213c21b70"
+    "commit": "d24aeb0e4aba5fb7f82dc3a57c0867b3c918fa50"
   },
   "_source": "https://github.com/corentin-begne/jsHelpers.git",
   "_target": "*",

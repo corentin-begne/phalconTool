@@ -24,5 +24,5 @@ class [className]Manager{
         }
     }
 }
-let [name]Manager = new [className]Manager();
+const [name]Manager = new [className]Manager();
 export default [name]Manager;

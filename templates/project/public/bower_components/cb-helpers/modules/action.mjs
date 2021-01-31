@@ -91,5 +91,5 @@ class ActionHelper{
 
 }
 
-let actionHelper = new ActionHelper();
+const actionHelper = new ActionHelper();
 export default actionHelper;

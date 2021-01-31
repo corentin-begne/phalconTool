@@ -9,5 +9,5 @@ class [className]Helper{
     }
 
 }
-let [name]Helper = new [className]Helper();
+const [name]Helper = new [className]Helper();
 export default [name]Helper;

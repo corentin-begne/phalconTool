@@ -68,5 +68,5 @@ class ActionModel{
 
 }
 
-let actionModel = new ActionModel();
+const actionModel = new ActionModel();
 export default actionModel;

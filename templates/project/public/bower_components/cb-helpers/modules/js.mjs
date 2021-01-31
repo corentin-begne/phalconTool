@@ -43,5 +43,5 @@ class JsHelper{
     }
 
 }
-let jsHelper = new JsHelper();
+const jsHelper = new JsHelper();
 export default jsHelper;

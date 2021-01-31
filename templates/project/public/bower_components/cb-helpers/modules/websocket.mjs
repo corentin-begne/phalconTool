@@ -98,5 +98,5 @@ class WebsocketHelper{
     }
 
 }
-let websocketHelper = new WebsocketHelper();
+const websocketHelper = new WebsocketHelper();
 export default websocketHelper;

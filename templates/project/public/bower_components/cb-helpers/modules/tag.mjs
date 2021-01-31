@@ -37,5 +37,5 @@ class TagHelper{
         };
     }
 }
-let tagHelper = new TagHelper();
+const tagHelper = new TagHelper();
 export default tagHelper;
