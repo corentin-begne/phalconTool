@@ -86,7 +86,7 @@ class WebsocketHelper{
         delete this.userEvents[name];
     }
 
-    clearEvents = function(){
+    clearEvents(){
         this.userEvents = {};        
     }
 

@@ -33,7 +33,7 @@ class AssetsPlugin extends Injectable
         ->addJs("$currentPath/".((ENV==="prod") ? "build" : "main").".js");*/
 
         $this->assets->collection($prefix.'mjs')
-        ->addJs("$currentPath/".((ENV==="prod") ? "build" : "main").".mjs");
+        ->addJs("$currentPath/".((ENV==="prod") ? 'build' : 'main').'.mjs');
         
         $this->assets->collection('libcss')
         ->setPrefix('/lib/'.$dispatcher->getControllerName().'/public/css/');
