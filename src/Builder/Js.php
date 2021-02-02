@@ -26,22 +26,22 @@ class Js extends \Phalcon\DI\Injectable
             }
         } else {
             foreach(glob($basePath.'ma*.'.$ext) as $source){            
-                if(count($actions) > 0){
-                    foreach($actions as $action){
+                foreach($actions as $action){
+                    if($action !== ""){
                         $this->create($source, $target, [
                             $action.ucfirst($controller),
                             ucfirst($action).ucfirst($controller),
                             $controller.'/'.$action.'/',
                             APP
                         ]);
+                    } else {
+                        $this->create($source, $target, [
+                            $controller,
+                            ucfirst($controller),
+                            $controller.'/',
+                            APP
+                        ]);
                     }
-                } else{
-                    $this->create($source, $target, [
-                        $controller,
-                        ucfirst($controller),
-                        $controller.'/',
-                        APP
-                    ]);
                 }
             }
         }
