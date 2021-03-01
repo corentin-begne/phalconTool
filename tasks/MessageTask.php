@@ -46,7 +46,7 @@ $messages = [
             if(!isset($result[$lang])){
                 $result[$lang] = $template;
             }
-            $result[$lang] .= str_replace(['[name]', '[value]'],[$message->lame_name, $message->lame_value/*htmlentities($message->lame_value, ENT_QUOTES)*/],$part);
+            $result[$lang] .= str_replace(['[name]', '[value]'],[$message->lame_name, str_replace('\'', "\'", $message->lame_value)/*htmlentities($message->lame_value, ENT_QUOTES)*/],$part);
         }
         foreach($result as $lang => $content){
             $content = $content.'];';
