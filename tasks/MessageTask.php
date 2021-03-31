@@ -33,12 +33,12 @@ $messages = [
         if($path === ''){
             Cli::error('messagesDir path is empty');
         }
-        if(!defined('SAVE')){
+       /* if(!defined('SAVE')){
             exec('rm -rf '.$path.'*.php');
         } else {
             exec('mkdir '.$path.$tmp);
             exec('mv '.$path.'*.php '.$path.$tmp);
-        }
+        }*/
         $result = [];
         $messages = LangMessage::find();
         foreach($messages as $message){
