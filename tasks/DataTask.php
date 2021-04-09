@@ -19,7 +19,7 @@ class DataTask extends \Phalcon\CLI\Task
                 // truncate
                 echo '  Truncate ';
                 $query = 'SET FOREIGN_KEY_CHECKS = 0;DELETE FROM '.$table.';SET FOREIGN_KEY_CHECKS = 1;';
-                exec('export MYSQL_PWD='.$this->config[ENV]->database->password.';mysql -u '.$this->config[ENV]->database->username.' --database '.$this->config[ENV]->database->dbname.' -h '.$this->config[ENV]->database->host.' --skip-ssl --port 3306 -ss -e "'.$query.'"  > /dev/null 2>>'.$log);
+                exec('export MYSQL_PWD='.$this->config[ENV]->database->password.';mysql -u '.$this->config[ENV]->database->username.' --database '.$this->config[ENV]->database->dbname.' -h '.$this->config[ENV]->database->host.' --ssl-mode=DISABLED --port 3306 -ss -e "'.$query.'"  > /dev/null 2>>'.$log);
                 $this->checkLog($log);
                 Cli::success('Success', true);
             }
@@ -30,7 +30,7 @@ class DataTask extends \Phalcon\CLI\Task
                 echo '  Replace ';
             }
             $query = 'SET FOREIGN_KEY_CHECKS = 0;LOAD DATA LOCAL INFILE \''.$file.'\' REPLACE INTO TABLE '.$table.' FIELDS TERMINATED BY \'\t\' LINES TERMINATED BY \'\n\';SET FOREIGN_KEY_CHECKS = 1;';
-            exec('export MYSQL_PWD='.$this->config[ENV]->database->password.';mysql --local-infile --show-warnings --verbose --default-character-set=utf8 -u '.$this->config[ENV]->database->username.' --database '.$this->config[ENV]->database->dbname.' -h '.$this->config[ENV]->database->host.' --skip-ssl --port 3306 -e "'.$query.'" >> /dev/null 2>>'.$log);
+            exec('export MYSQL_PWD='.$this->config[ENV]->database->password.';mysql --local-infile --show-warnings --verbose --default-character-set=utf8 -u '.$this->config[ENV]->database->username.' --database '.$this->config[ENV]->database->dbname.' -h '.$this->config[ENV]->database->host.' --ssl-mode=DISABLED --port 3306 -e "'.$query.'" >> /dev/null 2>>'.$log);
             $this->checkLog($log);
             Cli::success('Success', true);
         }
