@@ -16,6 +16,14 @@ class ControllerBase extends Mvc\Controller{
      */
     public function beforeExecuteRoute($dispatcher)
     {
+        if($this->request->has('PHPSESSID')){
+            $sessionId = $this->request->get('PHPSESSID');
+            
+            if($sessionId !== $this->session->getId()){
+                $this->session->destroy();
+                $this->session->setId($sessionId)->start();
+            }
+        }
         $this->view->t = $this;
         $this->view->data = [];
         $this->view->lang = $this->lang;
