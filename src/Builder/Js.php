@@ -1,6 +1,6 @@
 <?
-use Phalcon\Tools\Cli;
 namespace Phalcon\Builder;
+use Phalcon\Tools\Cli;
 
 class Js extends \Phalcon\DI\Injectable
 {
