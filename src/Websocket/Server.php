@@ -99,7 +99,7 @@ abstract class Server {
             $this->master = stream_socket_server('ssl://'.$addr.':'.$port, $errno, $errstr, STREAM_SERVER_BIND|STREAM_SERVER_LISTEN, $context);
         }
         $this->sockets['m'] = $this->master;
-        $this->stdout("Server started\nListening on: $addr:$port\nMaster socket: ".$this->master);
+        $this->stdout("Server started\nListening on: $addr:$port\nMaster socket: ".spl_object_id($this->master));
     }
 
     /**
@@ -292,7 +292,7 @@ abstract class Server {
                             case 113: // EHOSTUNREACH -- No route to host
                             case 121: // EREMOTEIO    -- Rempte I/O error -- Their hard drive just blew up.
                             case 125: // ECANCELED    -- Operation canceled
-                                $this->stderr('Unusual disconnect on socket ' . $socket);
+                                $this->stderr('Unusual disconnect on socket ' . spl_object_id($socket));
                                 $this->disconnect($socket, true, $sockErrNo); // disconnect before clearing error, in case someone with their own implementation wants to check for error conditions on the socket.
                                 break;
                             default:
@@ -301,9 +301,9 @@ abstract class Server {
 
                     } elseif ($numBytes == 0) {
                         $this->disconnect($socket);
-                        $this->stderr('Client disconnected. TCP connection lost: ' . $socket);
+                        $this->stderr('Client disconnected. TCP connection lost: ' . spl_object_id($socket));
                     } else {
-                        $user = $this->users[md5((string)$socket)];
+                        $user = $this->users[md5((string)spl_object_id($socket))];
                         if (!$user->handshake) {
                             $tmp = str_replace("\r", '', $buffer);
                             if (strpos($tmp, "\n\n") === false ) {
@@ -325,7 +325,7 @@ abstract class Server {
      * @param  \socket_ressource &$socket User socket
      */
     protected function connect(&$socket) {
-        $id = md5((string)$socket);
+        $id = md5((string)spl_object_id($socket));
         $user = new User($id, $socket);
         $this->users[$id] = $user;
         $this->sockets[$user->id] = $socket;
@@ -339,7 +339,7 @@ abstract class Server {
      * @param  integer  $sockErrNo  Error code, present only on error
      */
     protected function disconnect(&$socket, $triggerClosed = true, $sockErrNo = null) {
-        $id = md5((string)$socket);
+        $id = md5((string)spl_object_id($socket));
         $disconnectedUser = $this->users[$id];
 
         if ($disconnectedUser !== null) {
