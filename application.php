@@ -74,4 +74,9 @@ function getOptions(&$args){
     || define('APP', 'frontend');
     defined('ENV')
     || define('ENV', 'dev');
+    if(strpos(APP, '/')){
+        $info = explode('/', APP);
+        define('APP_NAME', $info[0]);
+        define('APP_MODULE', $info[1]);
+    }
 }
