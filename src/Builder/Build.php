@@ -4,9 +4,10 @@ namespace Phalcon\Builder;
 use Phalcon\Tools\Cli;
 class Build extends \Phalcon\DI\Injectable
 {
-    public function __construct($controller, $action){        
+    public function __construct($controller, $action){     
         $this->rollup = $this->config->application->rootDir.'/node_modules/rollup/dist/bin/rollup';
-        $this->uglify = $this->config->application->rootDir.'/node_modules/uglify-es/bin/uglifyjs';
+        $this->importMap = $this->config->application->rootDir.'/node_modules/@rollup/plugin-alias/dist/cjs/index.js';
+        $this->uglify = $this->config->application->rootDir.'/node_modules/uglify-js/bin/uglifyjs';
         $this->basePath = $this->config->application->publicDir.'js/'.(defined('MODULE')?'modules/':'');
         $this->ext = (defined('MODULE')?'m':'').'js';
         $this->format = defined('MODULE')?'es':'iife';        
@@ -23,23 +24,19 @@ class Build extends \Phalcon\DI\Injectable
                 }
             }
         } else {
-            foreach(glob($this->config->application->controllersDir.'*Controller.php') as $controller){
-                $controller = basename($controller, '.php');
-                foreach($this->getActions($controller) as $action){
-                    $this->run($controller, $action);
-                }
+            foreach($this->globRecursive($this->config->application->publicDir.'main.'.$this->ext) as $mainPath){
+                $this->run($mainPath);
             }
         } 
     }
 
-    public function getActions($class){
-        $result = [];
-        foreach(get_class_methods($class) as $fn){
-            if(strpos($fn, 'Action') !== false){
-                $result[] = $fn;
-            }
+    public function globRecursive($pattern, $flags = 0){
+        $files = glob($pattern, $flags);
+        foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
+        {
+            $files = array_merge($files, $this->globRecursive($dir.'/'.basename($pattern), $flags));
         }
-        return $result;
+        return $files;
     }
 
     private function exec($cmd){
@@ -51,24 +48,21 @@ class Build extends \Phalcon\DI\Injectable
         }
     }
 
-    public function run($controller, $action){      
-        $action = str_replace('Action', '', $action);
-        if($action === 'index'){
-            $action = '';
-        } else {
-            $action .= '/';
-        }
-        $controller = lcfirst(str_replace('Controller', '', $controller));
-        $main = $this->basePath.$controller.'/'.$action.'main.'.$this->ext;
-        $build = $this->basePath.$controller.'/'.$action.'build.'.$this->ext;
-        if(!file_exists($main)){
-            return false;
-        }
-        Cli::success($controller.' : '.(($action === '') ? 'index' : trim($action, '/')), true);
+    public function run($main){      
+        $build = substr($main, 0, strrpos($main, '/')+1).'build.'.$this->ext;
         if(file_exists($build)){
             exec('rm -f '.$build);
+        }        
+        $cmd = $this->rollup.' '.$main.' --file '.$build.' --format '.$this->format;
+        if(file_exists($this->config->application->rootDir.'public/importmap.json')){
+            $maps = json_decode(file_get_contents($this->config->application->rootDir.'public/importmap.json'), true);
+            $entries = '';
+            foreach($maps['imports'] as $name => $path){
+                $entries .= '{find:"'.$name.'", replacement:"'.$this->config->application->rootDir.'public/'.APP_NAME.$path.'"},';
+            }
+            $cmd .= ' --plugin \''.$this->importMap.'={entries:['.trim($entries, ',').']}'.'\'';
         }
-        $result = $this->exec($this->rollup.' '.$main.' --file '.$build.' --format '.$this->format);
+        $result = $this->exec($cmd);
         if($result === false){
             Cli::error('rollup command failed');
         }
