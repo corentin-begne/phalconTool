@@ -58,7 +58,7 @@ class Build extends \Phalcon\DI\Injectable
             $maps = json_decode(file_get_contents($this->config->application->rootDir.'public/importmap.json'), true);
             $entries = '';
             foreach($maps['imports'] as $name => $path){
-                $entries .= '{find:"'.$name.'", replacement:"'.$this->config->application->rootDir.'public/'.APP_NAME.$path.'"},';
+                $entries .= '{find:"/^'.$name.'$/", replacement:"'.$this->config->application->rootDir.'public/'.APP_NAME.$path.'"},';
             }
             $cmd .= ' --plugin \''.$this->importMap.'={entries:['.trim($entries, ',').']}'.'\'';
         }
