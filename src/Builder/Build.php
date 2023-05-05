@@ -59,7 +59,7 @@ class Build extends \Phalcon\DI\Injectable
             $entries = '';
             foreach($maps['imports'] as $name => $path){
                 $exp = str_contains($name, '/') ? '/^'.str_replace('/', '\/', $name).'/' : '/^'.$name.'$/';
-                $entries .= '{find:'.$exp.', replacement:"'.$this->config->application->rootDir.'public/'.APP_NAME.$path.'"},';
+                $entries .= '{find:'.$exp.', replacement:"'.$this->config->application->rootDir.'public/'.(defined('APP_NAME')?APP_NAME:'').$path.'"},';
             }
             $cmd .= ' --plugin \''.$this->importMap.'={entries:['.trim($entries, ',').']}'.'\'';
         }
