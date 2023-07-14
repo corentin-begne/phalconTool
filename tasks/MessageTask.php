@@ -1,11 +1,24 @@
 <?
-class MessageTask extends \Phalcon\CLI\Task
+use Phalcon\Tools\Cli,
+\Phalcon\CLI\Task;
+/**
+ * Task Managing translations import / export
+ */
+class MessageTask extends Task
 {
-    public function mainAction() {
+    /**
+     * Main task action (not implemented)
+     */
+    public function mainAction():void {
 
     }
 
-    public function importAction() {
+    /**
+     * Import translations files into database
+     * 
+     * @return void
+     */
+    public function importAction():void {
         $files = glob($this->config->application->messagesDir.'*.php');
         $this->di->get('db')->query('delete from LangMessage');
         foreach($files as $file){
@@ -23,7 +36,12 @@ class MessageTask extends \Phalcon\CLI\Task
         }
     }
 
-    public function exportAction() {
+    /**
+     * Export translations from database to files
+     * 
+     * @return void
+     */
+    public function exportAction():void {
         $template = '<?
 $messages = [
 ';
@@ -33,12 +51,6 @@ $messages = [
         if($path === ''){
             Cli::error('messagesDir path is empty');
         }
-       /* if(!defined('SAVE')){
-            exec('rm -rf '.$path.'*.php');
-        } else {
-            exec('mkdir '.$path.$tmp);
-            exec('mv '.$path.'*.php '.$path.$tmp);
-        }*/
         $result = [];
         $messages = LangMessage::find();
         foreach($messages as $message){
@@ -46,7 +58,7 @@ $messages = [
             if(!isset($result[$lang])){
                 $result[$lang] = $template;
             }
-            $result[$lang] .= str_replace(['[name]', '[value]'],[$message->lame_name, str_replace('\'', "\'", $message->lame_value)/*htmlentities($message->lame_value, ENT_QUOTES)*/],$part);
+            $result[$lang] .= str_replace(['[name]', '[value]'],[$message->lame_name, str_replace('\'', "\'", $message->lame_value)],$part);
         }
         foreach($result as $lang => $content){
             $content = $content.'];';

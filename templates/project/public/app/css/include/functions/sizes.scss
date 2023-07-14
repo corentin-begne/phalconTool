@@ -1,0 +1,20 @@
+/*
+# Sizes
+
+```
+<div class="black apax-regular small inline-block w2">small</div>
+<div class="black apax-regular medium inline-block w2">medium</div>
+<div class="black apax-regular big inline-block w2">big</div>
+```
+*/
+@mixin size($name, $size){
+	.#{$name}{		
+		font-size: #{$size};
+	}
+}
+
+@mixin sizes(){	
+	@each $name, $size in $sizes{
+		@include size(#{$name}, $size);
+	}
+}

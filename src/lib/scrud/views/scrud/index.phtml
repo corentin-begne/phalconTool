@@ -7,7 +7,7 @@
         <? foreach($list as $model): ?>
             <?
                 if(strpos($model, '_') !== false){
-                    $name = Phalcon\Text::camelize($model);
+                    $name = $camelize($model);
                 } else {
                     $name = ucfirst($model);
                 }

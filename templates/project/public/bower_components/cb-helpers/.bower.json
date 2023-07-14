@@ -17,13 +17,13 @@
     "jsdoc"
   ],
   "dependencies": {
-    "jQuery": "master"
+    "jQuery": "main"
   },
-  "_release": "d24aeb0e4a",
+  "_release": "3495cd8dbf",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "d24aeb0e4aba5fb7f82dc3a57c0867b3c918fa50"
+    "commit": "3495cd8dbfc74d4a4d7bb3549f7387c9cdc9b9b6"
   },
   "_source": "https://github.com/corentin-begne/jsHelpers.git",
   "_target": "*",

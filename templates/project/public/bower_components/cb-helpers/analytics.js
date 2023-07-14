@@ -83,4 +83,15 @@ var AnalyticsHelper;
         this.setAccount();
     };
 
+    /**
+     * @method AnalyticsHelper#remove
+     * @description Remove the ga tracker
+     */
+    AnalyticsHelper.prototype.remove = function() {
+        if(!this.isAvailable){
+            return false;
+        }
+        ga("remove");
+    };
+
 })();

@@ -1,14 +1,26 @@
 <?
 use Phalcon\Tools\Cli,
 Phalcon\Builder\Migration,
-Phalcon\Text as Utils;
-class MigrationTask extends \Phalcon\CLI\Task
+\Phalcon\CLI\Task;
+/**
+ * Task managing database migrations
+ */
+class MigrationTask extends Task
 {
-    public function mainAction() {
+
+    /**
+     * Main task action (not implemented)
+     */
+    public function mainAction():void{
 
     }
 
-    public function runAction(){
+    /**
+     * Execute migrations not already done based on env_version
+     * 
+     * @return void
+     */
+    public function runAction():void{
         $currentVersion = Migration::getCurrentVersion();
         $migrations = glob($this->config->application->migrationsDir.'*.php');
         $version = count($migrations);
@@ -24,11 +36,23 @@ class MigrationTask extends \Phalcon\CLI\Task
         }
     }
 
-    public function generateAction(){
+    /**
+     * Generate a migration checking difference between models and database
+     * 
+     * @return void
+     */
+    public function generateAction():void{
         new Migration();
     }
 
-    private function executeQueries($data){
+    /**
+     * Execute queries from migration data
+     * 
+     * @param array $data Migration data
+     * 
+     * @return void
+     */
+    private function executeQueries(array $data):void{
         if(isset($data['tables'])){
             foreach($data['tables'] as $action => $tables){
                 foreach($tables as $table){
@@ -148,6 +172,9 @@ class MigrationTask extends \Phalcon\CLI\Task
                 foreach($tables as $table => &$fields){
                     foreach($fields as $name => &$field){
                         try{
+                            if(empty($field)){
+                                $field = null;
+                            }
                             $query = $this->createAlter($table, $action, $name, $field);
                             $this->db->execute($query);
                             Cli::success($query, true);
@@ -160,7 +187,17 @@ class MigrationTask extends \Phalcon\CLI\Task
         }
     }
 
-    private function createAlter($table, $action, $name, $field){
+    /**
+     * Generate alter query according to action
+     * 
+     * @param string $table Table name
+     * @param string $action Alter action
+     * @param string $name Field name
+     * @param null|array $field=null Field informations, null for drop
+     * 
+     * @return string Alter query
+     */
+    private function createAlter(string $table, string $action, string $name, null|array $field=null):string{
         if($action === 'drop'){
             return 'ALTER TABLE '.$table.' DROP COLUMN '.$name;
         } else {
@@ -168,15 +205,30 @@ class MigrationTask extends \Phalcon\CLI\Task
         }
     }
 
-    private function getFieldQuery($name, $field){
-        return $name.' '.$field['type'].
+    /**
+     * Create part of alter table corresponding to the field information
+     * 
+     * @param string $name Field name
+     * @param array $field Field informations
+     * 
+     * @return string Part of the alter table
+     */
+    private function getFieldQuery(string $name, array $field):string{
+        return $name.' '.$field['mtype'].
             (isset($field['length']) ? ' ('.$field['length'].')' : '').
-            ($field['isNull'] ? ' NULL' : ' NOT NULL').
+            ($field['nullable'] ? ' NULL' : ' NOT NULL').
             (isset($field['default']) ? ' default '.$field['default'] : '').
             (isset($field['extra']) ? ' '.$field['extra'] : '');
     }
 
-    public function rollbackAction($version=null){
+    /**
+     * Rollback migration to a specific version or the previous based on env_version
+     * 
+     * @param null|int $version=null Version to roolback to, null to get the previous
+     * 
+     * @return void
+     */
+    public function rollbackAction(null|int $version=null):void{
         $currentVersion = Migration::getCurrentVersion();
         $migrations = glob($this->config->application->migrationsDir.'*.php');
         if(!isset($version)){

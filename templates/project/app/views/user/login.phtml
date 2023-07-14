@@ -1,0 +1,35 @@
+<fieldset>
+    <legend>
+        <?=$t->_('authentication')?>
+    </legend>
+    <form class='action' action-data='<?=json_encode([
+        'type' => 'submit',
+        'preventDefault' => true,
+        'name' => 'connect'
+    ])?>'>    
+        <div class='table'>
+            <? foreach([
+                'email',
+                'password'
+            ] as $name): ?>
+                <div>
+                    <div class='text-right'>
+                        <?=$form->label('us_'.$name)?> :&nbsp;
+                    </div>
+                    <div>
+                        <?=$form->render('us_'.$name)?>
+                    </div>
+                </div>
+            <? endforeach; ?>            
+        </div>
+        <div class='text-center'>
+            <div class='error none'>
+                <?=$t->_('error_login')?>
+                <br><br>
+            </div>
+            <button type='submit' rowspan="2">
+                <?=$t->_('login')?>
+            </button>
+        </div>        
+    </form>
+</fieldset>

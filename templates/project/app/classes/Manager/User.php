@@ -1,6 +1,8 @@
 <?
 namespace Manager;
-use Phalcon\DI;
+
+use Phalcon\Di\Di;
+
 /**
  * Manage User connection and data
  */
@@ -8,67 +10,72 @@ class User{
 
     /**
      * Disconnect user from application and destroy session
+     * 
+     * @return void
      */
-    public static function disconnect(){
-        DI::getDefault()->getSession()->remove('user');
-        DI::getDefault()->getSession()->remove('permissions');
-        DI::getDefault()->getSession()->destroy();
+    public static function disconnect():void{
+        Di::getDefault()->get('session')->remove('user');
+        Di::getDefault()->get('session')->remove('permissions');
+        Di::getDefault()->get('session')->destroy();
     }
 
     /**
      * Connect an user to the application
-     * @param  \User $user User model instance
+     * 
+     * @param \User $user User model instance
+     * 
+     * @return void
      */
-    public static function connect($user){
-        DI::getDefault()->getSession()->set('user', $user->toArray());
-        $ids = [];
-        foreach(\UserPermission::findByUspeUserId($user['us_id']) as $permission){
-            $ids[] = (int)$permission->uspe_permission_id;
-        }
-        DI::getDefault()->getSession()->set('permissions', $ids);
+    public static function connect($user):void{
+        Di::getDefault()->get('session')->set('user', $user);
     }
 
     /**
      * Get user data
-     * @param  string $name Data name
-     * @return \any       Return the wanted data or all if null
+     * 
+     * @param null|string $name=null Data name
+     * @return mixed Return the wanted data or all if null
      */
-    public static function get($name=null){
+    public static function get(null|string $name=null):mixed{
         if(!isset($name)){
-            return DI::getDefault()->getSession()->get('user');
+            return Di::getDefault()->get('session')->get('user');
         } else {
-            return DI::getDefault()->getSession()->get('user')[$name];
+            return Di::getDefault()->get('session')->get('user')[$name];
         }
     }
 
     /**
      * Get all user permissions
-     * @return array User permission ids
+     * 
+     * @return int User permission id
      */
-    public static function getPermissions(){
-        $permissions = DI::getDefault()->getSession()->get('permissions');
-        if(!isset($permissions)){
-            return [\PermissionType::findFirstByPetyName('anonymous')->pety_id];
-        }else {
-            return $permissions;
+    public static function getPermission():int{
+        if(self::isAuthenticated()){
+            $user = Di::getDefault()->get('session')->get('user');
+            return (int)$user['us_permission_id'];
+        } else {
+            return (int)\PermissionType::findFirstByPetyName('anonymous')->pety_id;
         }
     }
 
     /**
      * Check if user have a permission
-     * @param  int    $id Permission id
-     * @return boolean     Result of the check
+     * 
+     * @param int $id Permission id
+     * 
+     * @return bool Check result
      */
-    public static function havePermission(int $id){
-        return in_array($id, self::getPermissions());
+    public static function havePermission(int $id):bool{
+        return self::getPermission() === $id;
     }
 
     /**
      * Check if the user is connected to the application
-     * @return boolean Result of the check
+     * 
+     * @return bool Result of the check
      */
-    public static function isAuthenticated(){
-        return DI::getDefault()->getSession()->get('user') !== null;
+    public static function isAuthenticated():bool{
+        return Di::getDefault()->get('session')->get('user') !== null;
     }
 
 }

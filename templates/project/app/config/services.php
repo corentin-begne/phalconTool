@@ -1,17 +1,16 @@
 <?php
 
-use Phalcon\DI\FactoryDefault;
-use Phalcon\Mvc\View;
-use Phalcon\Url;
-use Phalcon\Db\Adapter\Pdo\Mysql;
-use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
-use Phalcon\Session\Manager;
-use Phalcon\Translate\InterpolatorFactory;
-use Phalcon\Translate\TranslateFactory;
-use Phalcon\Session\Adapter\Stream;
-use Phalcon\Mvc\Router;
-use Phalcon\Events\Manager as EventsManager;
-use Phalcon\Mvc\Dispatcher;
+use Phalcon\DI\FactoryDefault,
+Phalcon\Mvc\View,
+Phalcon\Mvc\Url,
+Phalcon\Db\Adapter\Pdo\Mysql,
+Phalcon\Session\Manager,
+Phalcon\Translate\InterpolatorFactory,
+Phalcon\Translate\TranslateFactory,
+Phalcon\Session\Adapter\Stream,
+Phalcon\Mvc\Router,
+Phalcon\Events\Manager as EventsManager,
+Phalcon\Mvc\Dispatcher;
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -22,12 +21,23 @@ $di->set('loader', $loader);
 /**
  * The URL component is used to generate all kind of urls in the application
  */
-$di->set('url', function () use ($config) {
+$di->set('url', function () use ($config, $di) {
     $url = new Url();
     $url->setBaseUri($config->application->baseUri);
-
+    $url->setStaticBaseUri($di->getPrefix().'/'.APP.'/');
     return $url;
 }, true);
+
+$di->set('prefix', function() use ($config){
+    if(ENV === 'prod'){
+        foreach($config[ENV]->cdns as $domain => $cdn){
+            if(stripos($_SERVER['SERVER_NAME'], '.'.$domain) !== false){
+                return $cdn;
+            }
+        }
+    } 
+    return '';
+});
 
 $di->set('router', function () use ($config) {
 
@@ -86,13 +96,6 @@ $di->set('db', function () use ($config) {
         'dbname' => $config[ENV]->database->dbname,
         'charset' => $config[ENV]->database->charset
     ]);
-});
-
-/**
- * If the configuration specify the use of metadata adapter use it or use memory otherwise
- */
-$di->set('modelsMetadata', function () {
-    return new MetaDataAdapter();
 });
 
 /**

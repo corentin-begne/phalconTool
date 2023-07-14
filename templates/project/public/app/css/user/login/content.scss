@@ -1,0 +1,30 @@
+@include body();
+body{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    form{
+        margin:0;
+    }
+    .table{
+        display: table;
+        input{
+            width:200px;
+            height: 30px;
+        }
+        & > *{
+            display: table-row;            
+            & > *{
+                display: table-cell;
+                padding-bottom:10px;
+            }
+        }
+    }
+    .error{
+        @extend .red;
+    }
+    button{
+        cursor: pointer;
+        padding: 5px;
+    }
+}

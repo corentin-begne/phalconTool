@@ -1,7 +1,9 @@
 #!/usr/bin/env php
 <?php
 
-use Phalcon\CLI\Console as ConsoleApp;
+use Phalcon\CLI\Console as ConsoleApp,
+Phalcon\CLI\Console\Exception;
+
 error_reporting(E_ALL);
 define('VERSION', '1.0.0');
 
@@ -54,7 +56,7 @@ try {
 // handle incoming arguments
     $console->handle($arguments);
 }
-catch (\Phalcon\Exception $e) {
+catch (Exception $e) {
     Phalcon\Tools\Cli::error($e->getMessage());
 }
 

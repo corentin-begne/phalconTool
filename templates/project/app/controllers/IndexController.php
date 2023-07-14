@@ -1,12 +1,14 @@
 <?
-use Manager\User as UserManager;
-
+/**
+ * Index controller
+ */
 class IndexController extends Phalcon\ControllerBase{
 
-    public function indexAction(){     
-        if(!UserManager::isAuthenticated()){   
-            $this->response->redirect('user/login');
-            return false;
-        }
+    /**
+     * Main controller action
+     * 
+     * @return void
+     */
+    public function indexAction():void{     
     }
 }

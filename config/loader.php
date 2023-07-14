@@ -1,5 +1,6 @@
 <?
-use Phalcon\Loader;
+use Phalcon\Autoload\Loader;
+
 $loader = new Loader();
 $includes = [
     ROOT_PATH.'/tasks'
@@ -7,12 +8,12 @@ $includes = [
 if(file_exists(APPLICATION_PATH)){
     array_push($includes, APPLICATION_PATH.'/tasks', APPLICATION_PATH.'/models',  APPLICATION_PATH.'/classes', APPLICATION_PATH.'/migrations');
 }
-$loader->registerDirs($includes)
-->registerNamespaces([
+$loader->setDirectories($includes)
+->setNamespaces([
     'Phalcon\Builder' => ROOT_PATH.'/src/Builder',
     'Phalcon\Websocket' => ROOT_PATH.'/src/Websocket'
 ])
-->registerClasses([
+->setClasses([
     'Phalcon\ControllerBase' => ROOT_PATH.'/src/ControllerBase.php',
     'Phalcon\Tools\Cli' => ROOT_PATH.'/src/Tools/Cli.php',
     'Phalcon\Library' => ROOT_PATH.'/src/Library.php',

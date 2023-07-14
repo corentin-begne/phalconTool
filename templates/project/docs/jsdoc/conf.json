@@ -26,6 +26,7 @@
 		}
 	},
 	"source": {
+		"includePattern": ".+\\.(m?js(doc|x)?)$",
 		"include": [
 		  "/var/www/sample/public/frontend/js"
 		]

@@ -1,11 +1,13 @@
 <?
-class [name] extends Phalcon\ModelBase
+use Phalcon\ModelBase;
+
+class [name] extends ModelBase
 {
     [fields]
     /**
      * Initialize method for model.
      */
-    public function initialize()
+    public function initialize():void
     {
 [constraints]
         $this->setSource('[realName]');
@@ -18,7 +20,7 @@ class [name] extends Phalcon\ModelBase
      *
      * @return array
      */
-    public function columnMap()
+    public function columnMap():array
     {
         return array(
             [maps]

@@ -1,14 +1,24 @@
 <?
 namespace Phalcon\Builder;
-use Phalcon\Tools\Cli;
 
-class Js extends \Phalcon\DI\Injectable
+use Phalcon\Tools\Cli,
+Phalcon\DI\Injectable;
+
+/**
+ * Manage Js templates generation
+ */
+class Js extends Injectable
 {
-
-    public function __construct($controller, $actions){
-        $target = $this->config->application->publicDir.'js/'.(!defined('MODULE')?'':'modules/');
-        $basePath = TEMPLATE_PATH.'/js/'.(!defined('MODULE')?'':'modules/');
-        $ext = !defined('MODULE')?'js':'mjs';
+    /**
+     * Generate template
+     * 
+     * @param string $controller Controller name
+     * @param null|string $actions='' Actions list separated by a comma or null for index
+     */
+    public function __construct(string $controller, null|string $actions=''){
+        $target = $this->config->application->publicDir.'js/modules/';
+        $basePath = TEMPLATE_PATH.'/js/modules/';
+        $ext = 'mjs';
         $actions = explode(',', $actions);
         if($controller === 'helper'){
             $source = $basePath.'helper.'.$ext;
@@ -47,10 +57,19 @@ class Js extends \Phalcon\DI\Injectable
         }
     }
 
-    private function create($source, $target, $params){
+    /**
+     * Create template files
+     * 
+     * @param string $source Source template file path
+     * @param string $target Target file path
+     * @param array $params Template params
+     * 
+     * @return void
+     */
+    private function create(string $source, string $target, array $params):void{
         $content = file_get_contents($source);
         $content = str_replace(['[name]', '[className]', '[path]', '[app]'], $params, $content);
-        if(defined('MODULE') && substr_count($params[2], '/') === 2){
+        if(substr_count($params[2], '/') === 2){
             $content = str_replace('../../../../', '../../../../../', $content);
         }
         $target .= $params[2];

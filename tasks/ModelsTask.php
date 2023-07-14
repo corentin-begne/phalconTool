@@ -1,36 +1,25 @@
 <?
 use Phalcon\Tools\Cli,
-Phalcon\Builder\Model;
-class ModelsTask extends \Phalcon\CLI\Task
+Phalcon\Builder\Model,
+\Phalcon\CLI\Task;
+/**
+ * Task managing models
+ */
+class ModelsTask extends Task
 {
-    public function mainAction($params) {
-
-    }
-
-    public function addAction($params){
-
-    }
-
-    public function modifyAction($params){
-
-    }
-
-    public function dropAction($params){
-
-    }
-
-    public function importAction($params){
-
-    }
-
-    public function exportAction($params){
+    /**
+     * Main task action (not implemented)
+     */
+    public function mainAction():void {
 
     }
 
     /**
-     * generate all models
+     * Generate all models from database
+     * 
+     * @return void
      */
-    public function generateAction() {
+    public function generateAction():void{
         exec('rm -rf '.$this->config->application->modelsDir.'*');
         if($this->config->application->modelsDir === ''){
             Cli::error('modelsDir path is empty');
@@ -38,7 +27,7 @@ class ModelsTask extends \Phalcon\CLI\Task
         $constraints = [];
         $tables = $this->db->listTables($this->config[ENV]->database->dbname);
         if(count($tables) === 0){ // no table in bdd, load the default
-            $query = file_get_contents(TEMPLATE_PATH.'/project/defaultModels.sql');
+            $query = file_get_contents($this->config->application->rootDir.'defaultModels.sql');
             $this->db->execute($query);
             $tables = $this->db->listTables($this->config[ENV]->database->dbname);
         }

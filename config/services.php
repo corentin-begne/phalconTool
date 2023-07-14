@@ -1,6 +1,8 @@
 <?
 use Phalcon\DI\FactoryDefault\CLI as CliDI,
+Phalcon\Tools\Cli,
 Phalcon\Db\Adapter\Pdo\Mysql;
+
 //Using the CLI factory default services container
 // Load the configuration file (if any)
 $di = new CliDI();
@@ -23,6 +25,6 @@ if(is_readable(APPLICATION_PATH . '/config/config.php')) {
             });
         }
     } catch(\PDOException $e) {
-        Phalcon\Tools\Cli::error($e->getMessage());
+        Cli::error($e->getMessage());
     }    
 }

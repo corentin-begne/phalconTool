@@ -69,7 +69,7 @@ var SearchScrudManager;
             }, refresh);
 
             function refresh(){
-                that.getPage(Number($(".pagination .active").text()));
+                window.location.reload();
             }
         }
     };

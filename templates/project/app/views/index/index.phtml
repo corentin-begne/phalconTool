@@ -1,10 +1,11 @@
 <div class='action' action-data='<?=json_encode([
-             'class'=>'manager',
              'name'=>'test',
              'data'=>[
              	['title','hello world']
              ]
          ])?>'>hello world</div>
 <?=$this->partial('/data', [
-    'data'=>\Manager\User::get()
+    'data'=>[
+        'nb' => 3
+    ]
 ])?>

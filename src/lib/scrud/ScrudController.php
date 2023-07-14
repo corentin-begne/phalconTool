@@ -1,34 +1,58 @@
 <?
-use Phalcon\Text as Utils,
-Phalcon\Tag;
+use Phalcon\Support\Helper\Str\Camelize,
+Phalcon\Support\Helper\Str\Uncamelize,
+Phalcon\Tag,
+Phalcon\Mvc\Model\Resultset,
+Phalcon\Mvc\View,
+Phalcon\ControllerBase,
+Phalcon\Assets\Collection;
+
 /**
  * Manage tables index, model search, create and read
  */
-class ScrudController extends Phalcon\ControllerBase{
+class ScrudController extends ControllerBase{
     
     /**
      * Current request models
      * @var array
      */
     public $models = [];
+    /**
+     * Limit of result by page in listing
+     * @var int
+     */
+    public $limit = 20;
+    /**
+     * Object to camelize strings
+     * @var \Phalcon\Support\Helper\Str\Camelize
+     */
+    private Camelize $camelize;
+    /**
+     * Object to uncamelize strings
+     * @var Phalcon\Support\Helper\Str\Uncamelize
+     */
+    private Uncamelize $uncamelize;
 
     /**
      * Check url models conformity and include/configure all dependencies
-     * @return boolean False on index action to have another process
+     * 
+     * @return void
      */
-    public function initialize()
+    public function initialize():void
     {               
+        $this->camelize = new Camelize();
+        $this->uncamelize = new Uncamelize();
         if($this->dispatcher->getControllerName() === 'scrud'){
             $this->view->setViewsDir($this->config->application->rootDir.'vendor/v-cult/phalcon/src/lib/scrud/views/');
             $this->view->setLayout('scrud');
         }
         if($this->router->getActionName() === 'index'){
             $this->indexAction();
-            return false;
+            return;
         }
         $cleanController = str_replace('custom_', '', $this->dispatcher->getControllerName());
         $currentPath = ($this->dispatcher->getActionName() === 'index') ? $cleanController : $cleanController.'/'.$this->dispatcher->getActionName(); 
-        $this->assets->set('libjs', new Phalcon\Assets\Collection());
+        $this->assets->set('libjs', new Collection());
         $this->assets->collection('libjs')
         ->setPrefix(($this->config->application->baseUri === '/' ? '' : '..' ).'/lib/'.$this->dispatcher->getControllerName().'/public/js/')
         ->addJs('lib/jquery.min.js')  
@@ -40,11 +64,10 @@ class ScrudController extends Phalcon\ControllerBase{
         ->addJs('helper/js.js')
         ->addJs($currentPath.'/manager.js')
         ->addJs($currentPath.'/main.js');              
-        $this->models = [];
-        $this->limit = 20;
+        
         $models = explode(' ', $this->dispatcher->getParam('model'));
         for($i=0; $i<count($models); $i++){
-            $models[$i] = Utils::camelize(Utils::uncamelize($models[$i]));
+            $models[$i] = ($this->camelize)(($this->uncamelize)($models[$i]));
             $model = $models[$i];            
             if(!class_exists($model)){
                 die($this->flash->error("Model $model does not exists"));
@@ -60,12 +83,16 @@ class ScrudController extends Phalcon\ControllerBase{
         $this->view->manager = ucfirst($this->router->getActionName()).ucfirst($cleanController).'Manager';
         $this->view->models = $this->models;
         $this->view->actionModel = $this->dispatcher->getParam('model');
+        $this->view->uncamelize = $this->uncamelize;
+        $this->view->camelize = $this->camelize;
     }
 
     /**
      * List all database tables by alphabetical order
+     * 
+     * @return void
      */
-    public function indexAction(){
+    public function indexAction():void{
         $this->assets->set('libjs', new Phalcon\Assets\Collection());
         $models = [];
         foreach($this->db->listTables($this->config[ENV]->database->dbname) as $model){
@@ -80,8 +107,10 @@ class ScrudController extends Phalcon\ControllerBase{
 
     /**
      * Get current selected models items
+     * 
+     * @return void
      */
-    public function listAction(){
+    public function listAction():void{
         $fields = $this->request->get('fields');
         $filters = $this->request->get('filters');
         $currentPage = $this->request->get('currentPage');
@@ -121,7 +150,7 @@ class ScrudController extends Phalcon\ControllerBase{
         $params = [
             'models' => $model,
             'columns' => $fields,
-            'hydration' => \Phalcon\Mvc\Model\Resultset::TYPE_RESULT_FULL,
+            'hydration' => Resultset::TYPE_RESULT_FULL,
             'offset' => ((int)$currentPage-1)*$this->limit,
             'limit' => $this->limit,
             'conditions' => $conditions,
@@ -132,18 +161,19 @@ class ScrudController extends Phalcon\ControllerBase{
         unset($params['offset']);
         $params['columns'] = 'count(*) as nb';
         $this->view->nbPage = ceil((int)$this->getRows($params)->toArray()[0]['nb']/$this->limit);
-        $this->view->setRenderLevel(Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
+        $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
         $this->view->primaryKey = $primaryKey;
-        $this->view->includes = $fields;
-        
+        $this->view->includes = $fields;               
     }
 
     /**
      * Get all rows of the selected models
-     * @param  array &$params Query params
-     * @return array          List of model instances
+     * 
+     * @param array &$params Query params
+     * 
+     * @return mixed List of model instances
      */
-    private function getRows(&$params){
+    private function getRows(array &$params):mixed{
         $model = $this->models[0];
         $primaryKey = $model::getMapped($model::getPrimaryKey());
         $builder = new Phalcon\Mvc\Model\Query\Builder($params);
@@ -156,8 +186,10 @@ class ScrudController extends Phalcon\ControllerBase{
 
     /**
      * * Display the search interface
+     * 
+     * @return void
      */
-    public function searchAction(){
+    public function searchAction():void{
         $this->assets->collection('libjs')
         ->addJs('helper/autocompletion.js')
         ->addJs('helper/pagination.js')
@@ -208,8 +240,10 @@ class ScrudController extends Phalcon\ControllerBase{
 
     /**
      * Display the read interface
+     * 
+     * @return void
      */
-    public function readAction(){
+    public function readAction():void{
         $refModel = $this->models[0];
         $primaryKey = $refModel::getPrimaryKey();
         $refValue = $this->request->get($primaryKey);
@@ -223,11 +257,10 @@ class ScrudController extends Phalcon\ControllerBase{
             } else {
                 $field = $refModel::getReferencedField($model);
             }    
-            $fn = 'findFirstBy'.Utils::camelize($field);
+            $fn = 'findFirstBy'.($this->camelize)($field);
             $row = $model::$fn($refValue);
             if($row === null){
                 continue;
-               // die($this->flash->error("$primaryKey $refValue not Found !"));
             }
             foreach($row->toArray() as $name => $value){
                 Tag::setDefault($name, $value);
@@ -239,6 +272,8 @@ class ScrudController extends Phalcon\ControllerBase{
 
     /**
      * Display the create interface
+     * 
+     * @return void
      */
     public function createAction(){
     }

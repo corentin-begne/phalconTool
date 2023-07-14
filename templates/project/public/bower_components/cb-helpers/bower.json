@@ -17,6 +17,6 @@
     "jsdoc"
   ],
   "dependencies": {
-    "jQuery": "master"
+    "jQuery": "main"
   }
 }

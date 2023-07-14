@@ -82,22 +82,22 @@ Some global usefull classes
 </table>
 */
 @mixin body(){
+    @include fonts;
+    @include colors;
+    @include sizes;
     @include loader();
 	html, body {
     	@extend .max-width;
         @extend .max-height;
+        @extend .roboto-regular;
+        @extend .medium;
+        @extend .black;
         margin: 0;
         padding: 0;
-        overflow: auto;      
-        .bg-fade{
-        	@include transition(background-color);
-        }        
-        .rounded{
-        	@include radius(3px);
-        }
-        .hide{
-        	display: none;
-        }
+        overflow: auto;   
+        &.hover{
+            cursor:pointer;
+        }   
         @each $direction in left, right, center{
             .text-#{$direction}{      
                 text-align:$direction;
@@ -128,9 +128,12 @@ Some global usefull classes
         .margin-auto{
             margin:0 auto;
         }
-        .clearfix:before, .clearfix:after{
+        .clearfix:before{
             display: table;
             content: " ";
+        }
+        .clearfix:after{
+            @extend .clearfix;
         }
     }
 }

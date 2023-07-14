@@ -1,5 +1,5 @@
 <div class='title'>
-    Recherche <?=implode('&nbsp;', $models)?> <img id="create" class='action' title="Créer" src="/lib/scrud/public/img/form/add.png" type='blank' action-data='<?=json_encode([
+    Search <?=implode('&nbsp;', $models)?> <img id="create" class='action' title="Create" src="/lib/scrud/public/img/form/add.png" type='blank' action-data='<?=json_encode([
         'class'=>$manager,
         'fn'=>'redirect',
         'data'=>['path'=>$this->dispatcher->getControllerName().'/'.$actionModel.'/create'] 
@@ -27,7 +27,7 @@
         ])?>'>
         </div>
         <div class='sortContainer'>
-            <label for='fieldSort'>Trier par</label>
+            <label for='fieldSort'>Sort by</label>
             <?=Phalcon\Tag::selectStatic(['fieldsort', 'id'=>'fieldSort', 'class'=>'action', 'action-data'=>json_encode([
                 'class'=>$manager,
                 'name'=>'changeSort',
@@ -54,22 +54,22 @@
     <table action="<?=$actionModel?>">
         <thead>
             <tr>
-                <th id='deleteAll' title='Supprimer tous les éléments sélectionnés'>
+                <th id='deleteAll' title='Delete all selected elements'>
                     <img src="/lib/scrud/public/img/form/delete.png" class='action' action-data='<?=json_encode([
                         'class'=>$manager,
                         'name'=>'deleteAll'
                     ])?>'/>
-                    <input title='Sélectionner tous les éléments' type='checkbox' class='action' action-data='<?=json_encode([
+                    <input title='Select all elements' type='checkbox' class='action' action-data='<?=json_encode([
                         'class'=>$manager,
                         'name'=>'toggleCheck',
                         'type'=>'change'
                     ])?>' />
                 </th>
                 <? foreach($models as $model): ?>
-                    <? foreach($model::getColumnsMap() as $id => $name): ?>
+                    <? foreach($model::getColumnsMap() as $name => $id): ?>
                         <th id='<?=$id?>' alt='<?=$model?>' title='<?=$model?>'>
                             <?=str_replace(['_id', 'is_'],['', ''],$name)?>
-                            <div title='Supprimer la colonne' class='action remove' action-data='<?=json_encode([
+                            <div title='Delete column' class='action remove' action-data='<?=json_encode([
                                 'class'=>$manager,
                                 'name'=>'removeField'    
                             ])?>'>x</div>

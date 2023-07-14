@@ -1,31 +1,33 @@
 <?
 namespace Phalcon;
-use Phalcon\Forms\Form,
-Phalcon\DI,
-Phalcon\Forms\Element\Email,
-Phalcon\Forms\Element\Text,
-Phalcon\Forms\Element\Password,
-Phalcon\Forms\Element\Select,
-Phalcon\Forms\Element\SelectStatic,
-Phalcon\Forms\Element\Check,
-Phalcon\Forms\Element\TextArea,
-Phalcon\Forms\Element\Hidden,
-Phalcon\Forms\Element\File,
-Phalcon\Forms\Element\Date,
-Phalcon\Text as Utils,
-Phalcon\Forms\Element\Numeric;
+use Phalcon\Forms\Form;
 
+/**
+ * Auto generate form elements based on a model
+ */
 class FormBase extends Form
 {
-    protected $patterns = [
+	/**
+	 * Inputs type patterns
+	 * @var array
+	 */
+    protected array $patterns = [
         'phone'=>['pattern'=>'\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})'],
         'postal_code'=>['pattern'=>'^(([0-8][0-9])|(9[0-5]))[0-9]{3}$'],
         'password'=>[], 
         'email'=>[],
     ];
 
-    public function initialize($entity, $data=[]){
-    	$t = $data['t'];
+	/**
+	 * Generate all elements of the instance model form
+	 * 
+	 * @param mixed $entity Model instance
+	 * @param null|array $data=[] Params to use
+	 * 
+	 * @return void
+	 */
+    public function initialize(mixed $entity, null|array $data=[]):void{
+    	$t = $this->translation;
     	$model = get_class($entity);
         $relations = $model::returnRelations('belongsTo');
         $primary = $model::getMapped($model::getPrimaryKey());
@@ -36,14 +38,15 @@ class FormBase extends Form
         	if($primary === $name && !isset($entity->$name)){
         		continue;
         	}
-        	$option = [
-	            'class'=>$data['class']
-	        ];
-	        if(!$options['isNull']){
-	            $option += ['required'=>''];
+			$option = [];
+			if(isset($data['class'])){
+				$option['class'] = $data['class'];
+			}
+	        if(!$options['nullable']){
+	            $option['required'] = '';
 	        }
 	        $type = 'text';        
-	        switch($options['type']){
+	        switch($options['mtype']){
 	            case 'bigint':
 	            case 'int':
 	                if(isset($options['key']) && $options['key'] === 'MUL'){
@@ -81,9 +84,6 @@ class FormBase extends Form
 	                $type = 'Numeric';
 	                $option += [
 	                    'min'=>0, 
-	               /*     'max'=>((int)str_pad('1', $options['length'], '0')-1),
-	                    'maxlength'=>$options['length'],
-	                    'size'=>$options['length'],*/
 	                    'step'=>'0.01'
 	                ];
 	                break;
@@ -155,7 +155,7 @@ class FormBase extends Form
 	        }
 	        $args = null;
 
-	        $element->setLabel($t->_(str_replace('_id', '', $model::getColumnsMap()[$name]))."&nbsp;:&nbsp;");
+	        $element->setLabel($t->_(str_replace('_id', '', $name)));
 	        $this->add($element);
         }
     }

@@ -38,7 +38,7 @@ class ActionHelper{
         const infos = {
             type:options.type,
             data,
-            url: this.basePath+options.action,
+            url: this.basePath+options.action+(window.PHPSESSID?`?PHPSESSID=${PHPSESSID}`:''),
             dataType:options.dataType
         };        
         if(options.form){

@@ -1,6 +1,8 @@
 <?
 /**
- * Manage Rest API request / response<br>
+ * Manage Rest API request / response
+ * 
+ * @example
  * <u><b>Example :</b></u>
  * ```php
  * self::init();
@@ -18,33 +20,36 @@ class Rest
      * Request post data
      * @var array
      */
-    public static $params=[];
+    public static array $params=[];
     /**
      * Current page number
-     * @var integer
+     * @var int
      */
-    public static $currentPage = 1;
+    public static int $currentPage = 1;
     /**
      * Limit of result by page
-     * @var integer
+     * @var int
      */
-    public static $limit = 20;
+    public static int $limit = 20;
     /**
      * Current count relative to the page and limit ($limit*$currentpage)
-     * @var integer
+     * @var int
      */
-    public static $count = 0;
+    public static int $count = 0;
     /**
      * The total of the request page
-     * @var integer
+     * @var int
      */
-    public static $nbPage = 1;
+    public static int $nbPage = 1;
 
     /**
      * Check the conformity of the request and get the post data
-     * @param  boolean $restrict Allow to disable the server name check restriction
+     * 
+     * @param null|bool $restrict=true Allow to disable the server name check restriction
+     * 
+     * @return void
      */
-    public static function init($restrict=true){
+    public static function init(null|bool $restrict=true):void{
         if($restrict){
             self::checkReferer();
             self::checkRequest();
@@ -68,8 +73,10 @@ class Rest
 
     /**
      * Check if the request is a XMLHttpRequest
+     * 
+     * @return void
      */
-    public static function checkRequest(){
+    public static function checkRequest():void{
         if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || $_SERVER['HTTP_X_REQUESTED_WITH'] !== 'XMLHttpRequest'){
             self::renderError("Restricted Access : Only XMLHttpRequest accepted !");
         }
@@ -77,9 +84,10 @@ class Rest
 
     /**
      * Check if the referer corresponding to the same server 
+     * 
+     * @return void
     */
-    public static function checkReferer(){
-        $referer = $_SERVER['HTTP_REFERER'];
+    public static function checkReferer():void{
         $request = 'http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
         $request = str_replace('/api/', '/', substr($request, 0, strrpos($request, '/')));
         if(APP === "frontend" && strpos($_SERVER['HTTP_REFERER'], 'http://'.$_SERVER["SERVER_NAME"]) === false && strpos($_SERVER['HTTP_REFERER'], 'https://'.$_SERVER["SERVER_NAME"]) === false){
@@ -89,45 +97,60 @@ class Rest
 
     /**
      * Rest response on error
-     * @param  any $error Data corresponding to the error, can be any type
+     * 
+     * @param mixed $error='' Data corresponding to the error, can be any type
+     * 
+     * @return void
      */
-    public static function renderError($error=''){
+    public static function renderError(mixed $error=''):void{
         self::render(false, ['error'=>$error]);
     }
 
     /**
      * Rest response on success
-     * @param  any $data Data render on success, can be any type
+     * 
+     * @param mixed $data='' Data render on success, can be any type
+     * 
+     * @return void
      */
-    public static function renderSuccess($data=''){
+    public static function renderSuccess(mixed $data=''):void{
         self::render(true, ['data'=>$data]);
     }
 
     /**
      * Rest response
-     * @param  array $params Data to render
+     * 
+     * @param null|array $params=[] Data to render
+     * 
+     * @return void
      */
-    public static function renderJson($params=[]){
+    public static function renderJson(null|array $params=[]):void{
         header('Content-Type: application/json');
         die(json_encode($params));
     }
 
     /**
      * Normalize data to render
-     * @param  boolean $result Specify is the response is on success or error
-     * @param  array $data   Data to render
+     * 
+     * @param bool $result Specify is the response is on success or error
+     * @param null|array $data=[] Data to render
+     * 
+     * @return void
      */
-    public static function render($result, $data=[]){
+    public static function render(bool $result, null|array $data=[]):void{
         $data['success'] = $result;
         self::renderJson($data);
     }
 
     /**
      * Check the presence of required params
-     * @param  array  $list  List of params name to check
-     * @param  boolean $allowEmpty Set to true if data can be empty
+     * 
+     * @param null|array $list=[] List of params name to check
+     * @param null|bool $allowEmpty=false Set to true if data can be empty
+     * 
+     * @return void
      */
-    public static function checkParams($list=[], $allowEmpty=false){
+    public static function checkParams(null|array $list=[], null|bool $allowEmpty=false):void{
         if(!$allowEmpty && count(self::$params) === 0){
             self::renderError("No data found !");
         }

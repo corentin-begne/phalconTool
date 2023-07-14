@@ -1,5 +1,5 @@
 <div class='title'>
-    Edition <?=implode('&nbsp;', $models)?>
+    Edit <?=implode('&nbsp;', $models)?>
     <img id="searchItem" class='action' title="Rechercher" src="/lib/scrud/public/img/form/search.png" action-data='<?=json_encode([
         'class'=>$manager,
         'fn'=>'redirect',
@@ -22,7 +22,7 @@
             'class'=>$manager,
             'fn'=>'redirect',
             'data'=>['path'=>$this->dispatcher->getControllerName().'/'.$actionModel.'/search']
-        ])?>'>Annuler</div>
-        <button id='create' class='form'>Modifier</button>
+        ])?>'>Cancel</div>
+        <button id='create' class='form'>Modify</button>
     </div>
 </form>

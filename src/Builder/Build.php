@@ -1,26 +1,66 @@
 <?
-
 namespace Phalcon\Builder;
-use Phalcon\Tools\Cli;
-class Build extends \Phalcon\DI\Injectable
+use Phalcon\Tools\Cli,
+Phalcon\DI\Injectable;
+
+/**
+ * Manage Js builds generation
+ */
+class Build extends Injectable
 {
-    public function __construct($controller, $action){     
+    /**
+     * Path to rollup bin
+     * @var string
+     */
+    private string $rollup;
+    /**
+     * Path to plugin alias bin used for importmap
+     * @var string
+     */
+    private string $importMap;
+    /**
+     * Path to uglifyjs bin
+     * @var string
+     */
+    private string $uglify;
+    /**
+     * Path to frontend modules dir
+     * @var string
+     */
+    private string $basePath;
+    /**
+     * Extension used for js file
+     * @var string
+     */
+    private string $ext;
+    /**
+     * Build format
+     * @var string
+     */
+    private string $format;
+
+    /**
+     * Generate builds for all controllers and actions without any params
+     * 
+     * @param null|string $controller=null Controller Name
+     * @param null|string $action=null Actions list separated by a comma or null for all
+     */
+    public function __construct(null|string $controller=null, null|string $actions=null){     
         $this->rollup = $this->config->application->rootDir.'/node_modules/rollup/dist/bin/rollup';
         $this->importMap = $this->config->application->rootDir.'/node_modules/@rollup/plugin-alias/dist/cjs/index.js';
         $this->uglify = $this->config->application->rootDir.'/node_modules/uglify-js/bin/uglifyjs';
-        $this->basePath = $this->config->application->publicDir.'js/'.(defined('MODULE')?'modules/':'');
-        $this->ext = (defined('MODULE')?'m':'').'js';
-        $this->format = defined('MODULE')?'es':'iife';        
-        \Phalcon\Library::loadDir([$this->config->application->controllersDir]);
-        $actions = explode(',', $action);        
+        $this->basePath = $this->config->application->publicDir.'js/modules/';
+        $this->ext = 'mjs';
+        $this->format = 'es';                       
         if(isset($controller)){
-            if(isset($action)){
-                foreach($actions as $action){
-                    $this->run($controller, $action);
+            if(isset($actions)){
+                foreach(explode(',', $actions) as $action){
+                    $action .= empty($action) ? '' : '/';
+                    $this->run($this->basePath.$controller.'/'.$action.'main.'.$this->ext);
                 }
             } else {
-                foreach($this->getActions(ucfirst($controller).'Controller') as $action){
-                    $this->run($controller, $action);
+                foreach($this->globRecursive($this->basePath.$controller.'/main.'.$this->ext) as $mainPath){
+                    $this->run($mainPath);
                 }
             }
         } else {
@@ -30,16 +70,31 @@ class Build extends \Phalcon\DI\Injectable
         } 
     }
 
-    public function globRecursive($pattern, $flags = 0){
-        $files = glob($pattern, $flags);
+    /**
+     * Browse recursivly a folder to get all main files
+     * 
+     * @param string $pattern Pattern of the path
+     * @param null|int $flag=0 Flag for the glob function
+     * 
+     * @return array Paths of the main files found
+     */
+    private function globRecursive(string $pattern, null|int $flag=0):array{
+        $files = glob($pattern, $flag);
         foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
         {
-            $files = array_merge($files, $this->globRecursive($dir.'/'.basename($pattern), $flags));
+            $files = array_merge($files, $this->globRecursive($dir.'/'.basename($pattern), $flag));
         }
         return $files;
     }
 
-    private function exec($cmd){
+    /**
+     * Excute bash command and get the result
+     * 
+     * @param string $cmd Command to execute
+     * 
+     * @return string Result of the command
+     */
+    private function exec(string $cmd):string{
         $result = exec($cmd.' >&1 2>&1', $r);
         if($result === false){
             return $result;
@@ -48,7 +103,17 @@ class Build extends \Phalcon\DI\Injectable
         }
     }
 
-    public function run($main){      
+    /**
+     * Build the main file
+     * 
+     * @param string $main Path of the main file
+     * 
+     * @return void
+     */
+    private function run(string $main):void{   
+        if(!file_exists($main)){
+            return;
+        }   
         $build = substr($main, 0, strrpos($main, '/')+1).'build.'.$this->ext;
         if(file_exists($build)){
             exec('rm -f '.$build);
@@ -77,6 +142,5 @@ class Build extends \Phalcon\DI\Injectable
             Cli::warning("build failed", true);
             echo "\n".trim($result)."\n\n";
         }
-        //exec('cd '.$this->config->application->publicDir.'../;make '.ENV.' APP='.APP.' ACTION='.$action.' CONTROLLER='.$controller);
     }
 }

@@ -11,14 +11,13 @@
         left:0px;
         #loader{
             position:absolute;
-            left:50%;
-            top:50%;
+            left:calc(50% - ($size / 2) );
+            top:calc(50% - ($size / 2) );
             border: 16px solid $border-color;
             border-top: 16px solid $color;
             border-radius: 50%;
             width: $size;
             height: $size;
-            @include centerTransform(-50%, -50%);
             animation: spin 2s linear infinite;
 
             @keyframes spin {

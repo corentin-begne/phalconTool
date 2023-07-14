@@ -1,7 +1,12 @@
 <?
-class [name]Task extends \Phalcon\CLI\Task
+use \Phalcon\CLI\Task;
+
+class [name]Task extends Task
 {
-    public function mainAction() {
+    /**
+     * Main task action
+     */
+    public function mainAction():void {
 
     }
 }

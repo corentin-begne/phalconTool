@@ -2,13 +2,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-        <?=$this->assets->outputJs('bowerjs')?>
+        <? if(ENV === 'dev' && file_exists($this->config->application->rootDir.'public/importmap.json')): ?>
+            <script type="importmap">
+                <?=file_get_contents($this->config->application->rootDir.'public/importmap.json')?>
+            </script>
+        <? endif; ?>
         <? foreach($this->assets->collection('mjs')->getAssets() as $asset): ?>
-            <script type="module" src="/<?=$this->assets->collection('mjs')->getPrefix().$asset->getPath()?>?v=<?=$this->config->version?>"></script>
-        <? endforeach; ?>
-        <?=$this->assets->outputJs('libjs')?>        
+            <script type="module" src="/<?=$this->prefix.$this->assets->collection('mjs')->getPrefix().$asset->getPath()?>"></script>
+        <? endforeach; ?>   
         <?=$this->assets->outputCss('css')?>
-        <?=$this->assets->outputCss('libcss')?>
+        <title>
+            <?=(isset($title) ? $title : $t->__('title'))?>
+        </title>
+        <link rel="icon" type="image/png" href="<?=\Manager\Link::getAsset("img/favicon.png")?>">
     </head>
     <body app="<?=APP?>" version="<?=$this->config->version?>">
         <?=$this->getContent()?>

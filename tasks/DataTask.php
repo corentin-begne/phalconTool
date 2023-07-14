@@ -1,12 +1,25 @@
 <?
-use Phalcon\Tools\Cli;
-class DataTask extends \Phalcon\CLI\Task
+use Phalcon\Tools\Cli,
+\Phalcon\CLI\Task;
+
+/**
+ * Task managing database data
+ */
+class DataTask extends Task
 {
-    public function mainAction() {
+    /**
+     * Main task action (not implemented)
+     */
+    public function mainAction():void{
 
     }
 
-    public function importAction() { 
+    /**
+     * Import files translations data into database
+     * 
+     * @return void
+     */
+    public function importAction():void { 
         if($this->config->application->dumpDir === ''){
             Cli::error('dumpDir path is empty');
         }
@@ -36,7 +49,14 @@ class DataTask extends \Phalcon\CLI\Task
         }
     }
 
-    private function checkLog($log){
+    /**
+     * Check and remove log about command return
+     * 
+     * @param string $log Path to the log file
+     * 
+     * @return void
+     */
+    private function checkLog(string $log):void{
         if(file_exists($log)){
             if(file_get_contents($log) === ''){
                 exec('rm -f '.$log);
@@ -46,7 +66,14 @@ class DataTask extends \Phalcon\CLI\Task
         }
     }
 
-    public function exportAction($tables=null) {
+    /**
+     * Export translations from database to files
+     * 
+     * @param null|string $tables=null Tables List separated by a comma or null to export all
+     * 
+     * @return void
+     */
+    public function exportAction(null|string $tables=null):void {
         $tables = isset($tables) ? explode(',', $tables) : [];
         if($this->config->application->dumpDir === ''){
             Cli::error('dumpDir path is empty');

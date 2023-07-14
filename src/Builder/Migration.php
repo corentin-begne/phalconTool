@@ -1,15 +1,41 @@
 <?
 
 namespace Phalcon\Builder;
-use Phalcon\DI,
+use Phalcon\Di\Di,
 Phalcon\Tools\Cli,
-Phalcon\Text as Utils,
 Phalcon\Db\Enum,
-Phalcon\Db;
+Phalcon\DI\Injectable,
+Phalcon\Support\Helper\Str\Camelize,
+Phalcon\Support\Helper\Str\Uncamelize;
 
-class Migration extends \Phalcon\DI\Injectable
+/**
+ * Manage migrations generation
+ */
+class Migration extends Injectable
 {
+    /**
+     * Object to camelize texts
+     * @var \Phalcon\Support\Helper\Str\Camelize
+     */
+    private Camelize $camelize;
+    /**
+     * Object to uncamelize texts
+     * @var \Phalcon\Support\Helper\Str\Uncamelize
+     */
+    private Uncamelize $uncamelize;
+    /**
+     * Object to get models utils
+     * @var \Phalcon\Builder\Utils
+     */
+    private Utils $utils;
+
+    /**
+     * Generate migration
+     */
     public function __construct(){
+        $this->utils = new Utils();
+        $this->camelize = new Camelize();
+        $this->uncamelize = new Uncamelize();
         $modelVersion = '<? 
     class MigrationVersion[nb]{
         public function up(){
@@ -58,7 +84,7 @@ class Migration extends \Phalcon\DI\Injectable
         }
         // check tables
         foreach($this->db->listTables($this->config[ENV]->database->dbname) as $table){
-            $sourceModel = Utils::camelize(Utils::uncamelize($table));
+            $sourceModel = ($this->camelize)(($this->uncamelize)($table));
             if(!class_exists("\\$sourceModel")){                
                 $modelActionTpl['up']['tables']['drop'][] = $table;
                 $modelActionTpl['down']['tables']['create'][] = $table;
@@ -122,25 +148,25 @@ class Migration extends \Phalcon\DI\Injectable
             $modelActionTpl['down']['fields']['modify'][$sourceModel] = [];
             // check fields, get annotations     
             $fields = $model::getColumnsDescription();
-            $columns = $source->getColumnsMap();    
+        //    $columns = $source->getColumnsMap();    
             if($tableExists){
                 $primary = $this->db->fetchOne('SHOW KEYS FROM '.$sourceModel.' WHERE Key_name = \'PRIMARY\'');
                 $indexes = $this->db->fetchALL('SHOW columns FROM '.$sourceModel);
                 if($indexes !== false){
                     foreach($indexes as $index){
                         foreach($fields as $field => &$fieldAnnotation) { 
-                            if($index['Field'] === $columns[$field] && isset($fieldAnnotation['key']) && $fieldAnnotation['key'] !== $index['Key']){
-                                $modelActionTpl['up'][$index['Key'] === 'UNI' ? 'uniques' : 'indexes']['drop'][$sourceModel][] = $columns[$field];
-                                $modelActionTpl['down'][$index['Key'] === 'UNI' ? 'uniques' : 'indexes']['add'][$sourceModel][] = $columns[$field];
-                                $modelActionTpl['up'][$index['Key'] !== 'UNI' ? 'uniques' : 'indexes']['add'][$sourceModel][] = $columns[$field];
-                                $modelActionTpl['down'][$index['Key'] !== 'UNI' ? 'uniques' : 'indexes']['drop'][$sourceModel][] = $columns[$field];
+                            if($index['Field'] === $fieldAnnotation['column'] && isset($fieldAnnotation['key']) && $fieldAnnotation['key'] !== $index['Key']){
+                                $modelActionTpl['up'][$index['Key'] === 'UNI' ? 'uniques' : 'indexes']['drop'][$sourceModel][] = $fieldAnnotation['column'];
+                                $modelActionTpl['down'][$index['Key'] === 'UNI' ? 'uniques' : 'indexes']['add'][$sourceModel][] = $fieldAnnotation['column'];
+                                $modelActionTpl['up'][$index['Key'] !== 'UNI' ? 'uniques' : 'indexes']['add'][$sourceModel][] = $fieldAnnotation['column'];
+                                $modelActionTpl['down'][$index['Key'] !== 'UNI' ? 'uniques' : 'indexes']['drop'][$sourceModel][] = $fieldAnnotation['column'];
                             }
                         }
                     }
                 }
             }
             foreach($fields as $field => &$fieldAnnotation) {
-                $field = $columns[$field];  
+                $field = $fieldAnnotation['column'];  
                 // check relations         
                 if($action === 'update'){                       
                     $fieldDesc = $this->db->fetchOne('show columns from '.$sourceModel.' where Field = \''.$field .'\'', Enum::FETCH_ASSOC);
@@ -233,12 +259,13 @@ class Migration extends \Phalcon\DI\Injectable
                 $modelActionTpl['down']['keys']['foreign']['drop'][$sourceModel] = [];
             }              
             $constraints = $this->db->fetchAll('SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\'', Enum::FETCH_ASSOC);
-            $relations = $this->di->getModelsManager()->getRelations($sourceModel);
+            $mtpm = new $sourceModel();
+            $relations = $mtpm->getModelsManager()->getRelations($sourceModel);
             if($constraints !== false){
                 foreach($constraints as $constraint){
                     $relationExists = false;
                     foreach($relations as $name => $relation){
-                        if($columns[$relation->getFields()] === $constraint['COLUMN_NAME']){
+                        if($fields[$relation->getFields()]['column'] === $constraint['COLUMN_NAME']){
                             $relationExists = true;
                             break;
                         }
@@ -260,22 +287,22 @@ class Migration extends \Phalcon\DI\Injectable
             foreach(['hasOne', 'belongsTo'] as $type){
                 $relations = $source->returnRelations($type);
                 foreach($relations as $name => $relation){                    
-                    $constraint = $this->db->fetchOne('SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\' and COLUMN_NAME=\''.$columns[$name].'\'', Enum::FETCH_ASSOC);
+                    $constraint = $this->db->fetchOne('SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\' and COLUMN_NAME=\''.$fields[$name]['column'].'\'', Enum::FETCH_ASSOC);
                     if($constraint !== false){                    
                         $constraint2 = $this->db->fetchOne('SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$sourceModel.'\' and REFERENCED_TABLE_NAME=\''.$constraint['REFERENCED_TABLE_NAME'].'\'', Enum::FETCH_ASSOC);
                         if(!$constraint2 || $constraint2['UPDATE_RULE'] !== $fields[$name]['onUpdate'] || $constraint2['DELETE_RULE'] !== $fields[$name]['onDelete']){
                             $modelActionTpl['up']['keys']['foreign']['add'][$sourceModel][] = [
-                                'column'=>$columns[$name],
+                                'column'=>$fields[$name]['column'],
                                 'referenced_column'=>$constraint['REFERENCED_COLUMN_NAME'],
                                 'referenced_table'=>$constraint['REFERENCED_TABLE_NAME'],
                                 'onUpdate'=>$fields[$name]['onUpdate'],
                                 'onDelete'=>$fields[$name]['onDelete']
                             ];
-                            $modelActionTpl['up']['keys']['foreign']['drop'][$sourceModel][]= $columns[$name];
-                            $modelActionTpl['down']['keys']['foreign']['drop'][$sourceModel][]= $columns[$name];
+                            $modelActionTpl['up']['keys']['foreign']['drop'][$sourceModel][]= $fields[$name]['column'];
+                            $modelActionTpl['down']['keys']['foreign']['drop'][$sourceModel][]= $fields[$name]['column'];
                             if($constraint2 !== false){
                                 $modelActionTpl['down']['keys']['foreign']['add'][$sourceModel][] = [
-                                    'column'=>$columns[$name],
+                                    'column'=>$fields[$name]['column'],
                                     'referenced_column'=>$constraint['REFERENCED_COLUMN_NAME'],
                                     'referenced_table'=>$constraint['REFERENCED_TABLE_NAME'],
                                     'onUpdate'=>$constraint2['UPDATE_RULE'],
@@ -286,13 +313,13 @@ class Migration extends \Phalcon\DI\Injectable
                     } else {
                         // add foreign key                        
                         $modelActionTpl['up']['keys']['foreign']['add'][$sourceModel][] = [
-                            'column'=>$columns[$name],
+                            'column'=>$fields[$name]['column'],
                             'referenced_column'=>substr($relation['field'], strpos($relation['field'], '_')+1),
                             'referenced_table'=>(new $relation['model']())->getSource(),
                             'onUpdate'=>$fields[$name]['onUpdate'],
                             'onDelete'=>$fields[$name]['onDelete']
                         ];
-                        $modelActionTpl['down']['keys']['foreign']['drop'][$sourceModel][]= $columns[$name];
+                        $modelActionTpl['down']['keys']['foreign']['drop'][$sourceModel][]= $fields[$name]['column'];
                     }                  
                 }
             } 
@@ -320,7 +347,13 @@ class Migration extends \Phalcon\DI\Injectable
         }        
     }
 
-    private function removeEmptyArray(&$data){
+    /**
+     * Clean data removing empty arrays
+     * @param array &$data data to clean
+     * 
+     * @return void
+     */
+    private function removeEmptyArray(array &$data):void{
         foreach($data as $tName => &$types){
             foreach($types as $aName => &$actions){
                 if($aName ==='tables'){
@@ -360,9 +393,16 @@ class Migration extends \Phalcon\DI\Injectable
         }
     }
 
-    private function isArrayEmpty($data){
+    /**
+     * Check recursivly if there's an empty array
+     * 
+     * @param array|string $data Data to check
+     * 
+     * @return bool Result of the check
+     */
+    private function isArrayEmpty(array|string $data):bool{
         if(is_array($data)){
-        foreach($data as $value){
+            foreach($data as $value){
                 if(!$this->isArrayEmpty($value)) {
                     return false;
                 }
@@ -374,19 +414,29 @@ class Migration extends \Phalcon\DI\Injectable
         return true;
     }
 
-    private function getPrefix($table){
+    /**
+     * Get table prefix
+     * 
+     * @param string $table Table name
+     * 
+     * @return string Prefix of the table
+     */
+    private function getPrefix(string $table):string{
         $prefix = '';
-        foreach(explode('_', Utils::uncamelize($table)) as $name){
+        foreach(explode('_', ($this->uncamelize)($table)) as $name){
             $prefix .= $name[0].$name[1];
         }
         return $prefix;
     }
 
-    public function getKeyInfo($field, $key){
-
-    }
-
-    public function normalize($field){
+    /**
+     * Normalize field info from database
+     * 
+     * @param array $field Field data to normalize
+     * 
+     * @return array Field data normalized
+     */
+    public function normalize(array $field):array{
         $type = $field['Type'];
         if(strpos($field['Type'], '(') !== false){
             $type = substr($field['Type'], 0, strpos($field['Type'], '('));
@@ -397,8 +447,8 @@ class Migration extends \Phalcon\DI\Injectable
             }
         }
         $data = [
-            'type' => $type,
-            'isNull' => ($field['Null'] === 'NO') ? false : true,
+            'mtype' => $type,
+            'nullable' => ($field['Null'] === 'NO') ? false : true,
         ];
         if(!empty($field['Default'])){
             $data['default'] = $field['Default'];
@@ -415,29 +465,51 @@ class Migration extends \Phalcon\DI\Injectable
         return $data;
     }
 
-    public function checkField($new, &$old){
+    /**
+     * Check diffrence betwen 2 fields
+     * 
+     * @param array $new New field
+     * @param array &$old Old field
+     * 
+     * @return bool Result of the check
+     */
+    public function checkField(array $new, array &$old):bool{
         unset($new['onUpdate']);
         unset($new['onDelete']);
         unset($new['key']);
+        unset($new['type']);
+        unset($new['column']);
         $old = $this->normalize($old);    
         $old2 = $old;
-        unset($old2['key']);    
+        unset($old2['key']);
         if(count(array_diff($new ,$old2))>0){
             return false;
         }
         return true;
     }
 
-    public static function getCurrentVersion(){
-        $file = DI::getDefault()->getConfig()->application->migrationsDir.ENV.'_version';
+    /**
+     * Get current migration version
+     * 
+     * @return int Migration version
+     */
+    public static function getCurrentVersion():int{
+        $file = DI::getDefault()->get('config')->application->migrationsDir.ENV.'_version';
         if(!file_exists($file)){
             self::setCurrentVersion(0);
         }
         return (int)file_get_contents($file);
     }
 
-    public static function setCurrentVersion($version){
-        return file_put_contents(DI::getDefault()->getConfig()->application->migrationsDir.ENV.'_version', $version);
+    /**
+     * Set a migration version
+     * 
+     * @param int $version Version to set
+     * 
+     * @return int|false Result of file_put_contents
+     */
+    public static function setCurrentVersion(int $version):int|false{
+        return file_put_contents(DI::getDefault()->get('config')->application->migrationsDir.ENV.'_version', $version);
     }
 
 }

@@ -1,0 +1,56 @@
+/*
+# Colors
+Each color have a less variable to be used in the project according to class name
+
+## Text
+
+```
+<div class="black roboto-regular medium inline-block w2">black</div>
+<div class="white black-bg roboto-regular medium inline-block w2">white</div>
+```
+
+## Background
+
+```
+<div class="black-bg white roboto-regular medium inline-block w2">black-bg</div>
+<div class="white-bg roboto-regular medium inline-block w2">white-bg</div>
+```
+
+
+*/
+@mixin color{
+	.#{$currentName}{		
+		color:$color;
+	}
+	.#{$currentName}-bg{		
+		background-color:$color;
+	}
+}
+@mixin colors{	
+	@each $name, $types in $colors{
+		@each $subName, $type in $types{
+			@if type-of($type) == list{
+				@for $i from 1 through length($type) {
+					@if $i == 1{
+						$currentName: #{$name}-#{$subName} !global;
+						$color: nth($type, $i) !global;
+						@include color;
+					} @else {
+						$res: $i - 1;
+						$currentName: #{$name}-#{$subName}#{$res} !global;
+						$color: nth($type, $i) !global;
+						@include color; 
+					}
+				}
+			} @else {
+				$color: $type !global;
+				@if $subName == "base" {
+					$currentName: $name !global;
+				} @else {
+					$currentName: #{$name}-#{$subName} !global;
+				}			
+				@include color; 
+			}
+		}                        
+	}   
+}

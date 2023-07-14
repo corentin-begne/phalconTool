@@ -2,6 +2,10 @@
 
 namespace Phalcon;
 
+use Phalcon\Config\Config,
+Phalcon\Autoload\Loader,
+Phalcon\Di\Di;
+
 /**
  * Manage internal library access and includes
  */
@@ -9,11 +13,14 @@ class Library extends \Phalcon\Di\Injectable{
 
     /**
      * Include the config type file of each librariries
-     * @param  string $type    Name of the type [loader|route]
-     * @param  \Phalcon\Config $config  Config instance
-     * @param  \Phalcon\Loader &$object Loader instance
+     * 
+     * @param string $type Name of the type [loader|route]
+     * @param \Phalcon\Config\Config $config Config instance
+     * @param mixed &$object instance
+     * 
+     * @return void
      */
-    public static function get($type, $config, &$object){        
+    public static function get(string $type, Config $config, mixed &$object):void{        
         if(isset($config->libraries)){
             $paths = $config->application->libDir->toArray();
             $paths[] = dirname(__FILE__).'/lib/';
@@ -30,9 +37,12 @@ class Library extends \Phalcon\Di\Injectable{
 
     /**
      * Load some directories
-     * @param  array $paths Paths to include
+     * 
+     * @param array $paths Paths to include
+     * 
+     * @return void
      */
-    public static function loadDir($paths){
+    public static function loadDir(array $paths):void{
         $loader = Di::getDefault()->getShared('loader');
         $loader->registerDirs($paths, true);
         $loader->register();
@@ -40,9 +50,12 @@ class Library extends \Phalcon\Di\Injectable{
 
     /**
      * Load some namespaces
-     * @param  array $namespaces Namespaces to include
+     * 
+     * @param array $namespaces Namespaces to include
+     * 
+     * @return void
      */ 
-    public static function loadNamespaces($namespaces){        
+    public static function loadNamespaces(array $namespaces):void{        
         $loader = Di::getDefault()->getShared('loader');
         $loader->registerNamespaces($namespaces, true);
         $loader->register();

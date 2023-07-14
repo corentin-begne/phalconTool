@@ -1,51 +1,77 @@
 <?
 namespace Phalcon; 
 
-use Phalcon\Annotations\Adapter\Memory,
-Phalcon\Mvc\Model\Behavior\Timestampable,
+use Phalcon\Mvc\Model\Behavior\Timestampable,
 Phalcon\Mvc\Model\MetaData,
 Phalcon\Builder\Form,
-Phalcon\Text,
-Phalcon\DI;
+Phalcon\Annotations\Reader,
+Phalcon\Annotations\Reflection,
+Phalcon\Mvc\Model,
+Phalcon\Support\Helper\Str\Camelize,
+Phalcon\Support\Helper\Str\Uncamelize;
 
-class ModelBase extends Mvc\Model{
+/**
+ * Base class of all models
+ */
+class ModelBase extends Model{
 
-    public static function queryOne($query, $params=[]){
-       return DI::getDefault()->get('db')->query($query, $params)->fetch();
-    }
 
-    public static function queryAll($query, $params=[]){
-       return DI::getDefault()->get('db')->query($query, $params)->fetchAll();
-    }
-
-    public static function getColumnsDescription($excludes=[]){
-        $reader = new Memory();
-        $reflector = $reader->get(get_called_class());
+    /**
+     * Get descriptions of all columns of the model
+     * 
+     * @param null|array $excludes=[] List of the columns to exclude
+     * 
+     * @return array Columns description
+     */
+    public static function getColumnsDescription(null|array $excludes=[]):array{
+        $reader = new Reader();
+        $parsing = $reader->parse(get_called_class());
+        $reflector = new Reflection($parsing);
         $descriptions = [];
         foreach($reflector->getPropertiesAnnotations() as $annotations){
             foreach($annotations->getAnnotations() as $annotation){
-                if(!in_array(substr($annotation->getName(), strpos($annotation->getName(), '_')+1), $excludes)){
-                    $descriptions[$annotation->getName()] = $annotation->getArguments()[0];
+                if($annotation->getName() !== 'Column'){
+                    continue;
+                }
+                $args = $annotation->getArguments();
+                if(!in_array($args['column'], $excludes)){
+                    $descriptions[self::getPrefix().'_'.$args['column']] = $args;
                 }
             }
         }
         return $descriptions;
     }
 
-    public static function getType($field){
+    /**
+     * Get field type
+     * 
+     * @param string $field Name of the field
+     * 
+     * @return string|false Type of the field or false if not found
+     */
+    public static function getType(string $field):string|false{
         $model = get_called_class();
         foreach($model::getColumnsDescription() as $name => $option){
             if($name === $field){
                 return $option['type'];
             }
         }
+        return false;
     }
 
-    public static function returnRelations($type){
-        $model = get_called_class();
-        $type = 'get'.Text::camelize(Text::uncamelize($type));
+    /**
+     * Get all relation by type
+     * 
+     * @param string $type Type of the relation
+     * 
+     * @return array Relations found
+     */
+    public static function returnRelations(string $type):array{
+        $type = 'get'.(new Camelize())((new Uncamelize())($type));
         $relations=[];
-        foreach(DI::getDefault()->getModelsManager()->$type(new $model()) as $relation){
+        $model = get_called_class();
+        $model = new $model();
+        foreach($model->getModelsManager()->$type($model) as $relation){
             if($type === 'getBelongsTo'){
                 $relations[$relation->getFields()] = [
                     'model' => $relation->getReferencedModel(),
@@ -64,13 +90,28 @@ class ModelBase extends Mvc\Model{
         return $relations;
     }
 
-    public static function getRelations($type){
+    /**
+     * Set relations in \Phalcon\Builder\Form $relations static variable
+     * 
+     * @param string $type Type of the relation
+     * 
+     * @return void
+     */
+    public static function getRelations(string $type):void{
         Form::$relations = self::returnRelations($type);
     }
 
-    public static function checkHasOne($target){
+    /**
+     * Check if current model has a hasOne relation with the target, if true add field in \Phalcon\Builder\Form $excludes static variable
+     * 
+     * @param string $target Name of the model to check with
+     * 
+     * @return bool Result of the check
+     */
+    public static function checkHasOne(string $target):bool{
         $model = get_called_class();
-        foreach(DI::getDefault()->getModelsManager()->getHasOne(new $model()) as $relation){
+        $model = new $model();
+        foreach($model->getModelsManager()->getHasOne($model) as $relation){
             if($relation->getReferencedModel() === $target){
                 Form::$excludes[] = substr($relation->getReferencedFields(), strpos($relation->getReferencedFields(), '_')+1);
                 return true;
@@ -79,78 +120,136 @@ class ModelBase extends Mvc\Model{
         return false;
     }
 
-    public static function getReferencedField($model){
-        $className = get_called_class();
-        foreach(DI::getDefault()->getModelsManager()->getHasOne(new $className()) as $relation){
+    /**
+     * Get referenced field(s) with a model having hasOne relation, return false if not found
+     * 
+     * @param string $model Name of the model to get whith
+     * 
+     * @return string|array|false Field name or list or false if not found
+     */
+    public static function getReferencedField(string $model):string|array|false{
+        $model = get_called_class();
+        $model = new $model();
+        foreach($model->getModelsManager()->getHasOne($model) as $relation){
             if($relation->getReferencedModel() === $model){
                 return $relation->getReferencedFields();
             }
         }
+        return false;
     }
 
-    public static function getColumnsMap(){
-        $className = get_called_class();
-        return DI::getDefault()->getModelsMetadata()->getReverseColumnMap(new $className());
+    /**
+     * Get columns map
+     * 
+     * @return array Columns map
+     */
+    public static function getColumnsMap():array{
+        $model = get_called_class();
+        $model = new $model();
+        return $model->getModelsMetaData()->getColumnMap($model);
     }
 
-    public static function filterParams($params){
+    /**
+     * Merge params with columns description
+     * 
+     * @param array $params Params to add to columns description
+     * 
+     * @return array Result of the merge
+     */
+    public static function filterParams(array $params):array{
         $model = get_called_class();
         return array_intersect_key($params, $model::getColumnsDescription());
     }
 
-    public function getErrors($errors=[]){
+    /**
+     * Get erros from a PHQL query
+     * 
+     * @param null|array $errors=[] Errors to merge with
+     * 
+     * @return array Errors of the query
+     */
+    public function getErrors(null|array $errors=[]):array{
         foreach($this->getMessages() as $message){
             $errors[] = $message->getMessage();
         }
         return $errors;
     }
 
-    public static function getPrefix(){
+    /**
+     * Get model prefix
+     * 
+     * @return string Model prefix
+     */
+    public static function getPrefix():string{
         $model = get_called_class();
         $prefix = '';
-        foreach(explode('_', Text::uncamelize($model)) as $name){
+        foreach(explode('_', (new Uncamelize())($model)) as $name){
             $prefix .= $name[0].$name[1];
         }
         return $prefix;
     }
 
-    public static function getRequired(){
+    /**
+     * Get required columns
+     * 
+     * @return array List of all required columns
+     */
+    public static function getRequired():array{
         $columns = [];
         $prefix = self::getPrefix();
         foreach(self::getColumnsDescription() as $name => $column){
-            if(!$column['isNull'] && !isset($column['default']) && (!isset($column['extra']) || $column['extra'] !== 'auto_increment') && !in_array($name, [$prefix.'_created_at', $prefix.'_updated_at'])){
+            if(!$column['nullable'] && !isset($column['default']) && (!isset($column['extra']) || $column['extra'] !== 'auto_increment') && !in_array($name, [$prefix.'_created_at', $prefix.'_updated_at'])){
                 $columns[] = $name;
             }
         }
         return $columns;
     }
 
-    public static function getPrimaryKey(){
-        $className = get_called_class();
-        return DI::getDefault()->getModelsMetadata()->getPrimaryKeyAttributes(new $className())[0];
+    /**
+     * Get primary key
+     * 
+     * @return array Prmary key
+     */
+    public static function getPrimaryKey():string{
+        $model = get_called_class();
+        $model = new $model();
+        return $model->getModelsMetaData()->getPrimaryKeyAttributes($model)[0];
     }
 
-    public static function getMapped($field){
-        $className = get_called_class();
-        return DI::getDefault()->getModelsMetadata()->readColumnMapIndex(new $className(), MetaData::MODELS_COLUMN_MAP)[$field];
+    /**
+     * Get the field name mapped
+     * 
+     * @param string $field Field name to map
+     * 
+     * @return string Field name mapped
+     */
+    public static function getMapped(string $field):string{
+        $model = get_called_class();
+        $model = new $model();
+        return $model->getModelsMetaData()->readColumnMapIndex($model, MetaData::MODELS_COLUMN_MAP)[$field];
     }
 
-    public function initialize(){
+    /**
+     * Add automatic values for fields created_at and updated_at on creation and update
+     * 
+     * @return void
+     */
+    public function initialize():void{
         $prefix = self::getPrefix();
-        if(property_exists($this, 'created_at')){
+        if(property_exists($this, $prefix.'_created_at')){
             $this->addBehavior(new Timestampable(
                 [
-                    'beforeValidationOnCreate'  => [
+                    'beforeCreate'  => [
                         'field'     => $prefix.'_created_at',
                         'format'    => 'Y-m-d H:i:s'
                     ]
                 ]
             ));
         }
-        if(property_exists($this, 'updated_at')){
+        if(property_exists($this, $prefix.'_updated_at')){
             $this->addBehavior(new Timestampable(
                 [
-                    'beforeValidationOnCreate'  => [
+                    'beforeCreate'  => [
                         'field'     => $prefix.'_updated_at',
                         'format'    => 'Y-m-d H:i:s'
                     ]
@@ -158,7 +257,7 @@ class ModelBase extends Mvc\Model{
             ));
             $this->addBehavior(new Timestampable(
                 [
-                    'beforeValidationOnUpdate'  => [
+                    'beforeUpdate'  => [
                         'field'     => $prefix.'_updated_at',
                         'format'    => 'Y-m-d H:i:s'
                     ]

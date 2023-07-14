@@ -6,10 +6,10 @@
         'data'=>['path'=>$this->dispatcher->getControllerName().'/'.$actionModel.'/read?'.$model::getPrimaryKey().'='.$row->$primaryKey] 
     ])?>'>
         <td>
-            <input title='Sélectionner pour suppression' type='checkbox' class='action' stopPropagation id="<?=$row->$primaryKey?>" />
+            <input title='Select to delete' type='checkbox' class='action' stopPropagation id="<?=$row->$primaryKey?>" />
         </td>
         <? foreach($models as $model): ?>
-            <? foreach($model::getColumnsMap() as $id => $name): ?>
+            <? foreach($model::getColumnsMap() as $name => $id): ?>
                 <?
                     if(isset($includes) && !in_array($id, $includes)){
                         continue;
@@ -17,20 +17,20 @@
                 ?>
                 <td id='<?=$id?>' alt='<?=$model?>' title='<?=str_replace(['_id', 'is_'],['', ''],$name)?>'>
                     <? if($model === $models[0]): ?>                        
-                        <?=Phalcon\Builder\Form::getDisplayValue($row, $model, $id, $name)?>
+                        <?=Phalcon\Builder\Form::getDisplayValue($row, $model, $id)?>
                     <? else: ?>
                         <?
                             $modelName = $models[0];
                             $fieldName = $modelName::getReferencedField($model);          
                             $realName = substr($fieldName, strpos($fieldName, '_')+1);              
-                            $modelName = ucfirst(Phalcon\Text::uncamelize($model)).'_'.$realName;    
+                            $modelName = ucfirst($uncamelize($model)).'_'.$realName;    
                             if($row->$modelName === null){   
                                 $cur = $row;
                             } else {
                                 $cur = $row->$modelName;
                             }                 
                         ?>
-                        <?=Phalcon\Builder\Form::getDisplayValue($cur, $model, $id, $name)?>
+                        <?=Phalcon\Builder\Form::getDisplayValue($cur, $model, $id)?>
                     <? endif; ?>
                 </td>
             <? endforeach; ?>

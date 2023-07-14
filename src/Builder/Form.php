@@ -1,40 +1,70 @@
 <?
 
 namespace Phalcon\Builder;
-use Phalcon\DI, 
-Phalcon\Mvc\Model\Relation, 
-Phalcon\Text as Utils;
+use Phalcon\Di\Di,
+Phalcon\Tag;
 
-class Form extends \Phalcon\Tag
+/**
+ * Manage forms elements based on models relation et fields types
+ */
+class Form extends Tag
 {
-    public static $excludes = ['id', 'created_at', 'updated_at'];
-    public static $relations = [];
-
-    private static $types = [
+    /**
+     * List of fields to exclude
+     * @var array
+     */
+    public static array $excludes = ['id', 'created_at', 'updated_at'];
+    /**
+     * Model relations
+     * @var array
+     */
+    public static array $relations = [];
+    /**
+     * Fields types with options
+     * @var array
+     */
+    private static array $types = [
         'phone'=>['pattern'=>'\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})'], 
         'password'=>['rel'=>'password'], 
         'email'=>'',
         'postal_code'=>['pattern'=>'^(([0-8][0-9])|(9[0-5]))[0-9]{3}$']
     ];
 
-    public static function getFields($model, $excludes=[]){
+    /**
+     * Includes all fields elements partial based on model
+     * 
+     * @param string $model Model name
+     * @param null|array $excludes=[] Fields to exclude
+     * 
+     * @return void
+     */
+    public static function getFields(string $model, null|array $excludes=[]):void{
         $excludes += self::$excludes;
         $model::getRelations('belongsTo');
         foreach($model::getColumnsDescription($excludes) as $name => $options){
-            DI::getDefault()->getView()->partial('/'.DI::getDefault()->get('router')->getControllerName().'/field', [
+            DI::getDefault()->get('view')->partial('/'.DI::getDefault()->get('router')->getControllerName().'/field', [
                 'label'=>Form::getLabel($name), 
                 'field'=>Form::getTag($name, $options)
             ]);
         }
     }
 
-    public static function getDisplayValue($row, $model, $id, $name){ 
+    /**
+     * Get display data of a field from a Resultset
+     * 
+     * @param mixed $row Resultset of the query
+     * @param string $model Model name
+     * @param string $id Name of the field
+     * 
+     * @return mixed Value to display
+     */
+    public static function getDisplayValue(mixed $row, string $model, string $id):mixed{ 
        $relations = $model::returnRelations('belongsTo');
        if($model::getType($id) === 'tinyint'){
             if(!isset($row->$id)){
                 return '';
             } else {
-                return ((int)$row->$id === 0) ? 'Non' : 'Oui';
+                return ((int)$row->$id === 0) ? 'No' : 'Yes';
             }
         } else if(isset($relations[$id])){
             $modelName = $relations[$id]['model'];
@@ -51,21 +81,37 @@ class Form extends \Phalcon\Tag
         }
     }
 
-    public static function getLabel($name){
+    /**
+     * Get field label
+     * 
+     * @param $name Label field name
+     * 
+     * @return string Label to display
+     */
+    public static function getLabel(string $name):string{
         $text = str_replace('_id', '', substr($name, strpos($name, '_')+1));
         return '<label class="form" for="'.$name.'">'.$text.'&nbsp;:&nbsp;</label>';
     }
 
-    public static function getTag($name, $options, $restrictable=true){
+    /**
+     * Get field element tag from model
+     * 
+     * @param string $name Name of the field
+     * @param array $options Options of the field
+     * @param null|bool $restrictable=true Set field required or not
+     * 
+     * @return string Html tag of the field
+     */
+    public static function getTag(string $name, array $options, null|bool $restrictable=true):string{
         $option = [
             $name, 
             'class'=>'form'
         ];
-        if($restrictable && !$options['isNull']){
+        if($restrictable && !$options['nullable']){
             $option += ['required'=>''];
         }
         $type = 'text';        
-        switch($options['type']){
+        switch($options['mtype']){
             case 'bigint':
             case 'int':
                 if(isset($options['key']) && $options['key'] === 'MUL'){
@@ -73,7 +119,7 @@ class Form extends \Phalcon\Tag
                     $modelObj = new $model();
                     $modelNameMap = $model::getPrefix().'_name';
                     if($modelObj::getType($modelNameMap) === null){
-                        $modelNameMap = $name;// die($modelNameMap);
+                        $modelNameMap = $name;
                     }
                     return self::select([
                         $name, 
@@ -141,8 +187,8 @@ class Form extends \Phalcon\Tag
                 $type = 'selectStatic';
                 $args = [
                     ''=>'-',
-                    '1'=>'Oui',
-                    '0'=>'Non'
+                    '1'=>'Yes',
+                    '0'=>'No'
                 ];
                 break;  
             case 'text':

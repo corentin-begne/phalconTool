@@ -1,29 +1,47 @@
 <?
-use Phalcon\Text as Utils,
-Phalcon\Mvc\Model\Query\Builder;
+use Phalcon\Mvc\Model\Query\Builder,
+Phalcon\ControllerBase,
+Phalcon\Mvc\Dispatcher,
+Phalcon\Support\Helper\Str\Camelize,
+Phalcon\Support\Helper\Str\Uncamelize;
 
 /**
  * Provide actions to search, create, update and delete models data and autocompletion on field data search
  */
-class ApiController extends Phalcon\ControllerBase{
+class ApiController extends ControllerBase{
 
     /**
      * Current request models
      * @var array
      */
-    public $models = [];
+    private $models = [];
+    /**
+     * Object to camelize strings
+     * @var \Phalcon\Support\Helper\Str\Camelize
+     */
+    private Camelize $camelize;
+    /**
+     * Object to uncamelize strings
+     * @var Phalcon\Support\Helper\Str\Uncamelize
+     */
+    private Uncamelize $uncamelize;
 
     /**
      * Check url models conformity
+     * 
      * @param  \Phalcon\Mvc\Dispatcher $dispatcher Application dispatcher
+     * 
+     * @return void
      */
-    public function beforeExecuteRoute($dispatcher){
+    public function beforeExecuteRoute(Dispatcher $dispatcher):void{
+        $this->camelize = new Camelize();
+        $this->uncamelize = new Uncamelize();
         Rest::init();
 
         $this->models = [];
         $models = explode(' ', $dispatcher->getParam('model'));
         for($i=0; $i<count($models); $i++){
-            $model = Utils::camelize(Utils::uncamelize($models[$i]));            
+            $model = ($this->camelize)(($this->uncamelize)($models[$i]));
             if(!class_exists($model)){
                 Rest::renderError("Model $model does not exists");
             }
@@ -39,8 +57,10 @@ class ApiController extends Phalcon\ControllerBase{
 
     /**
      * Get models result filtered by conditions
+     * 
+     * @return void
      */
-    public function findAction(){
+    public function findAction():void{
         $params = [];
         $conditions = [];
         foreach(Rest::$params['conditions'] as &$condition){
@@ -81,8 +101,10 @@ class ApiController extends Phalcon\ControllerBase{
 
     /**
      * Get the type of models column
+     * 
+     * @return void
      */
-    public function getTypeAction(){
+    public function getTypeAction():void{
         Rest::checkParams(['field']);
         $model = $this->models[0];
         Rest::renderSuccess($model::getType(Rest::$params['field']));
@@ -90,8 +112,10 @@ class ApiController extends Phalcon\ControllerBase{
 
     /**
      * Autocomplete models field data search
+     * 
+     * @return void
      */
-    public function completeAction(){
+    public function completeAction():void{
         Rest::checkParams(['field', 'value']);
         $limit = isset(Rest::$params['limit']) ? (int)Rest::$params['limit'] : 10;
         $model = $this->models[0];
@@ -112,11 +136,14 @@ class ApiController extends Phalcon\ControllerBase{
 
     /**
      * Create models entry
+     * 
+     * @return void
      */
-    public function createAction(){
+    public function createAction():void{
         $result = [];
         $refModel = $this->models[0];
         $primaryKey = $refModel::getMapped($refModel::getPrimaryKey());
+        $refValue = '';
         try{
             for($i=0; $i<count($this->models); $i++){            
                 $model = $this->models[$i]; 
@@ -142,8 +169,10 @@ class ApiController extends Phalcon\ControllerBase{
 
     /**
      * Update models entry
+     * 
+     * @return void
      */
-    public function updateAction(){
+    public function updateAction():void{
         $refModel = $this->models[0];
         $primaryKey = $refModel::getPrimaryKey();
         $refValue = $this->request->get($primaryKey);
@@ -158,11 +187,10 @@ class ApiController extends Phalcon\ControllerBase{
                 } else {
                     $field = $refModel::getReferencedField($model);
                 }            
-                $fn = 'findFirstBy'.Utils::camelize($field);
+                $fn = 'findFirstBy'.($this->camelize)($field);
                 $row = $model::$fn($refValue);
                 $params = $model::filterParams(Rest::$params);
                 if($row === null){
-                    //Rest::renderError("$primaryKey $refValue not Found !");
                     $row = new $model();
                     $row->$field = $refValue;
                 }
@@ -180,14 +208,16 @@ class ApiController extends Phalcon\ControllerBase{
 
     /**
      * Delete models entry
+     * 
+     * @return void
      */
-    public function deleteAction(){
+    public function deleteAction():void{
         $model = $this->models[0];
         $primaryKey = $model::getMapped($model::getPrimaryKey());
         try{
             $rows = $model::find("$primaryKey IN (".implode(',', Rest::$params['ids']).")");
             if(!$rows->delete()){
-                Rest::renderError($row->getErrors());
+                Rest::renderError($rows[0]->getErrors());
             }
         } catch(PDOException $e){
             Rest::renderError($e->getMessage());

@@ -1,8 +1,8 @@
 <?
-use Phalcon\Events\Event;
-use Phalcon\DI\Injectable;
-use Phalcon\Mvc\Dispatcher;
-use Phalcon\Assets\Filters\Jsmin;
+use Phalcon\Events\Event,
+Phalcon\DI\Injectable,
+Phalcon\Mvc\Dispatcher;
+
 /**
  * The Assets plugin manages all assets (CSS/JS) on application.
  */
@@ -10,10 +10,14 @@ class AssetsPlugin extends Injectable
 {
     /**
      * The event is called before the controller action.
-     *
-     * We create collection for assets.
+     * Create assets collections.
+     * 
+     * @param \Phalcon\Events\Event $event Application event
+     * @param \Phalcon\Mvc\Dispatcher $dispatcher Application dispatcher
+     * 
+     * @return void
      */
-    public function beforeDispatch(Event $event, Dispatcher $dispatcher)
+    public function beforeDispatch(Event $event, Dispatcher $dispatcher):void
     {
         $currentPath = ($dispatcher->getActionName() === 'index') ? $dispatcher->getControllerName() : $dispatcher->getControllerName().'/'.$dispatcher->getActionName(); 
         
@@ -23,17 +27,10 @@ class AssetsPlugin extends Injectable
         $this->assets->collection('mjs')
         ->setPrefix(APP.'/js/modules/');
 
-        $this->assets->collection('bowerjs')
-        ->setPrefix('/bower_components/');
-        //->addJs('require/index.js');
-
         $prefix = in_array($dispatcher->getControllerName(), $this->config->libraries->toArray()) ? 'lib' : '';
 
-        /*$this->assets->collection($prefix.'js')
-        ->addJs("$currentPath/".((ENV==="prod") ? "build" : "main").".js");*/
-
         $this->assets->collection($prefix.'mjs')
-        ->addJs("$currentPath/".((ENV==="prod") ? 'build' : 'main').'.mjs');
+        ->addJs("$currentPath/".((ENV!=="dev") ? 'build' : 'main').'.mjs');
         
         $this->assets->collection('libcss')
         ->setPrefix('/lib/'.$dispatcher->getControllerName().'/public/css/');
@@ -44,5 +41,22 @@ class AssetsPlugin extends Injectable
         $this->assets->collection($prefix.'css')
         ->addCss("$currentPath/main.css");
         
+    }
+
+    /**
+     * Trigre after dispatch to set full path to assets
+     * 
+     * @param \Phalcon\Events\Event $event Application event
+     * @param \Phalcon\Mvc\Dispatcher $dispatcher Application dispatcher
+     * 
+     * @return void
+     */
+    public function afterDispatch(Event $event, Dispatcher $dispatcher):void
+    {
+        foreach($this->assets->getCollections() as $name => $collection){
+            foreach($this->assets->collection($name) as $ressource){
+                $ressource->setPath($ressource->getPath().'?v='.$this->config->version); 
+            }
+        }
     }
 }
