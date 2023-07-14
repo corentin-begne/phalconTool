@@ -19,7 +19,7 @@ For Phalcon 4 and php7 use v4 branche, for JavaScript support use javascript bra
 
 ## Documentation
 
-[PHP Documentation](https://corentin-begne.github.io/phalconTool/docs/)
+[PHP Documentation](https://corentin-begne.github.io/phalconTool/)
 
 # Installation
 
@@ -63,7 +63,7 @@ The default values are dev/frontend. You can add any -- option; it will be avail
 ```
 
 This command will create the `apps` and `public` directories in the root project folder, initialized with the frontend application.  
-The document root of the server must be the `public` directory, referring to the [readme.md](https://raw.githubusercontent.com/corentin-begne/phalconTool/master/templates/project/README.md) file added in the project.  
+The document root of the server must be the `public` directory, referring to the [readme.md](https://github.com/corentin-begne/phalconTool/blob/master/templates/project/README.md) file added in the project.  
 By default, the `api` and `scrud` libraries are not enabled.  
 You can also create any another app like `backend` for example.
 
