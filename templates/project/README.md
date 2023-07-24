@@ -1,6 +1,13 @@
 ## Init
 
-Install librairies for dcumentations generation
+In order to be able to generate sass and manage frontend librairies you have to install node, npm, sass and bower  
+
+```bash
+sudo apt-get install nodejs npm
+sudo npm install -g sass bower
+```
+
+Librairies installation for dcumentations generation
 
 ```bash
 sudo apt-get install grahviz plantuml imagemagick
