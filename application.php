@@ -4,7 +4,7 @@
 use Phalcon\CLI\Console as ConsoleApp,
 Phalcon\CLI\Console\Exception;
 
-error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_DEPRECATED);
 define('VERSION', '1.0.0');
 
 
