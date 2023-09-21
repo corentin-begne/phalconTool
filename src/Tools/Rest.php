@@ -56,7 +56,7 @@ class Rest
         }
         self::$params = $_REQUEST;
         $data = file_get_contents('php://input');
-        if($data !== ""){
+        if($data !== false && $data !== ""){
             self::$params += json_decode($data, true);
         }
         unset(self::$params['_url']);
