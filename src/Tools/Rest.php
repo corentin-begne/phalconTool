@@ -55,6 +55,10 @@ class Rest
             self::checkRequest();
         }
         self::$params = $_REQUEST;
+        $data = file_get_contents('php://input');
+        if($data !== ""){
+            self::$params += json_decode($data, true);
+        }
         unset(self::$params['_url']);
         self::$currentPage = isset(self::$params['current_page']) ? (int)self::$params['current_page'] : self::$currentPage ;
         self::$limit = isset(self::$params['limit']) ? (int)self::$params['limit'] : self::$limit ;
