@@ -114,6 +114,8 @@ class SecurityPlugin extends Injectable
         } else {
             $this->response->redirect('');
         }
+        $this->response->send();
+        die;
     }
 
     /**

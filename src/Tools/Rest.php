@@ -56,7 +56,7 @@ class Rest
         }
         self::$params = $_REQUEST;
         $data = file_get_contents('php://input');
-        if($_SERVER['CONTENT_TYPE'] === 'application/json' && $data !== false && $data !== null && $data !== ""){
+        if(isset($_SERVER['CONTENT_TYPE']) && $_SERVER['CONTENT_TYPE'] === 'application/json' && $data !== false && $data !== null && $data !== ""){
             self::$params += json_decode($data, true);
         }
         unset(self::$params['_url']);
