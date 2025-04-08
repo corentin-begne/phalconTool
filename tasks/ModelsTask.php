@@ -45,7 +45,7 @@ class ModelsTask extends Task
         foreach($constraints as $name => $lines){
             $target = $this->config->application->modelsDir.$name.'.php';
             $content = file_get_contents($target);
-            $content = str_replace("initialize()\n    {", "initialize()\n    {\n".implode($lines), $content);
+            $content = str_replace("initialize():void\n    {", "initialize():void\n    {\n".implode($lines), $content);
             file_put_contents($target, $content);
         }
     }    

@@ -16,7 +16,7 @@ class Model extends Injectable
      * Model constraints
      * @var array
      */
-    private array $constraints = [];
+    public array $constraints = [];
     /**
      * Object to camelize texts
      * @var \Phalcon\Support\Helper\Str\Camelize
