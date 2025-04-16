@@ -453,7 +453,7 @@ class Migration extends Injectable
         if(!empty($field['Default'])){
             $data['default'] = $field['Default'];
         }
-        if(!empty($field['Extra'])){
+        if(!empty($field['Extra']) && $field['Extra'] !== 'DEFAULT_GENERATED'){
             $data['extra'] = $field['Extra'];
         }
         if(!empty($field['Key'])){
