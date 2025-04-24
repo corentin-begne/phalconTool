@@ -23,12 +23,12 @@
                             $modelName = $models[0];
                             $fieldName = $modelName::getReferencedField($model);          
                             $realName = substr($fieldName, strpos($fieldName, '_')+1);              
-                            $modelName = ucfirst($uncamelize($model)).'_'.$realName;    
+                            $modelName = ucfirst((new Phalcon\Support\Helper\Str\Uncamelize())($model)).'_'.$realName;    
                             if($row->$modelName === null){   
                                 $cur = $row;
                             } else {
                                 $cur = $row->$modelName;
-                            }                 
+                            }                                            
                         ?>
                         <?=Phalcon\Builder\Form::getDisplayValue($cur, $model, $id)?>
                     <? endif; ?>

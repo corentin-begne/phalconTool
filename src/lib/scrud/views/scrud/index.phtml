@@ -24,17 +24,11 @@
                     foreach($relations as $relation):              
             ?>
                         <div>
-                            <a target='_blank' href="/<?=APP?>/<?=$this->dispatcher->getControllerName()?>/<?=$name?> <?=$relation['model']?>/search">
+                            <a target='_blank' href="/<?=APP?>/<?=$this->dispatcher->getControllerName()?>/<?=$name?>_<?=$relation['model']?>/search">
                                 <?=$name?> <?=$relation['model']?>
                             </a>
                         </div>
-                        <? $full .= ' '.$relation['model']; ?>
                     <? endforeach; ?>
-                    <div>
-                        <a target='_blank' href="/<?=APP?>/<?=$this->dispatcher->getControllerName()?>/<?=$name?><?=$full?>/search">
-                            <?=$name?><?=$full?>
-                        </a>
-                    </div>
                 <? endforeach; ?>
                 
         <? endforeach; ?>

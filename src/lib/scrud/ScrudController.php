@@ -65,7 +65,7 @@ class ScrudController extends ControllerBase{
         ->addJs($currentPath.'/manager.js')
         ->addJs($currentPath.'/main.js');              
         
-        $models = explode(' ', $this->dispatcher->getParam('model'));
+        $models = explode('_', urldecode($this->dispatcher->getParam('model')));
         for($i=0; $i<count($models); $i++){
             $models[$i] = ($this->camelize)(($this->uncamelize)($models[$i]));
             $model = $models[$i];            
@@ -219,7 +219,7 @@ class ScrudController extends ControllerBase{
         ];
         $fields = [];
         foreach($this->models as $model){
-            $fields += [$model => $model::getColumnsMap()];
+            $fields += [$model => array_flip($model::getColumnsMap())];
         }
         
         $model = $this->models[0];

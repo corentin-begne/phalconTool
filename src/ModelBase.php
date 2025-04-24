@@ -127,11 +127,11 @@ class ModelBase extends Model{
      * 
      * @return string|array|false Field name or list or false if not found
      */
-    public static function getReferencedField(string $model):string|array|false{
+    public static function getReferencedField(string $name):string|array|false{
         $model = get_called_class();
         $model = new $model();
         foreach($model->getModelsManager()->getHasOne($model) as $relation){
-            if($relation->getReferencedModel() === $model){
+            if($relation->getReferencedModel() === $name){
                 return $relation->getReferencedFields();
             }
         }
