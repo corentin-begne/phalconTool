@@ -105,7 +105,7 @@ class Model extends Injectable
             $setting .= ", mtype='".$type."'";
             $setting .= ', nullable='.(($field['Null'] === 'NO') ? 'false' : 'true');
             $setting .= (!empty($field['Default'])) ? ', default=\''.$field['Default'].'\'' : '';
-            $setting .= (!empty($field['Extra'])) ? ', extra=\''.$field['Extra'].'\'' : '';
+            $setting .= (!empty($field['Extra']) && $field['Extra'] !== 'DEFAULT_GENERATED') ? ', extra=\''.$field['Extra'].'\'' : '';
             $setting .= (!empty($field['Key'])) ? ', key=\''.$field['Key'].'\'' : '';
             if(isset($field['Key'])){
                 $constraint = $this->db->fetchOne('SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$table.'\' and COLUMN_NAME=\''.$field['Field'].'\'', \Phalcon\Db\Enum::FETCH_ASSOC);
