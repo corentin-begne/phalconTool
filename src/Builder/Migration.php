@@ -103,7 +103,21 @@ class Migration extends Injectable
                             $modelActionTpl['down']['uniques']['add'][$table][] = $field['Key'];
                             break;
                         case 'MUL':
-                            $constraint = $this->db->fetchOne('SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA =  \''.$this->config[ENV]->database->dbname.'\' AND TABLE_NAME =  \''.$table.'\' and COLUMN_NAME=\''.$field['Field'].'\'', Enum::FETCH_ASSOC);
+                            $sql = <<<SQL
+                                SELECT 
+                                    rc.UPDATE_RULE, 
+                                    rc.DELETE_RULE, 
+                                    kcu.REFERENCED_TABLE_NAME, 
+                                    kcu.REFERENCED_COLUMN_NAME
+                                FROM information_schema.REFERENTIAL_CONSTRAINTS rc
+                                JOIN information_schema.KEY_COLUMN_USAGE kcu 
+                                    ON rc.CONSTRAINT_NAME = kcu.CONSTRAINT_NAME
+                                    AND rc.CONSTRAINT_SCHEMA = kcu.CONSTRAINT_SCHEMA
+                                WHERE rc.CONSTRAINT_SCHEMA = '{$this->config[ENV]->database->dbname}'
+                                    AND kcu.TABLE_NAME = '{$table}'
+                                    AND kcu.COLUMN_NAME = '{$field['Field']}'
+                            SQL;
+                            $constraint = $this->db->fetchOne($sql, Enum::FETCH_ASSOC);
                             if(!$constraint){
                                 if(!isset($modelActionTpl['down']['indexes']['add'][$table])){
                                     $modelActionTpl['down']['indexes']['add'][$table] =[];
