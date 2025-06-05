@@ -51,7 +51,7 @@ class Build extends Injectable
         $this->uglify = $this->config->application->rootDir.'/node_modules/uglify-js/bin/uglifyjs';
         $this->basePath = $this->config->application->publicDir.'js/modules/';
         $this->ext = 'mjs';
-        $this->format = 'es';                       
+        $this->format = defined('FORMAT') ? FORMAT : 'es';                      
         if(isset($controller)){
             if(isset($actions)){
                 foreach(explode(',', $actions) as $action){
