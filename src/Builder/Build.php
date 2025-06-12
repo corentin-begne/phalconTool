@@ -132,7 +132,7 @@ class Build extends Injectable
         if($result === false){
             Cli::error('rollup command failed');
         }
-        $result .= "\n".$this->exec($this->uglify.' '.$build.' -c -o '.$build);
+        $result .= "\n".$this->exec($this->uglify.' '.$build.' -c if_return=false,conditionals=false -m -o '.$build);
         if(defined('DEBUG')){
             echo "\n".trim($result)."\n\n";
         }
