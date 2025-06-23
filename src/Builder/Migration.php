@@ -464,7 +464,7 @@ class Migration extends Injectable
             'mtype' => $type,
             'nullable' => ($field['Null'] === 'NO') ? false : true,
         ];
-        if(!empty($field['Default'])){
+        if(isset($field['Default']) && $field['Default'] !== ''){
             $data['default'] = $field['Default'];
         }
         if(!empty($field['Extra']) && $field['Extra'] !== 'DEFAULT_GENERATED'){
