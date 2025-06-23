@@ -104,7 +104,7 @@ class Model extends Injectable
             $setting .= ", type='".$this->utils->mysqlToPhalconTypes[$type]."'";
             $setting .= ", mtype='".$type."'";
             $setting .= ', nullable='.(($field['Null'] === 'NO') ? 'false' : 'true');
-            $setting .= (!empty($field['Default'])) ? ', default=\''.$field['Default'].'\'' : '';
+            $setting .= (isset($field['Default']) && $field['Default'] !== '') ? ', default=\''.$field['Default'].'\'' : '';
             $setting .= (!empty($field['Extra']) && $field['Extra'] !== 'DEFAULT_GENERATED') ? ', extra=\''.$field['Extra'].'\'' : '';
             $setting .= (!empty($field['Key'])) ? ', key=\''.$field['Key'].'\'' : '';
             if(isset($field['Key'])){
