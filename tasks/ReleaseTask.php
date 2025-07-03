@@ -21,7 +21,7 @@ class ReleaseTask extends Task
         }
         /** upload files */
         $exclude = '" --exclude="';
-        $cmd = 'rsync -zvr --links '.(isset($this->config[ENV]['release']['args']) ? ' '.$this->config[ENV]['release']['args'].' ' : '').(isset($this->config[ENV]['release']['key']) ? '-e "ssh -i '.$this->config[ENV]['release']['key'].'" ' : '').(isset($this->config[ENV]['release']['excludes']) ? '--exclude="'.implode($exclude, $this->config[ENV]['release']['excludes']->toArray()).'" ' : '').$this->config->application->rootDir.'* '.$this->config[ENV]['release']['ssh'];
+        $cmd = 'rsync -zvr --links '.(isset($this->config[ENV]['release']['args']) ? ' '.$this->config[ENV]['release']['args'].' ' : '').(isset($this->config[ENV]['release']['key']) ? '-e "ssh -i '.$this->config[ENV]['release']['key'].'" ' : '').(isset($this->config[ENV]['release']['excludes']) ? '--exclude="'.implode($exclude, $this->config[ENV]['release']['excludes']->toArray()).'" ' : '').realpath($this->config->application->rootDir).'/ '.$this->config[ENV]['release']['ssh'];
         echo $cmd."\n";
         exec($cmd);
         if(defined('BUILD')){
