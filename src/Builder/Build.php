@@ -64,7 +64,7 @@ class Build extends Injectable
                 }
             }
         } else {
-            foreach($this->globRecursive($this->config->application->publicDir.'main.'.$this->ext) as $mainPath){
+            foreach($this->globRecursive($this->basePath.'main.'.$this->ext) as $mainPath){
                 $this->run($mainPath);
             }
         } 
