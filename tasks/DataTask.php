@@ -37,7 +37,7 @@ class DataTask extends Task
                 Cli::success('Success', true);
             }
             // insert/replace
-            if(defined('Truncate')){
+            if(defined('TRUNCATE')){
                 echo '  Insert ';
             } else {
                 echo '  Replace ';
@@ -86,7 +86,7 @@ class DataTask extends Task
                 $query = 'SELECT * FROM '.$table;
                 $csv = $this->config->application->dumpDir.$table.'.csv';
                 $log = $this->config->application->dumpDir.$table.'.log';
-                exec('export MYSQL_PWD='.escapeshellarg($this->config[ENV]->database->password).';mysql -u '.$this->config[ENV]->database->username.' --skip-column-names --default-character-set=utf8 --database '.$this->config[ENV]->database->dbname.' -h '.$this->config[ENV]->database->host.' --port 3306 -e "'.$query.'" | sed -e \'s/NULL/\\\N/g\' > '.$csv.' 2>>'.$log);
+                exec('nice -n 19 export MYSQL_PWD='.escapeshellarg($this->config[ENV]->database->password).';nice -n 19 mysql -u '.$this->config[ENV]->database->username.' --batch --quick --skip-column-names --default-character-set=utf8 --database '.$this->config[ENV]->database->dbname.' -h '.$this->config[ENV]->database->host.' -e "'.$query.'" > '.$csv.' 2>>'.$log);
                 $this->checkLog($log);
                 Cli::success('Success', true);
             }
