@@ -42,7 +42,7 @@ class DataTask extends Task
             } else {
                 echo '  Replace ';
             }
-            $query = 'SET FOREIGN_KEY_CHECKS = 0;LOAD DATA LOCAL INFILE \''.$file.'\' REPLACE INTO TABLE '.$table.' FIELDS TERMINATED BY \'\t\' LINES TERMINATED BY \'\n\';SET FOREIGN_KEY_CHECKS = 1;';
+            $query = 'SET FOREIGN_KEY_CHECKS = 0;SET sql_mode = \'\';LOAD DATA LOCAL INFILE \''.$file.'\' REPLACE INTO TABLE '.$table.' FIELDS TERMINATED BY \'\t\' LINES TERMINATED BY \'\n\';SET FOREIGN_KEY_CHECKS = 1;';
             exec('export MYSQL_PWD='.escapeshellarg($this->config[ENV]->database->password).';mysql --local-infile --show-warnings --verbose --default-character-set=utf8 -u '.$this->config[ENV]->database->username.' --database '.$this->config[ENV]->database->dbname.' -h '.$this->config[ENV]->database->host.' --ssl-mode=DISABLED --port 3306 -e "'.$query.'" >> /dev/null 2>>'.$log);
             $this->checkLog($log);
             Cli::success('Success', true);
@@ -86,7 +86,13 @@ class DataTask extends Task
                 $query = 'SELECT * FROM '.$table;
                 $csv = $this->config->application->dumpDir.$table.'.csv';
                 $log = $this->config->application->dumpDir.$table.'.log';
-                exec('nice -n 19 export MYSQL_PWD='.escapeshellarg($this->config[ENV]->database->password).';nice -n 19 mysql -u '.$this->config[ENV]->database->username.' --batch --quick --skip-column-names --default-character-set=utf8 --database '.$this->config[ENV]->database->dbname.' -h '.$this->config[ENV]->database->host.' -e "'.$query.'" > '.$csv.' 2>>'.$log);
+                exec('MYSQL_PWD=' . escapeshellarg($this->config[ENV]->database->password) . 
+                ' nice -n 19 mysql -u ' . $this->config[ENV]->database->username . 
+                ' -h ' . $this->config[ENV]->database->host . 
+                ' --batch --quick --skip-column-names --default-character-set=utf8 ' . 
+                '--database ' . $this->config[ENV]->database->dbname . 
+                ' -e ' . escapeshellarg($query) . 
+                ' > ' . $csv . ' 2>>' . $log);
                 $this->checkLog($log);
                 Cli::success('Success', true);
             }
